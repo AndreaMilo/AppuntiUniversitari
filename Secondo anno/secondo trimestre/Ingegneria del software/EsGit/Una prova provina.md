@@ -1,1 +1,0 @@
-Linux Tablet sinusita
