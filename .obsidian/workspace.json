@@ -1,0 +1,244 @@
+{
+  "main": {
+    "id": "6cb9c374988e3fc0",
+    "type": "split",
+    "children": [
+      {
+        "id": "d37d2a33e4568611",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1470a30d94980c75",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "4 - Controllo di versione"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4433bb79e1894a59",
+    "type": "split",
+    "children": [
+      {
+        "id": "2cf9f15de578551d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4908e7f4973e313f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora risorse"
+            }
+          },
+          {
+            "id": "28acd25c794c60c9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "1d64d0e16379cc34",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "43910ab9805d2c03",
+    "type": "split",
+    "children": [
+      {
+        "id": "254b873a5145dc1d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "eb771db49033ee7b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "b6ac0aa761f9fa64",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "6add188abc24b352",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "b124294132c8da9b",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "cf189cb4ec86d149",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          },
+          {
+            "id": "65d9c5f1e7c4757f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
+      "switcher:Apri selezione rapida": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota del giorno": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
+    }
+  },
+  "active": "1470a30d94980c75",
+  "lastOpenFiles": [
+    "README.md",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318114924.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318114814.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318114653.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318114521.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318113456.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318113356.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318113240.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318111826.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318111431.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260316114456.png",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia_2020_Andrea_Milo_[829090].sql",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia_2020",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 22_01_2025_Andrea_Milo_[829090].sql",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 22_01_2025",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 21_01_2025",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 20_01_2025_Andrea_Milo_[829090].sql",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 20_01_2025",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 11_02_2021_Andrea_Milo_[829090].sql",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 11_02_2021",
+    "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 07_02",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/2 - Il paradigma Orientato agli Oggetti.md",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/1.2 - Esercitazione specifiche algebriche.md",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/1 - Paradigmi di Programmazione e Astrazione.md",
+    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
+    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/3 - Scrum.md",
+    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/2 - Processi Software.md",
+    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/1 - Introduzione all'ingegneria del software.md",
+    "Secondo anno/primo trimestre/Basi di Dati/Basi di dati personal/Record mundi.md",
+    "Secondo anno/primo trimestre/ASD/MD/Esempio di prova d'esame.md",
+    "Secondo anno/primo trimestre/ASD/MD/9 Coda con priorità.md",
+    "Secondo anno/primo trimestre/ASD/MD/8 Alberi e Grafi.md",
+    "Secondo anno/primo trimestre/ASD/MD/7 Dizionari.md",
+    "Secondo anno/primo trimestre/ASD/MD/6 Insiemi.md",
+    "Secondo anno/primo trimestre/ASD/MD/5 Pila e Coda.md",
+    "Secondo anno/primo trimestre/ASD/MD/4 Liste.md",
+    "Secondo anno/primo trimestre/ASD/MD/3 Complessità algoritmica.md",
+    "Secondo anno/primo trimestre/ASD/MD/2 Algebre di Dati.md",
+    "Secondo anno/primo trimestre/ASD/MD/13 Paradigma generativo.md",
+    "Secondo anno/primo trimestre/ASD/MD/12 Paradigma selettivo.md",
+    "Secondo anno/primo trimestre/ASD/MD/11 Tecniche algoritmiche spazio di ricerca.md",
+    "Secondo anno/primo trimestre/ASD/MD/10 Classificazione dei problemi.md",
+    "Secondo anno/primo trimestre/ASD/MD/1 Algoritmo.md",
+    "Primo anno/primo trimestre/PROGRAMMAZIONE/MARKDOWN/ESEMPIO PROVA PRATICA/SUPERMERCATO/CATENA DI SUPERMERCATI.md",
+    "Primo anno/primo trimestre/PROGRAMMAZIONE/MARKDOWN/ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/BRICOLAGE.md",
+    "Primo anno/primo trimestre/PROGRAMMAZIONE/MARKDOWN/ESEMPIO PROVA PRATICA/CONDOMINI/CONDOMINI.md"
+  ]
+}
