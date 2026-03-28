@@ -1,0 +1,65 @@
+CREATE TABLE Proprietario(CF varchar(16) PRIMARY KEY, Nome varchar(50) NOT NULL, Cognome varchar(50) NOT NULL, DataNascita DATE NOT NULL, Citta varchar(50) NOT NULL);
+
+CREATE TABLE AUTO(Targa varchar(7) PRIMARY KEY, Tipo varchar(30) NOT NULL);
+
+CREATE TABLE MOTO(Targa varchar(7) PRIMARY KEY, Tipo varchar(30) NOT NULL);
+
+CREATE TABLE AUTO_PROPRIETARIO(TargaAuto varchar(7) NOT NULL, CF varchar(16) NOT NULL, PRIMARY KEY(TargaAuto, CF),
+FOREIGN KEY (TargaAuto) REFERENCES AUTO(Targa),
+FOREIGN KEY (CF) REFERENCES Proprietario(CF)
+);
+
+CREATE TABLE MOTO_PROPRIETARIO(TargaMoto varchar(7) NOT NULL, CF varchar(16) NOT NULL, PRIMARY KEY(TargaMoto, CF),
+FOREIGN KEY (TargaMoto) REFERENCES Moto(Targa),
+FOREIGN KEY (CF) REFERENCES Proprietario(CF)
+);
+
+
+-- Query 1: Proprietari che possiedono almeno una moto Custom
+
+select proprietario.nome, proprietario.cognome from proprietario 
+JOIN MOTO_PROPRIETARIO ON MOTO_PROPRIETARIO.cf=proprietario.cf
+JOIN MOTO on moto.targa=MOTO_PROPRIETARIO.targamoto
+WHERE moto.tipo="custom";
+
+-- Query 2: Proprietari che possiedono sia una moto Custom che una Cafe Racer
+
+select proprietario.nome, proprietario.cognome from proprietario 
+WHERE proprietario.cf IN 
+(SELECT mp1.CF FROM MOTO_PROPRIETARIO mp1
+ JOIN Moto m1 ON m1.Targa = mp1.TargaMoto
+ WHERE m1.Tipo = 'Cafe Racer'
+) AND proprietario.cf IN 
+(SELECT mp2.CF FROM MOTO_PROPRIETARIO mp2
+ JOIN Moto m2 ON m2.Targa = mp2.TargaMoto
+ WHERE m2.Tipo = 'Custom'
+);
+
+-- Query 3: Proprietari che possiedono SOLO moto Custom e nessun altro tipo
+
+select proprietario.nome, proprietario.cognome from proprietario 
+WHERE proprietario.cf IN (SELECT mp1.CF FROM MOTO_PROPRIETARIO mp1 JOIN Moto m1 ON m1.Targa = mp1.TargaMoto WHERE m1.Tipo = 'Cafe Racer') AND proprietario.cf NOT IN (SELECT mp2.CF FROM MOTO_PROPRIETARIO mp2 JOIN Moto m2 ON m2.Targa=mp2.TargaMoto WHERE m2.tipo <> 'Custom');
+
+-- Query 4: Proprietari che possiedono una moto Cafe Racer ma NON possiedono auto
+
+select proprietario.nome, proprietario.cognome from proprietario 
+WHERE proprietario.cf IN 
+(SELECT mp1.CF FROM MOTO_PROPRIETARIO mp1
+ JOIN Moto m1 ON m1.Targa = mp1.TargaMoto
+ WHERE m1.Tipo = 'Cafe Racer'
+) AND proprietario.cf NOT IN (
+   SELECT ap.CF from AUTO_PROPRIETARIO ap JOIN AUTO ON AUTO.TARGA=ap.TargaAuto 
+);
+
+-- Query 5: Proprietari che possiedono almeno un’auto E almeno una moto
+
+select proprietario.nome, proprietario.cognome from proprietario 
+WHERE proprietario.cf IN (
+SELECT mp.cf from moto_proprietario mp 
+) AND proprietario.cf IN ( 
+SELECT ap.cf from auto_proprietario ap 
+);
+
+
+
+

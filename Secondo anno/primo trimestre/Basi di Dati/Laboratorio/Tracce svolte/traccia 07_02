@@ -1,0 +1,75 @@
+-- es 1
+CREATE DATABASE Biblioteca;
+USE Biblioteca;
+
+CREATE TABLE Libro(
+    ISBN INT PRIMARY KEY,
+    Titolo varchar(100) NOT NULL,
+    Autore varchar(50) NOT NULL,
+    Genere varchar(70) NOT NULL,
+    AnnoPubblicazione YEAR NOT NULL,
+    Scaffale char(2) NOT NULL,
+
+    CHECK(Genere IN('Narrativa','Saggistica','thriller','Fantasy','Storico'))
+);
+
+CREATE TABLE Iscritto(
+    NumTessera INT PRIMARY KEY,
+    Nome varchar(50) NOT NULL,
+    Cognome varchar(50) NOT NULL,
+    CittaResidenza varchar(60) NOT NULL,
+    DataIscrizione DATE NOT NULL
+);
+
+CREATE TABLE Prestito(
+    RefTessera INT NOT NULL,
+    RefLibro INT NOT NULL,
+    DataPrestito DATE NOT NULL,
+
+    FOREIGN KEY (RefTessera) REFERENCES Iscritto(NumTessera),
+    FOREIGN KEY (RefLibro) REFERENCES Libro(ISBN)
+);
+
+-- es 2
+INSERT INTO Libro(ISBN,Titolo,Autore,Genere,AnnoPubblicazione,Scaffale) VALUES
+    (1000,'KramerVsKramer','Avery Corman','Narrativa',1979,'A1'),
+    (1001,'AtomicHabits','James Clear','Saggistica',2018,'B1'),
+    (1002,'SandLand','Akira Toryama','Fantasy',2000,'A2'),
+    (1003,'Topolino e le guerre spaziali','Walt Disney','Fantasy',2015,'A2');
+
+INSERT INTO Iscritto(NumTessera,Nome,Cognome,CittaResidenza,DataIscrizione) VALUES
+    (001,'Andrea','Milo','Bitonto','2024-10-20'),
+    (002,'Gabriel','Garco','Boston','2014-11-20'),
+    (003,'Emanuele','Santoruvo','Bitonto','2025-09-20'),
+    (004,'Aerdna','Olim','NewYork','2026-02-02');
+
+INSERT INTO Prestito(RefTessera,RefLibro,DataPrestito) VALUES
+    (001,1000,'2025-12-23'),
+    (001,1001,'2025-12-31'),
+    (002,1001,'2025-12-25'),
+    (004,1003,'2018-10-23');
+
+-- es 3.1
+SELECT L.Titolo,L.Autore,L.Scaffale
+FROM Libro L
+WHERE L.Genere='Fantasy' AND L.AnnoPubblicazione>2010
+ORDER BY L.Autore;
+
+-- es 3.2
+SELECT DISTINCT I.Nome,I.Cognome,I.NumTessera
+FROM Iscritto I JOIN Prestito P ON I.NumTessera=P.RefTessera JOIN Libro L ON P.RefLibro=L.ISBN
+WHERE I.CittaResidenza='Bitonto'AND L.Genere='Saggistica';
+
+-- es 3.3
+SELECT L.Titolo, L.ISBN
+FROM Libro L
+WHERE L.ISBN NOT IN(
+    SELECT P.RefLibro
+    FROM Prestito P
+);
+
+-- es 4
+ALTER TABLE Libro DROP CHECK Libro_chk_1;
+ALTER TABLE Libro MODIFY COLUMN Genere varchar(70) NOT NULL CHECK (Genere IN('Fumetti','Manga','Narrativa','Saggistica','thriller','Fantasy','Storico'));
+
+ALTER TABLE Iscritto ADD COLUMN Email varchar(20) UNIQUE;

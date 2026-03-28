@@ -1,0 +1,174 @@
+{
+  "main": {
+    "id": "f78187e302a98199",
+    "type": "split",
+    "children": [
+      {
+        "id": "3253068892a52940",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d9f47eee9f557977",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.4"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.4"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "532fd04d9c28bd1d",
+    "type": "split",
+    "children": [
+      {
+        "id": "f14bb8ba421087b2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "60cc8ed6000c383e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora risorse"
+            }
+          },
+          {
+            "id": "75b96d3d42dd298c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "53febc276354b377",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "84f23aedff9f937d",
+    "type": "split",
+    "children": [
+      {
+        "id": "c5ade2e8ecdc9654",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d9a9cbfc8b49c4c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "10 - Stallo e Starvation.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti a 10 - Stallo e Starvation"
+            }
+          },
+          {
+            "id": "2514afe75e47fb8b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "10 - Stallo e Starvation.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita da 10 - Stallo e Starvation"
+            }
+          },
+          {
+            "id": "f847d1f9bb60033b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "69497fd50b1b8899",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "10 - Stallo e Starvation.md"
+              },
+              "icon": "lucide-list",
+              "title": "Struttura di 10 - Stallo e Starvation"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selezione rapida": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota del giorno": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false
+    }
+  },
+  "active": "d9f47eee9f557977",
+  "lastOpenFiles": [
+    "10 - Stallo e Starvation.pdf",
+    "Immagini AESO",
+    "Immagini AESO/Pasted image 20250215200817.png",
+    "Immagini AESO/Pasted image 20250215193705.png",
+    "Immagini AESO/Pasted image 20250215192733.png",
+    "Immagini AESO/Pasted image 20250215191354.png",
+    "10 - Stallo e Starvation.md"
+  ]
+}

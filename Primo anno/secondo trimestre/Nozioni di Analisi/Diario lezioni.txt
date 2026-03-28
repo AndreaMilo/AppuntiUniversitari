@@ -1,0 +1,37 @@
+L01 - 03.03.2025 Presentazione del corso. Numeri interi. Numeri razionali e loro rappresentazione decimale. Numeri reali  come allineamenti decimali.  Definizione assiomatica dell'insieme dei numeri reali. Proprietà algebriche. Proprietà di ordinamento. Rappresentazione dei numeri sulla retta reale.
+L02 - 05.03.2025 Proprietà di completezza dei numeri reali. Radice n-esima. Intervalli. Proprietà dei numeri derivanti dalle proprietà algebriche e di ordinamento. Equazioni e disequazioni di primo e secondo grado.
+L03 - 07.03.2025 Estremi di un insieme numerico: maggioranti minoranti, massimo, minimo, estremo superiore, estremo inferiore. Esempi. Teorema di esistenza dell'estremo superiore. Relazioni tra maggiorante, massimo ed estremo superiore (minorante, minimo ed estremo inferiore).  Alcune osservazioni sugli insiemi numerici.  Equazioni e disequazioni di secondo grado. Potenze con esponente intero.  
+L04 - 10.03.2025 Potenze con esponente frazionario. Potenze con esponente reale. Proprietà  delle potenze. Logaritmi.  Definizione di funzione. Immagine di una funzione. Grafico di una funzione e sua rappresentazione nel piano cartesiano. Funzioni reali di variabile reale e loro grafico. Funzioni ingettive, surgettive, bigettive. Funzione inversa. Funzione composta.
+L05 - 12.03.2025 Funzione composta e funzione inversa. Funzioni limitate. Massimo e minimo di una funzione. Estremo superiore ed inferiore di una funzione. Funzioni pari e funzioni dispari. Funzioni monotone. Le funzioni strettamente monotone sono invertibili.
+L06 - 14.03.2025 Le funzioni elementari: funzioni lineari,  funzione valore assoluto, funzioni potenza, funzioni esponenziali e logaritmiche. Funzioni periodiche. Equazioni e funzioni ingettive. Disequazioni e monotonia.
+L07 - 17.03.2025 Funzioni  seno, coseno e tangente e loro inverse. Definizione e primi esempi di successioni. Successioni limitate.
+L08 - 19.03.2025 Operazioni sui grafici: traslazioni, dilatazioni, riflessioni, valori assoluti. Studi di funzioni. 
+L09 - 21.03.2025  Successioni definite per ricorrenza. Successioni convergenti, divergenti, irregolari e relativi esempi. Unicita' del limite. Limitatezza delle successioni convergenti. Non limitatezza delle successioni divergenti. Studi di funzioni. 
+L10 - 24.03.2025 Teoremi della permanenza del segno. Teoremi di confronto per le successioni. Successioni monotone. Il numero di Nepero.  L'insieme dei numeri reali ampliato. Teoremi algebrici per il calcolo di limiti di successione. Forme di indecisione. Studi di funzioni.
+L11 - 26.03.2025 Limiti di potenze, di polinomi, di rapporti tra polinomi. Limiti di esponenziali. Criterio della radice per le successioni, criterio del rapporto per le successioni, rapporto implica radice. Confronto tra infiniti.
+L12 - 28.03.2025 Calcolo di limiti di successioni. Limiti di funzioni, definizione. Limiti finiti e infiniti all'infinito. Limiti infiniti e finiti al finito. Non esistenza di limiti.
+L13 - 31.03.2025 Funzioni continue e punti di discontinuità.  Limiti di funzioni monotone. Applicazioni al calcolo dei limiti delle funzioni elementari. Teoremi di confronto. Teoremi della permanenza del segno. Limiti e operazioni algebriche. Forme di indecisione. Forme a/0.
+L14 - 02.04.2025 Teorema sul cambio di variabile nei limiti. Limiti notevoli. Asintoti e loro equazioni. Stime asintotiche nel calcolo dei limiti, definizione di funzioni asintotiche in un punto e di successioni asintotiche tra loro, primi esempi. Limiti di funzioni e successioni asintotiche tra loro.
+L15 - 04.04.2025 Stime asintotiche nel calcolo dei limiti. Limiti di polinomi.  Regola del prodotto, delle potenze, del rapporto. Limiti di rapporti tra polinomi. Stime asintotiche e composizione di funzioni. Stime asintotiche e somma di funzioni.
+L16 - 14.04.2025 Proprietà  delle funzioni continue in un intervallo: teorema dei valori intermedi, teorema di Weierstrass, e loro conseguenze. Continuità, stretta monotonia  e invertibilità. Calcolo di limiti mediante stime asintotiche.
+L17 - 16.04.2025  Definizione di rapporto incrementale e di derivata. Esempi di funzioni derivabili e non derivabili.  Interpretazione geometrica della derivata. Relazione tra continuità e derivabilità. Grafici di  funzioni.
+L18 - 30.04.2025 Derivate delle funzioni elementari. Regole algebriche di derivazione. Punti di non derivabilità: punti di flesso a tangente verticale, punti angolosi e cuspidi.  Derivazione e funzione composta. Derivazione e funzione inversa. Derivabilità in un punto come limite della derivata.
+L19 - 05.05.2025 Massimi e minimi locali. Applicazione del calcolo differenziale allo studio dei massimi e minimi locali di una funzione: teorema di Fermat. Punti critici. Teorema di Lagrange. Test di monotonia. Caratterizzazione delle funzioni costanti. Monotonia delle funzioni elementari.
+L20 - 07.05.2025 Classificazione dei punti critici di una funzione. Funzioni convesse.  Derivabilità e convessità. Punti di flesso. Studio del grafico di funzioni. 
+L21 - 12.05.2025 Approssimazione lineare di funzioni derivabili. Derivabilità e differenziabilità. Approssimazione di funzioni mediate polinomi di secondo grado, parabola osculatrice.  Derivata seconda nei punti di massimo e minimo relativo (condizione necessaria e condizione sufficiente). Polinomi di Taylor. Formula di Taylor con resto di Peano. Serie numeriche e loro somme parziali.
+L22 - 14.05.2025 Serie convergenti, divergenti, irregolari. Primi esempi. Serie geometrica. Serie telescopiche. Studio del grafico di funzioni.
+L23 - 16.05.2025 Operazioni algebriche con le serie. Condizione necessaria per la convergenza. Serie a termini positivi e loro comportamento. Criteri del confronto e del confronto asintotico, Studio del grafico di funzioni.
+L24 - 19.05.2025 Criterio della radice, criterio del rapporto per le serie numeriche. Serie armonica e serie armonica generalizzata.  Serie a termini di segno variabile. Criterio di Leibniz. Assoluta convergenza. Esercizi sullo studio del carattere di serie numeriche.
+L25 - 21.05.2025 Definizione di integrale definito secondo Riemann. Integrale delle funzioni costanti. Esempio di funzione non integrabile. L'integrale come area del sottografico di una funzione. Proprietà dell'integrale definito secondo Riemann. Teorema della media integrale. Esercizi sullo studio del carattere di serie numeriche.
+L26 - 22.05.2025 Primitive e loro proprietà. Formula fondamentale del calcolo integrale. Funzione integrale e teorema fondamentale del calcolo integrale. Convergenza della serie armonica generalizzata e integrali. Integrale indefinito. Integrali indefiniti immediati. Integrazione per scomposizione. 
+L27 - 23.05.2025  Integrale e simmetrie. Integrazione per sostituzione. Integrazione per parti. Integrazione di alcune funzioni razionali fratte.
+L28 - 26.05.2024  Integrazione di alcune funzioni razionali fratte. Integrali impropri.
+
+// Gemini appunti e flashcard link editabili
+1. Link:https://gemini.google.com/share/ed63d01d3f6c {
+    Link riguardante:
+    - Funzione Parte Intera (Floor) e Mantissa (Fractional Part)
+    - Calcolo dei limiti laterali (destro e sinistro) nei punti di salto
+    - Valutazione dei limiti all'infinito con funzioni trigonometriche composte
+    - Continuità e punti di discontinuità
+}

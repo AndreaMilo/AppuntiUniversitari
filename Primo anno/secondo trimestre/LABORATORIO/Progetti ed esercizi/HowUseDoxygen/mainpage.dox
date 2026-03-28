@@ -1,0 +1,11 @@
+/**
+ * @mainpage Documentazione progetto HowUseDoxygen
+ *
+ * @section intro Introduzione
+ * Questo progetto mostra come usare Doxygen per documentare codice C.
+ * 
+ * @section struttura Struttura
+ * - `main.c`: funzione principale
+ * - `documentazioneProva.h`: dichiarazioni
+ * - `documentazioneProva.c`: implementazione
+ */

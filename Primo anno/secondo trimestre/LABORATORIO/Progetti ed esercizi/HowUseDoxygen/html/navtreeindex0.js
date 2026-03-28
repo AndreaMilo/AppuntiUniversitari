@@ -1,0 +1,20 @@
+var NAVTREEINDEX0 =
+{
+"documentazione_prova_8c.html":[1,0,0],
+"documentazione_prova_8c.html#ad449c2894ea191de9b8c34564355ca2f":[1,0,0,0],
+"documentazione_prova_8c_source.html":[1,0,0],
+"documentazione_prova_8h.html":[1,0,1],
+"documentazione_prova_8h.html#a2ea81f2ac54a9e986a42d5a77164d6f4":[1,0,1,0],
+"documentazione_prova_8h_source.html":[1,0,1],
+"files.html":[1,0],
+"globals.html":[1,1,0],
+"globals_func.html":[1,1,1],
+"index.html":[],
+"index.html":[0],
+"index.html#intro":[0,0],
+"index.html#struttura":[0,1],
+"main_8c.html":[1,0,2],
+"main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[1,0,2,0],
+"main_8c_source.html":[1,0,2],
+"pages.html":[]
+};

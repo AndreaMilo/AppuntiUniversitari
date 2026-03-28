@@ -1,0 +1,196 @@
+{
+  "main": {
+    "id": "a78c63174211bcc0",
+    "type": "split",
+    "children": [
+      {
+        "id": "0f7de1b8e5655be3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d99978537edc4749",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Nuova scheda"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b4db2b0e886b68b0",
+    "type": "split",
+    "children": [
+      {
+        "id": "aac6a8ad5a9ff3d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f21b4b23c56491c5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora risorse"
+            }
+          },
+          {
+            "id": "0e0509711d8aa391",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6e064fda17e7bc90",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b8fb6e36661e7dc7",
+    "type": "split",
+    "children": [
+      {
+        "id": "9b5fa12737e090fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9837ee4075473d6c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Markdown/CAP 1 INTRODUZIONE DI PROGRAMMAZIONE ED ALLA TEORIA DEI LINGUAGGI FORMALI.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti a CAP 1 INTRODUZIONE DI PROGRAMMAZIONE ED ALLA TEORIA DEI LINGUAGGI FORMALI"
+            }
+          },
+          {
+            "id": "f33851688b7c44a0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "696dff4ee048fe5e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "c308577b522c3d3a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selezione rapida": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota del giorno": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false
+    }
+  },
+  "active": "d99978537edc4749",
+  "lastOpenFiles": [
+    "PDF/1 - Introduzione ai linguaggi di programmazione ed alla teoria dei linguaggi formali.pdf",
+    "Temporaneo.md",
+    "Markdown/CAP 4 - LINGUAGGI LIBERI DA CONTESTO.md",
+    "Markdown/CAP 3 - Linguaggi liberi da contesto e dipendenti da contesto.md",
+    "PDF/CAP 3 - Linguaggi liberi da contesto e dipendenti da contesto.pdf",
+    "PDF/3 - Linguaggi liberi da contesto e dipendenti da contesto.pdf",
+    "3 - Linguaggi liberi da contesto e dipendenti da contesto.pdf",
+    "Markdown/CAP 1 INTRODUZIONE DI PROGRAMMAZIONE ED ALLA TEORIA DEI LINGUAGGI FORMALI.md",
+    "Markdown/CAP 1 - INTRODUZIONE DI PROGRAMMAZIONE ED ALLA TEORIA DEI LINGUAGGI FORMALI.md",
+    "Markdown/3 - Linguaggi liberi da contesto e dipendenti da contesto.md",
+    "PDF/CAP 2 - Grammatiche e Linguaggi.pdf",
+    "PDF/2 - Grammatiche e Linguaggi.pdf",
+    "PDF/CAP 1 INTRODUZIONE DI PROGRAMMAZIONE ED ALLA TEORIA DEI LINGUAGGI FORMALI.pdf",
+    "PDF",
+    "Nuova cartella",
+    "Immagini di lavoro/Pasted image 20250307131155.png",
+    "Immagini di lavoro/Pasted image 20250307130126.png",
+    "Immagini di lavoro/Pasted image 20250307120919.png",
+    "Immagini di lavoro/Pasted image 20250307120634.png",
+    "Immagini di lavoro/Pasted image 20250307114142.png",
+    "Immagini di lavoro/Pasted image 20250307114122.png",
+    "CAP 2 INTRODUZIONE ALLA TEORIA DEI LINGUAGGI FORMALI.md",
+    "Immagini di lavoro/Pasted image 20250306210944.png",
+    "Immagini di lavoro/Pasted image 20250306201752.png",
+    "Immagini di lavoro/Pasted image 20250306091300.png",
+    "Immagini di lavoro/Pasted image 20250306085912.png",
+    "Immagini di lavoro",
+    "CAP 1 INTRODUZIONE DI PROGRAMMAZIONE ED ALLA TEORIA DEI LINGUAGGI FORMALI.md"
+  ]
+}

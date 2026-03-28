@@ -1,0 +1,71 @@
+PROPRIETARIO(CF, Nome, Cognome, DataNascita, Citta)
+AUTO(Targa, Tipo)
+MOTO(Targa, Tipo)
+AUTO_PROPRIETARIO(TargaAuto, CF)
+MOTO_PROPRIETARIO(TargaMoto, CF)
+
+INSERT INTO PROPRIETARIO VALUES
+('CF01','Luca','Rossi','1990-05-10','Bari'),
+('CF02','Marco','Bianchi','2002-03-15','Bari'),
+('CF03','Anna','Verdi','1985-11-20','Roma'),
+('CF04','Giulia','Neri','1998-07-01','Milano');
+
+INSERT INTO AUTO VALUES
+('A001','Berlina'),
+('A002','Sportiva'),
+('A003','Utilitaria');
+
+INSERT INTO MOTO VALUES
+('M001','Custom'),
+('M002','CafeRacer'),
+('M003','Custom'),
+('M004','GranTurismo');
+
+INSERT INTO AUTO_PROPRIETARIO VALUES
+('A001','CF01'),
+('A003','CF03');
+
+INSERT INTO MOTO_PROPRIETARIO VALUES
+('M001','CF02'),
+('M002','CF02'),
+('M003','CF03'),
+('M004','CF04');
+
+-- Query 1: Proprietari che possiedono almeno una moto Custom
+-- Query 2: Proprietari che possiedono sia una moto Custom che una Cafe Racer
+-- Query 3: Proprietari che possiedono SOLO moto Custom e nessun altro tipo
+-- Query 4: Proprietari che possiedono una moto Cafe Racer ma NON possiedono auto
+-- Query 5: Proprietari che possiedono almeno un’auto E almeno una moto
+
+
+--------------------------------
+
+AUTORE(Cod, Nome, Cognome, Affiliazione)
+RIVISTA(CodRivista, NomeRivista, Ambito)
+ARTICOLO(CodArticolo, Titolo, Autore, Rivista, Anno, ParolaChiave)
+
+INSERT INTO AUTORE VALUES
+('A01','Paolo','Rossi','Università di Bologna'),
+('A02','Sara','Bianchi','Università di Bologna'),
+('A03','Luca','Verdi','Università di Verona'),
+('A04','Anna','Neri','Università di Verona');
+
+INSERT INTO RIVISTA VALUES
+('R01','AI & Law Journal','AI & Law'),
+('R02','Engineering Today','engineering'),
+('R03','ML Review','machine learning');
+
+INSERT INTO ARTICOLO VALUES
+('AR01','AI and Legal Reasoning','A01','R01',2023,'Artificial Intelligence'),
+('AR02','ML for Industry','A01','R03',2025,'Machine Learning'),
+('AR03','Engineering Systems','A02','R02',2023,'Systems'),
+('AR04','Deep Learning Models','A03','R03',2025,'Machine Learning'),
+('AR05','AI Ethics','A04','R01',2023,'Artificial Intelligence');
+
+
+-- Query 6: Nome e cognome degli autori dell’Università di Bologna che hanno pubblicato nel 2023 in ambito AI & Law
+-- Query 7: Titolo e nome rivista degli articoli di Machine Learning pubblicati nel 2025
+-- Query 8: Autori che hanno pubblicato solo in ambito engineering e in NESSUN altro ambito
+-- Query 9: Autori che hanno pubblicato SIA in AI & Law CHE in Machine Learning
+-- Query 10: Autori che NON hanno MAI pubblicato in AI & Law
+

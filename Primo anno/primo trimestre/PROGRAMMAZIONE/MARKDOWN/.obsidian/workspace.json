@@ -1,0 +1,213 @@
+{
+  "main": {
+    "id": "32c382664042800f",
+    "type": "split",
+    "children": [
+      {
+        "id": "5c228905ee773dc6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5ead31bac20e4eb7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/BRICOLAGE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "BRICOLAGE"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8ce988350bba3040",
+    "type": "split",
+    "children": [
+      {
+        "id": "8f0188e7aff8a60c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "77e0d807f1b1b439",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byModifiedTimeReverse"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora risorse"
+            }
+          },
+          {
+            "id": "779e47b46c4058fd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "feof",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "148593800a815961",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "2c37f9fa9ddf78fa",
+    "type": "split",
+    "children": [
+      {
+        "id": "816372aac12ba3fa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8dbdcd2442700b68",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Lezione 5/2. IL LINGUAGGIO.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti a 2. IL LINGUAGGIO"
+            }
+          },
+          {
+            "id": "6c3cfc4bcb25f3ae",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Lezione 5/2. IL LINGUAGGIO.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita da 2. IL LINGUAGGIO"
+            }
+          },
+          {
+            "id": "a73ec6686db63cc4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "4ad12c066c80d048",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Lezione 5/2. IL LINGUAGGIO.md"
+              },
+              "icon": "lucide-list",
+              "title": "Struttura di 2. IL LINGUAGGIO"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selezione rapida": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota del giorno": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false
+    }
+  },
+  "active": "77e0d807f1b1b439",
+  "lastOpenFiles": [
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/fp5.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/fp3.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/fp4.jpeg",
+    "WhatsApp Image 2025-01-22 at 15.53.12 (1).jpeg.~tmp",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/fp2.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/fp1.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/p4.jpeg",
+    "WhatsApp Image 2025-01-22 at 15.53.07.jpeg.~tmp",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/p3.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/p1p2.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/p.jpeg",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/dati o.jpeg",
+    "WhatsApp Image 2025-01-22 at 15.51.29 (1).jpeg.~tmp",
+    "ESEMPIO PROVA PRATICA/CONDOMINI/CONDOMINI.md",
+    "ESEMPIO PROVA PRATICA/NEGOZIO BRICOLAGE/BRICOLAGE.md",
+    "ESEMPIO PROVA PRATICA/CONDOMINI",
+    "ESEMPIO PROVA PRATICA/AGENZIA VIAGGI/AGENZIA VIAGGI MARE SOLE.md",
+    "ESEMPIO PROVA PRATICA/AGENZIA VIAGGI",
+    "ESEMPIO PROVA PRATICA/SUPERMERCATO/CATENA DI SUPERMERCATI.md",
+    "ARGOMENTI POST ESONERO/INPUT E OUTPUT FILE.md",
+    "ESEMPIO PROVA PRATICA/SUPERMERCATO",
+    "ESEMPIO PROVA PRATICA/Nuova cartella",
+    "ESEMPIO PROVA PRATICA/BIBLIOTECA/BIBLIOTECA PROVA ESAME.md",
+    "ESEMPIO PROVA PRATICA/BIBLIOTECA",
+    "ARGOMENTI ESONERO/7 PROGRAMMAZIONE MODULARE E FUNZIONI/1 PROGRAMMAZIONE MODULARE.md",
+    "ARGOMENTI POST ESONERO/ALGORITMI DI ORDINAMENTO.md",
+    "ARGOMENTI POST ESONERO/PUNTATORI.md",
+    "ESEMPIO PROVA PRATICA/BIBLIOTECA PROVA ESAME.md",
+    "ARGOMENTI POST ESONERO",
+    "dfbaduafb.md",
+    "ESEMPIO PROVA PRATICA",
+    "ARGOMENTI ESONERO/5 LINGUAGGIO/3. DATI STRUTTURALI.md",
+    "ARGOMENTI ESONERO/6 LINGUAGGIO C/3. DATI DEFINITI DALL'UTENTE.md",
+    "ARGOMENTI ESONERO/5 LINGUAGGIO/2. IL DATO.md",
+    "ARGOMENTI ESONERO/5 LINGUAGGIO/1. LINGUAGGI DI PROGRAMMAZIONE (DALL_INIZIO).md",
+    "Vedere.md",
+    "ARGOMENTI ESONERO/4 PROBLEMI E SCOMPOSIZIONE/PROBLEMI COMPLESSI.md",
+    "ARGOMENTI ESONERO/3 PSEUDOCODE/PSEUDOCODE (LINGUAGGIO LINEARE).md",
+    "ARGOMENTI ESONERO/2 ALGORITMI/ALGORITMI.md",
+    "ARGOMENTI ESONERO/1 PROGRAMMAZIONE/1 PROGRAMMAZIONE.md",
+    "ARGOMENTI ESONERO/6 LINGUAGGIO C/2. SWITCH E ITERAZIONI.md",
+    "ARGOMENTI ESONERO/6 LINGUAGGIO C/1. IL C.md",
+    "Lezione 5/1. LINGUAGGI DI PROGRAMMAZIONE (DALL'INIZIO).md",
+    "Benvenuto.md"
+  ]
+}
