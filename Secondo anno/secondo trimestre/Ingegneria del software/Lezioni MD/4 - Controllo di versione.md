@@ -178,3 +178,7 @@ Risolvere i possibili conflitti presenti nel main branch, questa risoluzione avv
 - Ritentare il merge
 Dopo queste modifiche e merging, il master branch viene deployato in modo **automatica** o manuale.
 ![[Pasted image 20260327122544.png]]
+
+>[!TODO] Per tutte le ulteriori esercitazioni di sottobranch 
+> verificare la cartella degli EsGit
+
