@@ -180,5 +180,5 @@ Dopo queste modifiche e merging, il master branch viene deployato in modo **auto
 ![[Pasted image 20260327122544.png]]
 
 >[!TODO] Per tutte le ulteriori esercitazioni di sottobranch 
-> verificare la cartella degli EsGit
+> verificare la cartella [EsGit](https://github.com/AndreaMilo/AppuntiUniversitari/tree/main/Secondo%20anno/secondo%20trimestre/Ingegneria%20del%20software/EsGit)
 
