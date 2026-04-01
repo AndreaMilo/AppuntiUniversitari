@@ -150,7 +150,7 @@ Si eseguono questi 5 passagi principali:
 5. **Mergare e deployare**
 
 >[!NOTE] Analizziamo i nuovi termini:
->- **Deploy**=: Il codice finale presente nel main branch (completo di test e totalmente funzionante) viene reso accessibile, per qualsiasi utilizzo, agli utenti finali.
+>- **Deploy**: Il codice finale presente nel main branch (completo di test e totalmente funzionante) viene reso accessibile, per qualsiasi utilizzo, agli utenti finali.
 >  - **Pull request**: Richiesta formale inviata ai colleghi del progetto per discutere le modifiche apportate nel branch secondario.
 
 ### Fase 1
