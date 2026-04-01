@@ -171,7 +171,7 @@ Alla pull request può partecipare chiunque per dire la sua idea. Prima però l'
 In questa discussione è possibile attuare ulteriori modifiche prima del merge.
 ### Fase 5
 Alla fine di tutti i check di controllo della qualità, viene cancellato il branch sia via remoto (web) che locale.
-Risolvere i possibili conflitti presenti nel main branch, questa risoluzione avviene tramite la riesecuzione dei seguenti passi:
+Risolvere i possibili conflitti presenti nel main branch, questa risoluzione avviene tramite la ri-esecuzione dei seguenti passi:
 - Aggiornare il repository locale
 - Modifiche e commit
 - Push dei cambiamenti su remoto
