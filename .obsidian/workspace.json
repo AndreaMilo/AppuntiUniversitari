@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
+                "file": "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4 - Controllo di versione"
+              "title": "3 - Java"
             }
           }
         ]
@@ -192,11 +192,12 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "4908e7f4973e313f",
+  "active": "1470a30d94980c75",
   "lastOpenFiles": [
+    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/demo3/README.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/demo3",
-    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/Una prova provina.md",
     "README.md",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260318114924.png",
@@ -238,7 +239,6 @@
     "Secondo anno/primo trimestre/ASD/MD/12 Paradigma selettivo.md",
     "Secondo anno/primo trimestre/ASD/MD/11 Tecniche algoritmiche spazio di ricerca.md",
     "Secondo anno/primo trimestre/ASD/MD/10 Classificazione dei problemi.md",
-    "Secondo anno/primo trimestre/ASD/MD/1 Algoritmo.md",
-    "Primo anno/primo trimestre/PROGRAMMAZIONE/MARKDOWN/ESEMPIO PROVA PRATICA/SUPERMERCATO/CATENA DI SUPERMERCATI.md"
+    "Secondo anno/primo trimestre/ASD/MD/1 Algoritmo.md"
   ]
 }
