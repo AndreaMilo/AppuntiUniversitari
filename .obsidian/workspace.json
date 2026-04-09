@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
+                "file": "Secondo anno/secondo trimestre/MAP/Lezioni MD/1 - Paradigmi di Programmazione e Astrazione.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 - Java"
+              "title": "1 - Paradigmi di Programmazione e Astrazione"
             }
           }
         ]
@@ -192,8 +192,11 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "1470a30d94980c75",
+  "active": "4908e7f4973e313f",
   "lastOpenFiles": [
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260305113057.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/1 - Paradigmi di Programmazione e Astrazione.md",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260319112938.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260319112406.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260402142348.png",
@@ -204,9 +207,7 @@
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260407190808.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260403173345.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260402142039.png",
-    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260402141848.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
-    "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/demo3/README.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/demo3",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/Una prova provina.md",
@@ -222,7 +223,6 @@
     "Secondo anno/primo trimestre/Basi di Dati/Laboratorio/Tracce svolte/traccia 11_02_2021",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/2 - Il paradigma Orientato agli Oggetti.md",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/1.2 - Esercitazione specifiche algebriche.md",
-    "Secondo anno/secondo trimestre/MAP/Lezioni MD/1 - Paradigmi di Programmazione e Astrazione.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/3 - Scrum.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/2 - Processi Software.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/1 - Introduzione all'ingegneria del software.md",
