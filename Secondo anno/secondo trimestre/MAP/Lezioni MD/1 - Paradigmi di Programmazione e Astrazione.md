@@ -193,7 +193,7 @@ Attualmente la possibilità di effettuare astrazioni di dati è considerata impo
 
 Quindi:
 - L’astrazione funzionale stimola gli sforzi per evidenziare operazioni ricorrenti o comunque ben caratterizzate all'interno della soluzione di un dato problema. 
-- L’astrazione di dati stimola in più gli sforzi per individuare le organizzazione dei dati più consone alla soluzione del problema.
+- L’astrazione di dati stimola in più gli sforzi per individuare le organizzazioni dei dati più consone alla soluzione del problema.
 
 La progettazione da **function centered** diventa una **data centered**.
 L'isolamento però di questi due moduli non può essere totale, quindi si va ad utilizzare la **specifica**
