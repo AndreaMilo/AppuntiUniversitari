@@ -1,5 +1,5 @@
 # Introduzione
-Java è un linguaggio di programmazione orientato agli oggetti e indipendente dalla piattaforma di esecuzione, garantita dal fatto che il codice non dipende dalla macchina fisica o dal sistema operativo specifico, ma viene compilato in un formato intermedio chiamato **bytecode**, il quale può essere poi eseguito su qualunque Virtual Machine compatibile.
+JAVA è un linguaggio di programmazione orientato agli oggetti e indipendente dalla piattaforma di esecuzione, garantita dal fatto che il codice non dipende dalla macchina fisica o dal sistema operativo specifico, ma viene compilato in un formato intermedio chiamato **bytecode**, il quale può essere poi eseguito su qualunque Virtual Machine compatibile.
 A differenza del paradigma procedurale, che descrive i sistemi come un insieme di processi tramite flow-chart e utilizza procedure e funzioni tipiche di linguaggi come C, Basic o Pascal , il mondo a oggetti descrive i sistemi come un insieme di "cose" modellate attraverso gerarchie e dipendenze tra classi. Questo moderno approccio utilizza costrutti basati su dichiarazioni di classi e metodi.
 ## Il paradigma Object-Oriented 
 Riprendendo la definizione del paradigma orientato agli oggetti, ogni singola entità del mondo reale è considerata un oggetto caratterizzato da uno stato e da un funzionamento specifico. 
@@ -23,13 +23,13 @@ L'ereditarietà è un meccanismo estremamente potente che permette di rappresent
 > Riprendendo l'esempio di prima, classi più specifiche come le BMX, le Mountain Bike e le City Bike ereditano tutte le caratteristiche di base di una Bicicletta generica, aggiungendo poi i propri attributi e metodi specializzati. 
 > ![[Pasted image 20260319101107.png]]
 
-Per gestire l'organizzazione di progetti complessi, Java permette di strutturare le classi all'interno di specifiche cartelle separate chiamate **package**, le quali supportano la creazione di ulteriori sottocartelle per definire gerarchie annidate. Il percorso completo e sequenziale dei package necessari per individuare univocamente una classe prende il nome formale di **namespace**
+Per gestire l'organizzazione di progetti complessi, JAVA permette di strutturare le classi all'interno di specifiche cartelle separate chiamate **package**, le quali supportano la creazione di ulteriori sottocartelle per definire gerarchie annidate. Il percorso completo e sequenziale dei package necessari per individuare univocamente una classe prende il nome formale di **namespace**
 > [!example] Rappresentazione grafica di package e namespace sulle biciclette
 > ![[Pasted image 20260319101433.png]]
 # Codice
 ## Commenti
-Per commentare dentro un codice Java, utilizziamo questi simboli:
-```java
+Per commentare dentro un codice JAVA, utilizziamo questi simboli:
+```JAVA
 /* 
 Questo è un commento multi riga, infatti posso anche andare a capo senza farmi problemi.
 Ecco qui!
@@ -37,11 +37,11 @@ Ecco qui!
 
 //Questo è un commento per una singola riga
 ```
-Il compilatore Java ignorerà qualunque cosa posto all'interno degli slash per le righe con la prima sintassi, nella seconda soltanto la riga corrente
+Il compilatore JAVA ignorerà qualunque cosa posto all'interno degli slash per le righe con la prima sintassi, nella seconda soltanto la riga corrente
 ## Definizione di classi, il main e println()
-Per definire una classe in Java usiamo la sintassi **class <nomeclasse\>** 
+Per definire una classe in JAVA usiamo la sintassi **class <nomeclasse\>** 
 > [!example] Esempio di definizione classe
-> ```java
+> ```JAVA
 > class HelloWorldApp{
 > 	public static void main(String[] args){
 > 		System.out.println("Ciao mondo!")
@@ -49,14 +49,14 @@ Per definire una classe in Java usiamo la sintassi **class <nomeclasse\>**
 > }
 > ```
 
-Il main è l'entrypoint di ogni applicazione dove possiamo richiamare altre classi e metodi, in Java deve essere sempre presente all'interno di un applicazione. Come argomento ha sempre `String[] args`, che si riferisce agli argomenti che possiamo passare al main dalla riga di comando quando invochiamo un applicazione Java.
+Il main è l'entrypoint di ogni applicazione dove possiamo richiamare altre classi e metodi, in JAVA deve essere sempre presente all'interno di un applicazione. Come argomento ha sempre `String[] args`, che si riferisce agli argomenti che possiamo passare al main dalla riga di comando quando invochiamo un applicazione JAVA.
 
 La riga `System.out.println("Ciao mondo!")`è composta da 3 elementi fondamentali:
-- `System`, che è una delle librerie **core** di Java
+- `System`, che è una delle librerie **core** di JAVA
 - `out` è un suo attributo (in questo caso un oggetto PrintStream)
 - `println` è un metodo della classe PrintStream che permette di scrivere su un dispositivo di output
 ## Le variabili 
-Le variabili in Java ricoprono il ruolo fondamentale di **descrivere lo stato di un oggetto**, ed esse possiedono sempre:
+Le variabili in JAVA ricoprono il ruolo fondamentale di **descrivere lo stato di un oggetto**, ed esse possiedono sempre:
 - Un tipo;
 - Un nome identificativo;
 - Un valore coerente con il tipo specificato in fase di dichiarazione.
@@ -75,7 +75,7 @@ Le convenzioni comunemente accettate prevedono che
 - Le costanti e le variabili statiche debbano essere scritte interamente a lettere maiuscole, 
 - Per i nomi composti da più parole si adotta lo stile in cui la prima lettera di ogni nuova parola successiva alla prima viene scritta in maiuscolo.
 ## Tipi di dato primitivi
-Il linguaggio Java definisce a livello nativo una serie di tipi di dato primitivi per ottimizzare la memorizzazione dei valori. 
+Il linguaggio JAVA definisce a livello nativo una serie di tipi di dato primitivi per ottimizzare la memorizzazione dei valori. 
 > [!info] Tabella dei valori primitivi
 > ![[Pasted image 20260319104304.png]]
 > Quasi tutti i tipi primitivi possiedono uno zero numerico, un carattere nullo o il valore false come impostazione di default, ad eccezione delle variabili locali che risultano prive di tale assegnazione automatica e necessitano pertanto di un'inizializzazione manuale.
@@ -91,7 +91,7 @@ Il termine letterale (**literal**) viene utilizzato per indicare i **valori espl
 Per quanto riguarda i letterali interi, il compilatore li interpreta sempre come tipo `int` di default, a meno che non venga specificato esplicitamente l'uso del formato long tramite l'aggiunta di una lettera L finale; essi supportano inoltre la scrittura in formati alternativi, potendo essere espressi anche in base esadecimale o binaria.
 
 > [!example] Esempio di letterali interi
-> ```java
+> ```JAVA
 > int n=10; 
 > long m=1000L;
 > int h=0xa1; 
@@ -101,7 +101,7 @@ Per quanto riguarda i letterali interi, il compilatore li interpreta sempre come
 I letterali in virgola mobile seguono una logica simile: sono considerati di tipo double per impostazione predefinita, a meno che non si utilizzi la lettera f per forzarne il tipo a float, e supportano l'impiego della notazione scientifica. 
 
 > [!example] Esempio di letterali float
-> ```java
+> ```JAVA
 > float f=3.14f; 
 > double d1=134.54 
 > double d2=1.3454e2 //Notazione scientifica
@@ -109,14 +109,14 @@ I letterali in virgola mobile seguono una logica simile: sono considerati di tip
 ### Letterali caratteri e Stringhe (character e String)
 i character possono contenere qualunque carattere Unicode a 16-bit racchiuso tra singoli apici, mentre le stringhe impiegano i doppi apici.
 > [!example] Esempio di letterali caratteri e stringhe
-> ```java
+> ```JAVA
 > Per char vale questo -> 'c'
 > Per String vale questo -> "testo di esempio"
 > ```
 
 All'interno dei testi è inoltre possibile avvalersi di speciali sequenze di escape per rappresentare agevolmente caratteri di controllo come il line feed, la tabulazione oppure per visualizzare simboli specifici come il doppio apice, il singolo apice e il backslash
 > [!info] Lista di sequenze escape
-> ```java
+> ```JAVA
 > \n, \r, \f, \b: line feed, carriage return, form feed, backspace
 > \t: tab
 > \’’, \’, \\: doppio apice, singolo apice, backslash
@@ -125,7 +125,7 @@ All'interno dei testi è inoltre possibile avvalersi di speciali sequenze di esc
 L'array è un **oggetto** che contiene un numero finito di oggetti (o tipi primitivi) dello stesso tipo.
 Ha una lunghezza fissa definita al momento della creazione, ogni suo elemento viene chiamato **elemento** ed è possibile accederne con l'indice
 > [!example] Esempio di vari tipi di array
-> ```java
+> ```JAVA
 > Dichiarazione di un array: float[] v;
 > Inizializzazione: float[] v=new float[100];
 > Assegnazione: v[3]=1.3;
@@ -137,7 +137,7 @@ Quando si dichiara un array inizializzato, questo avrà dimensioni uguali a quan
 ### Copia di un array
 La classe `System` mette a disposizione il metodo `arraycopy` per copiare degli array
 > [!info] Metodo per la copia di un array
-> ```java
+> ```JAVA
 > arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
 > ```
 > 
@@ -152,7 +152,7 @@ La classe `System` mette a disposizione il metodo `arraycopy` per copiare degli 
 > [!example] Esempio di copia di array
 > ![[Pasted image 20260319112406.png]]
 ### Manipolazione di array
-La classe Arrays mette a disposizione un serie di metodi statici per manipolare gli array, la documentazione è presente [qui](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html), ma riportiamo comunque alcuni metodi come:
+La classe Arrays mette a disposizione un serie di metodi statici per manipolare gli array, la documentazione è presente [qui](http://docs.oracle.com/JAVAse/8/docs/api/JAVA/util/Arrays.html), ma riportiamo comunque alcuni metodi come:
 - **copyOfRange**: è la copia di array;
 - **fill**: riempimento di array;
 - **equals**: confronto tra due array;
@@ -173,12 +173,12 @@ Alcune considerazioni da fare sono:
 > ![[Pasted image 20260319113654.png]]
 
 È possibile combinare assegnazione ed operatori aritmetici, per esempio:
-```java
+```JAVA
 x += 1; è equivalente a x = x + 1; 
 x *= 2; è equivalente a x = x * 2;
 ```
 L'operatore `+` può essere utilizzato per concatenare le stringhe:
-```java
+```JAVA
 String a=‘’Hello ‘’; String b=‘’ world!’’; String msg = a + b; (‘’Hello world!’’)
 ```
 ### Operatori unari
@@ -201,11 +201,11 @@ Questi operatori restituiscono un boolean come risultato del confronto tra due e
 | ------------- | ---------- |
 | &&            | AND-logico |
 | \|\|          | OR-logico  |
-In Java le espressioni sono valutate solo se necessario, per esempio se ci sono OR valuterà soltanto una e, se questa è vera, le altre verranno scartate a prescindere (in altri linguaggi questo non succede)
+In JAVA le espressioni sono valutate solo se necessario, per esempio se ci sono OR valuterà soltanto una e, se questa è vera, le altre verranno scartate a prescindere (in altri linguaggi questo non succede)
 ### Operatore 'istanceof'
 instanceof è un particolare operatore per stabile se un oggetto è istanza di una particolare classe, come risultato restituisce un booleano.
 > [!example] Esempio di istanceof
-> ```java
+> ```JAVA
 > String s = ‘’sono una stringa’’; 
 > boolean t = s instanceof String; 
 > boolean f = s instanceof Double
@@ -219,9 +219,9 @@ Per quanto riguarda lo scorrimento dei bit (shift) troviamo:
 - L'operatore `>>` li sposta verso destra 
 - L'operatore `>>>` si occupa di spostare i bit a destra ma senza conservare il segno originale
 
-Java mette a disposizione specifici operatori binari sui bit, che sono l'AND logico, lo XOR e l'OR che troviamo all'inizio del capitolo .
+JAVA mette a disposizione specifici operatori binari sui bit, che sono l'AND logico, lo XOR e l'OR che troviamo all'inizio del capitolo .
 ### Espressioni
-Un'espressione in Java è un costrutto fondamentale composto tipicamente da **variabili**, **operatori** e **chiamate a metodi**
+Un'espressione in JAVA è un costrutto fondamentale composto tipicamente da **variabili**, **operatori** e **chiamate a metodi**
 La caratteristica essenziale di un'espressione è che, una volta valutata, restituisce sempre un singolo risultato.
 Il tipo di questo risultato non è universale, ma dipende strettamente dai tipi delle variabili coinvolte, dagli operatori utilizzati e, naturalmente, dai valori restituiti dagli eventuali metodi chiamati.
 Per gestire priorità complesse, le parentesi possono essere utilizzate liberamente per definire e forzare un preciso ordine di valutazione degli operatori.
@@ -235,7 +235,7 @@ All'interno del linguaggio si possono individuare quattro tipologie principali d
 ### Blocchi
 I blocchi sono gruppi di istruzioni racchiusi tra parentesi graffe
 > [!example] Esempio di blocco di codice
-> ```java
+> ```JAVA
 > if (condition) { 
 > // Inizio primo blocco
 > System.out.println("La condizione è vera."); 
@@ -252,7 +252,7 @@ I blocchi sono gruppi di istruzioni racchiusi tra parentesi graffe
 ### if-then e if-then-else
 Le istruzioni if-then e if-then-else sono essenziali per eseguire dei blocchi di codice solo ed esclusivamente se si verifica una determinata condizione.
 > [!example] Esempio di istruzione if-then-else
-> ```java
+> ```JAVA
 > if (condition) { 
 > //blocco if 
 > } 
@@ -264,7 +264,7 @@ Le istruzioni if-then e if-then-else sono essenziali per eseguire dei blocchi di
 L'if-then avviene soltanto quando una condizione è vera, altrimenti nel caso sia falsa questa va nell'else
 ### if-else annidati
 Quando la logica del programma lo richiede, è assolutamente possibile annidare più istruzioni if-else per creare percorsi decisionali multipli
-```java
+```JAVA
 if (condizione1) {
  //blocco condizione 1
 } 
@@ -278,7 +278,7 @@ else if (condizione3){
 ### Switch
 Per gestire scenari con molteplici opzioni si utilizza l'istruzione **switch**, che definisce diversi percorsi di esecuzione in base allo specifico valore che assume una singola variabile
 > [!example] Esempio di switch
-> ```java
+> ```JAVA
 > switch (<variabile>) {
 > case <valore1>: ...; break;// istruzione 1
 > case <valore2>: ...; break; // istruzione 2
@@ -291,7 +291,7 @@ Lo switch può essere applicato soltanto a tipi di dati ben precisi, ovvero ai t
 ### While
 Il ciclo while permette di eseguire un blocco di istruzioni finché una specifica condizione posta in testa al ciclo si mantiene vera
 > [!example] Esempio di condizione while
-> ```java
+> ```JAVA
 > while (condizione) {
 > //blocco istruzioni while
 > }
@@ -299,7 +299,7 @@ Il ciclo while permette di eseguire un blocco di istruzioni finché una specific
 ### Do while
 Il ciclo do-while è concettualmente simile al while, ma con una profonda differenza, ossia il controllo della condizione viene effettuato solamente alla fine del blocco di codice, facendolo sempre eseguire **almeno** una volta.
 > [!example] Esempio do-while
-> ```java 
+> ```JAVA 
 > do {
 //blocco istruzioni while
 } while (condizione);
@@ -1024,20 +1024,20 @@ intersection.retainAll(s2);
 # Java eccezioni
 Un'eccezione è un evento che si verifica durante l'**esecuzione** del programma.
 Identifica un’anomalia che impedisce il normale flusso del programma.
-Normalmente il programma si interrompe quando avviene un eccezione, ma con java si potrebbe cercare di aggiustarla nel momento in cui viene rilevata.
+Normalmente il programma si interrompe quando avviene un'eccezione, ma con java si potrebbe cercare di gestirla nel momento in cui viene rilevata.
 
-Le eccezioni generalmente si presentano nei metodi, e bisogna dichiarare gli errori che potrebbe creare un metodo, così il compilatore capisce cosa non fare per far generare l'eccezione stessa. Viene creato un oggetto eccezione con tutte le informazioni sull'accaduto.
+Le eccezioni generalmente si presentano nei metodi, e bisogna dichiarare gli errori che potrebbe generare un metodo, così il compilatore forza il programmatore a gestirli o a dichiararli a sua volta. Viene creato un oggetto eccezione con tutte le informazioni sull'accaduto.
 ## Gestione delle eccezioni
-Quando un’eccezione viene creata JAVA verifica che ci sia un metodo in grado di gestirla, questa operazione viene eseguita scorrendo a ritroso tutte le chiamate al metodo per capire chi può gestire l'eccezione, se non trova nessuno il programma termina.
+Quando un’eccezione viene creata, JAVA verifica che ci sia un metodo del codice in grado di gestirla. Questa operazione viene eseguita scorrendo a ritroso tutte le chiamate al metodo per capire chi può gestire l'eccezione. Se non trova un gestore appropiato, il programma termina.
 Quando l'eccezione viene trovata si dice che viene **catturata** e gestita tramite un **gestore di eccezioni**.
 ## Tipologie di eccezione
 Le eccezioni si dividono in **tre tipi** (parallelamente quindi vengono creati tre oggetti):
 - **Exception**: sono eccezioni catturabili e gestibili che bisogna gestire prematuramente e anticipate di base dal programmatore.
 - **Error**: sono eccezioni che non possono essere gestite e dipendono da qualcosa di esterno al programma.
-- **RuntimeException**: sono eccezioni interne al programma non anticipabili e catturabile, sono dei veri e propri bug di vario genere.
+- **RuntimeException**: sono eccezioni interne al programma non anticipabili ma catturabili, sono dei veri e propri bug di vario genere.
 
-Per catturare una eccezione bisogna eseguire un **try catch and finally**.
-Ovvero nel `try` viene trovata l'eccezione, dopo di che catturiamo l'oggetto nel metodo `catch`, dove all'interno della funzione sarà gestita la gestione ed infine andremo all'ultimo blocco che è il `finally`, quest'ultimo è opzionale e serve per far eseguire **sempre** delle istruzioni nel caso in cui l'eccezione è presente o meno.
+Per catturare un'eccezione bisogna eseguire un **try catch and finally**.
+Ovvero nel `try` viene trovata l'eccezione, dopo di che catturiamo l'oggetto nel metodo `catch`, dove verrà gestito l'errore ed infine andremo all'ultimo blocco che è il `finally`, quest'ultimo è opzionale e serve per far eseguire **sempre** delle istruzioni nel caso in cui l'eccezione è presente o meno.
 
 La struttura del `try catch finally` è il seguente:
 ```java
@@ -1060,16 +1060,16 @@ try{
 	System.err.println("Caught Exception: " + ex.getMessage());
 }
 ```
-## Lancio di un eccezione
+## Lancio di un'eccezione
 Oltre a catturare le eccezioni possiamo anche *lanciarle* noi per poter vedere le effettive eccezioni che un metodo potrebbe darci.
-Per fare questo si utilizza la clausola `throws` che sta ad indicare che questo metodo deve lanciare un eccezione possibile.
-Quello che restituirà il `throws` è proprio un tipo `IOException`.
+Per fare questo si utilizza la clausola `throw` che sta ad indicare che questo metodo deve lanciare un'eccezione possibile.
+Quello che restituirà il `throw` è proprio un tipo `IOException`.
 Questo meccanismo forza allo sviluppatore di creare eccezioni, poste obbligatoriamente nel catch per controllarle, altrimenti il **compilatore** non capirà cosa sta andando a prendere e darci. Per questo quindi ogni metodo **chiamato** deve gestire l'eccezione, includendo un blocco `try-catch`.
 
-I metodi internamente possono generare un eccezione in modo esplicito, così da segnare la presenza di un errore.
+I metodi internamente possono generare un'eccezione in modo esplicito, così da segnare la presenza di un errore.
 Sotto il seguente schema da seguire:
 ```java
-public File opneFile(String filename) throws IOEXception{
+public File opneFile(String filename) throw IOEXception{
 	try{
 		//istruzione
 	}catch(IOException ex){
@@ -1098,7 +1098,7 @@ public class NumberExcpetion{
 	}
 }
 ```
-Questo esempio ci permette di capire: ?
+Questo esempio ci permette di capire: come proteggere il programma da input errati dell'utente. Usiamo il `try-catch` per evitare che l'applicazione vada in crash se l'utente inserisce una lettera invece di un numero, e usiamo il `finally` per eseguire del codice conclusivo a prescindere dall'esito.
 
 *Esempio 2*:
 ```java
@@ -1110,7 +1110,7 @@ public class EmailException extends Exception{
 
 public class MailParser{
 	public static final String MAIL_REGEXP = "...";
-	public static void checkMail(String mailAddress) throws EmailException{
+	public static void checkMail(String mailAddress) throw EmailException{
 		boolean check = mailAddress.matches(MAIL_REGXP);
 		if(!check){
 			throw new EmailException();
@@ -1129,6 +1129,6 @@ public class TestException {
 	}
 }
 ```
-Mentre questo altro esercizio ci permette di capire che: ?
+Mentre questo altro esercizio ci permette di capire che: è possibile creare eccezioni personalizzate (`EmailException`), sollevarle intenzionalmente (`throw`) quando i dati non rispettano la nostra logica (un'email invalida), e forzare chi utilizza il nostro metodo a occuparsi del problema dichiarando il rischio (`throws`).
 
 ![[Pasted image 20260416121227.png|397]]
