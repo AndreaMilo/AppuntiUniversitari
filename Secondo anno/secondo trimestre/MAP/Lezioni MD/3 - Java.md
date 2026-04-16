@@ -1081,3 +1081,16 @@ Letteralmente questa funzione sta dicendo di rilanciare l'eccezione creata al me
 
 ### Classe eccezione
 Tutte le eccezioni gestibili sono delle **sotto classi** di Exception. Java mette a disposizione una serie di classi per gestire innumerevoli tipi di eccezioni, ma essendo java basato su oggetti nessuno ci vieta a creare altre sotto classi di nostra invenzione, estendendo così Exception o una delle sue sotto classi.
+
+Controlliamo i seguenti esempi:
+*Esempio 1*:
+```java
+public class NumberExcpetion{
+	public static void main(String[] args){
+		try{
+			double x=Double.parseDouble(args[0]);
+			System.out.println("Il quadrato di "+ args[0]+" è "+Math.pow(x,2));
+		}catch()
+	}
+}
+```
