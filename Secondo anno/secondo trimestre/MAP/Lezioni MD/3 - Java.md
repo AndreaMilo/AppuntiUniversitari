@@ -1093,8 +1093,42 @@ public class NumberExcpetion{
 		}catch(NumberFormatException ex){
 			System.err.println("Il paramentro "+args[0]+" non è numero.");
 		} finally{
-			System.out.pri
+			System.out.println("Arriverci!");
 		}
 	}
 }
 ```
+Questo esempio ci permette di capire: ?
+
+*Esempio 2*:
+```java
+public class EmailException extends Exception{
+	public String getMessage(){
+		return "L'indirizzo email non è valido";
+	}
+}
+
+public class MailParser{
+	public static final String MAIL_REGEXP = "...";
+	public static void checkMail(String mailAddress) throws EmailException{
+		boolean check = mailAddress.matches(MAIL_REGXP);
+		if(!check){
+			throw new EmailException();
+		}
+	}
+}
+
+public class TestException {
+	public static void main(String[] args){
+		try{
+			MailParser.checkMail("pippo.mail@mail.com");
+			System.out.println("Indirizzo mail valido");
+		}catch(EmailException ex){
+			System.err.println("Errore nel controllo dell'indirizzo: "+ex.getMassage());
+		}
+	}
+}
+```
+Mentre questo altro esercizio ci permette di capire che: ?
+
+![[Pasted image 20260416121227.png|397]]
