@@ -1021,3 +1021,63 @@ intersection.retainAll(s2);
 > ```
 > Il metodo `removeAll(Collection c)` rimuove dall'insieme corrente tutti gli elementi che sono contenuti anche nella collezione specificata (`s2`).
 
+# Java eccezioni
+Un'eccezione è un evento che si verifica durante l'**esecuzione** del programma.
+Identifica un’anomalia che impedisce il normale flusso del programma.
+Normalmente il programma si interrompe quando avviene un eccezione, ma con java si potrebbe cercare di aggiustarla nel momento in cui viene rilevata.
+
+Le eccezioni generalmente si presentano nei metodi, e bisogna dichiarare gli errori che potrebbe creare un metodo, così il compilatore capisce cosa non fare per far generare l'eccezione stessa. Viene creato un oggetto eccezione con tutte le informazioni sull'accaduto.
+## Gestione delle eccezioni
+Quando un’eccezione viene creata JAVA verifica che ci sia un metodo in grado di gestirla, questa operazione viene eseguita scorrendo a ritroso tutte le chiamate al metodo per capire chi può gestire l'eccezione, se non trova nessuno il programma termina.
+Quando l'eccezione viene trovata si dice che viene **catturata** e gestita tramite un **gestore di eccezioni**.
+## Tipologie di eccezione
+Le eccezioni si dividono in **tre tipi** (parallelamente quindi vengono creati tre oggetti):
+- **Exception**: sono eccezioni catturabili e gestibili che bisogna gestire prematuramente e anticipate di base dal programmatore.
+- **Error**: sono eccezioni che non possono essere gestite e dipendono da qualcosa di esterno al programma.
+- **RuntimeException**: sono eccezioni interne al programma non anticipabili e catturabile, sono dei veri e propri bug di vario genere.
+
+Per catturare una eccezione bisogna eseguire un **try catch and finally**.
+Ovvero nel `try` viene trovata l'eccezione, dopo di che catturiamo l'oggetto nel metodo `catch`, dove all'interno della funzione sarà gestita la gestione ed infine andremo all'ultimo blocco che è il `finally`, quest'ultimo è opzionale e serve per far eseguire **sempre** delle istruzioni nel caso in cui l'eccezione è presente o meno.
+
+La struttura del `try catch finally` è il seguente:
+```java
+try{
+	//istruzioni
+}
+catch(Exception ex){
+	//gestione dell'eccezione
+}
+finally{
+	//istruzioni che devono essere eseguite in ogni caso
+}
+```
+
+In caso ci fossero più eccezioni ed usassimo la versione **JAVA SE 7+** possiamo gestirla nel seguente modo:
+```java
+try{
+	//istruzione
+}catch(IOException | SQLException ex){
+	System.err.println("Caught Exception: " + ex.getMessage());
+}
+```
+## Lancio di un eccezione
+Oltre a catturare le eccezioni possiamo anche *lanciarle* noi per poter vedere le effettive eccezioni che un metodo potrebbe darci.
+Per fare questo si utilizza la clausola `throws` che sta ad indicare che questo metodo deve lanciare un eccezione possibile.
+Quello che restituirà il `throws` è proprio un tipo `IOException`.
+Questo meccanismo forza allo sviluppatore di creare eccezioni, poste obbligatoriamente nel catch per controllarle, altrimenti il **compilatore** non capirà cosa sta andando a prendere e darci. Per questo quindi ogni metodo **chiamato** deve gestire l'eccezione, includendo un blocco `try-catch`.
+
+I metodi internamente possono generare un eccezione in modo esplicito, così da segnare la presenza di un errore.
+Sotto il seguente schema da seguire:
+```java
+public File opneFile(String filename) throws IOEXception{
+	try{
+		//istruzione
+	}catch(IOException ex){
+		trow ex;
+	}
+}
+```
+Letteralmente questa funzione sta dicendo di rilanciare l'eccezione creata al metodo che l'ha chiamato. Così da costringere il programmatore a gestirla.
+
+### Classe eccezione
+Tutte le eccezioni gestibili sono delle **sotto classi** di Exception. Java mette a disposizione una serie di classi per gestire innumerevoli tipi di eccezioni, ma essendo java basato su oggetti nessuno ci vieta a creare altre sotto classi di nostra invenzione, estendendo così Exception o una delle sue sotto classi.
