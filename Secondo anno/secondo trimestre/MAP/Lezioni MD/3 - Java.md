@@ -1090,7 +1090,11 @@ public class NumberExcpetion{
 		try{
 			double x=Double.parseDouble(args[0]);
 			System.out.println("Il quadrato di "+ args[0]+" è "+Math.pow(x,2));
-		}catch()
+		}catch(NumberFormatException ex){
+			System.err.println("Il paramentro "+args[0]+" non è numero.");
+		} finally{
+			System.out.pri
+		}
 	}
 }
 ```
