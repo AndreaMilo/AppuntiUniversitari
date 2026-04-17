@@ -1021,6 +1021,7 @@ intersection.retainAll(s2);
 > ```
 > Il metodo `removeAll(Collection c)` rimuove dall'insieme corrente tutti gli elementi che sono contenuti anche nella collezione specificata (`s2`).
 
+---
 # Java eccezioni
 Un'eccezione è un evento che si verifica durante l'**esecuzione** del programma.
 Identifica un’anomalia che impedisce il normale flusso del programma.
