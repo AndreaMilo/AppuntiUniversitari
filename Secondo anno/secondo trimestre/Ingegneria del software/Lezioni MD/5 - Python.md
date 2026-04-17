@@ -75,11 +75,23 @@ print(l[:2], l[1:], l[:])
 l[2] = -1
 print(c)
 ```
-Prima dei `:` (**passo**) prendiamo dall'inizio all'elemento segnato, dopo l'elemento invece va da quell'elemento in poi, altrimenti senza vincoli prende tutto.
+Prima dei `:` prendiamo dall'inizio all'elemento segnato, dopo l'elemento invece va da quell'elemento in poi, altrimenti senza vincoli prende tutto.
 Due alternative per una **vera copia** sono:
 ``` Python
 l = [2, 3, 10, 50] 
 m = l[:] oppure n = l.copy()
 ```
 Infine la seguente notazione `l[::-1]` andremo a contare da $-1$ fino a salire indietro tutti gli elementi.
+I `::` si leggono come **passo** e servono a fare un salto di elementi quanti richiesti dal numero indicato, come nel seguente esercizio:
+```Python
+//Crea una lista di 100 elementi ed esegui un passo di 3
+i=0
+l=[]
 
+while(i<100):
+  l.append(i)
+  i+=1
+else:
+  print(l[::3])
+```
+[Continuare da 1:22:25]
