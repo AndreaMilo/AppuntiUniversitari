@@ -9,4 +9,4 @@ Le **parole riservate** non possono essere identificatori e per convenzione gli 
 In caso avessimo: $x=3 \cap y=x \cap x=4$:
 L’assegnazione $y = x$ indica a Python di collegare $y$ alla locazione di memoria di $x$. Tuttavia, con l’assegnazione $x = 4$, l’identificatore $x$ punta ora a una nuova locazione.
 
-Anche in Python si usa 
+Anche in Python si usa ''
