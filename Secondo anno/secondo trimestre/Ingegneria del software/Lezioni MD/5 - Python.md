@@ -14,3 +14,11 @@ Inoltre in Python non si specifica il tipo di una variabile.
 
 Se vogliamo mettere a confronto due variabili dello stesso tipo, possiamo utilizzare in Python gli **operatori logici di confronto**.
 Ogni volta che mettiamo a confronto due variabili, Python ci risponderà con un valore booleano **True o False**.
+
+Python permette di utilizzare **istruzioni condizionali** (blocchi di selezione) mediante le parole chiave:
+```Python
+if <cond1>:
+	istruzione cond1 == true
+elif cond2
+else
+```
