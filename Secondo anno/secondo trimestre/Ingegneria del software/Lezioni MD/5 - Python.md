@@ -64,6 +64,12 @@ print("lista: {}, elemento: {}".format(l, e))
 Altre funzioni della lista sono le seguenti:
 ![[Pasted image 20260417185644.png]]
 
+![[Pasted image 20260417190253.png]]
+La lista viene proprio copiata e immagazzinata la medesima nel tempo. Le liste in Python sono **oggetti mutabili**. Il contenuto può cambiare, pur rimanendo invariata la locazione di memoria del contenitore.
+
+
+
+
 
 
 
