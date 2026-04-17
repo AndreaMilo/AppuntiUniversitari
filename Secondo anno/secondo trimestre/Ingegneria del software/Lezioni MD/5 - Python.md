@@ -25,4 +25,14 @@ else:
 	istruzioni per cui cond1= False e cond2=False
 ```
 
-In Python le istruzioni sono raggruppate tramite **l'indentazione**, senza essa non potremmo comprendere a pieno i blocchi, specialmente in progetti grandi e complessi.
+In Python, come si nota dall'esempio, siamo costretti rigorosamente nelle istruzioni a raggrupparle tramite **l'indentazione**, senza essa non potremmo comprendere a pieno i blocchi, specialmente in progetti grandi e complessi.
+
+In Python abbiamo anche i **cicli iterativi**:
+**a condizione iniziale**:
+```
+ while <condizione>:
+	finché la condizione è vera esegui questo blocco 
+ else:
+	 altrimenti procedi ad eseguire qui
+```
+In Python non esiste di base il ciclo a post condizione, ovvero il **do-while**.
