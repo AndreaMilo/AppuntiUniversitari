@@ -36,3 +36,34 @@ In Python abbiamo anche i **cicli iterativi**:
 	 altrimenti procedi ad eseguire qui
 ```
 In Python non esiste di base il ciclo a post condizione, ovvero il **do-while**.
+## Liste in Python
+Le liste di Python ci permettono di definire una **sequenza ordinata di oggetti di qualunque tipo** (numeri, stringhe, oggetti, …), semplicemente elencandoli all’interno di una coppia di parentesi quadre e separandoli con una virgola.
+`l=[4.02,"bruno",x,True]`
+Bisogna prestare attenzione, poiché in Python la **lista è un oggetto** e che una lista può trovarsi dentro un'altra lista.
+
+Per accedere agli elementi di una lista possiamo usare gli indici in qualsiasi verso si preferisce, se dovessimo fare `print(l[-1]` dell'esempio precedente otterremmo `True` poiché partiremo da $-1$ a $-5$ che sarà $4.02$. O partire da $0$ a $3$ .Mentre si otterrà `error` quando il valore è **out of range**.
+
+La notazione `l[n]` (**indicizzazione**) ci permette di ritrovare l’elemento di indice `n` all’interno della lista `l`.
+
+Guardiamo il seguente codice:
+```Python
+x = [5]
+l = [4.02, "claudio", x, True] 
+l.append("giulio") 
+l.extend(x) 
+l.insert(2, False) 
+l.remove("bruno") 
+e = l.pop(3) 
+print("lista: {}, elemento: {}".format(l, e))
+```
+- Tramite la dicitura **append** possiamo inserire alla fine di una lista un altro elemento.
+- Con **extend** invece andiamo a concatenare alla fine della prima lista una seconda lista.
+- Con il **remove** eliminiamo un elemento, diversamente con **insert** inseriamo nell'indice specificato (nel nostro caso il due) un altro elemento, e ciò che si trovava in quella posizione sarà **traslato** assieme al resto in sequenza.
+- Il **pop** inserisce l'elemento in posizione $3$ (nel nostro caso) nella variabile `e`, sfilandolo dalla lista.
+- Come ultimo invece abbiamo il **formattatore**, dove i parametri passati sono la **lista** che sarà inserita nel primo placeholder di `{}` e l'**elemento** che verrà inserito nel secondo placeholder di `{}`.
+Altre funzioni della lista sono le seguenti:
+![[Pasted image 20260417185644.png]]
+
+
+
+
