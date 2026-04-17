@@ -18,7 +18,11 @@ Ogni volta che mettiamo a confronto due variabili, Python ci risponderà con un 
 Python permette di utilizzare **istruzioni condizionali** (blocchi di selezione) mediante le parole chiave:
 ```Python
 if <cond1>:
-	istruzione cond1 == true
-elif cond2
-else
+	istruzione cond1 == True
+elif <cond2>:
+	istruzione per cui cond1 == False e cond2=True
+else:
+	istruzioni per cui cond1= False e cond2=False
 ```
+
+In Python le istruzioni sono raggruppate tramite **l'indentazione**, senza essa non potremmo comprendere a pieno i blocchi, specialmente in progetti grandi e complessi.
