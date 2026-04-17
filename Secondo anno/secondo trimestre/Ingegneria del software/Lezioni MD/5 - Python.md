@@ -66,10 +66,20 @@ Altre funzioni della lista sono le seguenti:
 
 ![[Pasted image 20260417190253.png]]
 La lista viene proprio copiata e immagazzinata la medesima nel tempo. Le liste in Python sono **oggetti mutabili**. Il contenuto può cambiare, pur rimanendo invariata la locazione di memoria del contenitore.
-
-
-
-
-
-
+### Porzione di lista
+La notazione `[start:end:step]` permette di ottenere una copia della **porzione di lista** compresa fra gli indici `s` (incluso) ed `e` (escluso):
+```Python
+l = [2, 3, 10, 50]
+c = l[1:3]
+print(l[:2], l[1:], l[:]) 
+l[2] = -1
+print(c)
+```
+Prima dei `:` (**passo**) prendiamo dall'inizio all'elemento segnato, dopo l'elemento invece va da quell'elemento in poi, altrimenti senza vincoli prende tutto.
+Due alternative per una **vera copia** sono:
+``` Python
+l = [2, 3, 10, 50] 
+m = l[:] oppure n = l.copy()
+```
+Infine la seguente notazione `l[::-1]` andremo a contare da $-1$ fino a salire indietro tutti gli elementi.
 
