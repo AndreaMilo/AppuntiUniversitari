@@ -1171,7 +1171,6 @@ public class CopyBytes{
 Come possiamo notare si **chiudono sempre** gli stream. E' di vitale importanza eseguire ciò, poiché possiamo deallocare risorse e evitiamo di perdere le informazioni scritte sullo stream.
 
 Però lo stream sui byte andrebbe evitata poiché **non è un ottima operazione**. Essa è un operazione di basso livello ed esistono degli stream **idonei** per scrivere e leggere caratteri per caratteri.
-
 ## Character stream
 Si utilizza in caso dovessimo eseguire operazioni IO di caratteri. Questo tipo di flusso gestisce automaticamente la codifica corretta per i caratteri, seguendo lo stile 
 UTF o ISO.
