@@ -1237,4 +1237,18 @@ Il più famoso ed utilizzato, specialmente per lo sviluppo in JAVA, è proprio i
 E' molto conveniente poiché le operazioni vengono eseguite **direttamente sul dispositivo di I/O**; questo è possibile poiché le classi di JAVA (generalmente) sono **unbeffered**.
 
 >[!NOTE] buffered e unbeffered
->
+> - **Unbeffered Stream**: Ogni singola richiesta di lettura o scrittura viene gestita e inviata **direttamente e immediatamente al dispositivo di I/O** (come il disco rigido)
+> - **Buffered Stream**: Utilizza un'area di memoria temporanea e velocissima nella RAM (chiamata buffer)
+
+l confronto tra questi due metodi serve a dimostrare il principio dell'**ottimizzazione delle prestazioni**.
+Il punto chiave è che il "collo di bottiglia" in informatica è quasi sempre la comunicazione con l'hardware fisico. Accedere al disco fisso o inviare un pacchetto di rete costa tantissimo in termini di tempo macchina.
+
+**Le classi buffered**, ovvero BufferedReader e BufferedWriter) utilizzano un buffer predisposto all'I/O che velocizza le operazioni di read&write.
+
+**Le funzioni** che seguono questa classe sono:
+- **BufferedInputStream** e **BufferedOutputStream**: creano le versioni buffered di un byte stream
+- **BufferedReader** e **BufferedWriter**: creano le versioni buffered di un character stream
+
+A livello di codice si creano nel seguente modo: `inputStream = new BufferedReader(new FileReader(“pippo.txt"));` & `outputStream = new BufferedWriter(new FileWriter(“pluto.txt"));`
+
+## La classe File
