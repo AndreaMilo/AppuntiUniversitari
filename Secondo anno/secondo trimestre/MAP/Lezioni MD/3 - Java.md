@@ -1321,7 +1321,14 @@ public static void main(String args[]){
 	String s= "";
 	while (scanner.hasNext()){
 		s= scanner.next();
-		if(!s)
+		if(!s.equalsIgnoreCase("exit")){
+			System.out.println("Hai scritto: "+s);
+		} else{
+			System.out.println("Goodbye!");
+			break;
+		}
 	}
+	scanner.close();
 }
 ```
+## Data Streams
