@@ -94,4 +94,76 @@ while(i<100):
 else:
   print(l[::3])
 ```
-[Continuare da 1:22:25]
+
+## Sequenze
+Abbiamo dato uno sguardo alle liste e ai loro metodi. In Python le liste fanno parte di una grande famiglia di tipi di dati detti **sequenze**.
+Di questa famiglia fanno parte anche le **stringhe**.
+
+La **tupla()** è un'ulteriore tipologia di sequenza i cui elementi sono **immutabili**.
+`t=("a",2,"c")`, come possiamo notare le tuple a differenza delle liste contengono **elementi disomogenei**.
+### Operazione nelle sequenze
+`x in s, x not in s`, ci dicono se è vero che l’elemento $x$ **c’è (o non c’è)** nella sequenza $s$.
+`s + r` concatena due sequenze $s$ e $r$ 
+`s * n` replica la sequenza $s$ per $n$ volte, se $n$ è un numero intero; ad esempio:
+```Python
+s=3
+r="2"
+
+p=s*r
+
+print(p) //ci darà 222
+```
+Questa operazione è eseguibile anche sulle liste per inserire lo stesso elemento $n$ volte all'interno di una grande lista.
+
+Un ultima operazione sulle sequenze in Python è il **sequence unpacking**, una delle operazioni più importanti. Questa operazione ci permette di trasformare gli elementi di una lista in variabili singole apposite, in maniera tale da procurarci solo quella che ci serve:
+```Python
+l=(4,6,8,10)
+
+a,b,_,c=l
+
+print(a) // 3
+print(c) //10
+```
+Come si può notare, associamo alla lista le seguenti variabili escludendo quella presente in posizione `_` così salterà automaticamente quella posizione (non prenderà il valore $8$). 
+Si dice che: **La lista viene ribaltata in variabili mutabili**.
+
+## Variabili mutabili avanzate
+Introduciamo ancora un altro tipo di dato mutabile in Python, il **set {}**, una collezione **non ordinata e non indicizzabile** di oggetti di qualunque tipo.
+```
+s={4,2,4,1}
+print(s)
+```
+Sul tipo di dato **set** è possibile utilizzare le operazioni viste precedentemente.
+
+>[!NOTE] Quando è meglio usarlo?
+>Meglio i set per collezioni di tantissimi elementi senza duplicati e su cui facciamo "ricerche"
+
+### Dizionari
+Python ci offre lo strumento del **dizionario {}**. È una collezione **non ordinata e mutabile** di elementi, ognuno avente una **chiave e un valore**, proprio come in un vocabolario.
+
+Accedere ad un elemento di un dizionario è semplice: basta conoscere la sua chiave.
+```Python
+d={'Uniba': 'Universita del Sud Italia', 7: 'Numero intero'}
+print(d['Uniba']) //Avremo->'Universita del Sud Italia'
+print(d.get(7)) //Preleviamo quell'elemento
+```
+Per inserire elementi nel dizionario utilizziamo la clausola **dict**: `d = dict(Uniba='…', Gatto='…')`, questo è eseguibile però solo se **le chiavi sono identificatori validi**.
+Per quanto riguarda **l'inserimento di valori in un dizionario già esistente**, basterà assegnare alla chiave il valore nuovo da voler inserire: `d['Bari']='Bellissima città'`.
+
+Per copiare un dizionario in una nuova variabile dizionario si utilizzerà la sua funzione **copy()**:
+`c=d.copy()`
+Se utilizzassimo la sintassi normale `c=d` andremo a fare una sovrascrittura dei dati del dizionario, come nella seguente foto:
+![[Pasted image 20260422090739.png]]
+Questo è dato dal fatto che i dizionari sono oggetti mutabili.
+## Input in Python
+Differentemente dal **cin>>** o dalla **scanf** per far digitare in input un dato dall'utente si utilizza in python proprio la funzione **input()** stessa:
+```Python
+nome=input("Insert name")
+print(nome+ "string")
+```
+A terminale avremo uno spazio di inserimento, con la label *Insert name*, e **registrerà sempre e solamente come stringa** ciò che andremo ad inserire all'interno della label.
+Per inserire in input un intero quindi bisognerà fare sempre il **casting del valore**, poiché ogni input sarà sempre stringa: 
+```Python
+nome=input("Inserisci valore: ")
+print(int(nome)+2) //così da eseguire le operazioni anche
+```
