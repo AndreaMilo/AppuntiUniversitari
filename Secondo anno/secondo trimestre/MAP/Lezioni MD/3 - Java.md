@@ -1332,3 +1332,25 @@ public static void main(String args[]){
 }
 ```
 ## Data Streams
+I flussi di dati supportano l'I/O binario dei valori di dati primitivi, tra cui le stringhe pure.
+I flussi di dati implementano l'interfaccia **DataInput** o **DataOutput**, tra cui le più utilizzate di queste due interfacce sono proprio **DataInputStream** e **DataOutputSttream**.
+L'esempio **DataStreams** mostra i flussi di dati scrivendo un **set di record di dati** e quindi rileggendoli. Ogni record è costituito da tre valori relativi ad un articolo: 
+- Prezzo (double), 
+- quantità (int), 
+- descrizione (String).
+
+Ad esempio:
+```JAVA
+static final String dataFile="invoicedata";
+
+static final double[] prices={19.99,9.99,15,99,4,99};
+static final int[] units={12,8,13,29,50};
+static final String[] descs={
+	"Java T-shirt",
+	"Java Mug",
+	"Duke Juggling Dolls",
+	"Java Pin",
+}
+```
+
+DataStreams rileva una condizione di fine file catturando una EOFException, anziché testare un 
