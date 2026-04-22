@@ -234,6 +234,6 @@ Le classi possono comportarsi come "**padri e figli**": una classe può ereditar
 
 Python utilizza metodi "predefiniti" detti **dunder** (double underscore), come `__add__`, `__len__` o `__str__`, che possiamo riscrivere per dare un comportamento polimorfico a funzioni generiche a seconda della classe in cui ci troviamo. Riscrivere `__str__`, ad esempio, dice a Python come l'oggetto deve essere trasformato in testo se inserito in una `print()`.
 #### Sicurezza e Incapsulamento
-A differenza di altri linguaggi, in Python otteniamo i livelli di "protezione" degli attributi usando la convenzione degli underscore:
+A differenza di altri linguaggi, in Python otteniamo i livelli di "protezione" degli attributi di una classe usando la convenzione degli underscore:
 - **Singolo underscore** (`self._b`): Crea un attributo _protetto_, che resta di fatto accessibile dall'esterno ed ereditabile.
 - **Doppio underscore** (`self.__c`): Crea un attributo _privato_, che in principio non è né accessibile dall'esterno né utilizzabile da eventuali classi ereditate.
