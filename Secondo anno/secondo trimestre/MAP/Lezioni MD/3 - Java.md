@@ -1170,12 +1170,12 @@ public class CopyBytes{
 ```
 Come possiamo notare si **chiudono sempre** gli stream. E' di vitale importanza eseguire ciò, poiché possiamo deallocare risorse e evitiamo di perdere le informazioni scritte sullo stream.
 
-Però lo stream sui byte andrebbe evitata poiché **non è un ottima operazione**. Essa è un operazione di basso livello ed esistono degli stream **idonei** per scrivere e leggere caratteri per caratteri.
+Però lo stream sui byte andrebbe evitato poiché **non è un'ottima operazione**. Essa è un operazione di basso livello ed esistono degli stream **idonei** per scrivere e leggere caratteri per caratteri.
 ## Character stream
 Si utilizza in caso dovessimo eseguire operazioni IO di caratteri. Questo tipo di flusso gestisce automaticamente la codifica corretta per i caratteri, seguendo lo stile 
 UTF o ISO.
 
-Le funzioni di questo tipo di stream sono:
+Le classi di questo tipo di stream sono:
 - FileReader
 - FileWriter
 
@@ -1205,7 +1205,7 @@ try{
 Per facilitare il lavoro in un file pieno di caratteri (e generalmente i file presentano più testi che caratteri), andiamo a raccogliere proprio i testi.
 Per far ciò dobbiamo accedere a sequenze di caratteri, ovvero dobbiamo **prelevare le stringhe**.
 
-Le funzioni IO che permettono il prelievo di una stringa e l'inserimento di una stringa su un file sono:
+Le classi IO che permettono il prelievo di una stringa e l'inserimento di una stringa su un file sono:
 - BufferedReader
 - PrintWriter
 
@@ -1218,7 +1218,7 @@ try{
 	inputStream = new BufferedReader(new FileReader("sorgente.txt"));
 	outputStream = new PrintWriter(new FileWriter("destinazione.txt"));
 	
-	string l;
+	String l;
 	while ((l = inputStream.readLine())!=null){
 		outputStream.println(l);
 	}
@@ -1227,7 +1227,7 @@ try{
 		inputStream.close();
 	}
 	if(outputStream != null){
-		outputSteam.close();
+		outputStream.close();
 	}
 }
 ```
@@ -1251,18 +1251,18 @@ Il punto chiave è che il "collo di bottiglia" in informatica è quasi sempre la
 A livello di codice si creano nel seguente modo: `inputStream = new BufferedReader(new FileReader(“pippo.txt"));` & `outputStream = new BufferedWriter(new FileWriter(“pluto.txt"));`
 
 ## La classe File
-La classe file può rappresentare due concetti diversi sotto lo stesso nome:
+La classe File può rappresentare due concetti diversi sotto lo stesso nome:
 - **nome** di un particolare file
-- **nome** di una direcotry
+- **nome** di una directory
 Se stiamo parlando dell'ultimo caso, possiamo conoscere gli insieme dei file che lo compongono tramite il metodo **list()**, che restituisce un array di stringe con gli elementi di tale insieme.
 Ovviamente è possibile anche selezionare solo un tipo di oggetti nella cartella (per esempio se vogliamo visualizzare solo tutti i `.exe`) ricorrendo ad un **filtro**, detto **directory filter**.
 
 L'interfaccia **FilenameFilter** è molto semplice: `public interface FilenameFilter{ boolean accept (File dir, String name);}`
-Le classi che implementano questa funzione devono fornire sia un metodo **accept()** che un metodo **list()** della classe madre **File**, così da eseguire una **call back** per determinare quali nomi di file devono essere inclusi nella lista.
+Le classi che implementano questa funzione devono fornire sia un metodo **accept()** obbligatoriamente sia un metodo **list()** della classe madre **File**, così da eseguire una **call back** per determinare quali nomi di file devono essere inclusi nella lista.
 
 ### Metodo Accept()
 Gli argomenti del metodo **accept()** sono due:
-- Un oggetto **File** che rappresenta la direcotry in cui si trova il file
+- Un oggetto **File** che rappresenta la directory in cui si trova il file
 - Un oggetto **String** che rappresenta il nome del file
 
 Precedentemente, abbiamo visto come il metodo **accept()** ci assicurava di lavorare solo con il nome del file, senza avere informazioni sul suo **percorso**.
@@ -1274,7 +1274,7 @@ La classe File è usata anche per:
 - eliminare un file
 - verificare l'oggetto File
 ## I/O con l'utente
-Fino ad ora questi output che abbiamo rilasciato nel programma dal file per l'utente non erano formattati ad una lettera adeguata. Per rispondere a questa necessità utilizziamo il **format**. Stessa pratica diviene necessaria per quanto riguarda l'input, in maniera tale da ottenere le singole informazioni necessarie e non tutto il file.
+Fino ad ora questi output che abbiamo rilasciato nel programma dal file per l'utente non erano formattati adeguatamente. Per rispondere a questa necessità utilizziamo il **format**. Stessa pratica diviene necessaria per quanto riguarda l'input, in maniera tale da ottenere le singole informazioni necessarie e non tutto il file.
 Per processare gli input si utilizza la classe **scanner**; essa suddivide l'input in **token** e traduce ogni token in un tipo predefinito.
 La suddivisione tra i vari token avviene tramite l'utilizzo dei **white space**.
 ```JAVA
@@ -1313,7 +1313,7 @@ Invece, grazie a questo sistema a matrioska, **cambi solo il pezzo più interno*
 La classe System mette a disposizione tre stream collegati al terminale:
 - `System.in`: InputStream che legge l'input
 - `System.out`: PrintStream che stampa l'output
-- `System.err`: PrintStream che stampa messaggi di errori
+- `System.err`: PrintStream che stampa messaggi di errore
 ```JAVA
 public static void main(String args[]){
 	Scanner scanner=new Scanner(new InputStreamReader(System.in));
@@ -1332,7 +1332,7 @@ public static void main(String args[]){
 ```
 ## Data Streams
 I flussi di dati supportano l'I/O binario dei valori di dati primitivi, tra cui le stringhe pure.
-I flussi di dati implementano l'interfaccia **DataInput** o **DataOutput**, tra cui le più utilizzate di queste due interfacce sono proprio **DataInputStream** e **DataOutputSttream**.
+I flussi di dati implementano l'interfaccia **DataInput** o **DataOutput**, tra cui le più utilizzate di queste due interfacce sono proprio **DataInputStream** e **DataOutputStream**.
 L'esempio **DataStreams** mostra i flussi di dati scrivendo un **set di record di dati** e quindi rileggendoli. Ogni record è costituito da tre valori relativi ad un articolo: 
 - Prezzo (double), 
 - quantità (int), 
@@ -1349,7 +1349,7 @@ static final String[] descs={
 	"Java Mug",
 	"Duke Juggling Dolls",
 	"Java Pin",
-}
+};
 ```
 
 DataStreams rileva una condizione di fine file catturando una **EOFException**, anziché testare un valore restituito non valido, come i modelli visti precedentemente. Generalmente si usa **IOException (end of stream)**.
@@ -1403,4 +1403,4 @@ Ad esempio:
 private transient String password;
 private String CF;
 ```
-In questo caso queste durante la serializzazione dell'oggetto che include queste due variabili, la variabile CF anche se privata sarà serializzata, mentre la password non sarà inclusa nella rappresentazione.
+In questo caso, durante la serializzazione dell'oggetto che include queste due variabili, la variabile CF, anche se privata, sarà serializzata, mentre la password sarà ignorata nella rappresentazione grazie alla keyword transient.
