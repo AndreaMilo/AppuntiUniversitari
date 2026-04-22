@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
+                "file": "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/5 - Python.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 - Java"
+              "title": "5 - Python"
             }
           }
         ]
@@ -192,8 +192,9 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "4908e7f4973e313f",
+  "active": "1470a30d94980c75",
   "lastOpenFiles": [
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260417190253.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260417185644.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/5 - Python.md",
@@ -209,7 +210,6 @@
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/uvTest",
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/HelloProve.py",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260416121227.png",
-    "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/4 - Controllo di versione.md",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Stringhe e numeri_1.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Stringhe e numeri_0.png",
@@ -218,7 +218,6 @@
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260403173345.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260402142348.png",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260402142039.png",
-    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260402141848.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/demo3/README.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/EsGit/Una prova provina.md",
     "README.md",
