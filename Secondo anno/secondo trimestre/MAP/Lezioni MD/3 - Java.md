@@ -1275,3 +1275,21 @@ La classe File è usata anche per:
 - eliminare un file
 - verificare l'oggetto File
 ## I/O con l'utente
+Fino ad ora questi output che abbiamo rilasciato nel programma dal file per l'utente non erano formattati ad una lettera adeguata. Per rispondere a questa necessità utilizziamo il **format**. Stessa pratica diviene necessaria per quanto riguarda l'input, in maniera tale da ottenere le singole informazioni necessarie e non tutto il file.
+Per processare gli input si utilizza la classe **scanner**; essa suddivide l'input in **token** e traduce ogni token in un tipo predefinito.
+La suddivisione tra i vari token avviene tramite l'utilizzo dei **white space**.
+```JAVA
+Scanner s = null;
+double sum = 0;
+try{
+	s = new Scanner(new BufferedReader(new FileReader("input.txt")));
+	while (s.hasNext()){
+		if( s.hasNextDouble()){ //ricerchiamo il dato semplice Double
+			sum+=s.nextDouble();
+		} else s.next();
+	}
+} finally{
+	s.close();
+}
+System.out.println(sum);
+```
