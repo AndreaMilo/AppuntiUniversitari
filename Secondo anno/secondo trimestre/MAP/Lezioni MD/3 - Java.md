@@ -1132,4 +1132,109 @@ public class TestException {
 ```
 Mentre questo altro esercizio ci permette di capire che: è possibile creare eccezioni personalizzate (`EmailException`), sollevarle intenzionalmente (`throw`) quando i dati non rispettano la nostra logica (un'email invalida), e forzare chi utilizza il nostro metodo a occuparsi del problema dichiarando il rischio (`throws`).
 
-![[Pasted image 20260416121227.png|397]]
+---
+# JAVA I/O Stream
+Un flusso I/O rappresenta una sorgente di input o una destinazione di output e sono di vario tipo, possono essere file su disco, array di memoria ecc...
+
+Gli **stream** supportano molti tipi diversi di dati, dai byte semplici agli oggetti. Alcuni flussi semplicemente si occupano di **trasmettere dati**, mentre altri **manipolano** i dati.
+Ma indipendentemente da come funzionano, tutti i flussi presentano **una sequenza di dati**.
+## Byte stream
+I byte stream sono utilizzati per leggere e scrivere byte (8 bit) su un dispositivo di I/O.
+Ereditano dalle classi **InputStream** e **OutputStream**.
+
+Ci sono diverse classi che ereditano direttamente dai byte stream per scrivere e leggere sui file:
+- FileInputStream
+- FileOutputStream
+
+Ad esempio:
+```JAVA
+public class CopyBytes{
+	public static void main(String[] args) throws IOException{
+		FileInputStream in = null;
+		FileOutputStream out = null;
+		try{
+			in = new FileInputStream("sorgente.txt");
+			out = new FileOutputStream("destinazione.txt");
+			int c;
+			while((c = in.read())!= -1)
+			 out.write(c);
+		}
+		finally{
+			if(in != null)
+			 in.close();
+			if(out != null)
+			 out.close();
+		}
+	}
+}
+```
+Come possiamo notare si **chiudono sempre** gli stream. E' di vitale importanza eseguire ciò, poiché possiamo deallocare risorse e evitiamo di perdere le informazioni scritte sullo stream.
+
+Però lo stream sui byte andrebbe evitata poiché **non è un ottima operazione**. Essa è un operazione di basso livello ed esistono degli stream **idonei** per scrivere e leggere caratteri per caratteri.
+
+## Character stream
+Si utilizza in caso dovessimo eseguire operazioni IO di caratteri. Questo tipo di flusso gestisce automaticamente la codifica corretta per i caratteri, seguendo lo stile 
+UTF o ISO.
+
+Le funzioni di questo tipo di stream sono:
+- FileReader
+- FileWriter
+
+Ad esempio:
+```JAVA
+FileReader inputStream = null;
+FileWriter outputStream = null;
+
+try{
+	inputStream = new FileReader("sorgente.txt");
+	outputStream = new FileWriter("destinazione.txt");
+	
+	int c;
+	while ((c = inputStream.read())!=-1){
+		outputStream.write(c);
+	}
+} finally{
+	if(inputStream != null){
+		inputStream.close();
+	}
+	if(outputStream != null){
+		outputStream.close();
+	}
+}
+```
+## Line-oriented
+Per facilitare il lavoro in un file pieno di caratteri (e generalmente i file presentano più testi che caratteri), andiamo a raccogliere proprio i testi.
+Per far ciò dobbiamo accedere a sequenze di caratteri, ovvero dobbiamo **prelevare le stringhe**.
+
+Le funzioni IO che permettono il prelievo di una stringa e l'inserimento di una stringa su un file sono:
+- BufferedReader
+- PrintWriter
+
+Ad esempio:
+```JAVA
+BufferedReader inputStream = null;
+PrintWriter outputStream = null;
+
+try{
+	inputStream = new BufferedReader(new FileReader("sorgente.txt"));
+	outputStream = new PrintWriter(new FileWriter("destinazione.txt"));
+	
+	string l;
+	while ((l = inputStream.readLine())!=null){
+		outputStream.println(l);
+	}
+} finally{
+	if(inputStream != null){
+		inputStream.close();
+	}
+	if(outputStream != null){
+		outputSteam.close();
+	}
+}
+```
+## Buffered I/O
+Il più famoso ed utilizzato, specialmente per lo sviluppo in JAVA, è proprio il **Buffered** stream.
+E' molto conveniente poiché le operazioni vengono eseguite **direttamente sul dispositivo di I/O**; questo è possibile poiché le classi di JAVA (generalmente) sono **unbeffered**.
+
+>[!NOTE] buffered e unbeffered
+>
