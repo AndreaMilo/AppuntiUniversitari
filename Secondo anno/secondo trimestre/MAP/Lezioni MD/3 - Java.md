@@ -1356,3 +1356,4 @@ static final String[] descs={
 DataStreams rileva una condizione di fine file catturando una **EOFException**, anziché testare un valore restituito non valido, come i modelli visti precedentemente. Generalmente si usa **IOException (end of stream)**.
 
 Ogni scrittura in DataStreams corrisponde esattamente alla lettura corrispondente passo passo. Il programmatore deve assicurarsi che i tipi di output ed input siano abbinati correttamente. I dati in input sono binari, senza nulla che indichi il tipo dei singoli valori o da dove inizia il flusso.
+[Continuare da slide 29 dei file I/O]

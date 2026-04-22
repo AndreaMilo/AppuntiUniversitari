@@ -377,3 +377,5 @@ Più classi possono implementare la stessa interfaccia, è il caso una interfacc
 
 > [!example] Esempio di realizzazione multiple di una interfaccia
 > ![[Pasted image 20260318114924.png]]
+
+[Continuare dal metadata]
