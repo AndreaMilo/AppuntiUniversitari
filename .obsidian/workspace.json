@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Secondo anno/secondo trimestre/MAP/Lezioni MD/2 - Il paradigma Orientato agli Oggetti.md",
+                "file": "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 - Il paradigma Orientato agli Oggetti"
+              "title": "3 - Java"
             }
           }
         ]
@@ -192,8 +192,10 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "6844114c414b8684",
+  "active": "4908e7f4973e313f",
   "lastOpenFiles": [
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/Immagini/Pasted image 20260422184507.png",
+    "Secondo anno/secondo trimestre/MAP/Lezioni MD/2 - Il paradigma Orientato agli Oggetti.md",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/1.2 - Esercitazione specifiche algebriche.md",
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/3 - Java.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/5 - Python.md",
@@ -202,7 +204,6 @@
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260422090739.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260417190253.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260417185644.png",
-    "Secondo anno/secondo trimestre/MAP/Lezioni MD/2 - Il paradigma Orientato agli Oggetti.md",
     "conflict-files-obsidian-git.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/uvTest/requirements.txt",
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/uvTest/main.py",

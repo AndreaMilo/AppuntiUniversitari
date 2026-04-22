@@ -1356,4 +1356,52 @@ static final String[] descs={
 DataStreams rileva una condizione di fine file catturando una **EOFException**, anziché testare un valore restituito non valido, come i modelli visti precedentemente. Generalmente si usa **IOException (end of stream)**.
 
 Ogni scrittura in DataStreams corrisponde esattamente alla lettura corrispondente passo passo. Il programmatore deve assicurarsi che i tipi di output ed input siano abbinati correttamente. I dati in input sono binari, senza nulla che indichi il tipo dei singoli valori o da dove inizia il flusso.
-[Continuare da slide 29 dei file I/O]
+## Serializzazione degli oggetti
+Se volessimo invece salvare dei dati su un file che non siano di tipo primitivo, come gli oggetti, DataStream da solo non basta. Dovremmo memorizzare tutte le parti di un oggetto in maniera separata, con una rappresentazione ben precisa così da ricostruire l'informazione correttamente al momento del bisogno. Questo processo risulta noioso e faticoso e prende il nome di **persistenza**.
+
+>[!NOTE] Definizione persistenza
+>La **persistenza** di un oggetto è la capacità dell'oggetto di vivere separatamente dal programma che lo ha generato
+
+JAVA contiene un meccanismo interno per creare oggetti persistenti, detto **serializzazione**.
+La serializzazione trasforma in una sequenza di byte il concetto che vogliamo rappresentare, dopo di che questa rappresentazione di byte può essere ricostruita nel suo aspetto originale.
+Dopo che l'oggetto viene serializzato può essere salvato su un file o inviato ad un altro PC.
+
+La sua realizzazione prevede l'uso di un interfaccia con due classi:
+- **ObjectOutputStream**, il quale contiene il metodo **writeObject** che serve per serializzare un oggetto.
+- **ObjectInputStream**, il quale contiene il metodo **readObject** che serve per deserializzare un oggetto.
+
+Ogni oggetto che si vuole serializzare deve implementare l’interfaccia **Serializable**, la quale non contiene metodi e **serve soltanto al compilatore** per comprendere che un oggetto di quella determinata classe può essere serializzato.
+
+**ObjectInputStream** e **ObjectOutputStream** sono **stream di manipolazione** e devono essere utilizzati congiuntamente a un **OutputStream** e un **InputStream**.
+Ne sussegue l'esempio:
+```JAVA
+FileOutputStream outFile = new FileOutputStream("info.dat");
+ObjectOutputStream outStream = new ObjectOutputStream (outFile);
+outStream.writeObject(myCar); // dove myCar è un oggetto di una classe Car definita dal programmatore
+```
+
+Per poter leggere l’oggetto serializzato e ricaricarlo in memoria centrale si procederà come segue:
+```JAVA
+FileInputStream inFile = new FileInputStream("info.dat");
+ObjectInputStream inStream = new ObjectInputStream(inFile);
+Car myCar = (Car) inStream.readObject();
+```
+La serializzazione di un oggetto si occupa di serializzare tutti gli eventuali riferimenti ad esso collegati. Dunque, se la classe Car contenesse dei riferimenti (variabili di classe o di istanza) a oggetti di classe Engine, questa verrebbe serializzata automaticamente e diverrebbe parte della serializzazione di Car. La classe Engine dovrà, pertanto, implementare anch’essa l’interfaccia serializable al suo interno.
+
+>[!ERROR] Errore comune: 
+>Gli attributi di classe, cioè definiti come static, **NON vengono serializzati**. Per poterli salvare occorre provvedere in modo personalizzato.
+
+![[Pasted image 20260422184507.png]]
+
+Molte classi della **libreria standard Java implementano l’interfaccia Serializable** in modo da essere serializzate quando necessario, come ad esempio la classe String.
+### Transient
+A volte, quando si serializza un oggetto, si può desiderare di **escludere delle informazioni**, ad esempio, una password.
+Questo accade quando le informazioni vengono trasmesse via rete, poiché il pericolo è che, pur dichiarandola con visibilità privata, la password possa essere letta e usata da soggetti non autorizzati quando viene serializzata.
+Per questo tipo di richiesta e problematica ci viene in aiuto la parola chiave **transient** associato al nome di una variabile. Esso indica al compilatore di nascondere quella variabile, così da non rappresentarla come parte dello stream di byte della versione serializzata dell'oggetto.
+
+Ad esempio:
+```JAVA
+private transient String password;
+private String CF;
+```
+In questo caso queste durante la serializzazione dell'oggetto che include queste due variabili, la variabile CF anche se privata sarà serializzata, mentre la password non sarà inclusa nella rappresentazione.
