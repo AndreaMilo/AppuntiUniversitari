@@ -1252,3 +1252,26 @@ Il punto chiave è che il "collo di bottiglia" in informatica è quasi sempre la
 A livello di codice si creano nel seguente modo: `inputStream = new BufferedReader(new FileReader(“pippo.txt"));` & `outputStream = new BufferedWriter(new FileWriter(“pluto.txt"));`
 
 ## La classe File
+La classe file può rappresentare due concetti diversi sotto lo stesso nome:
+- **nome** di un particolare file
+- **nome** di una direcotry
+Se stiamo parlando dell'ultimo caso, possiamo conoscere gli insieme dei file che lo compongono tramite il metodo **list()**, che restituisce un array di stringe con gli elementi di tale insieme.
+Ovviamente è possibile anche selezionare solo un tipo di oggetti nella cartella (per esempio se vogliamo visualizzare solo tutti i `.exe`) ricorrendo ad un **filtro**, detto **directory filter**.
+
+L'interfaccia **FilenameFilter** è molto semplice: `public interface FilenameFilter{ boolean accept (File dir, String name);}`
+Le classi che implementano questa funzione devono fornire sia un metodo **accept()** che un metodo **list()** della classe madre **File**, così da eseguire una **call back** per determinare quali nomi di file devono essere inclusi nella lista.
+
+### Metodo Accept()
+Gli argomenti del metodo **accept()** sono due:
+- Un oggetto **File** che rappresenta la direcotry in cui si trova il file
+- Un oggetto **String** che rappresenta il nome del file
+
+Precedentemente, abbiamo visto come il metodo **accept()** ci assicurava di lavorare solo con il nome del file, senza avere informazioni sul suo **percorso**.
+Tuttavia, esiste un'altra interfaccia simile detta **FileFilter** in cui il metodo **accept, prende in input direttamente l'oggetto File**.
+
+La classe File è usata anche per:
+- creare nuove cartelle o percorsi tramite `\mkdir()` o `\mkdirs()`
+- accedere alle caratteristiche dei file
+- eliminare un file
+- verificare l'oggetto File
+## I/O con l'utente
