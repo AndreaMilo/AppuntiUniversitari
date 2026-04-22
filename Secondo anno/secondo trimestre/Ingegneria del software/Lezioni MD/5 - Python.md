@@ -167,3 +167,73 @@ Per inserire in input un intero quindi bisognerà fare sempre il **casting del v
 nome=input("Inserisci valore: ")
 print(int(nome)+2) //così da eseguire le operazioni anche
 ```
+## Il ciclo For e gli Iterabili
+In Python, il costrutto detto ciclo `for` ci permette di eseguire delle istruzioni ripetute per ciascuno degli elementi all'interno di una sequenza. La sintassi base è la seguente:
+```
+for i in seq:
+    # <istruzioni>
+else:
+    # <istruzioni finali>
+```
+
+Ma cos'è esattamente `seq`? In Python, questo oggetto è definito come un "iterabile", ovvero un oggetto che è in grado di restituire un suo elemento alla volta. Una qualsiasi sequenza (come una lista, una tupla, un range o una stringa di testo), un set o un dizionario sono considerati iterabili.
+
+### Strumenti utili per l'iterazione: zip, enumerate e range
+
+Quando ci troviamo a iterare, Python offre diverse funzioni built-in per semplificarci il lavoro:
+
+- `zip()`: Questa funzione ci permette di iterare contemporaneamente su tuple costruite prendendo gli elementi di indice corrispondente da due o più iterabili.
+    
+- `enumerate()`: Se all'interno del ciclo ci serve avere a disposizione sia l'elemento di un iterabile sia il suo indice, possiamo usare `enumerate()`, che fornisce a ogni iterazione una tupla contenente proprio l'indice e l'elemento.
+    
+- `range(start, end, step)`: È il modo migliore in assoluto per creare un contatore che "guidi" un ciclo for.
+    
+
+Se all'interno del ciclo le istruzioni non dipendono dall'elemento restituito dall'iterabile, possiamo per convenzione usare l'underscore `_` al posto della variabile (es. `for _ in range(0, 100):`).
+
+### Iterare su un Dizionario
+
+Esistono approcci diversi per iterare sugli elementi di un dizionario. Se eseguiamo le iterazioni direttamente sul dizionario `d` oppure su `d.keys()`, il ciclo ci restituirà tutte le chiavi del dizionario. Utilizzando invece il metodo `d.items()`, Python restituisce una lista di tuple contenenti la combinazione `(chiave, valore)`. Accoppiando questo metodo con un uso intelligente del _sequence unpacking_ visto in precedenza, possiamo scorrere il dizionario in modo molto elegante:
+```
+d = {1: "Bruno", 2: "Giulio", 3: "Luigi"}
+for key, val in d.items():
+    print("chiave {} valore {}".format(key, val))
+```
+## List Comprehension e Generatori
+Avendo qualche strumento in più e conoscendo il ciclo for, possiamo scrivere codice più compatto con la tecnica della **list comprehension**. Questa è un'ottima tecnica per filtrare o rimuovere elementi dalle liste, creandone una nuova in una sola riga. La sintassi è la seguente: `[expression for name in seq]`. È possibile anche aggiungere condizioni come `if` al suo interno o persino annidare loop interni ed esterni.
+
+> [!NOTE] Less (than less) is more 
+> Se non vogliamo davvero creare e salvare una nuova lista in memoria, ma ci serve solo utilizzare "al volo" gli elementi generati all'interno di una funzione, possiamo omettere le parentesi quadrate utilizzando un'**espressione generator**. Possiamo ottenere un tipo di dato da un altro semplicemente mettendo il generatore dentro funzioni come `sum(...)` o `set(...)`.
+## Le Funzioni
+Possiamo scrivere dei blocchi di codice che siano riusabili in più punti del nostro algoritmo introducendo il concetto di **funzione**. Una funzione si definisce con la keyword `def`:
+```
+def power(n, exp=2):
+    s = n ** exp
+    return s
+```
+Non siamo obbligati a restituire valori e la parola chiave `return` non è obbligatoria. Quando vogliamo fornire dei parametri opzionali, possiamo definire per loro dei valori di default. **Se una funzione restituisce più oggetti contemporaneamente, essi vengono automaticamente inseriti in una tupla**.
+### Funzioni anonime, map e filter
+Possiamo dichiarare piccole funzioni formate da singole espressioni "al volo" definendole come **funzioni lambda** (es. `lambda n, exp: n**exp`). Queste sono molto utili nella programmazione funzionale, specialmente se combinate con:
+- `filter()`: Genera gli elementi di un iterabile per i quali la funzione lambda restituisce il booleano `True`.
+- `map()`: Genera il mapping degli elementi dell'iterabile applicando loro la funzione specificata.
+
+Per gestire progetti grandi, qualsiasi funzione definita in un file esterno può essere importata con `import nome_file`, con un alias `import nome_file as alias`, o estraendo solo ciò che ci serve con la sintassi `from nome_file import funzione`.
+## Programmazione Orientata agli Oggetti (OOP)
+Se vogliamo inserire nel progetto oggetti complessi che si rifacciano tutti a uno stesso modello e offrano funzionalità, creiamo una **classe**. Il modello rappresenta la classe, ciascun individuo è un'**istanza** della classe, le caratteristiche si chiamano **variabili** e le funzionalità sono dette **metodi**.
+```
+class Studente:
+    def __init__(self, nome, cognome):
+        self.nome = nome
+        self.cognome = cognome
+```
+All'interno della classe, la parola chiave `self` ci permette di accedere a variabili e metodi appartenenti a quello specifico individuo (istanza).
+### Ereditarietà e Metodi Dunder
+Le classi possono comportarsi come "**padri e figli**": una classe può ereditare attributi da un'altra (**ereditarietà**) richiamando il costruttore del padre tramite la funzione `super().__init__()`. Quando andiamo a riscrivere un metodo ereditato per modificarlo o estenderlo, effettuiamo un'operazione nota come **overriding**.
+![[Pasted image 20260422092140.png]]
+![[Pasted image 20260422092155.png]]
+
+Python utilizza metodi "predefiniti" detti **dunder** (double underscore), come `__add__`, `__len__` o `__str__`, che possiamo riscrivere per dare un comportamento polimorfico a funzioni generiche a seconda della classe in cui ci troviamo. Riscrivere `__str__`, ad esempio, dice a Python come l'oggetto deve essere trasformato in testo se inserito in una `print()`.
+#### Sicurezza e Incapsulamento
+A differenza di altri linguaggi, in Python otteniamo i livelli di "protezione" degli attributi usando la convenzione degli underscore:
+- **Singolo underscore** (`self._b`): Crea un attributo _protetto_, che resta di fatto accessibile dall'esterno ed ereditabile.
+- **Doppio underscore** (`self.__c`): Crea un attributo _privato_, che in principio non è né accessibile dall'esterno né utilizzabile da eventuali classi ereditate.
