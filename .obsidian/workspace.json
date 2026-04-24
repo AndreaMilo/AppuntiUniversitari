@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/7 Analisi dei requisiti.md",
+                "file": "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/5 - Python.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "7 Analisi dei requisiti"
+              "title": "5 - Python"
             }
           }
         ]
@@ -192,15 +192,15 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "4908e7f4973e313f",
+  "active": "73015550e080982e",
   "lastOpenFiles": [
+    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/7 Analisi dei requisiti.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424102403.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424101826.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424101505.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424101220.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/5 - Python.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/6 UML.md",
-    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/7 Analisi dei requisiti.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424100354.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424100339.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260424095913.png",
@@ -210,7 +210,6 @@
     "Secondo anno/secondo trimestre/MAP/Lezioni MD/2 - Il paradigma Orientato agli Oggetti.md",
     "conflict-files-obsidian-git.md",
     "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260422092155.png",
-    "Secondo anno/secondo trimestre/Ingegneria del software/Lezioni MD/Immagini/Pasted image 20260422092140.png",
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/requirements.txt",
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/uvTest/requirements.txt",
     "Secondo anno/secondo trimestre/Ingegneria del software/VsCodeEx/uvTest/uv.lock",

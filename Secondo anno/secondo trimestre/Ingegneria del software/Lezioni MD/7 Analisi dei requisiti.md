@@ -40,4 +40,4 @@ Per definizione, ogni oggetto di una sottoclasse è anche un oggetto della sua s
 >[!WARNING] Attenzione
 >Non tutti gli attributi sono generali per tutte le sottoclassi di una superclasse.
 
-Per rappresentare graficamente una bozza degli studi di dominio si usa una **lavagna condivisa in scrittura** così da condividere questi dettagli. Questa lavagna virtuale è integrata sulle piattaforme di meeting (come quella su teams).
+Per rappresentare graficamente una bozza degli studi di dominio si usa una **lavagna condivisa in scrittura** così da condividere questi dettagli. Questa lavagna virtuale è integrata sulle piattaforme di meeting (come quella su teams). Altrimenti Claude IA può aiutare a dare una base di partenza.

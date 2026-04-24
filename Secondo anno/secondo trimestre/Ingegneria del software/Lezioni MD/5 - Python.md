@@ -238,4 +238,4 @@ A differenza di altri linguaggi, in Python otteniamo i livelli di "protezione" d
 - **Singolo underscore** (`self._b`): Crea un attributo _protetto_, che resta di fatto accessibile dall'esterno ed ereditabile.
 - **Doppio underscore** (`self.__c`): Crea un attributo _privato_, che in principio non è né accessibile dall'esterno né utilizzabile da eventuali classi ereditate.
 
-[FInire con la parte di docker e Ruff]
+[Finire con la parte di docker e Ruff]
