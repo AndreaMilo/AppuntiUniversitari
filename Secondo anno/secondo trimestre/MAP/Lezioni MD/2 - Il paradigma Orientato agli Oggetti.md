@@ -378,4 +378,137 @@ Più classi possono implementare la stessa interfaccia, è il caso una interfacc
 > [!example] Esempio di realizzazione multiple di una interfaccia
 > ![[Pasted image 20260318114924.png]]
 
-[Continuare dal metadata]
+### Meta-classi
+Una meta-classe è una classe particolare per descrivere la struttura (dati e operazioni) di altre classi
+
+> [!example] Esempio di metaclasse ![[Pasted image 20260421211607.png]]
+
+In Java il modello di metaclasse è differente da quello normale che troveremmo in C. Tutte le classi ereditano da `Object`, questa ha anche il metodo `getclass()` che permette di restituire per ogni oggetto un istanza della classe `Class` che descrive la classe di appartenenza dell'oggetto. `Class` è detta **metaclasse** ma non in senso stretto, poichè i suoi oggetti non sono classi ma le descrivono. Questo modello serve per realizzare il meccanismo di **riflessione**, che permette ad un oggetto di stabilire a runtime le componenti di una classe
+#### Classe "Class"
+`Class` include metodi per:
+- Scoprire il nome della classe `(getName)`
+- Scoprire il nome della superclasse `(getSuperClass)`
+- Scoprire il nome dei metodi `(getMethods)`
+- Scoprire il nome degli attributi `(getFields)` Questi appartengono rispettivamente alle classi Method e Field. Class, Method, e Field sono sottoclassi di Object come tutte le classi. Questo è utile, poichè la JVM non sa ovviamente quali sono le istanze, quindi a run-time le scopre e le utilizza.
+
+> [!info] Rappresentazione UML delle metaclassi ![[Pasted image 20260421211830.png]]
+### Aggregazione di oggetti
+L'ereditarietà non è sempre lo strumento adatto per costruire oggetti, infatti spesso un oggetto è ottenuto **aggregando** altri oggetti
+
+> [!example] Esempio di aggregazione
+> Definire una classe `Automobile` tramite ereditarietà multipla da `Motore` o `Ruota` è un errore concettuale, poiché l'ereditarietà fonde i comportamenti anziché comporli. Un'automobile è composta da parti, ma il suo comportamento non è la semplice unione di quello dei componenti. Inoltre, l'ereditarietà di implementazione non permetterebbe di gestire correttamente la molteplicità, come nel caso delle quattro ruote di un'auto. ![[Pasted image 20260422130424.png]] La molteplicità consente di indicare quanti oggetti possono essere aggregati
+
+L'uso dell'aggregazione viene suggerito nelle seguenti situazioni:
+1. Contenimento fisico (pagina di un libro),
+2. Appartenenza (giocatore in una squadra),
+3. Composizione funzionale (ruote di un'auto)
+
+Si possono stabilire legami con più istanze di una classe che descrive un componente (per esempio, più ruote). La relazione che si stabilisce in questo modo fra le classi è detta di aggregazione o composizione (o relazione “has_a”).
+
+L'aggregazione è un'associazione debole, se l'intero viene distrutto, le parti possono sopravvivere, mentre la composizione è un associazione forte che implica una dipendenza esistenziale: le parti nascono e muoiono con il contenitore e non possono essere condivise con altri oggetti.
+
+> [!example] Esempio di composizione ![[Pasted image 20260422130237.png]] La composizione viene indicata con un rombo pieno in UML
+#### Ereditarietà vs. Aggregazione
+La scelta tra queste due relazioni non è sempre immediata. Se consideriamo una classe `Orologio` che deve gestire `Data` e `Tempo`, possiamo usare l'ereditarietà multipla o comporre l'oggetto con due campi specifici:
+
+- Nell'ereditarietà, l'oggetto accede direttamente ai campi delle superclassi e beneficia del polimorfismo di inclusione ("is_a").
+- Nell'aggregazione, l'accesso richiede l'invocazione di metodi sui componenti. In generale, l'aggregazione si usa quando servono i servizi di una classe ma non la sua interfaccia, mentre l'ereditarietà permette di riutilizzare codice polimorfo pre-esistente.
+
+Il meccanismo di aggregazione/composizione è generalmente usato quando si vogliono utilizzare i servizi di una classe predefinita ma non la sua interfaccia. L’ereditarietà di implementazione, qualora non dovesse essere permessa da un linguaggio di programmazione, potrebbe essere resa da una relazione di aggregazione/composizione.
+### Organizzazione in Package
+Per gestire la complessità, le classi vengono organizzate in **package**, ossia un meccanismo generale per organizzare le classi in gruppi
+
+> [!example] Rappresentazione UML dei package ![[Pasted image 20260422131059.png]] In genere i package si usano per riunire classi, ma nella notazione UML essi possono includere qualsiasi costrutto UML e possono essere persino eterogenei (ad esempio, possono contenere classi e interfacce). ![[Pasted image 20260422131203.png]]
+
+Un package definisce un namespace (spazio degli identificatori) per i suoi elementi. Questo significa che ogni classe di un package di classi deve avere un nome distinto all’interno del package che la racchiud. Il nome completo (o qualificato) usa la notazione `::`.
+
+I package possono importare elementi altrui per evitare nomi qualificati, ma tale relazione non è transitiva.
+
+> [!example] Esempio di relazione non transitiva
+> Se A importa B e B importa C, allora A può usare (senza qualificarli) gli elementi di B e B può usare (senza qualificarli) gli elementi di C, ma non è detto che A possa usare (senza qualificarli) gli elementi di C (a meno che A non importi anche C
+
+I package possono essere innestati senza alcun limite di profondità
+
+> [!example] Esempio di package innestato ![[Pasted image 20260422132147.png]]
+
+Si può anche specificare la visibilità degli elementi di un package:
+
+- Public (+) sono visibili ad altri elementi del package stesso, a uno dei package innestati o a package che li importano.
+- Private (-) non sono visibili all’esterno del package
+
+> [!example] Esempio di package pubblico e privato ![[Pasted image 20260422180239.png]]
+
+### Classi interne
+Le **classi interne** (inner class) sono dichiarate dentro una classe ospite e possono essere private. Esse possono accedere a tutti i membri della classe ospitante, mentre l'inverso è limitato alla parte pubblica. Un'istanza della inner class non può esistere senza l'oggetto ospitante e non può contenere campi statici.
+
+> [!warning] Attenzione In Java, una classe top level non può mai essere privata
+### Il polimorfismo
+Il poliformismo permette di associare diverse realizzazioni (o morfismi) a un'unica operazione Il concetto di polimorfismo è stato definito informalmente da Christopher Strachey in due tipi principali:
+
+- **Polimorfismo parametrico**: è ottenuto quando una funzione lavora uniformemente su una gamma di tipi. Questi tipi normalmente esibiscono una qualche struttura comune.
+- **Polimorfismo ad-hoc**: è ottenuto quando una funzione lavora, o sembra lavorare, su tipi differenti (che potrebbero non esibire una struttura comune) e potrebbe comportarsi in modo totalmente differente per ciascuno di essi.
+
+La classificazione di Cardelli e Wegner introduce una nuova forma di polimorfismo, quello **per inclusione**, al fine di modellare i concetti di sottotipo e di ereditarietà.
+
+Il polimorfismo per inclusione e parametrico sono classificati come due sottocategorie del polimorfismo universale. L’idea di polimorfismo universale è quella di poter operare su un numero infinito di tipi, a patto che essi rispettino alcuni vincoli.
+#### Polimorfismo ad-hoc
+##### La coercizione
+La coercizione è il meccanismo di conversione implicita operata da un compilatore per applicare un operatore definito per oggetti di tipo T1 anche a oggetti di tipo T2.
+
+> [!example] Esempio di coercizione generale ![[Pasted image 20260422181141.png]]
+
+> [!example] Esempio di coercizione in Java (unboxing e autounboxing)
+> 
+> ```java
+> int i;
+> Integer j; 
+> i = 1;
+> j = 2;
+> i = j;  // unboxing: Integer - int
+> j = i;  // autoboxing: int - Integer
+> ```
+
+Le coercizioni possono essere stabilite staticamente al compile-time (inserendole automaticamente fra gli argomenti e le funzioni al momento della compilazione) oppure determinate dinamicamente a run-time.
+
+La coercizione è la forma di polimorfismo più semplice, infatti essa opera a un livello semantico, cioè cambiando la rappresentazione del dato
+##### Overloading
+Si ha il polimorfismo per **overloading** quando lo stesso identificatore è usato per metodi differenti, disambiguati dal contesto o dal tipo degli argomenti
+
+> [!example] Esempio di overloading su un operatore
+> 
+> ```java
+> // Overloading dell'operatore +
+> class Rational {
+> public:
+>     Rational(double);
+>     const Rational& operator+(const Rational& other);
+>     ...
+> };
+> 
+> // Overloading del nome di funzione max
+> double max(double d1, double d2);
+> char   max(char c1, char c2);
+> char*  max(char* s1, char* s2);
+> const char* max(const char* s1, const char* s2);
+> ```
+
+L'overloading può interagire con la coercizione: se `+` è definito per due interi e per due reali, espressioni miste come `3 + 4.0` non causano errori di tipo grazie alla combinazione dei due meccanismi.
+
+Nel paradigma a oggetti si ha overloading anche tra funzioni con lo stesso nome definite in classi non correlate gerarchicamente: la disambiguazione si basa sulla classe dell'istanza su cui viene invocato il metodo.
+
+Nel paradigma a oggetti si ha overloading anche nel caso di funzioni con medesimo nome ma definite in classi non correlate gerarchicament
+
+> [!example] Esempio polimorfismo meno potente ![[Pasted image 20260422183457.png]]
+#### Polimorfismo parametrico
+Nel polimorfismo parametrico, una funzione polimorfa ha un parametro di tipo esplicito o implicito, che determina il tipo dell’argomento per ciascuna applicazione della funzione.
+
+Le funzioni che esibiscono il polimorfismo parametrico sono anche dette **funzioni generiche**. Una funzione generica può lavorare su argomenti di molti tipi, generalmente esibendo lo stesso comportamento indipendentemente dal tipo dell’argomento.
+#### Poliformismo per inclusione
+Questo polimorfismo deriva dalla relazione tra sottotipi, dove un oggetto può appartenere a una classe e a tutte le sue superclassi. Ciò permette di assegnare un'istanza di una sottoclasse a una variabile della superclasse
+
+Esso si manifesta in due modi:
+
+- Si può assegnare un oggetto di una qualsiasi sottoclasse di una classe C a una variabile definita di classe C
+- Una funzione che opera su un oggetto di classe C può essere applicata anche a oggetti di classe C’, sottoclasse di C.
+##### Legame statico/dinamico
+Nella maggior parte dei linguaggi di programmazione la visibilità degli identificatori e dei legami (binding) dei nomi alle dichiarazioni è determinata al momento della compilazione (compile-time), in questo caso si parla di ambito **d’azione statico (static scope)**. Nell’ambito **d’azione dinamico (dynamic scope)**, il legame fra l’uso di un identificatore e la sua dichiarazione dipende dall’ordine di esecuzione, e così è differito al momento dell’esecuzione (run-time).
