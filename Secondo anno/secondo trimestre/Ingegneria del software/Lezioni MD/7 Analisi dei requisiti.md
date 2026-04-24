@@ -115,4 +115,4 @@ Il diagramma di contesto ci permette di definire in modo grafico i confini del s
 ![[Pasted image 20260424113447.png]]
 ![[Pasted image 20260424113507.png]]
 ## Descrizione caso d'uso
-La descrizione del caso d'uso si divide in **Formato breve** 
+La descrizione del caso d'uso si divide in **Formato breve** [Da finire da pag 16 a 26]
