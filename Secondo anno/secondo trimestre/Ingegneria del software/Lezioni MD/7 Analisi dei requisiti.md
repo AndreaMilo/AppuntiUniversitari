@@ -114,4 +114,5 @@ L'attore è definito **esterno al sistema** e possono essere:
 Il diagramma di contesto ci permette di definire in modo grafico i confini del sistema e chiarisce anche le entità che devono interagire con quest'ultimo.
 ![[Pasted image 20260424113447.png]]
 ![[Pasted image 20260424113507.png]]
-[Completare da slide 16 a 26]
+## Descrizione caso d'uso
+La descrizione del caso d'uso si divide in **Formato breve** 
