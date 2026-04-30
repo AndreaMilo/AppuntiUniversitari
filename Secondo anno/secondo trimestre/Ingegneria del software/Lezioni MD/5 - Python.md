@@ -237,11 +237,9 @@ Python utilizza metodi "predefiniti" detti **dunder** (double underscore), come 
 A differenza di altri linguaggi, in Python otteniamo i livelli di "protezione" degli attributi di una classe usando la convenzione degli underscore:
 - **Singolo underscore** (`self._b`): Crea un attributo _protetto_, che resta di fatto accessibile dall'esterno ed ereditabile.
 - **Doppio underscore** (`self.__c`): Crea un attributo _privato_, che in principio non è né accessibile dall'esterno né utilizzabile da eventuali classi ereditate.
-
-[Finire con la parte di docker e Ruff a livello di es]
+---
 # Docker e Ruff
-Nel manifesto agile, uno dei vari principi è proprio quello del:
-
+Nel manifesto agile, uno dei vari principi è proprio quello della:
 > [!info] Massima priorità
 > La nostra massima priorità è soddisfare il cliente **rilasciando software**, fin da subito e **in maniera continiua**
 ## Integrazione continua (CI)
@@ -254,7 +252,39 @@ Con il rilascio continuo è possibile **rilasciare software funzionante in quals
 
 Ma quali sono le condizioni per il rilascio continuo?
 - Una stretta collaborazione tra gli sviluppatori e i sistemisti
-  Da qui nasce la figura del DevOps, un ibrido tra i due citati
-- La presenza di una deployment pipeline, ossia di un automazione di tutti i passaggi sul processo del rilascio
+  Da qui nasce la figura del **DevOps**, un ibrido tra i due citati
+- La presenza di una **deployment pipeline**, ossia di un automazione di tutti i passaggi sul processo del rilascio
 
 Principalmente useremo Docker e Github Actions come piattaforma CI/CD
+### Docker
+Tramite Docker risolviamo il problema alla base di tutti i progetti, ossia: "*sul mio pc funzionava non so perché sull'altro no*."
+C'è da dire che questo requisito non è funzionale ma è di buona pratica implementarlo ed inoltre è utile per la realizzazione di progetti concreti e testati.
+
+Il docker quindi elimina le differenze date dall'infrastruttura utilizzata e non solo, permette anche la **portabilità** del codice e la possibilità di eseguire il programma su qualsiasi **macchina virtuale** in cui sia presente il **Docker engine**.
+
+Infatti non bisogna confondere la **virtualizzazione** e **containerizzazione**.
+La virtualizzazione è l'**emulazione** dell'intera macchina con un altro SO sulla macchina che lo sta hostando, tramite un isolamento completo dell'architettura che ha generato la macchina virtuale stessa. 
+Docker invece utilizza i **container**. A differenza delle VM non emula l'hardware per far girare un SO ospite, ma condivide il kernel SO presente nella macchina stessa isolando comunque i processi e la rete proprio come le VM, rendendolo molto più leggero.
+#### Elementi base di Docker
+I componenti principali del docker sono:
+- **Dockerfile**, ossia la definizione di ciò che sarà inserito nel container tramite istruzioni dichiarative (fase di **build**)
+``` Docker
+FROM   openjdk:8-alpine
+RUN mkdir /app
+COPY ./build/libs/wordle-all.jar /app
+WORKDIR /app
+```
+
+- **Docker image** è il file **statico** generato dal comando precedente di build e viene caricato in un repository locale, tramite il comando **docker pull** l'immagine è scaricabile anche da un repository remoto come **Github Packages**.
+  ![[Pasted image 20260430200214.png]]
+  ![[Pasted image 20260430200256.png]]
+- **Container**, questo è il risultato in esecuzione di un'immagine Docker, avviabile tramite il comando **docker run**.
+  
+L'esecuzione avviene sul proprio Docker Engine locale, avviando Docker Desktop e loggandosi a Github Packages.
+Il comando da dover eseguire quando si accede per la prima volta è il seguente:
+`cat ./TOKEN.txt | docker login ghcr.io -u <USERNAME> --password-stdin`
+
+Successivamente, nella pagina dedicata al package è indicato il comando docker pull da copiare ed eseguire nel terminale per scaricare l'immagine Docker in locale.
+
+Per concludere, bisogna eseguire il container:
+`docker run --rm -it <nome_immagine> <parametri>`, dove per `<nome_immagine>`, si intende l'url riportato dopo il docker pull **precedente**.

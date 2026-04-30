@@ -115,4 +115,85 @@ Il diagramma di contesto ci permette di definire in modo grafico i confini del s
 ![[Pasted image 20260424113447.png]]
 ![[Pasted image 20260424113507.png]]
 ## Descrizione caso d'uso
-La descrizione del caso d'uso si divide in **Formato breve** [Da finire da pag 16 a 26]
+La descrizione del caso d'uso si divide in
+- **Formato breve**: composto da un singolo paragrafo di poche righe
+- **Formato strutturato**: composto da scenari di interazione
+##### Scenari di interazione per casi d'uso
+I casi d’uso possono essere descritti sotto forma di scenari di interazione (dialogo) tra gli attori e il sistema In generale si dividono in:
+- Scenario principale di successo
+- Scenari alternativi ed eccezionali espressi come estensioni
+- 
+Uno scenario definisce cosa accade nel sistema in seguito all'evento di innesco, ossia:
+- Come e quando il caso d'uso inizia
+- Chi inizia il caso d'uso
+- Interazione tra attore/i e caso d'uso, insieme a cosa viene scambiato
+- Come e quando il caso d’uso termina
+#### Validazione dei requisiti
+Nella validazione dei requisiti l'obiettivo è assicurarsi che la specifica dei requisiti del software rappresenti in modo accurato e chiaro i bisogni del committente.
+
+La revisione dei requisiti avviene mediante ispezioni ottenute in diversi modi:
+- Lettura individuale e discussione in gruppo
+- Utilizzo di checklist
+- Difetti classificati come:
+    - Omissione
+    - Informazione ambigua
+    - Incosistenza
+    - Fatto non corretto
+    - Informazione estranea
+### Gestione dei cambiamenti dei requisiti
+Per gestire i cambiamenti dei requisiti sono fondamentali 4 punti:
+
+- Minimizzazione delle ridondanze
+- Tracciabilità
+- Annotazione degli attributi dei requisiti
+- Procedure di gestione della configurazione
+#### Minimizzazione delle ridondanze
+Un' aspetto fondamentale dell'analisi e della definizione dei requisiti software consiste nella minimizzazione delle ridondanze, possibile tramite degli strumenti specializzati. Questi strumenti sono fondamentali per l'intera architettura dell'informazione di progetto, mettendo in comunicazione i bisogni primari degli utenti (User needs) con i documenti dei requisiti e i relativi attributi. Inoltre, l'utilizzo di un repository centralizzato permette di estrarre dati in modo strutturato attraverso la generazione di interrogazioni (queries) e reportistica dedicata 
+#### Tracciabilità
+La qualità di un documento di Specifica dei Requisiti Software (SRS) dipende fortemente dalla sua **tracciabilità**. Un SRS è considerato tracciabile qualora l'origine di ciascun requisito in esso contenuto risulti chiara ed inequivocabile, e qualora il documento stesso faciliti il costante riferimento a ogni singolo requisito durante tutte le successive fasi di sviluppo e di manutenzione del prodotto
+#### Annotazione degli attributi dei requisiti
+Per una corretta sistematizzazione e prioritizzazione, è indispensabile procedere con l'annotazione puntuale degli attributi associati a ciascun requisito. Tali attributi permettono di qualificare il requisito secondo diverse dimensioni analitiche.
+
+Si dividono in diverse annotazioni:
+- Annotazione della criticità dei requisiti:
+    - Se malfunzionamenti possono causare problemi gravi (sicurezza persone, perdite finanziarie, …)
+- Annotazione dell’importanza dei requisiti:
+    - obbligatori (must)
+    - desiderabili (should)
+    - opzionali (may)
+- Annotazione della stabilità dei requisiti:
+    - Stabili
+    - Volatili
+- Annotazione dello stato dei requisiti:
+    - richiesti (da chi?)
+    - validati
+    - realizzati (in quale release?)
+    - rimossi (quando?)
+#### Gestione della configurazione
+La gestione della configurazione comprende un insieme di procedure volte a garantire il controllo assoluto sulle modifiche apportate ai requisiti e agli artefatti di progetto. Queste procedure sono volte al:
+- Permettere solo che le persone autorizzate possano effettuare cambiamenti
+- Non essere possibile effettuare cambiamenti in modo concorrente
+- Tenere traccia dei cambiamenti in modo tale poter tornare indietro
+- Tenere traccia di chi ha effettuato il cambiamento e delle motivazioni
+### User story
+Nell'ambito dell'ingegneria del software moderna, la descrizione funzionale avviene frequentemente tramite l'utilizzo delle **user story**
+
+> [!info] Template delle user story ![[Pasted image 20260428114635.png]]
+
+> [!example] Esempio di user-story ![[Pasted image 20260428115921.png]]
+
+#### Test di accettazione e specifiche
+I test di accettazione costituiscono la vera e propria specifica tecnica e funzionale di una user story. Le condizioni di soddisfazione, generalmente dettate dal Product Owner, vengono aggiunte direttamente alla storia e si traducono essenzialmente in test eseguibili
+
+> [!example] Esempio di testi di accettazione e specifiche ![[Pasted image 20260428120054.png]]
+
+#### Decomposizione di user story per iterazioni distinte
+Nelle fasi di pianificazione, si manifesta frequentemente la necessità di decomporre una user story troppo generica al fine di poterne distribuire la realizzazione in iterazioni di sviluppo distinte
+
+> [!example] Esempio di decomposizione di user story ![[Pasted image 20260428120010.png]]
+##### Epic
+Quando una user story si rivela essere di dimensioni troppo ampie per poter essere sviluppata e conclusa all'interno di una sola iterazione produttiva, essa assume formalmente la definizione di "Epic". Un'Epic funge da contenitore tematico e deve inevitabilmente essere frammentata in entità minori.
+
+> [!example] Esempio di epic
+> ![[Pasted image 20260428120153.png]]
+
