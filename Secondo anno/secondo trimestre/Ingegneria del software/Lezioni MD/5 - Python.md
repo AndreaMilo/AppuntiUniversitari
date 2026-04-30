@@ -288,3 +288,29 @@ Successivamente, nella pagina dedicata al package è indicato il comando docker 
 
 Per concludere, bisogna eseguire il container:
 `docker run --rm -it <nome_immagine> <parametri>`, dove per `<nome_immagine>`, si intende l'url riportato dopo il docker pull **precedente**.
+## Utilizzo di Docker e GitHub Packages nel Progetto
+- **Docker** serve a garantire che l'eseguibile del progetto funzioni su qualsiasi macchina, eliminando le differenze di configurazione tra i PC del team.
+    
+- **GitHub Actions** è l'automatismo che, dopo ogni _merge_ sul branch `main`, testa il codice e crea l'immagine Docker aggiornata.
+    
+- **GitHub Packages** è il magazzino remoto dove queste immagini vengono salvate e rese disponibili per il download.
+### Preambolo
+Prima di poter scaricare l'immagine, bisogna autorizzare Docker a comunicare con GitHub.
+1. **Generare un Token**: Su GitHub (Settings > Developer Settings) creare un _Personal Access Token_ con permessi di lettura per i package.
+2. **Salvataggio**: Salvare il token in un file chiamato `TOKEN.txt`.
+3. **Login**: Aprire il terminale nella cartella del file ed eseguire: 
+   `cat ./TOKEN.txt | docker login ghcr.io -u <TUO_USERNAME> --password-stdin`.
+
+Ogni volta che si vuole testare l'ultima versione del progetto presente sul `main`:
+- **PULL (Download)**: Scaricare l'immagine dal repository remoto al proprio PC. 
+  `docker pull ghcr.io/softeng2526-inf-uniba/app-adleman:latest`
+- **RUN (Esecuzione)**: Avviare il container per vedere il programma in funzione. 
+  `docker run --rm -it ghcr.io/softeng2526-inf-uniba/app-adleman:latest`.
+#### Chiarimenti e comandi
+- `--rm`: Elimina automaticamente il container quando si chiude l'applicazione, mantenendo pulito il sistema.
+- `-it`: (Interactive + TTY) Permette di interagire con il programma tramite la tastiera e vedere l'output nel terminale come se fosse una vera console.
+#### Come procedere
+1. Crea il Token su GitHub.
+2. Esegui il comando di **Login**.
+3. Esegui il **Pull**.
+4. Esegui il **Run**.
