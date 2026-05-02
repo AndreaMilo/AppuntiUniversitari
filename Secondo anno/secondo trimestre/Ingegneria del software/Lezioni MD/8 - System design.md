@@ -34,6 +34,56 @@ L'architettura in fenomeni aziendali concreti richiedono rappresentazioni che no
 ### Checklist per la revisione di diagrammi di architettura software
 La checklist per la revisione dei diagrammi è una **tabella** divisa in tre campi con delle domande al suo interno. Un diagramma per essere corretto e adatto alla comprensione **deve rispondere in maniera affermativa** a (quasi) tutte le domande proposte al suo interno.
 I campi presenti nella tabella sono:
-- **General**:
-- **Elements**:
-- **Relationships**:
+- **General**: le domande principali da porre sono: ![[Pasted image 20260502171701.png]]
+- **Elements**: gli elements hanno molte domande, tra cui alcune sono caratteristiche proprio di singoli elementi, per cui generalmente si domanda se ogni label ha un nome e un tipo, se i colori e le forme hanno un particolare significato e se sono spiegati in modo chiaro.
+- **Relationships**: le domande a livello comunicativo tra team ed interni sono le seguenti: ![[Pasted image 20260502171928.png]]
+## Progettazione per il cambiamento
+Un architettura software ben costruita, deve essere **modificabile senza problemi nel tempo**.
+La maggior parte delle applicazioni infatti hanno costanti aggiornamenti, portando quindi alla modifica dei diagrammi UML in maniera costante nel tempo.
+
+Esistono quattro regole fondamentali che un architettura software deve mantenere nel tempo per poter essere modellata:
+- **Information hiding**
+- **Obiettivo di alta coesione**
+- **Obiettivo di basso accoppiamento**
+- **Presentazione separata**
+### Principio di information hiding
+>[!NOTE] Cosa dice il principio di information hiding
+>Ogni componente deve custodire dei segreti al proprio interno. Se la decisione cambia, solo il componente interessato sarà modificato.
+
+Questo principio ottiene la sua argomentazione nel caso in cui lo si presenta:
+- Per i **sottosistemi** la loro interfaccia è pubblica ma l'implementazione è nascosta all'esterno
+- Per i **package** le classi sono tutte private, si rendono pubbliche solo le classi che per motivi implementativi devono esserlo
+- Per le **classi** le operazioni, funzioni e variabili di istanza sono tutti privati, per favorire l'**incapsulamento dei dati**. Tuttavia esistono casi in cui diviene strettamente necessario rendere pubbliche alcune operazioni, ma sono pur sempre poche.
+### Obiettivo di alta coesione
+>[!NOTE] Definizione di coesione
+>La **coesione** misura il grado di dipendenza tra elementi di uno stesso componente, che sia sottosistema o classe
+
+Un componente ad **alta coesione** è un sottosistema o classe con regole chiare e ben definite con una grande responsabilità progettuale.
+Viceversa un componente a **bassa coesione** si occupa di casi singoli, irriproducibili, fini a se stesso e non riutilizzabili e per questo **molto difficili nella modifica**.
+
+L'obiettivo dell'alta coesione è la necessità di cercare, quanto meno, di **assegnare le responsabilità** in modo tale da ottenere componenti sempre ben definiti.
+Per **risolvere** una bassa coesione basta semplicemente delegare le responsabilità di quella classe ad altri componenti.
+### Obiettivo di basso accoppiamento
+>[!NOTE] Definizione di accoppiamento
+>L'**accoppiamento** misura il grado di dipendenza tra componenti diversi
+
+La comunicazione tra diversi sottosistemi o classi è doverosa nei grandi progetti, per questo un **alto accoppiamento** tra i componenti comporta una modifica a cascata doverosa in caso volessimo modificare un singolo componente.
+Viceversa un **basso accoppiamento** permette di eseguire cambiamenti ad un singolo componente senza il rischio di propagarsi agli altri.
+
+Una corretta applicazione dell'**information hiding** comporta già un basso accoppiamento.
+
+Possiamo notare il rispetto di questo obiettivo tramite il diagramma dei package, dove un buon diagramma deve essere **aciclico**, ovvero il grafo delle dipendenze non deve contenere cicli:
+![[Pasted image 20260502173916.png]]
+### Presentazione separata
+Questo ultimo principio spiega un'applicazione pratica del basso accoppiamento, ovvero è una buona pratica tenere separata la **logica visiva** (quello che vede l'utente) dalla **logica di dominio** (il vero funzionamento del programma).
+E' più facile capire errori e modifiche da adoperare se queste due logiche sono divise tra loro, inoltre:
+- è possibile esporre il funzionamento del programma come **API** o **servizio** (operazioni pubbliche).
+- è possibile creare interfacce diverse (es. un'app per smartphone e un sito web) usando lo stesso "motore", senza duplicare codice.
+- è molto più facile fare **test automatici** sul codice se non c'è l'interfaccia grafica di mezzo.
+## Chief Architect
+Costruire un programma tramite *vibe coding* è ormai alla portata di tutti, un ottimo **architetto software** deve saper creare dalla base di partenza un progetto complesso, scalabile e usato da milioni di utenti.
+
+Lo Chief Architect, come nelle costruzioni edili, necessita la piena padronanza di tre requisiti per poter essere definito tale:
+- **Conoscenza** delle tecnologie
+- **Esperienza** sul campo
+- **Creatività** per trovare soluzione a problemi complessi
