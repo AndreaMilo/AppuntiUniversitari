@@ -1,47 +1,47 @@
-Il System design è l'**identificazione** dei principali componenti e le relazioni tra i componenti stessi per quanto riguarda **l'architettura software**.
-Quest'ultima è definita per gli stili di **progettazione ad alto livello**. Di fatto, differisce sostanzialmente dall' **OO design** che è incentrata per la **progettazione di dettaglio**.
+Il System design è l'**identificazione** dei principali componenti e delle relazioni tra i componenti stessi per quanto riguarda **l'architettura software**.
+Quest'ultima è definita per gli stili di **progettazione ad alto livello**. Di fatto, differisce sostanzialmente dall' **OO design** che è incentrato sulla **progettazione di dettaglio**.
 La progettazione di dettaglio dipende dal paradigma di programmazione usato (per questo il nome OO) e si occupa di **specificare** i meccanismi interni ai componenti maggiori.
 ## Architettura software
 >[!NOTE] Definizione
 >L'architettura software definisce un modello di come il sistema è strutturato e di come i sottosistemi presenti comunicano tra di loro.
 
-Generalmente un sottosistema sono le classi, operazioni interne e altri aspetti del sistema che sono strettamente correlati tra i vari sottosistemi.
+Generalmente un sottosistema include le classi, operazioni interne e altri aspetti del sistema che sono strettamente correlati tra i vari sottosistemi.
 
-L'architettura **evidenzia le decisioni** che avranno impatto significativo sui lavori successivi.
+L'architettura **evidenzia le decisioni** che avranno un impatto significativo sui lavori successivi.
 ### Rappresentazioni
 L'architettura è rappresentabile sotto diversi stili dell'UML, come ad esempio il **diagramma dei package**:
 ![[Pasted image 20260502161735.png]]
-Ricordiamo che un **package** può essere un'unità binaria di rilascio, come un file `.jar`, mentre una **dipendenza** è una relazione tra package, per esempio nell'immagine presente possiamo notare come elementi di un package (*Persistence* presente in *Service*) richiedono elementi di un altro package (*Core* presente in *Domain*).
-Un cambiamento in *Services* potrebbe causare un cambiamento di *Domain*.
+Ricordiamo che un **package** può essere un'unità binaria di rilascio, come un file `.jar`, mentre una **dipendenza** è una relazione tra package. Per esempio, nell'immagine presente, possiamo notare come elementi di un package (*Services*) richiedono elementi di un altro package che funge da fornitore (*Domain*).
+Un cambiamento in *Domain* potrebbe causare un cambiamento di *Services*.
 
 Altrimenti, è rappresentabile tramite **diagramma dei componenti**:
 ![[Pasted image 20260502162224.png]]
 Il diagramma dei componenti ci permette di comprendere la modellazione del sistema in termini di **componenti** e **dipendenze tra componenti**.
-Un componente generalmente è un'**interfaccia** pubblica, come un **API**; una dipendenza è un connettore tra il **componente cliente** e il **componente fornitore**.
+Un componente generalmente è un'**interfaccia** pubblica, come un'**API**; una dipendenza è un connettore tra il **componente cliente** e il **componente fornitore**.
 
 Nel diagramma illustrato si comprende a pieno lo stile di rappresentazione delle obbligazioni e dei collegamenti tra componenti tramite le dipendenze.
 
-Un ulteriore rappresentazione è tramite **diagramma di deployment**:
+Un'ulteriore rappresentazione è tramite **diagramma di deployment**:
 ![[Pasted image 20260502162621.png]]
-Il quale ci permette di avere una rappresentazione grafica della distribuzione dei sottosistemi tra i **nodi** (i componenti hardware).
+Questo ci permette di avere una rappresentazione grafica della distribuzione dei sottosistemi tra i **nodi** (i componenti hardware).
 ### Rappresentazione non-UML dell'architettura
-L'architettura in fenomeni aziendali concreti richiedono rappresentazioni che non sono riconosciute dall'UML, come:
+L'architettura in fenomeni aziendali concreti richiede rappresentazioni che non sono riconosciute dall'UML, come:
 - **Architettura a 3 livelli**, la quale ci permette di comprendere come lavora il progetto reale nei tre strati logici e fisici, partendo dall'*Interfaccia web*, *Logica di business* e *Database Tier*.![[Pasted image 20260502163502.png]]
-- **Slurm**, è una metodologia di rappresentazione di una reale architettura con i vari server a lavoro. Generalmente è usata per comprendere le come le diverse tecnologie usate (come HTML, Python, JSON) comunicano tra loro![[Pasted image 20260502163657.png]]
+- **Slurm**, è una metodologia di rappresentazione di una reale architettura con i vari server a lavoro. Generalmente è usata per comprendere come le diverse tecnologie usate (come HTML, Python, JSON) comunicano tra loro![[Pasted image 20260502163657.png]]
 - Rappresentazione tramite **Whiteboard**. Quest'ultima è una delle più usate nelle aziende per creare una bozza iniziale dell'architettura quando il lavoro sta per nascere o c'è bisogno di ricrearlo per capire come aggiustarlo o migliorarlo.
   ![[Pasted image 20260502163841.png]]
-  Come si può notare è molto confuso, infatti questo scaturisce il dibattito su come renderlo comprensibile, utilizzando la **checklist dei diagrammi**.
+  Come si può notare è molto confuso, infatti questo fa scaturire il dibattito su come renderlo comprensibile, utilizzando la **checklist dei diagrammi**.
 ### Checklist per la revisione di diagrammi di architettura software
 La checklist per la revisione dei diagrammi è una **tabella** divisa in tre campi con delle domande al suo interno. Un diagramma per essere corretto e adatto alla comprensione **deve rispondere in maniera affermativa** a (quasi) tutte le domande proposte al suo interno.
 I campi presenti nella tabella sono:
 - **General**: le domande principali da porre sono: ![[Pasted image 20260502171701.png]]
-- **Elements**: gli elements hanno molte domande, tra cui alcune sono caratteristiche proprio di singoli elementi, per cui generalmente si domanda se ogni label ha un nome e un tipo, se i colori e le forme hanno un particolare significato e se sono spiegati in modo chiaro.
+- **Elements**: gli elements hanno molte domande, tra cui alcune sono caratteristiche proprio di singoli elementi, per cui generalmente si domanda se ogni element ha un nome e un tipo, se i colori e le forme hanno un particolare significato e se sono spiegati in modo chiaro.
 - **Relationships**: le domande a livello comunicativo tra team ed interni sono le seguenti: ![[Pasted image 20260502171928.png]]
 ## Progettazione per il cambiamento
-Un architettura software ben costruita, deve essere **modificabile senza problemi nel tempo**.
-La maggior parte delle applicazioni infatti hanno costanti aggiornamenti, portando quindi alla modifica dei diagrammi UML in maniera costante nel tempo.
+Un'architettura software ben costruita, deve essere **modificabile senza problemi nel tempo**.
+La maggior parte delle applicazioni infatti ha costanti aggiornamenti, portando quindi alla modifica dei diagrammi UML in maniera costante nel tempo.
 
-Esistono quattro regole fondamentali che un architettura software deve mantenere nel tempo per poter essere modellata:
+Esistono quattro regole fondamentali che un'architettura software deve mantenere nel tempo per poter essere modellata:
 - **Information hiding**
 - **Obiettivo di alta coesione**
 - **Obiettivo di basso accoppiamento**
@@ -50,10 +50,10 @@ Esistono quattro regole fondamentali che un architettura software deve mantenere
 >[!NOTE] Cosa dice il principio di information hiding
 >Ogni componente deve custodire dei segreti al proprio interno. Se la decisione cambia, solo il componente interessato sarà modificato.
 
-Questo principio ottiene la sua argomentazione nel caso in cui lo si presenta:
+Questo principio si declina nel seguente modo:
 - Per i **sottosistemi** la loro interfaccia è pubblica ma l'implementazione è nascosta all'esterno
 - Per i **package** le classi sono tutte private, si rendono pubbliche solo le classi che per motivi implementativi devono esserlo
-- Per le **classi** le operazioni, funzioni e variabili di istanza sono tutti privati, per favorire l'**incapsulamento dei dati**. Tuttavia esistono casi in cui diviene strettamente necessario rendere pubbliche alcune operazioni, ma sono pur sempre poche.
+- Per le **classi** le operazioni, funzioni e variabili di istanza sono tutte private, per favorire l'**incapsulamento dei dati**. Tuttavia esistono casi in cui diviene strettamente necessario rendere pubbliche alcune operazioni, ma sono pur sempre poche.
 ### Obiettivo di alta coesione
 >[!NOTE] Definizione di coesione
 >La **coesione** misura il grado di dipendenza tra elementi di uno stesso componente, che sia sottosistema o classe
@@ -67,7 +67,7 @@ Per **risolvere** una bassa coesione basta semplicemente delegare le responsabil
 >[!NOTE] Definizione di accoppiamento
 >L'**accoppiamento** misura il grado di dipendenza tra componenti diversi
 
-La comunicazione tra diversi sottosistemi o classi è doverosa nei grandi progetti, per questo un **alto accoppiamento** tra i componenti comporta una modifica a cascata doverosa in caso volessimo modificare un singolo componente.
+La comunicazione tra diversi sottosistemi o classi è doverosa nei grandi progetti, per questo un **alto accoppiamento** tra i componenti comporta una modifica a cascata inevitabile in caso volessimo modificare un singolo componente.
 Viceversa un **basso accoppiamento** permette di eseguire cambiamenti ad un singolo componente senza il rischio di propagarsi agli altri.
 
 Una corretta applicazione dell'**information hiding** comporta già un basso accoppiamento.
@@ -81,9 +81,9 @@ E' più facile capire errori e modifiche da adoperare se queste due logiche sono
 - è possibile creare interfacce diverse (es. un'app per smartphone e un sito web) usando lo stesso "motore", senza duplicare codice.
 - è molto più facile fare **test automatici** sul codice se non c'è l'interfaccia grafica di mezzo.
 ## Chief Architect
-Costruire un programma tramite *vibe coding* è ormai alla portata di tutti, un ottimo **architetto software** deve saper creare dalla base di partenza un progetto complesso, scalabile e usato da milioni di utenti.
+Costruire un programma tramite *vibe coding* è ormai alla portata di tutti; un ottimo **architetto software** deve saper creare dalla base di partenza un progetto complesso, scalabile e usato da milioni di utenti.
 
-Lo Chief Architect, come nelle costruzioni edili, necessita la piena padronanza di tre requisiti per poter essere definito tale:
+Il Chief Architect, come nelle costruzioni edili, necessita della piena padronanza di tre requisiti per poter essere definito tale:
 - **Conoscenza** delle tecnologie
 - **Esperienza** sul campo
 - **Creatività** per trovare soluzione a problemi complessi
