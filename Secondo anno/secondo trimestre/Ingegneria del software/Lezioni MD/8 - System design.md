@@ -122,4 +122,10 @@ I sottoinsiemi più conosciuti sono:
   I **Model-View-Controller** (MVC) sono architetture utilizzate per i **sistemi interattivi**.
   Qui la logica dei dati (View) viene separata dalla logica di business (Model).
   
-  La parte sui **Model** include la conoscenza del dominio e i metodi per l'accesso ai dati.
+  La parte sul **Model** include la conoscenza del dominio e i metodi per l'accesso ai dati, mentre la parte sul **View** include la rappresentazione visuale dei dati.
+  Infine esiste anche la classe madre, detta **Controller**, la quale gestisce la sequenza di informazioni con l'utente. Gli input accettati vengono trasformati in comandi o per il Model o per la View.
+  ![[Pasted image 20260502192219.png]]
+  
+- ## Microservice architecture
+  ![[Pasted image 20260502192259.png]]
+  
