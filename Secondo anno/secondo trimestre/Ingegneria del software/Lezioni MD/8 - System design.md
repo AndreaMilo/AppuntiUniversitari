@@ -25,3 +25,15 @@ Un ulteriore rappresentazione è tramite **diagramma di deployment**:
 ![[Pasted image 20260502162621.png]]
 Il quale ci permette di avere una rappresentazione grafica della distribuzione dei sottosistemi tra i **nodi** (i componenti hardware).
 ### Rappresentazione non-UML dell'architettura
+L'architettura in fenomeni aziendali concreti richiedono rappresentazioni che non sono riconosciute dall'UML, come:
+- **Architettura a 3 livelli**, la quale ci permette di comprendere come lavora il progetto reale nei tre strati logici e fisici, partendo dall'*Interfaccia web*, *Logica di business* e *Database Tier*.![[Pasted image 20260502163502.png]]
+- **Slurm**, è una metodologia di rappresentazione di una reale architettura con i vari server a lavoro. Generalmente è usata per comprendere le come le diverse tecnologie usate (come HTML, Python, JSON) comunicano tra loro![[Pasted image 20260502163657.png]]
+- Rappresentazione tramite **Whiteboard**. Quest'ultima è una delle più usate nelle aziende per creare una bozza iniziale dell'architettura quando il lavoro sta per nascere o c'è bisogno di ricrearlo per capire come aggiustarlo o migliorarlo.
+  ![[Pasted image 20260502163841.png]]
+  Come si può notare è molto confuso, infatti questo scaturisce il dibattito su come renderlo comprensibile, utilizzando la **checklist dei diagrammi**.
+### Checklist per la revisione di diagrammi di architettura software
+La checklist per la revisione dei diagrammi è una **tabella** divisa in tre campi con delle domande al suo interno. Un diagramma per essere corretto e adatto alla comprensione **deve rispondere in maniera affermativa** a (quasi) tutte le domande proposte al suo interno.
+I campi presenti nella tabella sono:
+- **General**:
+- **Elements**:
+- **Relationships**:
