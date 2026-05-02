@@ -128,4 +128,21 @@ I sottoinsiemi più conosciuti sono:
   
 - ## Microservice architecture
   ![[Pasted image 20260502192259.png]]
+> [!NOTE] Definizione
+  Una **Microservice Architecture** (architettura a microservizi) è un'architettura software basata su una collezione di servizi in cui la funzionalità totale del sistema deriva dalla **composizione di più servizi** minori.
+
+In questa tipologia di architettura, il progetto viene suddiviso in parti più piccole che seguono regole precise:
+- Ogni servizio è un'**unità di distribuzione indipendente**.
+- Ogni servizio fornisce una **piccola quantità di funzionalità** specifiche (rispettando il principio dell'alta coesione).
+- Ogni servizio comunica con gli altri tramite delle **interfacce di servizio**, utilizzando solitamente le **API RESTful**.    
+### API RESTful
+Le comunicazioni in un'architettura a microservizi avvengono prevalentemente tramite **API RESTful.** Queste interfacce sono accessibili sfruttando i metodi standard del protocollo **HTTP**, i quali sono perfettamente equivalenti alle classiche operazioni di database **CRUD** (_Create, Read, Update, Delete_):
+- **POST** (equivalente a _CREATE_)  
+- **GET** (equivalente a _READ_)
+- **PUT** (equivalente a _UPDATE_)
+- **DELETE** (equivalente a _DELETE_)
+
+Questi metodi vengono applicati a una singola risorsa o a una collezione di risorse. Affinché la comunicazione avvenga correttamente, le API RESTful si basano su due concetti fondamentali:
+- **Identificazione delle risorse:** le risorse vengono identificate in modo univoco tramite un indirizzo **URI**
+- **Stato delle risorse:** lo stato e i dati delle risorse richieste vengono restituiti in un **formato negoziabile** tra client e server. I formati di scambio dati più utilizzati sono il **JSON** e l'**XML**.
   
