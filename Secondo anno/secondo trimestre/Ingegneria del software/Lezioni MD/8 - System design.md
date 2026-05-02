@@ -87,3 +87,39 @@ Il Chief Architect, come nelle costruzioni edili, necessita della piena padronan
 - **Conoscenza** delle tecnologie
 - **Esperienza** sul campo
 - **Creatività** per trovare soluzione a problemi complessi
+# Stili architetturali
+Un modello di architettura può essere utilizzato come base per il System Desing. L'architetto aggiungerà i dettagli alla bozza in base alla specifica dei requisiti.
+
+I sottoinsiemi più conosciuti sono:
+- ## Pipe and filter
+  I sottosistemi inviano i dati ricevuti in input come input per i successivi sottosistemi. Un esempio di architettura Pipe and filter è **Unix shell**.
+  Il nome deriva da **Filter** che è il sottosistema, **Pipe** che è l'associazione tra i sottosistemi realizzata dal SO e **Pipeline**, come visto in AESO, è la sequenza lineare dei filtri (sottosistemi)
+  
+- ## Layered
+  E' un architettura divisa in **Layer**, dove ogni layer utilizza un interfaccia richiesta dal **Layer N-1** sopra stante, il quale la detiene o la chiede al precedente $N-2$.
+  Inoltre ogni strato ha il suo livello di astrazione. Questo porta ad un **vantaggio**, ossia le modifiche ai livelli superiori non si propagano a quelli inferiori ma lo **svantaggio** di questa architettura è il calo di prestazioni dato dal grande numero di strati presenti.
+  
+  La stratificazione si può dividere in **stretta** o **lasca**:
+	  - Quella stretta si basa **Modello ISO/OSI**, in cui lo strato evocabile è solamente quello immediatamente inferiore
+	    ![[Pasted image 20260502190529.png]]
+	  - Quella lasca si basa sul **Modello TCP/IP**, in cui lo strato è evocabile in qualsiasi livello ci si trova, purché sia comunque uno strato inferiore e non superiore all'attuale.![[Pasted image 20260502190659.png]]
+	    
+- ## Client-Server
+  Questa architettura è una rivisitazione **distribuita** di quella di tipo layered.
+  Il client invia al server centrale una **richiesta di comunicazione**, il server è **sempre in ascolto** e appena giunge una richiesta di comunicazione la accetta **eseguendo quella e rispedendo a ritroso le successive** durante il periodo di esecuzione di quella accettata.
+  
+  Il **vincolo** di questa architettura è che non vi è un effettiva comunicazione tra i client ma tutto deve passare dal server per aver un confronto.![[Pasted image 20260502191048.png]]
+  
+- ## N-tier
+  E' un ulteriore rivisitazione distribuita dell'architettura layered, dove gli strati sono **localizzati su $N$ nodi**.
+  
+  Può essere **$3$-tier** per le applicazioni gestionali, con la seguente architettura:
+  ![[Pasted image 20260502191303.png]]
+  Oppure può essere **$4$-tier** per le applicazioni web, con la seguente implementazione:
+  ![[Pasted image 20260502191357.png]]
+  
+- ## MCV
+  I **Model-View-Controller** (MVC) sono architetture utilizzate per i **sistemi interattivi**.
+  Qui la logica dei dati (View) viene separata dalla logica di business (Model).
+  
+  La parte sui **Model** include la conoscenza del dominio e i metodi per l'accesso ai dati.
