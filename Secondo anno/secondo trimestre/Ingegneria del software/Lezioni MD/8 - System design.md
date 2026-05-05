@@ -93,7 +93,7 @@ Un modello di architettura può essere utilizzato come base per il System Desing
 I sottoinsiemi più conosciuti sono:
 - ## Pipe and filter
   I sottosistemi inviano i dati ricevuti in input come input per i successivi sottosistemi. Un esempio di architettura Pipe and filter è **Unix shell**.
-  Il nome deriva da **Filter** che è il sottosistema, **Pipe** che è l'associazione tra i sottosistemi realizzata dal SO e **Pipeline**, come visto in AESO, è la sequenza lineare dei filtri (sottosistemi)
+  Il nome deriva da **Filter** che è il sottosistema, **Pipe** che è l'associazione tra i sottosistemi realizzata dal SO e **Pipeline**, come visto in [AESO]([AESO](obsidian://open?vault=UniGit&file=Primo%20anno%2Fprimo%20trimestre%2FAESO%2F4%20-%20Organizzazione%20dei%20sistemi%20di%20calcolo.pdf)), è la sequenza lineare dei filtri (sottosistemi)
   
 - ## Layered
   E' un architettura divisa in **Layer**, dove ogni layer utilizza un interfaccia richiesta dal **Layer N-1** sopra stante, il quale la detiene o la chiede al precedente $N-2$.

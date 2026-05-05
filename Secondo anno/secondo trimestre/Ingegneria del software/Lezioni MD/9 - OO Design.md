@@ -1,4 +1,4 @@
-Nel desing della programmazione OO eseguiamo una **prospettiva software**, dove gli elementi di un modello corrispondono agli elementi di un sistema software orientato agli oggetti ed è **indipendente dai vari linguaggi di programmazione**.
+Nel desing della programmazione OO adottiamo una **prospettiva software**, dove gli elementi di un modello corrispondono agli elementi di un sistema software orientato agli oggetti ed è **indipendente dai vari linguaggi di programmazione**.
 
 Per descrivere le relazioni tra oggetti e classi presenti in un sistema costruito con metodologia OO si usa il **diagramma delle classi con prospettiva software**.
 ## Classe
@@ -9,10 +9,10 @@ public class Dialler{
 Si rappresenta tramite il seguente disegno madre
 ![[Pasted image 20260505102637.png]]
 ## Attributi
-Gli attributi generalmente sono **private** (e il prof da di default che siano tali) e rappresentano le **proprietà strutturali** degli oggetti di una classe.
+Gli attributi generalmente sono **private** (e il prof dà di default che siano tali) e rappresentano le **proprietà strutturali** degli oggetti di una classe.
 ![[Pasted image 20260505102331.png]]
 In un linguaggio OO, gli attributi corrispondono al nome di una **variabile di istanza** della classe.
-```Python
+```JAVA
 public class Dialler{
 	private Vector digits;
 	int nDigits;
@@ -27,14 +27,14 @@ Rappresentano le **azioni** che si possono eseguire sugli oggetti di una classe.
 
 Nei linguaggi OO queste azioni corrispondono ai **metodi** della classe.
 
-La visibilità delle operazioni sono per default **pubbliche**, se non lo sono conviene specificarlo con $-$ nell'UML o possono addirittura essere **protette**, dimostrabili tramite *#*, ma è un caso abbastanza particolare da gestire.
+La visibilità delle operazioni è per default **pubblica**, se non lo sono conviene specificarlo con $-$ nell'UML o possono addirittura essere **protette**, dimostrabili tramite *#*, ma è un caso abbastanza particolare da gestire.
 
 Nell'UML generalmente non si mostrano le **operazioni basilari**, come il `GetAtt` o il `SetAtt`, o anche il **costruttore stesso**, dato che è facilmente intuibile la loro presenza nel codice. Rendendo così vantaggiosa la lettura dell'UML e avendo uno schema più compatto.
 
 ![[Pasted image 20260505103429.png]]
 La responsabilità della classe serve per poter capire, tramite brevi commenti, cosa andranno a fare le funzioni che eseguo all'interno della classe.
 ## Associazioni
-La rappresentazione delle associazioni tra più classi viene rappresentata nel diagramma delle classi tramite un collegamento tra un attributo di una classe e lo stesso attributo di appartenenza in un altra classe.
+Le associazioni tra più classi vengono rappresentate nel diagramma delle classi tramite un collegamento tra un attributo di una classe e lo stesso attributo di appartenenza in un altra classe.
 
 Le associazioni hanno un verso di navigazione. Il verso della freccia ci fa capire quale classe conosce il tipo presente nell'altra classe.
 
@@ -53,8 +53,8 @@ Il ruolo indica in modo esplicito il nome della proprietà di una classe rappres
 Dove `productSpec` è il seguente codice:
 ![[Pasted image 20260505104733.png]]
 ## Dipendenza
-La dipendenza in UML delle classi viene rappresentata tramite **freccia tratteggiata** per distinguerlo dall'associazione.
-Si ha una dipendenza tra classi quando una classe **è a conoscenza di un'altra classe**, dove il cambiamento della classe $B$, che dipende da $A$, può modificare la classe $A$ stessa (questo principio vale anche per le associazioni e le generalizzazioni).
+La dipendenza in UML delle classi viene rappresentata tramite **freccia tratteggiata** per distinguerla dall'associazione.
+Si ha una dipendenza tra classi quando una classe **è a conoscenza di un'altra classe**, dove il cambiamento della classe $A$ può modificare la classe $B$, che dipende da essa (questo principio vale anche per le associazioni e le generalizzazioni).
 ![[Pasted image 20260505105147.png]]
 
 ## Aggregazione e composizione
@@ -65,7 +65,7 @@ A livello teorico però, la composizione è un’associazione in cui:
 - La copia dell’oggetto contenitore ha come effetto la copia degli oggetti contenuti
 ![[Pasted image 20260505105116.png]]
 ## Vincoli
-Rappresentano la possibilità di inserire qualche dettagli agli elementi di un diagramma delle classi.
+Rappresentano la possibilità di inserire qualche dettaglo agli elementi di un diagramma delle classi.
 Si possono esprimere in modo informale tra **parentesi graffe** e **Object Constraint Language (OCL)** è un linguaggio formale per specificare i vincoli.
 ![[Pasted image 20260505105259.png]]
 ## Generalizzazione
@@ -81,12 +81,12 @@ Una sottoclasse può definire delle **estensioni**, ovvero caratteristiche aggiu
 
 ![[Pasted image 20260505105648.png]]
 ## Classi astratte e concrete
-Una classe astratta è una classe che non può essere direttamente istanziata e contiene delle operazioni **astratte**, prive di implementazione che vengono implementate in base all'uso che ne devono eseguire, le classi figlie che ereditano le operazioni astratte dalla madre.
-Una sottoclasse di una classe astratta viene definita **classe concreta** ed è l'unico metodo in cui si possono istanziare le operazioni della classe astratta.
+Una classe astratta è una classe che non può essere direttamente istanziata e contiene delle operazioni **astratte**, prive di implementazione che vengono implementate dalle classi figlie in base all'uso che ne devono fare.
+Una sottoclasse di una classe astratta viene definita **classe concreta** ed è l'unico metodo in cui si possono implementare le operazioni della classe astratta e istanziarne gli oggetti.
 ![[Pasted image 20260505105926.png]]
-Le classi astratte hanno scaturito l'uso delle **interface**.
+Le classi astratte hanno portato all'uso delle **interface**.
 ### Interface
-Una interfaccia è una classe astratta in grado di estendere una o più interfacce.
+Un'interfaccia è un costrutto puro basato sulla classe astratta in grado di estendere una o più interfacce.
 Una classe **realizza** un'interfaccia se è sostituibile a essa, poiché ne implementa una o più operazioni astratte.
 Una classe **richiede** una sua interfaccia se necessita delle sue operazioni per funzionare, si crea una dipendenza da essa e una gerarchia d'ordine.
 
@@ -105,5 +105,5 @@ Queste sono le regole generali da seguire per avere un ottimo diagramma delle cl
   - diagramma dei package
   - diagramma che mostra la gerarchia di classi
   - ...
-- Non è importante distinguere correttamente tra associazioni e dipendenza ma è **fondamentale** indicare **precisamente la direzione dei riferimenti ad altre classi**. Poiché crea confusione e da il senso di non conoscere quale classe richiede informazioni da un altra classe.
+- Non è importante distinguere correttamente tra associazioni e dipendenza ma è **fondamentale** indicare **precisamente la direzione dei riferimenti ad altre classi**. Poiché crea confusione e dà il senso di non conoscere quale classe richiede informazioni da un altra classe.
 - Principio di **parsimonia**, non mostrare tutto ciò che è presente nel codice ma solamente quelle significative per il diagramma in questione.
