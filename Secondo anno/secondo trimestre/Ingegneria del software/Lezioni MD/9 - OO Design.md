@@ -119,4 +119,5 @@ I personaggi sono i **partecipanti** del diagramma, dove quest'ultimi sono degli
 La linea tratteggiata rappresenta **lo scorrere del tempo** detti **Linee di vita**.
 ![[Pasted image 20260506170406.png]]
 ### Messaggi
-Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la 
+Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la comunicazione tra oggetti realizzate tramite la chiamata dei metodi.
+I messaggi possono essere anche **speciali** 
