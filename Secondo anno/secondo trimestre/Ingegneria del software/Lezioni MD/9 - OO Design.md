@@ -120,4 +120,26 @@ La linea tratteggiata rappresenta **lo scorrere del tempo** detti **Linee di vit
 ![[Pasted image 20260506170406.png]]
 ### Messaggi
 Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la comunicazione tra oggetti realizzate tramite la chiamata dei metodi.
-I messaggi possono essere anche **speciali**, come il `create` o il `return`
+I messaggi possono essere anche **speciali**, come il `create` o il `return` o la `destroy` di un oggetto.
+![[Pasted image 20260506173850.png]]
+### Barre di attivazione 
+Le barre di attivazione sono un sottile **rettangolo** posto sulla linea di vita di un oggetto e serve ad indicare quando il partecipante è attivo nell'interazione.
+Questa operazione rende ridondante l'uso delle linee di **restituzione del controllo**.
+![[Pasted image 20260506174435.png]]
+![[Pasted image 20260506174539.png]]
+![[Pasted image 20260506174802.png]]
+## UML 2
+In **UML 2** esistono dei simboli che non era possibile utilizzare prima, detti **frame di interazione**. Il frame di interazione è una cornice intorno ad una parte del diagramma di sequenza, tra gli elementi principali vi si ha:
+- **opt** che sostituisce gli `if`
+- **alt** che serve per `l'esle`
+- **loop** che serve per i cicli iterativi
+![[Pasted image 20260506175111.png]]
+
+**Esempio Alt**:
+![[Pasted image 20260506175438.png]]
+**Esempio loop**:
+![[Pasted image 20260506175454.png]]
+**Esempio opt**:
+![[Pasted image 20260506175505.png]]
+
+Per verificarlo meglio si può controllare l'esempio della **bibblioteca** presente su E-learning.
