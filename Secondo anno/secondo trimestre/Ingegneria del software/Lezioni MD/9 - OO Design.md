@@ -120,4 +120,4 @@ La linea tratteggiata rappresenta **lo scorrere del tempo** detti **Linee di vit
 ![[Pasted image 20260506170406.png]]
 ### Messaggi
 Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la comunicazione tra oggetti realizzate tramite la chiamata dei metodi.
-I messaggi possono essere anche **speciali** 
+I messaggi possono essere anche **speciali**, come il `create` o il `return`
