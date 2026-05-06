@@ -107,3 +107,16 @@ Queste sono le regole generali da seguire per avere un ottimo diagramma delle cl
   - ...
 - Non è importante distinguere correttamente tra associazioni e dipendenza ma è **fondamentale** indicare **precisamente la direzione dei riferimenti ad altre classi**. Poiché crea confusione e dà il senso di non conoscere quale classe richiede informazioni da un altra classe.
 - Principio di **parsimonia**, non mostrare tutto ciò che è presente nel codice ma solamente quelle significative per il diagramma in questione.
+
+---
+# Modellare il comportamento
+Per modellare il comportamento di un progetto software si fa ricorso alla **documentazione** del comportamento di un gruppo di oggetti che realizzano un singolo scenario di utilizzo del sistema. Questo è possibile visualizzarlo tramite il **diagramma di sequenza**.
+## Diagramma di sequenza
+Il diagramma mostra l'interazione tra oggetti con enfasi sulla sequenza dei messaggi.
+Nel diagramma di sequenza si hanno vari elementi, primi tra tutti sono i **personaggi**.
+### Personaggi
+I personaggi sono i **partecipanti** del diagramma, dove quest'ultimi sono degli **oggetti** rappresentati come un rettangolo in cima a una linea tratteggiata.
+La linea tratteggiata rappresenta **lo scorrere del tempo** detti **Linee di vita**.
+![[Pasted image 20260506170406.png]]
+### Messaggi
+Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la 
