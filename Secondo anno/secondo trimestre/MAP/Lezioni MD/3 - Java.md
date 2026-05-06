@@ -1406,3 +1406,547 @@ private String CF;
 In questo caso, durante la serializzazione dell'oggetto che include queste due variabili, la variabile CF, anche se privata, sarà serializzata, mentre la password sarà ignorata nella rappresentazione grazie alla keyword transient.
 
 ---
+# Generics
+Le Generics in Java vengono introdotte per poter superare il limite imposto dalle interfacce nella generalizzazione (ossia il polimorfismo per inclusione).
+
+> [!example] Limitazione delle interfacce in Java 
+> È possibile implementare un metodo `m` che prende in input un oggetto della classe base `A` come argomento. Tale metodo potrà essere utilizzato su tutte le sottoclassi della classe `A` (ammesso che `A` non sia dichiarata `final`). La limitazione della applicabilità del metodo `m` ad un albero di ereditarietà con radice `A` può essere superato con l’utilizzo di un’interfaccia, ma alcune volte anche questo diventa un limite, dovendo ricorrere all'astrazione generica.
+
+Le Generics quindi permettono un'astrazione maggiore rispetto alle interfacce, creando classi contenitori in grado di contenere oggetti omogenei di qualsiasi classe.
+
+> [!example] Esempio di Generics (W3Schools)
+> ```java
+> class Box<T> {  
+>     T value; // T is a placeholder for any data type  
+>   
+>     void set(T value) {  
+>         this.value = value;  
+>     }  
+>   
+>     T get() {  
+>         return value;  
+>     }  
+> }  
+>   
+> public class Main {  
+>     public static void main(String[] args) {  
+>         // Create a Box to hold a String  
+>         Box<String> stringBox = new Box<>();  
+>         stringBox.set("Hello");  
+>         System.out.println("Value: " + stringBox.get());  
+>   
+>         // Create a Box to hold an Integer  
+>         Box<Integer> intBox = new Box<>();  
+>         intBox.set(50);  
+>         System.out.println("Value: " + intBox.get());  
+>     }  
+> }
+> ```
+
+Uno degli scopi primari delle Java Generics risiede nella capacità di fornire un meccanismo di casting automatico e sicuro al momento dell'istanziazione di un tipo parametrizzato, delegando al compilatore il compito di verificare la consistenza dei tipi rigorosamente a tempo di compilazione (compile-time).
+
+## Tuple di Generics
+In alcuni casi è possibile che sia necessario definire una funzione che restituisca non un singolo valore ma una coppia di valori o una tripla, allora si può definire con le Generics delle tuple.
+
+> [!example] Esempio di tuple in Generics
+> ```java
+> public class TwoTuple<A,B> {
+>     public final A first;
+>     public final B second;
+>     
+>     public TwoTuple(A a, B b) { 
+>         first = a; 
+>         second = b; 
+>     }
+>     
+>     public String toString() {
+>         return "(" + first + ", " + second + ")";
+>     }
+> } 
+> 
+> TwoTuple<String, Integer> tt = new TwoTuple<>("hi", 47); 
+> System.out.println(tt.toString());
+> ```
+
+## Containers per Generics
+Le Generics sono basilari per l'implementazione di tipi astratti di dati classici, come lo stack. È possibile strutturare uno stack dinamico senza vincolarlo al tipo di dato memorizzato, impiegando, ad esempio, una classe interna privata (inner class) destinata alla rappresentazione del singolo nodo della struttura.
+
+> [!example] Esempio di containers 
+> ![[Pasted image 20260426143346.png]] 
+> `Node<U>` è una classe interna a `LinkedStack<T>`. Questo significa che può essere utilizzata all’interno di `LinkedStack<T>`. Potrebbe anche essere visibile all’esterno, ma in questo caso è definita privata, quindi non è visibile all’esterno. La classe `Node<U>` è di servizio alla definizione di `LinkedStack<T>`, per questa ragione non è resa accessibile se non a quest’ultima.
+INSIM
+
+In generale non è possibile creare un oggetto di una classe interna a meno che non si disponga di un oggetto della classe esterna, tuttavia nel caso di classe interna dichiarata static (detta anche nested) non è necessario disporre di tale oggetto.
+Tornando all’esempio di contenitore generico, a questo punto è possibile creare uno Stack che contiene solo Stringhe:
+
+> [!example] Esempio Stack solo stringhe
+> ```java
+> LinkedStack<String> names = new LinkedStack<String>();
+> 
+> void printNames(LinkedStack<String> names) {
+>     String nextName = names.pop(); // no casting needed!
+>     names.push("John"); // ok
+>     names.push(new Integer(3)); // compile-time error! This stack contains only String
+> }
+> ```
+
+Tramite la parametrizzazione, un tentativo di immissione di un dato incoerente nella struttura genera tempestivamente un errore a tempo di compilazione, garantendo la sicurezza (type safety) senza oneri aggiuntivi di casting in fase di estrazione.
+
+## Interfacce per Generics
+Le Java Generics possono essere anche utilizzate per parametrizzare la dichiarazione di interfacce.
+
+> [!example] Esempio di dichiarazione di interfacce
+> ```java
+> public interface Generator <T> { 
+>     T next(); 
+> }
+> ```
+
+L'interfaccia `Generator` garantisce che il metodo `next()` restituisca un valore del tipo specificato dal parametro `T`. Un’altra interfaccia parametrizzata è `Iterable` che forza l'implementazione del metodo:
+```java
+Iterator<T> iterator()
+```
+
+Le classi che implementano tale interfaccia permettono ad un oggetto di essere usato nello statement "foreach".
+
+## Metodi generici
+
+Oltre all'astrazione strutturale, il linguaggio permette la definizione di metodi generici, parametrizzando unicamente le dichiarazioni delle specifiche funzioni all'interno di una classe. Un metodo può essere definito generico indipendentemente dalla fatto che la classe sia generica oppure no. Per di più, se un metodo definito in una classe parametrizzata è statico, tale metodo non accederà al parametro di tipo della classe. Per definire un metodo come generico è sufficiente parametrizzare la sua dichiarazione.
+
+>[!example] Esempio di metodo generico
+> ![[Pasted image 20260426164504.png]]
+> Nell'esempio, la funzione `f()` è stata “sovraccaricata” (overloaded) ben sei volte. `f()` accetterà anche valori di tipo primitivo mediante il meccanismo dell'autoboxing.
+INSIM
+Java introduce anche una semplificazione che permette di inferire (definire) il tipo in maniera automatica:
+`List <String> ls = new ArrayList<>();`
+I metodi generici possono essere anche utilizzati in combinazione con metodi a numero variabile di argomenti.
+
+## Problema dell'erasure
+
+Le Java Generics lasciano comunque alcune questioni poco chiare. Per esempio, mentre è possibile ricorrere al letterale di classe per la classe `ArrayList`: `ArrayList.class`
+non è possibile ricorrere al letterale di classe per la classe `ArrayList` ottenuta parametrizzando il tipo del contenuto: 
+`ArrayList<Integer>.class`
+l compilatore Java adotta la **tecnica dell'erasure**: tutte le direttive e i controlli sui tipi vengono eseguiti ed esauriti a compile-time, per poi essere cancellati durante la generazione del bytecode. Conseguentemente, a tempo di esecuzione, le istanze di collezioni diverse dal punto di vista semantico risultano essere indistinguibili e appartenenti al medesimo tipo base grazie alla tecnica dell'astrazione generica.
+
+## Wildcards
+
+All'interno delle Generics possono essere messi dei tipi parametrici jolly chiamati **wildcard**, che servono ad indebolire i vincoli di tipo.
+```java
+public class WildcardClassReferences {
+	public static void main(String[] args) {
+		  Class<?> intClass = int.class; // ? significa di qualunque tipo 
+		  intClass = double.class;
+	}
+} 
+```
+
+In alcuni casi un riferimento potrebbe essere troppo generico, quindi al fine di creare riferimenti specifici è possibile combinare una wildcard con un'estensione di una classe.
+
+> [!example] Esempio di estensione
+> ```java
+> public class BoundedClassReferences {
+>     public static void main(String[] args) {
+>         Class<? extends Number> bounded = int.class;
+>         bounded = double.class;
+>         bounded = Number.class;
+>     }
+> }
+> ```
+
+---
+
+# Identificazione di tipo a run-time
+Java permette di scoprire informazioni sugli oggetti e sulle classi a run-time, basandosi su due approcci:
+- **RTTI** (Run-time Type Identification, RTTI): si presuppone che le informazioni di tutti i tipi sono accessibili sia in fase di compilazione che di esecuzione.
+- **Meccanismo di riflessione**: permette di scoprire informazioni sulle classi esclusivamente al run-time.
+
+## RTTI tradizionale
+La rappresentazione delle informazioni su un tipo viene realizzato tramite un tipo speciale di oggetto chiamato `Class` (talvolta chiamato meta classe). Contiene diverse informazioni, tra cui metodi, attributi, modalità di accesso... e durante la compilazione ogni classe che costituisce un programma ha un oggetto `Class`.
+Gli oggetti di `Class` relativi alle varie classi che compongono un programma non sono caricati tutti in memoria prima di iniziare l’esecuzione, infatti quando in run-time si istanzia una classe, la Java Virtual Machine (JVM), su cui sta girando il programma, prima verifica se l’oggetto `Class` corrispondente è caricato e in caso negativo la JVM lo carica cercando il file `.class` con quel nome.
+
+> [!example] Esempio di RTTI tradizionale
+> ```java
+> class Candy {
+>     static { // questa è una clausola statica
+>         System.out.println("Loading Candy");
+>     }
+> }
+> 
+> class Cookie {
+>     static { // questa è una clausola statica
+>         System.out.println("Loading Cookie");
+>     }
+> }
+> 
+> public class SweetShop {
+>     public static void main(String[] args) {
+>         System.out.println("inside main");
+>         
+>         new Candy();
+>         System.out.println("After creating Candy");
+>         
+>         try {
+>             Class.forName("Gum");
+>         } catch(ClassNotFoundException e) {
+>             e.printStackTrace(System.err);
+>         }
+>         
+>         System.out.println("After Class.forName(\"Gum\")");
+>         
+>         new Cookie();
+>         System.out.println("After creating Cookie");
+>     }
+> }
+> ```
+
+In questo esempio, ognuna delle classi `Candy` e `Cookie` ha una clausola statica che viene eseguita quando la classe è caricata la prima volta.
+Il metodo `forName()` è un metodo statico di `Class` che serve per ottenere un riferimento a un oggetto `Class`, esso prende un oggetto di tipo `String` contenente il nome testuale della classe di cui si vuole il riferimento e restituisce un riferimento a `Class`. Si può notare come ogni oggetto `Class` è stato caricato solo quando era necessario.
+
+Alternativamente, per ottenere un riferimento a un oggetto `Class` si può anche ricorrere al letterale di classe (class literal), dato dal nome della classe seguito da `.class` (esempio: `Gum.class`). I vantaggi di questa notazione sono:
+- Semplicità
+- Efficienza
+- Controllo di esistenza della classe durante la compilazione
+
+Il letterale di classe funziona anche con gli array, tipi primitivi (`boolean.class`) e interfacce. Per i "wrapper" dei tipi primitivi c'è anche un campo standard chiamato `TYPE`, che produce un riferimento all'oggetto `Class` per il tipo primitivo associato tale che si hanno le seguenti equivalenze:
+
+> [!info] Equivalenze di tipo TYPE 
+> ![[Pasted image 20260429121813.png]]
+INSIM
+## Forme di RTTI
+Le forme di RTTI viste finora sono:
+- Il classico cast che usa RTTI per assicurarsi che il cast è corretto e solleva una eccezione `ClassCastException` se è stato ottenuto un cast non corretto.
+- L’oggetto `Class` rappresentante il tipo dell’oggetto. L’oggetto `Class` può essere interrogato per ottenere utili informazioni al run-time.
+
+In Java, che esegue il controllo di tipo, questo tipo di cast è spesso chiamato “type safe downcast”.
+Un’altra forma di RTTI in Java è ottenuta attraverso l’uso della parola chiave `instanceof`, che indica se un oggetto è istanza di un particolare tipo e restituisce un boolean. L’uso dell’operatore `instanceof` potrebbe risultare spesso molto noioso perché lo si deve specificare per il confronto di ogni tipo di oggetto distinto, quindi la classe `Class` mette a disposizione il metodo `isInstance()` che fornisce un modo per invocare dinamicamente l’operatore `instanceof`.
+Quando si dispone di un oggetto, si può estrarre il riferimento all’oggetto `Class` relativo alla sua classe richiamando un metodo che è implementato in `Object`: `getClass()`.
+
+## Meccanismo di riflessione
+Talvolta le informazioni sulla classe dell’oggetto non sono accessibili a tempo di compilazione, in tal caso risulta molto utile poter usufruire di un meccanismo che ricava le informazioni relative alla classe al run-time.
+La classe `Class` supporta il concetto di riflessione e c’è una libreria aggiuntiva `java.lang.reflect` che contiene delle classi utili allo scopo: `Field`, `Method`, `Constructor` (ognuno dei quali implementa una interfaccia `Member`).
+Questo tipo di oggetti sono creati dalla JVM al run-time per rappresentare il corrispondente membro della classe sconosciuta.
+Quando si usa il meccanismo di riflessione, la JVM tratta l'oggetto come appartenente ad una classe particolare, per questo deve essere sempre accessibile (localmente e in rete).
+
+---
+
+# JDBC
+Java ha la possibilità di sviluppare applicazioni client/server indipendenti dalla piattaforma, garantita anche per applicazioni che lavorano su basi di dati.
+Java implementa lo standard JDBC (Java DataBase Connectvity) che è platform-independent, e fornisce un driver per poter gestire dinamicamente tutti gli oggetti driver di cui hanno bisogno le interrogazioni a database.
+JDBC incorpora in se stesso tutte le normali operazioni di interfacciamento con un database: connessione, creazione di tabelle, interrogazione e visualizzazione dei risultati.
+Attraverso il driver JDBC si possono effettuare tutte le operazioni disponibili su un DMBS.
+
+## Connessione ad un database
+Per poter aprire una connessione ad un database è necessario ottenere un oggetto di tipo `Connection`, che fornisce tutti i metodi per preparare le query SQL. Per ottenere una connessione è necessario caricare il driver che implementa le API JDBC, chiamando il metodo `getConnection()` della classe `DriverManager`.
+Il metodo `DriverManager.getConnection` stabilisce una connessione ad un database. Questo metodo richiede una database URL, che dipende dal DBMS, per esempio:
+
+> [!example] Esempio di connessione database H2
+> ```text
+> jdbc:h2:/home/user/test/db
+> ```
+
+dove `/home/user/test/db` è il file su file system che conterrà il DB.
+Altri parametri come ad esempio username e password possono essere specificati attraverso un oggetto `Properties` passato al metodo `getConnection()` insieme alla URL.
+
+> [!example] Esempi di connessione al database
+> ```java
+> // connessione senza parametri 
+> Connection conn = DriverManager.getConnection("jdbc:h2:/home/user/test/db"); 
+> 
+> // connessione con username e password 
+> Connection conn = DriverManager.getConnection("jdbc:h2:/home/user/test/db", "user", "1234"); 
+> 
+> // connessione con oggetto Properties 
+> Properties dbprops = new Properties(); 
+> dbprops.setProperty("user", "user"); 
+> dbprops.setProperty("password", "1234"); 
+> Connection conn = DriverManager.getConnection("jdbc:h2:/home/user/test/db", dbprops);
+> ```
+
+## SQLException
+Quando la JDBC genere un errore durante le interrogazioni di un database solleva un eccezione di tipo `SQLException`, che contiene diverse informazioni:
+- Una descrizione testuale, data dal metodo `getMessage()`.
+- `getSQLState()`, restituisce un codice alfanumerico codificato secondo lo standard ISO/ANSI e Open Group (X/Open).
+- `getErrorCode()`, restituisce un valore intero che indica un codice di errore specifico del driver che implementa JDBC.
+
+## Statement
+Le query SQL si eseguono attraverso oggetti di tipo `Statement`, ottenuti tramite l'oggetto `Connection`.
+È possibile ottenere anche degli statement preimpostati in cui è possibile sostituire a dei segnaposto inseriti nella query SQL dei valori. Queste query preimpostate sono utili per inserire in maniera corretta all'interno della query dei lettarali applicando le opportune conversioni di tipo.
+
+## Statement di modifica
+Per eseguire le varie operazioni di modifica di un DB (come creazione di tabelle, aggiunta di tuple, modifica di tuple) si usa il metodo `executeUpdate()` definito dall'oggetto `Statement`. Gli statement vanno sempre chiusi tramite `close()` per liberare risorse.
+
+> [!example] Esempio di statement di modifica
+> ```java
+> public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS store (artId INT PRIMARY KEY, desc VARCHAR(1024), price DOUBLE, unit INTEGER)";
+> // ... 
+> Connection conn = DriverManager.getConnection("jdbc:h2:/home/user/db/store", dbprops); 
+> Statement stm = conn.createStatement(); 
+> stm.executeUpdate(CREATE_TABLE); 
+> stm.close(); // chiudere lo statement!!!
+> 
+> stm = conn.createStatement(); 
+> stm.executeUpdate("INSERT INTO store VALUES(1,'pentola',4.5,20)"); 
+> stm.close();
+> ```
+
+> [!example] Esempio di prepared Statement
+> ```java
+> PreparedStatement pstm = conn.prepareStatement("INSERT INTO store VALUES (?, ?, ?, ?)"); // ? è un segnaposto 
+> pstm.setInt(1, 2); // l’indice parte da 1 
+> pstm.setString(2, "piatto"); // i metodi set si occupano di inserire i letterali nella query SQL 
+> pstm.setDouble(3, 1.5); 
+> pstm.setInt(4, 40); 
+> pstm.executeUpdate(); 
+> pstm.close();
+> ```
+
+## Statement di interrogazione
+Le query di selezione dei dati si effettuano con il metodo `executeQuery("Query")` che è istanziato sempre da `Statement`.
+`executeQuery()` restituisce un oggetto di tipo `ResultSet` che permette di navigare nelle tuple restituite (simile ad un iteratore).
+
+> [!example] Esempio di statement di interrogazione
+> ```java
+> Statement stm = conn.createStatement(); 
+> ResultSet rs = stm.executeQuery("SELECT artId, desc FROM store WHERE unit>5"); 
+> while (rs.next()) { 
+>     System.out.println(rs.getInt(1) + ": " + rs.getString(2)); 
+> } 
+> rs.close(); 
+> stm.close();
+> 
+> PreparedStatement pstm = conn.prepareStatement("SELECT artId, desc FROM store WHERE unit > ?"); 
+> pstm.setInt(1, 20); 
+> rs = pstm.executeQuery(); 
+> while (rs.next()) { 
+>     System.out.println(rs.getInt(1) + ": " + rs.getString(2)); 
+> } 
+> rs.close(); 
+> stm.close();
+> ```
+
+È possibile utilizzare anche i `PreparedStatement` per le SELECT.
+
+---
+
+# Programmazione concorrente
+Un calcolatore moderno è progettato per eseguire molteplici compiti simultaneamente, come la riproduzione musicale, la navigazione sul web o la stesura di un documento in parallelo.
+Java mette a disposizione dei programmatori una vasta gamma di classi dedicate alla programmazione concorrente, le quali sono principalmente racchiuse nel pacchetto standard `java.util.concurrent`.
+
+## Processi e thread
+Anche in presenza di un calcolatore dotato di una singola CPU, il sistema è in grado di simulare l'esecuzione simultanea di più processi attraverso una tecnica denominata **time slicing**, ossia il suddividere il tempo di calcolo complessivo della CPU in finestre temporali, distribuendolo tra i vari processi attivi.
+I **processi** rappresentano tipicamente una singola applicazione in esecuzione all'interno del sistema operativo e possono essere composti da **threads**, ossia delle unità di esecuzione meno complesse dei processi.
+
+## Runnable e Thread
+In Java, le funzionalità inerenti alla gestione e al ciclo di vita di un singolo flusso di esecuzione sono implementate e fornite dalla classe `Thread`. La creazione di un thread operativo può avvenire seguendo due approcci:
+- Approccio per classe da zero
+- Approccio per estensione di classe
+
+> [!example] Esempio di approccio per classe da zero 
+> Si va a creare una classe che implementa l’interfaccia `Runnable`: questa interfaccia prevede un singolo metudo run() dove va inserito il codice che deve eseguire il thread.
+> ```java
+> public class HelloRunnable implements Runnable { 
+>     public void run() { 
+>         System.out.println("Hello from a thread!"); 
+>     } 
+>         
+>     public static void main(String args[]) { 
+>         (new Thread(new HelloRunnable())).start(); 
+>     } 
+> }
+> ```
+
+> [!example] Esempio di approccio per estensione di classe
+> ```java
+> public class HelloThread extends Thread { 
+>     public void run() { 
+>         System.out.println("Hello from a thread!"); 
+>     } 
+>     
+>     public static void main(String args[]) { 
+>         (new HelloThread()).start(); 
+>     } 
+> }
+> ```
+
+In entrambi i casi è necessario invocare il metodo `start()` di `Thread` per farlo partire. L’interfaccia `Runnable` è più generica in quanto svincolata dalla classe `Thread`, il suo utilizzo permette di evitare l'ereditarietà delle varie altre classi da `Thread`, così da poter ereditare da altre se necessario.
+
+## Controllo di esecuzione
+
+### Sospensione di esecuzione
+Per regolare il ritmo di esecuzione è possibile sospendere il thread corrente invocando il metodo `Thread.sleep()`. L'intervallo di tempo può essere espresso in millisecondi o millisecondi+nanosecondi, anche se il calcolo del tempo è dipendente dal sistema operativo e non può essere esatto.
+
+> [!example] Esempio di sleep
+> ```java
+> public class SleepMessages {
+>     public static void main(String args[]) throws InterruptedException { // sleep può generare un’eccezione se il thread viene interrotto da un altro thread durante lo sleep
+>         String importantInfo[] = {
+>             "Info 1",
+>             "Info 2",
+>             "Info 3",
+>             "Info 4"
+>         };
+>         for (int i = 0; i < importantInfo.length; i++) {
+>             // sospendi per 4 secondi (4000 millisecondi)
+>             Thread.sleep(4000);
+>             // Stampa il messaggio
+>             System.out.println(importantInfo[i]);
+>         }
+>     }
+> }
+> ```
+
+### Interruzione di un thread
+L'interruzione di un thread in esecuzione può essere forzata invocando il metodo `interrupt()`. Ogni thread, per essere ben implementato, deve avere le seguenti caratteristiche:
+- Ogni thread deve implementare il suo metodo `interrupt()`.
+- Ogni `interrupt()` deve coincidere con la sua terminazione.
+- Ogni thread catturi l'eccezione `InterruptedException` e interrompa la sua esecuzione.
+
+> [!example] Esempi di interrupt 
+> Riprendendo l’esempio precedente, catturiamo l’eccezione durante lo sleep:
+> ```java
+> for (int i = 0; i < importantInfo.length; i++) {
+>     // Pause for 4 seconds
+>     try {
+>         Thread.sleep(4000);
+>     } catch (InterruptedException e) {
+>         // We've been interrupted: no more messages.
+>         return; // Se interrotto esco dal metodo run
+>     }
+>     // Print a message 
+>     System.out.println(importantInfo[i]);
+> }
+> ```
+> Se non ci sono metodi che generano InterruptedException allora controlliamo periodicamente se qualche altro thread abbia invocato l’interruzione:
+> ```java
+> for (int i = 0; i < inputs.length; i++) { 
+>     // do something 
+>     if (Thread.interrupted()) { // Restituisce true nel caso di interruzione 
+>         // We've been interrupted 
+>         return; 
+>     }
+> }
+> ```
+
+### Unione di esecuzione dei thread
+La classe `Thread` include anche il metodo `join()`, utile per la temporizzazione dei stessi thread. La chiamata del metodo `join()` mette in pausa il thread corrente fino a quando il thread sul quale si è chiamato non termina. Come il metodo precedente, `join()` permette di specificare un tempo massimo di attesa e può essere interrotto da un `InterruptedException`.
+
+> [!info] Visualizzazione grafica del join e del ciclo di vita di un thread 
+> ![[Pasted image 20260506103832.png]] 
+> ![[Pasted image 20260506103843.png]]
+INSIM
+## Sincronizzazione dei thread
+I thread per poter comunicare e accedere alle stesse risorse hanno bisogno di essere **sincronizzati**. Quando due thread non sono sincronizzati incorrono due problematiche:
+- Thread interference
+- Memory consistency error
+
+La sincronizzazione permette di risolverle ma introduce problemi di **thread contention** quando vogliono utilizzare le stesse risorse.
+Un metodo sincronizzato può essere chiamato da un solo thread alla volta (e gli altri restano in attesa), garantendo che il metodo protetto può essere invocato ed eseguito soltanto da un thread per volta, forzando tutti gli eventuali altri thread richiedenti a rimanere in uno stato di attesa.
+
+> [!example] Esempio di metodi sincronizzati
+> ```java
+> public class SynchronizedCounter { 
+>     private int c = 0; 
+>     
+>     public synchronized void increment() { 
+>         c++; 
+>     } 
+>     
+>     public synchronized void decrement() {
+>         c--; 
+>     } 
+>     
+>     public synchronized int value() { 
+>         return c; 
+>     } 
+> }
+> ```
+
+### Thread interference
+Una **thread interference** avviene quando due operazioni su due thread differenti agiscono sullo stesso dato. Essendo operazioni non atomiche è difficile ottenere un risultato prevedibile.
+
+> [!example] Esempio di thread interference
+> ```java
+> class Counter {
+>     private int c = 0;
+>     
+>     public void increment() {
+>         c++;
+>     }
+>     
+>     public void decrement() {
+>         c--;
+>     }
+>     
+>     public int value() {
+>         return c;
+>     }
+> }
+> ```
+
+L’operazione `c++` (`c--`) non è atomica, poiché:
+- Recupera il valore di `c`
+- Incrementa (o decrementa) il valore assegnato
+- Assegna a `c` il nuovo valore
+
+Supponiamo che ci siano due thread, `A` e `B`, il primo richiami la funzione `increment` e il secondo `decrement`: 
+![[Pasted image 20260506114536.png]] INSIM
+
+### Memory incosistency
+Si verifica quando due thread hanno una visione inconsistente di uno stesso dato. Si considera un tipico scenario in cui una variabile inizializzata al valore `0` sia accessibile simultaneamente a due entità, definite come Thread `A` e Thread `B`. Qualora il Thread `A` proceda all'incremento della variabile e, nel medesimo istante temporale, il Thread `B` proceda alla stampa a schermo della stessa, sussiste la concreta possibilità che il Thread `B` restituisca il valore originario di `0` poiché l'operazione di aggiornamento del Thread `A`, benché avviata, non si è ancora conclusa.
+
+### Sincronizzazioni delle istruzioni
+È possibile anche sincronizzare soltanto una porzione di istruzioni, utile quando si richiede che soltanto quella porzione venga "velocizzata".
+
+> [!example] Esempio di sincronizzazione di funzione
+> ```java
+> public void addName(String name) { 
+>     synchronized(this) { // in questo caso sincronizziamo solo la modifica di lastName e di nameCount. L’istruzione add non richiede sincronizzazione. Stiamo inserendo un lock sull'oggetto
+>         lastName = name;
+>         nameCount++; 
+>     } 
+>     nameList.add(name); 
+> }
+> ```
+
+## Problemi della programmazione concorrente
+Ci sono diversi problemi presenti nella programmazione concorrente:
+- **Deadlock**: due o più thread sono bloccati in modo indefinito perché ognuno attende la fine dell’altro.
+- **Starvation**: un thread non riesce ad accedere ad alcune risorse perché sono utilizzate avidamente da altri thread.
+- **Livelock**: un thread `A` in genere agisce in risposta di un altro thread `B`, se `B` agisce in risposta di un altro thread `C` allora i thread proseguiranno in maniera discontinua.
+
+---
+
+# Programmazione in rete
+La programmazione in rete, nota anche come programmazione distribuita, è sempre risultata complessa e particolarmente soggetta ad errori data dalla necessità da parte del programmatore di conoscere tutto.
+Nel linguaggio Java, la programmazione in rete subisce una notevole semplificazione, venendo astratta in modo efficace attraverso l'uso di un set dedicato di classi. Queste classi gestiscono dei file di lettura e scrittura che non si trovano nella macchina locale ma in una remota, con totale autonomia di come processare un'informazione inviata o richiesta.
+Il modello di programmazione adottato si fonda sull'incapsulamento (wrapping) di una connessione di rete, definita socket, all'interno di un flusso (stream) di oggetti. Grazie a questa astrazione è possibile impiegare le medesime invocazioni di metodo utilizzate per gli stream dei file.
+Grazie alla natura multipiattaforma di Java, tutte le specificità e i dettagli di basso livello della rete vengono gestiti direttamente dalla Java Virtual Machine (JVM) e dall'installazione locale dell'ambiente Java.
+
+## Identificazione di una macchina
+Per instaurare una comunicazione efficace con un altro nodo della rete, risulta indispensabile identificare in maniera univoca il destinatario. L'identificazione del nodo avviene mediante l'indirizzo IP (Internet Protocol). Esistono fondamentalmente due approcci per risolvere e identificare un indirizzo IP:
+- L'utilizzo del DNS (Domain Name System), ricorrendo a stringhe alfanumeriche come ad esempio `www.di.uniba.it`.
+- L'impiego della dot notation, che prevede l'uso di sequenze numeriche come `183.201.181.10`.
+
+In Java, la rappresentazione dell'indirizzo IP, in entrambe le notazioni appena descritte, è affidata a una classe specifica denominata `InetAddress`, la quale è inclusa nel package `java.net`. Questa classe mette a disposizione del programmatore il metodo statico `InetAddress.getByName()`, il cui scopo è restituire un'istanza di `InetAddress` partendo dal nome dell'host o dal suo indirizzo IP.
+
+> [!example] Esempio di socket 
+> ![[Pasted image 20260506152705.png]]
+INS IMG
+## Uso del port
+Su una macchina singola può ospitare più servizi contemporaneamente, per questo l'indirizzo IP da solo non è sufficiente.
+Quando si imposta un client o un server è necessario scegliere la “porta” (port) sul quale sia il server che il client decidono di connettersi.
+Il port non è una locazione fisica su una macchina ma è una astrazione software, tipicamente ogni servizio è associato ad un singolo numero di port su una macchina server. Il programma clienti quindi non deve conoscere soltanto l'indirizzo IP, ma anche la porta giusta.
+
+## Socket
+All'interno dell'ecosistema Java, la connessione verso una macchina remota viene stabilita attraverso l'utilizzo dei **socket**. Il socket è un'astrazione software usata per rappresentare i terminali di connessioni di due macchine.
+Le librerie di Java mettono a disposizione due classi principali basate sugli stream per la gestione dei socket:
+- La classe `ServerSocket`, impiegata dal server per rimanere in ascolto delle richieste di connessione in ingresso.
+- La classe `Socket`, utilizzata dal client per inizializzare attivamente la connessione.
+
+Creando un socket in Java, si ottengono un `InputStream` e un `OutputStream` (o, con appropriate conversioni, un `Reader` e un `Writer`) al fine di abilitare la connessione in modo simile a un I/O su stream di oggetti.
+Una volta che un client richiede una connessione socket, il `ServerSocket` restituisce (mediante il metodo `accept()`) un `Socket` corrispondente attraverso il quale la comunicazione può avvenire dal lato server, creando una connessione **Socket-To-Socket**.
+Durante la fase di inizializzazione, la creazione di un `ServerSocket` richiede esclusivamente l'indicazione di un numero di porta, omettendo l'indirizzo IP poiché esso coincide implicitamente con quello della macchina su cui il server è in esecuzione. Al contrario, la creazione di un `Socket` lato client impone la specificazione di entrambi i parametri, in quanto server e client risiedono generalmente su elaboratori distinti.
+Il socket generato dalla chiamata `ServerSocket.accept()` incapsulerà automaticamente sia le informazioni del client sia quelle del server. Raggiunto questo punto, si possono invocare i metodi `getInputStream()` e `getOutputStream()` sui rispettivi socket per ricavare gli stream di dati, i quali supportano nativamente l'impiego delle classi di buffering e di formattazione del testo.
+
+## Servire più client
+Per consentire al server di servire più client in maniera simultanea, è indispensabile ricorrere al multithreading. Il design pattern di base per affrontare tale casistica prevede l'istanziamento di un singolo `ServerSocket` sul server, seguito dalla chiamata bloccante al metodo `accept()`, che pone il processo in attesa attiva di una connessione. Nel momento in cui una connessione viene stabilita e il metodo `accept()` conclude la sua esecuzione restituendo il socket di comunicazione, quest'ultimo viene immediatamente passato a un nuovo thread appositamente istanziato per servire le richieste di quello specifico client. Nel frattempo, il thread principale del server non si arresta, ma si riavvia in un ciclo perpetuo richiamando nuovamente il metodo `accept()`, mettendosi così in attesa della successiva richiesta di connessione.
