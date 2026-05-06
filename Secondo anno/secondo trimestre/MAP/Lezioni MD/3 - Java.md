@@ -1404,3 +1404,5 @@ private transient String password;
 private String CF;
 ```
 In questo caso, durante la serializzazione dell'oggetto che include queste due variabili, la variabile CF, anche se privata, sarà serializzata, mentre la password sarà ignorata nella rappresentazione grazie alla keyword transient.
+
+---
