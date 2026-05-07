@@ -2050,5 +2050,63 @@ printPerson(person, new CheckPerson(){
 });
 ```
 ### Interfacce funzionali
+L'interfaccia `CheckPerson` usata prima è in verità un'**interfaccia funzionale**, essa differisce da un'interfaccia classica poiché:
+- contiene solo un metodo astratto senza metodi statici al suo interno
+- è **priva di nome** avendo solo un metodo astratto che sarà intrisicamente implementato
 
+Quindi un'alternativa all'uso di una classe anonima è la possibilità di usare una **lamba expression**.
+## Espressione lambda
+Usando nuovamente l'esempio precedente vediamo come inserire l'espressione:
+```JAVA
+public static void printPersonWithPredicate(List<Person> roster,Predicate<Person> tester){
+	for (Person p: roster){
+		if(tester.test(p)){
+			p.printPerson();
+		}
+	}
+}
+```
+La voce **`Predicate<T>`** è un **interfaccia funzionale** definita in *java.util.function* ed esegue la stessa funzione che eseguiva precedentemente `CheckPerson`, ma essendo **generica** e avendo solo il suo stesso metodo: `boolean test(T t)` non è necessario specificare il suo nome e può essere utilizzata in un'espressione lambda nel seguente modo:
+![[Pasted image 20260507125539.png]]
+### Sintassi di Lambda
+L'espressione lambda è composta:
+- da una **lista di parametri formali** separati da virgole e racchiusi tra parentesi tonde.
+  >[!WARNING] Nota bene
+  >   è possibile omettere il tipo di dati dei parametri in un'espressione lambda. Inoltre, è possibile omettere le parentesi se esiste un solo parametro
 
+- il token $\to$ 
+- un **corpo** che contiene una singola espressione o un blocco di istruzioni. Il blocco di istruzioni è racchiuso nelle parentesi graffe {}, se il blocco di istruzioni contiene un’invocazione ad un metodo che non restituisce nessun valore (void) si possono omettere le parentesi.
+
+>[!Example] Visualizziamo il seguente esempio con più parametri
+
+```JAVA
+public class Calculator{
+	interface IntergerMath{
+		int operation(int a,int b);
+	}
+	
+	public int operateBinary(int a,int b,IntegerMath op){
+		return op.operation(a,b);
+	}
+	
+	public static void main(Strng...args){
+		Calculator myApp=new Calculator();
+		IntegerMath addition=(a,b) -> a+b; //parametro formale con lamba
+		IntegerMath subtraction=(a,b) -> a-b; //parametro formale con lamba
+		System.out.println("40+2= "+myApp.operateBinary(40,2,addition));
+		System.out.println("20-10= "+myApp.operateBinary(20,10,subtraction));
+	}
+}
+```
+### Perché usare le lambda?
+Le lambda expressions sono un ottimo esempio di **programmazione funzionale**:
+- privo di **side-effect**
+- flusso di esecuzione a valutazione di funzioni
+
+**Programmazione funzionale**:
+- La programmazione funzionale si concentra sulla **definizione di funzioni** contrariamente, i paradigmi procedurali e imperativi prediligono la specifica di una sequenza di comandi da eseguire e i valori vengono calcolati cambiando lo stato del programma attraverso l’operazione di assegnazione.
+- La programmazione funzionale basa le sue radici nel **lambda calcolo**, ossia un **calcolo basato sulle funzioni**, composto da un linguaggio formale utilizzato per esprimere le funzioni e un sistema di riscrittura per stabilire come i termini possano essere ridotti e semplificati.
+## Consumer
+Riprendendo il metodo `printPersonWithPredicate`. Il metodo è ancora più **generalizzabile**, attuando una generalizzazione sull'**operazione** da applicare alle istanze per cui `test` da `true`.
+
+Per farlo utilizziamo **`Consumer<T>`**. Questa interfaccia è definita in *java.util.funciton*, il suo funzionamento è identico  [Continuare fino a slide 42]
