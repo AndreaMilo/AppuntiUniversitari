@@ -1950,3 +1950,11 @@ Il socket generato dalla chiamata `ServerSocket.accept()` incapsulerà automatic
 
 ## Servire più client
 Per consentire al server di servire più client in maniera simultanea, è indispensabile ricorrere al multithreading. Il design pattern di base per affrontare tale casistica prevede l'istanziamento di un singolo `ServerSocket` sul server, seguito dalla chiamata bloccante al metodo `accept()`, che pone il processo in attesa attiva di una connessione. Nel momento in cui una connessione viene stabilita e il metodo `accept()` conclude la sua esecuzione restituendo il socket di comunicazione, quest'ultimo viene immediatamente passato a un nuovo thread appositamente istanziato per servire le richieste di quello specifico client. Nel frattempo, il thread principale del server non si arresta, ma si riavvia in un ciclo perpetuo richiamando nuovamente il metodo `accept()`, mettendosi così in attesa della successiva richiesta di connessione.
+
+---
+# RestFull
+
+[Da fare]
+
+---
+# Lambda Expressions

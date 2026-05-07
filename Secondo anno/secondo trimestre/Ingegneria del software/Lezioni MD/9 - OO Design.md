@@ -110,28 +110,28 @@ Queste sono le regole generali da seguire per avere un ottimo diagramma delle cl
 
 ---
 # Modellare il comportamento
-Per modellare il comportamento di un progetto software si fa ricorso alla **documentazione** del comportamento di un gruppo di oggetti che realizzano un singolo scenario di utilizzo del sistema. Questo è possibile visualizzarlo tramite il **diagramma di sequenza**.
+Per modellare il comportamento di un progetto software si fa ricorso alla **documentazione** del comportamento di un gruppo di oggetti che realizzano un singolo scenario di utilizzo del sistema. Tale comportamento è visualizzabile tramite il **diagramma di sequenza**.
 ## Diagramma di sequenza
 Il diagramma mostra l'interazione tra oggetti con enfasi sulla sequenza dei messaggi.
-Nel diagramma di sequenza si hanno vari elementi, primi tra tutti sono i **personaggi**.
+Nel diagramma di sequenza si hanno vari elementi, primi tra tutti sono i **partecipanti**.
 ### Personaggi
-I personaggi sono i **partecipanti** del diagramma, dove quest'ultimi sono degli **oggetti** rappresentati come un rettangolo in cima a una linea tratteggiata.
-La linea tratteggiata rappresenta **lo scorrere del tempo** detti **Linee di vita**.
+I **partecipanti** del diagramma, i quali sono **oggetti** rappresentati come un rettangolo in cima a una linea tratteggiata.
+La linea tratteggiata rappresenta **lo scorrere del tempo** detta **Linee di vita**.
 ![[Pasted image 20260506170406.png]]
 ### Messaggi
-Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la comunicazione tra oggetti realizzate tramite la chiamata dei metodi.
-I messaggi possono essere anche **speciali**, come il `create` o il `return` o la `destroy` di un oggetto.
+Nel diagramma di sequenza esistono anche i **messaggi**, ovvero la comunicazione tra oggetti realizzata tramite la chiamata dei metodi.
+I messaggi possono essere anche **speciali**, come il `create`, il `return` o la `destroy` di un oggetto.
 ![[Pasted image 20260506173850.png]]
 ### Barre di attivazione 
-Le barre di attivazione sono un sottile **rettangolo** posto sulla linea di vita di un oggetto e serve ad indicare quando il partecipante è attivo nell'interazione.
-Questa operazione rende ridondante l'uso delle linee di **restituzione del controllo**.
+Le barre di attivazione sono sottili **rettangoli** posti sulla linea di vita di un oggetto e servono ad indicare quando il partecipante è attivo nell'interazione.
+La presenza di questo elemento nel diagramma rende ridondante l'uso delle linee di **restituzione del controllo**.
 ![[Pasted image 20260506174435.png]]
 ![[Pasted image 20260506174539.png]]
 ![[Pasted image 20260506174802.png]]
 ## UML 2
 In **UML 2** esistono dei simboli che non era possibile utilizzare prima, detti **frame di interazione**. Il frame di interazione è una cornice intorno ad una parte del diagramma di sequenza, tra gli elementi principali vi si ha:
 - **opt** che sostituisce gli `if`
-- **alt** che serve per `l'esle`
+- **alt** che serve per `l'else`
 - **loop** che serve per i cicli iterativi
 ![[Pasted image 20260506175111.png]]
 
@@ -142,4 +142,4 @@ In **UML 2** esistono dei simboli che non era possibile utilizzare prima, detti 
 **Esempio opt**:
 ![[Pasted image 20260506175505.png]]
 
-Per verificarlo meglio si può controllare l'esempio della **bibblioteca** presente su E-learning.
+Per approfondire meglio quest'ultimo argomento, si consiglia di consultare l'esempio della **biblioteca** presente su E-learning.
