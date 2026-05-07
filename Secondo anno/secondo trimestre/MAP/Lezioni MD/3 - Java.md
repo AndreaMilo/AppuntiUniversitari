@@ -1958,3 +1958,48 @@ Per consentire al server di servire più client in maniera simultanea, è indisp
 
 ---
 # Lambda Expressions
+Per comprendere cosa sono e come utilizzare le Lambda expressions utilizziamo un esempio legato all'utilizzo delle **classi anonime**.
+
+Supponiamo di avere la seguente classe che memorizza delle informazioni relative ad una persona:
+```JAVA
+public class Person{
+	public enum Gender{
+		MALE,FEMALE
+	}
+	private String name;
+	private String surname;
+	private int age;
+	private Gender gender;
+	
+	public Person(String name,String surname, int age, Gender gender){
+		this.name=name;
+		this.surnae=surname;
+		this.age=age;
+		this.gender=gender;
+	}
+	public String getName(){
+		return name;
+	}
+	
+	public void setGender(Gender gender){
+		this.gender=gender;
+	}
+	public void printPerson(){
+		System.out.println("Person{" + "name="+name+ ",surname="+surname+ ", age="+age+", gender="+ gender+'}'};
+	}
+}
+```
+
+Un ulteriore modifica utile sarebbe quella di cercare delle *Persone* della classe `Person` che rispettano alcune caratteristiche.
+
+>[!Example] Vogliamo cercare le persone di una certa età
+
+```JAVA
+public static void printPersonsOlderThan(List<Person> roster, int age){
+	for (Person p: roster){
+		if(p.getAge()>=age){
+			p.printPerson();
+		}
+	}
+}
+```
