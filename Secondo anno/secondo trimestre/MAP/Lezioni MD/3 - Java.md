@@ -2109,4 +2109,4 @@ Le lambda expressions sono un ottimo esempio di **programmazione funzionale**:
 ## Consumer
 Riprendendo il metodo `printPersonWithPredicate`. Il metodo è ancora più **generalizzabile**, attuando una generalizzazione sull'**operazione** da applicare alle istanze per cui `test` da `true`.
 
-Per farlo utilizziamo **`Consumer<T>`**. Questa interfaccia è definita in *java.util.funciton*, il suo funzionamento è identico  [Continuare fino a slide 42]
+Per farlo utilizziamo **`Consumer<T>`**. Questa interfaccia è definita in *java.util.funciton*, il suo funzionamento è identico  [Continuare fino a slide da 20 a 40]
