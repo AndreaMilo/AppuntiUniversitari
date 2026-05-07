@@ -2003,3 +2003,52 @@ public static void printPersonsOlderThan(List<Person> roster, int age){
 	}
 }
 ```
+Come si può notare, questo codice non è elegante poiché **fortemente dipendente** dalla classe `Person` e in caso di modifiche dovremmo modificare tutta la classe `Person` stessa.
+
+Un'altra soluzione sarebbe quella di eseguire una ricerca come funzione ma anche in questo caso il metodo sarebbe legato all'attributo `age` che è memorizzato in `Person` e non è generico poiché possiamo filtrare solo tramite l'attributo età.
+## Ricerca con interfaccia
+Possiamo definire un interfaccia `CheckPerson` che ha un unico metodo che verifica se una istanza sia valida o meno:
+```JAVA
+public interface CheckPerson{
+	boolean test(Person p);
+}
+
+// metodo che esegue questa interfaccia per vedere se una persona rispetta i criteri definiti nell'implementazione del metodo test
+public static void printPerson(List<Person> roster,CheckPerson tester){
+	for(Person p: roster){
+		if(tester.test(p)){
+			p.printPerson();
+		}
+	}
+}
+```
+Creato ciò, andiamo ad implementare l'interfaccia `CheckPerson`:
+```JAVA
+public class CheckPersonEligibleForSelectiveService implements CheckPerson{
+	@Override
+	public boolean test(Person p){
+		return p.getGender()==Person.Gender.MALE
+			&& p.getAge()>=18
+			&& p.getAge()<=25;
+	}
+}
+```
+questa nuova classe sarà utilizzata per creare una nuova istanza del suo tipo: `new CheckPersonEligibleForSelectiveService()` e passiamo l'istanza al metodo `printPerson`.
+## Ricerca classe anonima
+>[!NOTE] Definizione
+>Una classe **anonima** viene definita tale poiché è priva di un nome essendo dichiarata e contemporaneamente istanziata.
+>La classe anonima può essere definita nel corpo di un metodo e sono spesso utilizzate con SWING per creare le **ActionListener**.
+
+Si costruisce nel seguente modo:
+```JAVA
+//use of an anonymous class
+printPerson(person, new CheckPerson(){
+	@Override
+	public boolean test(Person p){
+		return p.getGender()==Person.Gender.MALE && p.getAge()>=18 && p.getAge()<=25;
+	}
+});
+```
+### Interfacce funzionali
+
+
