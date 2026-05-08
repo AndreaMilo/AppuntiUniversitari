@@ -2292,5 +2292,34 @@ public class Average implements IntConsumer{
 	public double average(){
 		return count>0?((double)sum) / count:0
 	}
+	
+	@Override
+	public void accept(int value){
+		sum+=value;
+		count++;
+	}
+	
+	public void combine(Average other){
+		sum+=other.sum;
+		count+=other.count;
+	}
 }
 ```
+La classe `Averager` implementa l’interfaccia `IntConsumer` che prevede il solo metodo `accept` che verrà utilizzato come **accumulator**. Il **costruttore** sarà il metodo utilizzato come **supplier**, invece il metodo `combine` come **combiner**.
+Il costruttore ci restituirà il risultato finale.
+
+La sua implementazione in un codice è la seguente:
+```JAVA
+Averager avgAgeC=persons
+	.stream()
+	.map(p->p.getAge())
+	.collect(Averager::new, Averager::accept, Averager::combine);
+System.out.println(avgAgeC.average());
+```
+Come possiamo notare c'è un nuovo **operatore**($::$) in questa implementazione, chiamato **method reference operator**. Questo nuovo operatore si comporta come alle espressioni lambda che invocano direttamente il metodo, ma è più immediato poiché basato solo sul **nome del metodo**.
+
+In breve, con questo operatore stiamo andando ad utilizzare i metodi di una classe facendo riferimento direttamente con il nome di quest'ultima.
+
+Se volessimo estendere quella sezione avremmo dovuto scrivere:
+`.collect(()->new Averager(),(a,b)->a.accept(b),(a,b)->a.combine(b));`
+
