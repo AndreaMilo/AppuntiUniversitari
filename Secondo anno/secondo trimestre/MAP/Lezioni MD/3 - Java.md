@@ -2109,4 +2109,107 @@ Le lambda expressions sono un ottimo esempio di **programmazione funzionale**:
 ## Consumer
 Riprendendo il metodo `printPersonWithPredicate`. Il metodo è ancora più **generalizzabile**, attuando una generalizzazione sull'**operazione** da applicare alle istanze per cui `test` da `true`.
 
-Per farlo utilizziamo **`Consumer<T>`**. Questa interfaccia è definita in *java.util.funciton*, il suo funzionamento è identico  [Continuare fino a slide da 20 a 40]
+Per farlo utilizziamo **`Consumer<T>`**. Questa interfaccia è definita in *java.util.funciton*, il suo funzionamento è identico a `printPerson`. L'unico metodo di `Consumer` è `void accept(T t)`
+
+Se volessimo effettuare un operazione su un'istanza prima di *consumarla* necessitiamo dell'interfaccia **`function`**.
+## Function
+Anche quest'interfaccia è definita in *java.util.function* ed è dichiarata nel seguente modo: `Function<T,R>`. Questa interfaccia esegue un'operazione sull'istanza $T$ restituendo un'istanza $R$.
+
+Anche `Function` ha un unico metodo, il quale è `R apply(T t)`
+```JAVA
+//Function<T, R> è una funzione predefinita che agisce come R apply(T t)
+//Aplly permette di eseguire un azione in T restituendo R
+public static void processPersonWithFunction(List<Person> roster,Predicate<Person> tester,Function<Person,String> mapper, Consumer<String>block){ 
+	//mapper trasforma un oggetto in un altro
+	for(Person p:roster){
+		if(tester.test(p)){
+			String data=mapper.apply(p);
+			block.accept(data);
+		}
+	}
+}
+
+processPersonWithFunction(persons,
+	 p->p.getGender()==Person.Gender.MALE && p.getAge()>=18 && p.getAge()<=25,
+	 p->p.getSurname(), //Function
+	 surname->System.out.println(surname) //Consumer
+);
+```
+## Visibilità delle variabili
+Un'espressione lambda non aggiunge un nuovo livello di **scope**, infatti sono definite **lexically scoped** e si comportano di fatto come le classi anonime, quindi accedendo alle variabili definite nello scopo locale nel quale è scritta l'espressione lambda.
+## Generalizzare
+Il metodo `checkPersonWithFunction` è possibile renderlo ancora più **generico** così da poterlo applicare a qualsiasi tipo di classe, senza essere così vincolato da `Person` e contemporaneamente è generico anche per il tipo restituito dall'implementazione di `Function`
+```JAVA
+public static <X,Y> void processElements(Iterable<X> source,Predicate<X> tester,    Function<X,Y>mapper,Consumer<Y>block){
+	for(X p:source){
+		if(tester.test(p)){
+			Y data=mapper.apply(p);
+			block.accept(data);
+		}
+	}
+}
+```
+Qui entrano in gioco nuovi simboli e attori:
+- $X$ è il **generics** che fa riferimento agli oggetti che voglio processare
+- `Iterable<X>` mi permette di iterare l'operazione che voglio eseguire su tutti gli oggetti di tipo $X$
+- $Y$ è il **generics** relativo al risultato della funzione mapper (ovvero della `Function`)
+
+>[!Example] Segue l'esempio di due azioni da eseguire su `processElements` 
+>sono due funzioni diverse che utilizzano lo stesso metodo generalizzato precedentemente per cercare il *cognome* e *l'età*.
+```JAVA
+processElements(persons,
+	 p->p.getGender()==Person.Gender.MALE && p.getAge()>=18 && p.getAge()<=25,
+	 p->p.getSurname(), //Function
+	 surname->System.out.println(surname) //Consumer
+);
+
+processElements(persons,
+	 p->p.getGender()==Person.Gender.MALE && p.getAge()>=18 && p.getAge()<=25,
+	 p->p.getAge(), //Function
+	 age->System.out.println(age) //Consumer
+);
+```
+
+Nel dettaglio il metodo `processElements` lavora in questo modo:
+* **Ottiene** una sorgente di oggetti da un iteratore. Nell’esempio gli oggetti sono di tipo `Person` e la sorgente è una `List` che implementa l’interfaccia `Iterable`
+* **Filtra** gli oggetti in base all’oggetto `Predicate`. Nel nostro caso definito dall’espressione lambda che controlla il **genere e l’età**
+* **Mappa** tutti gli oggetti filtrati su un altro valore definito da `Function`. In questo caso un’altra espressione lambda che restituisce il **cognome**
+* **Esegue** un’azione sull’oggetto mappato definita dall’oggetto `Consumer`. In questo caso stampa una stringa che è il cognome dell’oggetto restituito da `Function`
+
+Quello che esegue il metodo `ProcessElements` è ottenibile attraverso l'uso degli **stream** e delle **operazioni aggregate**.
+```JAVA
+//processElements viene rimpiazzato con un pipline applicata su uno stream
+person
+	.stream()
+	.filter(p->p.getGender()==Person.Gender.MALE
+	&& p.getAge()>=18
+	&& p.getAge()<=25)
+	.map(p->getSurname())
+	.forEach(surname->System.out.println(surname));
+```
+Le seguenti operazioni: `.map`,`.filter` e `forEach` sono **operazioni aggregate** che processano gli elementi a partire da uno **stream**.
+### Pipeline e stream
+>[!NOTE] Stream
+>Uno **stream** è una **sequenza di elementi** che differisce dalla **collection** poiché non è una struttura dati che può contenere elementi.
+>Lo stream preleva i valori da una **sorgente** attraverso una **pipeline** (una sorgente può essere una collection stessa).
+
+>[!NOTE] Pipeline
+>In JAVA una **Pipeline** è una **sequenza di operazioni** (come quelle viste precedentemente), dove generalmente i **parametri** di queste operazioni sono **lambda expression** e quindi facilmente personalizzabili.
+
+Andando ad analizzare nel dettaglio lo stream dell'esempio precedente si hanno due operazioni:
+- `filter` che filtra gli oggetti
+- `forEach` che esegue le operazioni su tutti gli elementi dello stream
+
+In questo caso la pipeline di questo stream se la volessimo analizzare senza la sua aggregazione sarebbe:
+```JAVA
+for(Person p:roster){
+	if(p.getGender()==Person.Sex.MALE){
+		System.out.println(p.getName());
+	}
+}
+```
+
+Concettualmente possiamo suddividere la composizione di una pipeline in:
+- **sorgente**, che potrebbe essere una collection, un array, un canale di I/O, ecc...
+- zero o più **operazioni intermedie**, un esempio di operazione intermedia è `filter`. Ogni operazione intermedia genera un nuovo `stream`
+- **operazione terminale**. L'opzione terminale è una conclusione della pipeline che produce un **risultato finale** che non è più uno stream.
