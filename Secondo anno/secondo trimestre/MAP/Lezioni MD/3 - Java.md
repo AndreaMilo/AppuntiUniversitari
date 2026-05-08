@@ -2282,3 +2282,15 @@ l metodo collect accetta **tre parametri**:
 2. **accumulator**: questa funzione serve ad inglobare il valore attuale dello stream nell’oggetto che verrà restituito 
 3. **combiner**: questa funzione combina due contenitori di risultati e unisce il loro contenuto
 
+>[!Example] Costruiamo qualcosa di complesso per visualizzare un ottimo esempio.
+>Supponiamo di voler implementare l’operatore terminale che calcola la media attraverso il metodo `collect`. Abbiamo bisogno di definire una classe `Average` che manterrà la somma corrente e il numero totale degli elementi esaminati nello stream. Questa classe verrà poi utilizzata nel metodo `collect`
+```JAVA
+public class Average implements IntConsumer{
+	private int sum=0;
+	private int count=0;
+	
+	public double average(){
+		return count>0?((double)sum) / count:0
+	}
+}
+```
