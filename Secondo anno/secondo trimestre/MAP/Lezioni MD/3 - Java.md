@@ -2212,4 +2212,73 @@ for(Person p:roster){
 Concettualmente possiamo suddividere la composizione di una pipeline in:
 - **sorgente**, che potrebbe essere una collection, un array, un canale di I/O, ecc...
 - zero o più **operazioni intermedie**, un esempio di operazione intermedia è `filter`. Ogni operazione intermedia genera un nuovo `stream`
-- **operazione terminale**. L'opzione terminale è una conclusione della pipeline che produce un **risultato finale** che non è più uno stream.
+- **operazione terminale**. L'opzione terminale è una conclusione della pipeline che produce un **risultato finale** che non è più uno stream. 
+  In allegato il link della Javadoc con la lista delle operazioni terminali: https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+### Funzioni generatrici
+`Stream` ha un metodo **`generate`** che permette di generare uno stream all'infinito di valori la cui generazione è dipesa dal parametro di tipo `Supplier`: `generate(Supplier<T> s)`
+
+L'interfaccia di `Supplier` possiede solamente un metodo `get` che restituisce un valore $T$.
+
+L’altro metodo di `Stream` che genera valori è `iterate` che genera valori infiniti a partire da un seed al quale viene applicato iterativamente una funzione `f`: `seed, f(seed), f(f(seed), ecc...`
+
+>[!Example] Esempio di funzione generatrice
+>Crea uno stream infinito di numeri random nell’intervallo $[0, 1)$, filtra i primi $100$ maggiori o uguali a $0.5$ e li stampa.
+```JAVA
+DoubleStream.generate(()->Math.random())
+	.filter(p->p>=0.5)
+	.limit(100)
+	.forEach(p->System.out.println(p));
+```
+In questo caso troviamo la generazione con `generate(()->Math.random())`. La funzione `Supplier` è definita attraverso un’espressione **lambda** senza parametri, `()`, che esegue un’istruzione che genera un double, in questo caso il metodo statico random di `Math`.
+
+>[!Example] Esempio di funzione generatrice
+>Genera $100$ numeri random nell’intervallo $[0, 1)$, filtra quelli maggiori a $0.5$ e conta quanti sono. Il risultato finale viene stampato.
+```JAVA
+System.out.println(DoubleStream.generate(()->Math.random())
+	.limit(100)
+	.filter(p->p>0.5)
+	.count());
+```
+### Reduction
+Le operazione come `avg` e `count` (vista nell'esempio precedente) sono dette **riduzioni**.
+Queste restituiscono un unico valore combinando gli oggetti presenti nello stream ma possono esistere anche alcuni tipi di riduzioni che restituiscono una collection e non un singolo valore.
+
+>[!Example] Esempi di operazioni di riduzione che restituiscono un **singolo valore**:
+> `average`, `sum`, `min`, `max` e `count`
+
+Oltre alle operazioni di riduzione predefinite è possibile definirne di **nuove utilizzando i metodi di Stream**:`reduce` e `collect`.
+#### Stream reduce
+Analizziamo un codice in cui si vuole calcolare la somma di tutte l'età presenti utilizzando la riduzione `sum`:
+```JAVA
+Integer totalAge=persons
+	.stream()
+	.mapToInt(p->p.getAge())
+	.sum();
+System.out.println(totalAge);
+```
+Questa funzione può essere esattamente modificata con `reduce` al posto di `sum`:
+```JAVA
+totalAge=persons
+	.stream()
+	.mapToInt(p->p.getAge())
+	.reduce(0, (a,b)->a+b);
+System.out.println(totalAge);
+```
+
+Analizziamo nel dettaglio cosa è successo. In primis si nota chiaramente che `reduce` riceve in input due parametri:
+- **identify**: questo valore (nel nostro caso $0$) è il valore da restituire in caso lo stream fosse vuoto e da dove inizierà la sua esecuzione il metodo `reduce` all'interno dello Stream.
+- **accumulator**: la funzione accumulatore accetta **due parametri dello stesso tipo e restituisce un risultato**. In questo esempio, la funzione accumulatore è un'espressione lambda che aggiunge due valori Integer(`a`,`b`) e restituisce un valore Integer ($a+b$). I due parametri della funzione accumulatore sono: il **risultato parziale della riduzione** (in questo esempio, la somma di tutti gli interi elaborati finora) e **l'elemento successivo dello stream** (in questo esempio, un numero intero, l’età).
+#### Stream collect
+`Collect` risolve il problema generato da `reduce`. Se ricordiamo infatti, la programmazione funzionale è priva di **side-effect**, ma con l'esempio precedente abbiamo sempre un effetto secondario, ossia la restituzione di un nuovo valore.
+
+Nel caso precedente il nuovo valore è di tipo Integer quindi non abbiamo grossi problemi di performance, ma se la funzione reduce lavorasse con **oggetti più complessi**, ad esempio Collection, ogni volta che viene chiamata creerebbe una nuova Collection.
+In questi casi è opportuno utilizzare il metodo `collect` che effettua un **update dell’oggetto** che si sta ottenendo dalla riduzione dello stream.
+
+>[!Warning] Prestare attenzione all'utilizzo
+>Da quello che si è detto si evince che `collect` sovrascrive il valore preesistente estrapolato dallo stream, contrariamente da `reduce` che in casi lievi lavora creando nuovi dati.
+
+l metodo collect accetta **tre parametri**: 
+1. **supplier**: è il costruttore dell’oggetto che verrà restituito dal metodo `collect` e che si presuppone venga modificato durante l’operazione di riduzione 
+2. **accumulator**: questa funzione serve ad inglobare il valore attuale dello stream nell’oggetto che verrà restituito 
+3. **combiner**: questa funzione combina due contenitori di risultati e unisce il loro contenuto
+
