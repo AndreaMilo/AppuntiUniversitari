@@ -143,3 +143,7 @@ In **UML 2** esistono dei simboli che non era possibile utilizzare prima, detti 
 ![[Pasted image 20260506175505.png]]
 
 Per approfondire meglio quest'ultimo argomento, si consiglia di consultare l'esempio della **biblioteca** presente su E-learning.
+
+---
+# Attività dell'OO design
+
