@@ -146,4 +146,26 @@ Per approfondire meglio quest'ultimo argomento, si consiglia di consultare l'ese
 
 ---
 # Attività dell'OO design
+L'attività di OO design serve per valutare altre vie percorribili nella realizzazione del sistema, analizzando i requisiti, i moduli, ecc...
+Serve specialmente per tenere traccia di cosa si è fatto e rispondere alla domanda: *"cosa si è fatto qui?"*, infatti la **documentazione** è fondamentale in questa fase per portare traccia degli avanzamenti e le modifiche.
+
+Avviene il riuso del **design pattern**, delle librerie e del **framework OO** e su quest'ultimi si applica il principio di OO design per evitare il **debito tecnico**.
+## Principi di OO desing
+I principi dell'OO desing sono sempre i soliti:
+- Information hiding
+- Alta coesione
+- Basso accoppiamento
+- Presentazione separata
+- Do Not Repeat Yourself **(DRY)**
+- **SOLID method**
+
+I precedenti punti gli abbiamo già analizzati nel capitolo [System Design](obsidian://open?vault=UniGit&file=Secondo%20anno%2Fsecondo%20trimestre%2FIngegneria%20del%20software%2FLezioni%20MD%2F8%20-%20System%20design) ma qui abbiamo due nuovi componenti da analizzare, ovvero i **principi SOLID** e il **DRY**.
+### DRY
+>[!NOTE] Definizione
+>Ogni elemento di conoscenza deve avere una sola, non ambigua, autorevole rappresentazione all'interno di un sistema
+
+La definizione ci dice che qualsiasi parte significativa di un metodo dovrebbe essere implementato in unica zona apposita del codice sorgente, evitando **cloni** dati dal **copy-paste** e creando astrazioni in caso ci dovessimo imbattere in ripetizioni del concetto.
+### SOLID
+![[Pasted image 20260512115803.png]]
+
 
