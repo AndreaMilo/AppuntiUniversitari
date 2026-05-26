@@ -2323,4 +2323,79 @@ In breve, con questo operatore stiamo andando ad utilizzare i metodi di una clas
 Se volessimo estendere quella sezione avremmo dovuto scrivere:
 `.collect(()->new Averager(),(a,b)->a.accept(b),(a,b)->a.combine(b));`
 #### Group By
+Il collector `groupingBy` permette di raggruppare gli oggetti all'interno di uno stream in base a una specifica **funzione di classificazione**. L'operazione restituisce tipicamente una `Map`.
+
+> [!example] Esempio base di Group By Nell'esempio seguente filtriamo tutte le persone con età maggiore a 17 e le raggruppiamo in base al genere.
+> 
+> ```JAVA
+> Map<Person.Gender, List<Person>> collect = persons
+> 	.stream()
+> 	.filter(p -> p.getAge() > 17)
+> 	.collect(Collectors.groupingBy(Person::getGender));
+> ```
+
+Esiste anche un'implementazione di `groupingBy` che accetta **due parametri**: il primo è la funzione di classificazione, mentre il secondo è chiamato **downstream collector**, ovvero un ulteriore collector che viene applicato al risultato del raggruppamento.
+
+> [!example] Esempio di Group by con downstream collector (`mapping`) 
+> Il Collector `mapping` utilizzato come downstream produce una `List` dove il tipo degli elementi dipende dalla funzione passata come primo argomento. 
+> In questo caso raggruppiamo per genere e inseriamo nella lista **solo il nome**.
+> 
+> ```JAVA
+> Map<Person.Gender, List<String>> namesByGender = persons
+> 	.stream()
+> 	.collect(
+> 		Collectors.groupingBy(
+> 			Person::getGender,
+> 			Collectors.mapping(
+> 				Person::getName,
+> 				Collectors.toList()
+> 			)
+> 		)
+> 	);
+> ```
+
+> [!example] Esempio di Group by con downstream collector (`reducing`) 
+> In questo caso il downstream collector è un'operazione di **riduzione**. 
+> Nell'esempio si effettua la somma delle età raggruppandole per genere.
+> 
+> ```JAVA
+> Map<Person.Gender, Integer> totalAgeByGender = persons
+> 	.stream()
+> 	.collect(
+> 		Collectors.groupingBy(
+> 			Person::getGender,
+> 			Collectors.reducing(
+> 				0,
+> 				Person::getAge,
+> 				Integer::sum
+> 			)
+> 		)
+> 	);
+> ```
+#### Esecuzione parallela
+Le operazioni sugli stream possono essere eseguite in parallelo (sfruttando il multithreading e l'esecuzione concorrente) semplicemente sostituendo il metodo `.stream()` con **`.parallelStream()`**.
+
+> [!example] Esempio di calcolo della media in esecuzione parallela
+> ```java
+> double average = persons
+> 	.parallelStream()
+> 	.filter(p -> p.getGender() == Person.Gender.MALE)
+> 	.mapToInt(Person::getAge)
+> 	.average()
+> 	.getAsDouble();
+> ```
+
+> [!example] Esempio di raggruppamento concorrente 
+> ```JAVA
+> ConcurrentMap<Person.Gender, List<Person>> byGender = persons
+> 	.parallelStream()
+> 	.collect(
+> 		Collectors.groupingByConcurrent(Person::getGender)
+> 	);
+> ```
+
+Per i raggruppamenti paralleli si utilizza il collector specifico `groupingByConcurrent`, che restituisce una `ConcurrentMap`.
+
+> [!NOTE] Come usarle e quando?
+> Quando c'è bisogno di passare l'implementazione di un'interfaccia a singolo metodo, la soluzione non sono le classi anonime ma le **lambda expression** stesse.
 
