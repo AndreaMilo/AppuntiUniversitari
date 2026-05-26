@@ -2322,4 +2322,5 @@ In breve, con questo operatore stiamo andando ad utilizzare i metodi di una clas
 
 Se volessimo estendere quella sezione avremmo dovuto scrivere:
 `.collect(()->new Averager(),(a,b)->a.accept(b),(a,b)->a.combine(b));`
+#### Group By
 
