@@ -359,6 +359,8 @@ Spesso viene attivato da un costrutto condizionale, come in questo caso
 ### return
 L'istruzione return viene adoperata per terminare in modo definitivo l'esecuzione di un metodo corrente.k
 A seconda del metodo, può essere usata in modo autonomo e senza restituire alcun valore, oppure restituendo un valore specifico tramite una variabile
+
+---
 ## Classi
 ### Dichiarazione di una classe
 La dichiarazione di una classe in Java serve a definire la struttura fondamentale che comprende lo stato della classe attraverso gli attributi, le modalità di creazione e inizializzazione tramite i costruttori, e le funzionalità offerte mediante i metodi
@@ -641,6 +643,8 @@ Esistono differenze importanti tra classi astratte e interfacce:
 3. Le classi astratte sono utili quando si desidera condividere del codice (sotto forma di metodi) tra un insieme di classi che sono tra di loro strettamente correlate, quando ci si aspetta che le classi figlie abbiano molti metodi o attributi in comune, o quando si necessita di attributi non statici e non finali per permettere ai metodi di modificare liberamente lo stato degli oggetti. Le interfacce sono la scelta preferibile se le classi che le devono implementare non sono strettamente correlate, quando si vuole semplicemente specificare il comportamento di una particolare struttura dati senza entrare nei dettagli implementativi, o quando si ha il bisogno specifico di ricorrere e simulare un'ereditarietà multipli.
 #### Classi astratte e Interfacce combinate
 In Java, una classe astratta può implementare una o più interfacce. Il grande vantaggio in questo caso è che la classe astratta non è obbligata a implementare subito tutti i metodi richiesti, si può decidere di scriverne solo alcuni e lasciarne altri non implementati",  le sottoclassi concrete (cioè le classi "normali" che andranno a estenderla) avranno poi l'obbligo di fornire il codice per tutti i metodi rimasti vuoti.
+
+---
 ### Numeri
 Java mette a disposizione delle classi che rappresentano i tipi primitivi numerici che sono `Byte, Short, Long, Integer, Float, Double`. Ognuno di questi eredita dalla classe madre `Numbers`.
 
