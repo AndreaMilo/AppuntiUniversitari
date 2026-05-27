@@ -875,6 +875,8 @@ Per comodità, vengono forniti anche metodi per restituire queste sottosequenze 
 > }
 > ```
 > 
+
+---
 ### Collection
 Una **collection** è un oggetto volto a racchiudere più oggetti al suo interno per poterli memorizzare, recuperare ed elaborare.
 
