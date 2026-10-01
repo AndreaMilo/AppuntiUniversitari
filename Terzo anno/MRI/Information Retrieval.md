@@ -69,3 +69,23 @@ L'obiettivo è quello di scavare tra mille testi diversi fino alla ricerca di pa
 Espressa tramite la formula concettuale: $$\text{Text Mining}=\text{Data Mining (applicata al testo)}+\text{Linguistica di base}$$
 #### Processo di Text Mining
 ![[Pasted image 20261001193541.png]]
+
+Lo schema riportato sopra mostra l'**architettura** tipica di un sistema Text Mining, come si evince è basato su una **pipeline sequenziale**.
+Partendo dal **Testo Grezzo** si va all'**Analisi sintattica**, per poi andare nella fase di **Feature Generation** dove vengono create le *Bag of Words*.
+Dopo di che si eseguono i **filtri statistici** e poi vengono eseguiti i controlli dei pattern e per concludere, come abbiamo già visto, vengono poi **valutati i risultati**.
+### Text Mining nell'Impresa
+In ambito aziendale è diventata una delle pratiche più importanti, poiché permette di comprendere opinioni, reclami, feedback, ecc... dei clienti in una società dove i clienti espongono le loro preferenze tramite **fonti testuali eterogenee** (email, ticket, siti web, social, comunicati stampa, ecc...).
+Un altro ostacolo è la **velocità** con cui i clienti cambiano opinione, rendendo impossibile gestire questo tipo di conoscenza manualmente.
+
+L'obiettivo chiave quindi del Text Mining aziendale è quello di poter analizzare documenti testuali in modo **rapido**, **raggruppandoli automaticamente** in base al loro contenuto, così da permette l'estrazione di dati ricercati (come cercare le criticità maggiormente segnalate).
+#### Aree di ricerca correlate al Text Mining
+Il Text Mining non è una disciplina isolata mirata solamente alla ricerca di dati da formati di testo generici, ma unisce diverse branche dell'informatica e dell'IA, come:
+- **Information Retrival (IR)**: per indicizzare collezioni di testi.
+  
+- **Text Categorization**: per l'assegnazione automatica di documenti a determinate classi tematiche.
+  
+- **Information Extraction (IE)**: per identificare entità e relazioni.
+  
+- **Natural Language Processing (NLP)**: per comprendere la sintassi, la grammatica e il significato del linguaggio naturale umano per introdurlo alla macchina.
+  
+- **Data Mining**: per la scoperta di ulteriori pattern.
