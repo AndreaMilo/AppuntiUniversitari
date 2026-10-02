@@ -117,4 +117,10 @@ Ciò che rende un motore di ricerca intelligente è adattare i feedback dell'ute
 ![[Pasted image 20261002163432.png]]
 Dal testo possiamo andare vero l'**interfaccia utente** o verso le **operazione del testo**.
 - **Text Operation**: viene eseguita la stessa operazione che il compilatore esegue per il codice, ovvero **processa il testo**.
-- ****
+- **Indexing**: è il processo per creare gli indici, gli indici servono per accedere direttamente e velocemente ad un contenuto della base di dati. Per esempio in un DB di persone è ottimo creare un indice sul CF così da arrivare direttamente alla persona corrispondente anche se la PK non è il CF ma un contatore.
+  Inserire i documenti nell'indice ci permette di arrivare direttamente a quei documenti in modo rapido, qual ora appunto essi siano i documenti più richiesti.
+  
+  Il motore di ricerca controlla prima l'indice e poi esegue i controlli su gli altri documenti.
+
+ Dopo di che otteniamo i documenti da cercare, vengono rielaborati e viene effettuato in fine il raking.
+ 
