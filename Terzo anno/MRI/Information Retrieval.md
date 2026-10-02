@@ -93,3 +93,28 @@ Il Text Mining non è una disciplina isolata mirata solamente alla ricerca di da
 - **Natural Language Processing (NLP)**: per comprendere la sintassi, la grammatica e il significato del linguaggio naturale umano per introdurlo alla macchina.
   
 - **Data Mining**: per la scoperta di ulteriori pattern.
+## IR System 
+[DA QUA IN POI RIVEDERE STO PRENDENDO SOLO APPUNTI PER ORA]
+![[Pasted image 20261002162345.png]]
+Nei modelli di ricerca nei documenti, la ricerca avviene nel metodo mostrato in figura.
+Il motore di ricerca deve controllare i documenti indicizzati e tramite confronto di query, calcolerà il ranking dei dati da dare all'utente finale.
+
+La **rilevanza** è molto oggettivo come concetto, infatti deve basarsi sul **tempo** e sul **soggetto**. Per soddissfare la richiestra dell'utente, la rilevanza deve dare un risultato al passo coi tempi e deve comprendere ciò di cui l'utente sta parlando.
+Ad esempio se l'utente su un motore di ricerca vuole cercare *Mosca*, il campo di documenti da analizzare è vasto perché può essere:
+- la città
+- una persona
+- l'insetto
+- ...
+Questo quindi ci fa capire quanto il concetto di rilevanza è molto complesso.
+
+Il modello che si usa per rappresentare i documenti, come già citato prima, è la **Bag of Words**, in modo tale da ricercare tra i documenti tramite **Parole chiave**, così anche se la parole sono non in ordine, creando una frase non grammaticalmente corretta, si può avere comunque un risultato.
+Anche se per rispondere a Query complesse l'ordine di parole deve essere rispetto per un miglior risultato.
+
+Un altro problema delle parole chiave è trovare i sinonimi nei documenti. Un motore di ricerca efficente risolve questo problema. Banalmente se volessimo ricercare *Apple* potrebbe avvalersi al frutto, come all'industria.
+## IR Intelligente
+Ciò che rende un motore di ricerca intelligente è adattare i feedback dell'utente alle ricerche successive, così da modificare il raking della ricerca ponendo i risultati accettati in primo piano e spostando in basso quelli precedentemente mostrati e non utilizzati.
+### IR System Architecture
+![[Pasted image 20261002163432.png]]
+Dal testo possiamo andare vero l'**interfaccia utente** o verso le **operazione del testo**.
+- **Text Operation**: viene eseguita la stessa operazione che il compilatore esegue per il codice, ovvero **processa il testo**.
+- ****
