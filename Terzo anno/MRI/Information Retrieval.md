@@ -140,3 +140,5 @@ Il **Machine Learning** (Apprendimento Automatico) si focalizza sullo sviluppo d
 Nel contesto dell'Information Retrieval, il Machine Learning interviene attraverso due paradigmi fondamentali:
 - **Supervised Learning**: viene impiegato per la **Classificazione automatica**. Il sistema apprende modelli concettuali a partire da un insieme di esempi pre-etichettati (*training set*, come email già marchiate come "spam" o "non spam"), imparando ad assegnare autonomamente i nuovi documenti alla classe corretta.
 - **Unsupervised Learning**: viene impiegato per il **Clustering**. Il sistema analizza dati ed esempi privi di etichetta (*unlabeled*), raggruppandoli spontaneamente in cluster omogenei e scoprendo temi, affinità e correlazioni nascoste senza bisogno di una guida umana preventiva.
+# Modelli di ritrovamento
+
