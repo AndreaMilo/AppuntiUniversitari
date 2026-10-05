@@ -120,7 +120,6 @@ Guardando lo schema dell'architettura completa, possiamo distinguere due grandi 
 - **Indexing**: è il processo con cui si costruisce la struttura dati per le ricerche veloci, chiamata **Inverted Index** (indice invertito). Funziona in modo analogo all'indice analitico in fondo a un libro: invece di scorrere tutti i documenti da cima a fondo a ogni query (cosa impensabile per archivi enormi), l'indice associa a ogni singola parola l'elenco di tutti i documenti in cui compare. In questo modo il motore cerca direttamente dentro l'indice.
 - **Searching e Ranking**: quando l'utente digita una query, il motore consulta l'indice invertito, recupera i documenti candidati che contengono quei termini e infine applica gli algoritmi di **Ranking**, assegnando un punteggio a ciascuno e ordinandoli prima di mostrarli nell'interfaccia finale.
 
-
 Per rendere un sistema di Information Retrieval realmente capace di comprendere i testi e le intenzioni dell'utente, la ricerca fa affidamento su due grandi discipline dell'Intelligenza Artificiale: il **Natural Language Processing (NLP)** e il **Machine Learning (ML)**.
 ## Natural Language Processing (NLP)
 Il **Natural Language Processing** (Elaborazione del Linguaggio Naturale) si concentra sull'analisi computazionale del testo e del discorso umano a tre livelli progressivi:
@@ -141,6 +140,7 @@ Nel contesto dell'Information Retrieval, il Machine Learning interviene attraver
 - **Supervised Learning**: viene impiegato per la **Classificazione automatica**. Il sistema apprende modelli concettuali a partire da un insieme di esempi pre-etichettati (*training set*, come email già marchiate come "spam" o "non spam"), imparando ad assegnare autonomamente i nuovi documenti alla classe corretta.
 - **Unsupervised Learning**: viene impiegato per il **Clustering**. Il sistema analizza dati ed esempi privi di etichetta (*unlabeled*), raggruppandoli spontaneamente in cluster omogenei e scoprendo temi, affinità e correlazioni nascoste senza bisogno di una guida umana preventiva.
 # Modelli di ritrovamento
+[DA QUI IN POI AGGIUSTARE]
 Un modello di ritrovamento è una quadrupla $[D,Q,F,R(q_{i},d_{j})]$ dove:
 - D è un insieme di viste logiche per i documenti della collezione
 - Q è un insieme di viste logiche per le interrogazioni dell'utente
@@ -189,3 +189,15 @@ Se volessimo aggiungere Bruto in un altra pagina dovremmo aggiornare l'indice. O
 
 L'insieme di parole estratte dal documento si chiama **vocabolario**, mentre il numero di volte che appare è detto **posting** indicate dal **docID**. L'insieme del flusso delle volte che appaiono i posting viene detto **posting list**.
 
+Esempio:
+![[Pasted image 20261005170111.png]]
+In questo esempio vediamo come funziona l'algoritmo di indicizzazione, anche se viene gestito dall'API di sistema, all'interno funziona così.
+Per ogni documento viene preso un termine e fatto riferimento in che documento appaiono, nell'ordine in cui compaiono, così andando via via per tutti i documenti per ogni token.
+
+Questo elenco verrà successivamente **ordinato per termine**, comprendendo i termini che appaiono in più documenti
+![[Pasted image 20261005170446.png]]
+
+Da qui possiamo costruire l'**indice invertito** e la **posting list**
+![[Pasted image 20261005170510.png]]
+
+La ricerca viene eseguita solamente questa volta e viene salvato il risultato, così successivamente la ricerca sarà **rapida e immediata**.
