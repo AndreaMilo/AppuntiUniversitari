@@ -141,4 +141,51 @@ Nel contesto dell'Information Retrieval, il Machine Learning interviene attraver
 - **Supervised Learning**: viene impiegato per la **Classificazione automatica**. Il sistema apprende modelli concettuali a partire da un insieme di esempi pre-etichettati (*training set*, come email già marchiate come "spam" o "non spam"), imparando ad assegnare autonomamente i nuovi documenti alla classe corretta.
 - **Unsupervised Learning**: viene impiegato per il **Clustering**. Il sistema analizza dati ed esempi privi di etichetta (*unlabeled*), raggruppandoli spontaneamente in cluster omogenei e scoprendo temi, affinità e correlazioni nascoste senza bisogno di una guida umana preventiva.
 # Modelli di ritrovamento
+Un modello di ritrovamento è una quadrupla $[D,Q,F,R(q_{i},d_{j})]$ dove:
+- D è un insieme di viste logiche per i documenti della collezione
+- Q è un insieme di viste logiche per le interrogazioni dell'utente
+- F è un framework per la modellazione di documenti e interrogazioni
+- R è una funzione di ranking
+
+![[Pasted image 20261005164642.png]]
+
+Studieremo un modello testuale che è connesso tramite link, come le pagine web che sono collegate tramite link, e fornendo un ranking di importanza tra le pagine connesse.
+
+I modelli di ritrovamento sono differenti e differiscono anche per il loro algoritmo, ma la base è uguale per tutti, ovvero attuare delle operazioni di processing che mi portano a trovare dei contenuti. Questa è la sua tassonomia
+![[Pasted image 20261005161258.png]]
+### Modello Booleano
+Esistono diversi modi di rappresentare gli IR Models, uno di questi è quello booleano.
+I primi step sono quelli di pre-processare il testo, tramite le operazioni che mi consentono di comprendere i commenti, i token, gli HTML tag ecc... fino ad arrivare al **root** dove andiamo a rendere comprensibile il testo alla macchina ma anche comprensibile visivamente alla fine.
+
+Le operazioni di pre-processing si basa inizialmente sulla suddivisione di testo in token, quindi ogni parola è un token anche se le parole apostrofate o col trattino generano problemi. Per questo il pre-processing è un operazione delicata da dover gestire.
+Nel pre-processing vengono eliminati anche i numeri, punteggiatura e caratteri non esigenti per la ricerca. Un altra operazione tipica è la riduzione di tutte le parole al loro Lemma, riducendo tutte le parole all'infinito. Così da creare un motore di ricerca solido.
+
+L'obiettivo del processing è attuare quest'operazione una singola volta che sia esaustiva e completa su $n$ documenti, così da non processare ad ogni Query tutti i documenti.
+Come già accennato l'indice ci risolve questo problema.
+
+L'indice deve essere aggiornato ogni volta che si modificano i documenti, ma è un operazione più semplice del processing ogni volta.
+
+Il modello Booleano si basa sull'insieme non ordinato, inserendo tutte le parole in modo non ordinato ma segnandomi il termine di occorenze delle n volte che appare nel documento.
+Le query si possono usare gli operatori booleani per trovare delle conoscenze, quindi AND, OR, NOT.
+l'OUTPUT E' LA SOLUZIINE A AQUESTA QUEry.
+
+Il ranking non è possibile poiché i documenti hanno tutti la stessa rilevanza. [Non so perché da capire].
+![[Pasted image 20261005162741.png]]
+Vedendo questo documento comprendiamo subito come il raking non è possibile perché.
+
+In questo contesto parliamo nella ricerca di Indice Inveritito o inverso.
+In questo caso la ricerca non inizia dal documento ma per ogni termine andiamo a memorizzare nell'indice la presenza di ogni termine.
+![[Pasted image 20261005163737.png]]
+Ogni termine viene collegato alla lista di documenti che contengono quel termine. Come si nota dall'esempio questi **docID** sono i valori dove è presente Brutus, ecc...
+Diversamente dalla foto precedente non ho mille valori settati a 0 ma solamente i documenti dove effettivamente sono presenti senza indicare anche quelli dove non sono presenti.
+Andando ad attuare il processing solo una volta per tutte le volte che vogliamo cercare una di quelle parole.
+
+Possiamo utilizzare l'unione, intersezione e tutte le operazioni degli insiemi su questi valori nelle ricerche.
+
+Ogni termine ha pesi diversi, ma per ora in quello booleano non c'è peso, perché diamo gli stessi pesi di 0 e 1 anche se sono presenti più volte rispetto ad altri. Analizzandoli anche in modi isolati, senza porci il dubbio chi è più importante tra i due di contenuto e di quante volte appare. Interessante è analizzare Bruto e Cesare tra loro.
+Al momento stiamo semplificando il processing per comprendere come funziona l'indice.
+
+Se volessimo aggiungere Bruto in un altra pagina dovremmo aggiornare l'indice. Ovviamente su Internet ci si basa sui backup, senza andare a rimodificare tutto ma processati e aggiornando l'indice solo su un campo di documenti, senza stravolgere l'intero web.
+
+L'insieme di parole estratte dal documento si chiama **vocabolario**, mentre il numero di volte che appare è detto **posting** indicate dal **docID**. L'insieme del flusso delle volte che appaiono i posting viene detto **posting list**.
 
