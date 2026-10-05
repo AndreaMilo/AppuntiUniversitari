@@ -139,70 +139,88 @@ Il **Machine Learning** (Apprendimento Automatico) si focalizza sullo sviluppo d
 Nel contesto dell'Information Retrieval, il Machine Learning interviene attraverso due paradigmi fondamentali:
 - **Supervised Learning**: viene impiegato per la **Classificazione automatica**. Il sistema apprende modelli concettuali a partire da un insieme di esempi pre-etichettati (*training set*, come email già marchiate come "spam" o "non spam"), imparando ad assegnare autonomamente i nuovi documenti alla classe corretta.
 - **Unsupervised Learning**: viene impiegato per il **Clustering**. Il sistema analizza dati ed esempi privi di etichetta (*unlabeled*), raggruppandoli spontaneamente in cluster omogenei e scoprendo temi, affinità e correlazioni nascoste senza bisogno di una guida umana preventiva.
+
+---
 # Modelli di ritrovamento
-[DA QUI IN POI AGGIUSTARE]
-Un modello di ritrovamento è una quadrupla $[D,Q,F,R(q_{i},d_{j})]$ dove:
-- D è un insieme di viste logiche per i documenti della collezione
-- Q è un insieme di viste logiche per le interrogazioni dell'utente
-- F è un framework per la modellazione di documenti e interrogazioni
-- R è una funzione di ranking
+Un **modello di Information Retrieval** è una formalizzazione teorica che stabilisce come rappresentare i documenti e le query, e come misurare la pertinenza tra di essi. Formalmente, può essere definito come una quadrupla:
+
+$$\mathcal{M} = [D, Q, \mathcal{F}, R(q_i, d_j)]$$
+
+dove:
+- **$D$**: è un insieme di **viste logiche** (*logical views*) per i documenti della collezione (la loro rappresentazione computazionale, ad esempio come insiemi di parole chiave o vettori).
+- **$Q$**: è un insieme di **viste logiche** per le interrogazioni dell'utente.
+- **$\mathcal{F}$**: è il **framework concettuale e matematico** adottato per modellare documenti e interrogazioni (come la teoria degli insiemi, l'algebra lineare o la teoria delle probabilità).
+- **$R(q_i, d_j)$**: è la **funzione di ranking**, che quantifica la pertinenza tra l'interrogazione $q_i$ e il documento $d_j$ associando un punteggio numerico reale.
 
 ![[Pasted image 20261005164642.png]]
 
-Studieremo un modello testuale che è connesso tramite link, come le pagine web che sono collegate tramite link, e fornendo un ranking di importanza tra le pagine connesse.
+Accanto ai modelli puramente testuali, esistono modelli che integrano l'analisi della struttura dei collegamenti (**link analysis**), essenziali per il Web Retrieval, in questo scenario le pagine web formano un grafo connesso da collegamenti ipertestuali e il ranking calcola l'autorevolezza e l'importanza relativa delle pagine connesse.
 
-I modelli di ritrovamento sono differenti e differiscono anche per il loro algoritmo, ma la base è uguale per tutti, ovvero attuare delle operazioni di processing che mi portano a trovare dei contenuti. Questa è la sua tassonomia
+I modelli di reperimento differiscono per architettura e algoritmi, ma condividono tutti il medesimo ciclo di vita: una fase preliminare di elaborazione e indicizzazione della collezione, seguita dalla fase di ricerca e ranking a fronte della query dell'utente.
 ![[Pasted image 20261005161258.png]]
-### Modello Booleano
-Esistono diversi modi di rappresentare gli IR Models, uno di questi è quello booleano.
-I primi step sono quelli di pre-processare il testo, tramite le operazioni che mi consentono di comprendere i commenti, i token, gli HTML tag ecc... fino ad arrivare al **root** dove andiamo a rendere comprensibile il testo alla macchina ma anche comprensibile visivamente alla fine.
+## Modello Booleano
+Il **Modello Booleano** è il più classico modello formale di Information Retrieval, fondato sulla **teoria degli insiemi** e sull'**algebra booleana**. 
+Prima di poter rappresentare documenti e query, i testi grezzi devono attraversare una fase preliminare di **pre-processing**.
 
-Le operazioni di pre-processing si basa inizialmente sulla suddivisione di testo in token, quindi ogni parola è un token anche se le parole apostrofate o col trattino generano problemi. Per questo il pre-processing è un operazione delicata da dover gestire.
-Nel pre-processing vengono eliminati anche i numeri, punteggiatura e caratteri non esigenti per la ricerca. Un altra operazione tipica è la riduzione di tutte le parole al loro Lemma, riducendo tutte le parole all'infinito. Così da creare un motore di ricerca solido.
+L'obiettivo del pre-processing è ripulire il testo non strutturato e ridurlo a token normalizzati:
+1. **Normalizzazione e pulizia**: eliminazione di markup superfluo (tag HTML, commenti, metadati), caratteri speciali, punteggiatura e numeri privi di valore informativo per la ricerca.
+2. **Tokenizzazione (*Tokenization*)**: scomposizione del flusso di testo in unità elementari dette **token** (singole parole). È una fase delicata che deve gestire casi ambigui come parole con apostrofo (es. *l'albero*) o termini con trattino (es. *state-of-the-art*).
+3. **Stopword Removal**: eliminazione dei termini grammaticali ad altissima frequenza privi di significato discriminante (articoli, preposizioni, congiunzioni).
+4. **Stemming e Lemmatizzazione**: riconduzione dei termini alla loro radice comune (*stem*) o alla forma base di dizionario (*lemma*, come la forma all'infinito per i verbi o il singolare per i nomi). In questo modo forme flesse diverse dello stesso termine vengono ricondotte alla stessa unità concettuale.
 
-L'obiettivo del processing è attuare quest'operazione una singola volta che sia esaustiva e completa su $n$ documenti, così da non processare ad ogni Query tutti i documenti.
-Come già accennato l'indice ci risolve questo problema.
+>[!NOTES] Il principio dell'elaborazione Offline
+>L'intero pre-processing viene eseguito **una sola volta** su tutti gli $N$ documenti della collezione durante la fase di indicizzazione. In questo modo si evita il costo computazionale insostenibile di dover riprocessare i documenti a ogni singola query dell'utente.
+### Funzionamento del Modello Booleano
+Nel modello booleano classico:
+- I **documenti** sono rappresentati semplicemente come un **insieme di parole chiave** (presenza binaria $0/1$: un termine compare o non compare).
+- La **query** è formulata dall'utente come un'**espressione booleana**, combinando i termini mediante gli operatori logici:
+  - `AND` (intersezione logica)
+  - `OR` (unione logica)
+  - `NOT` (complemento/differenza logica)
 
-L'indice deve essere aggiornato ogni volta che si modificano i documenti, ma è un operazione più semplice del processing ogni volta.
+L'output restituito dal sistema è l'insieme esatto dei documenti che soddisfano l'espressione logica.
+#### Perché il Modello Booleano puro NON supporta il Ranking?
+Nel modello booleano puro **non è possibile ordinare i risultati per pertinenza**:
+1. **Rilevanza strettamente binaria**: per ogni documento la funzione di pertinenza $R(q, d)$ può assumere solo due valori: $1$ (pertinente, soddisfa la condizione) o $0$ (non pertinente). Non esiste una scala di pertinenza parziale o graduale.
+2. **Assenza di frequenza e pesatura dei termini**: il modello considera solo la presenza o l'assenza del termine, ignorando quante volte compare all'interno del documento (*Term Frequency*) e quanto sia raro o comune nell'intera collezione (*Document Frequency*). Di conseguenza, un documento che cita una parola chiave una sola volta riceve lo stesso identico punteggio di un documento che ne parla approfonditamente.
 
-Il modello Booleano si basa sull'insieme non ordinato, inserendo tutte le parole in modo non ordinato ma segnandomi il termine di occorenze delle n volte che appare nel documento.
-Le query si possono usare gli operatori booleani per trovare delle conoscenze, quindi AND, OR, NOT.
-l'OUTPUT E' LA SOLUZIINE A AQUESTA QUEry.
-
-Il ranking non è possibile poiché i documenti hanno tutti la stessa rilevanza. [Non so perché da capire].
+Concettualmente, la ricerca booleana può essere visualizzata tramite una **Matrice di Incidenza Termine-Documento**.
 ![[Pasted image 20261005162741.png]]
-Vedendo questo documento comprendiamo subito come il raking non è possibile perché.
 
-In questo contesto parliamo nella ricerca di Indice Inveritito o inverso.
-In questo caso la ricerca non inizia dal documento ma per ogni termine andiamo a memorizzare nell'indice la presenza di ogni termine.
+In questa matrice:
+- Le righe rappresentano i **termini** del vocabolario.
+- Le colonne rappresentano i **documenti** (identificati da un identificatore univoco `docID`).
+- Ogni cella contiene $1$ se il termine è presente nel documento, $0$ altrimenti.
+
+**Il limite della matrice di incidenza:**  
+Nelle collezioni reali di grandi dimensioni la matrice è estremamente **sparsa** (la quasi totalità delle celle ha valore $0$, poiché nessun documento contiene più di una minima frazione dell'intero vocabolario). Memorizzare tutti gli zeri comporterebbe un enorme spreco di spazio.
+
+Per superare questo limite si impiega la struttura dati fondamentale dell'Information Retrieval: l'**Indice Invertito** (*Inverted Index*).
 ![[Pasted image 20261005163737.png]]
-Ogni termine viene collegato alla lista di documenti che contengono quel termine. Come si nota dall'esempio questi **docID** sono i valori dove è presente Brutus, ecc...
-Diversamente dalla foto precedente non ho mille valori settati a 0 ma solamente i documenti dove effettivamente sono presenti senza indicare anche quelli dove non sono presenti.
-Andando ad attuare il processing solo una volta per tutte le volte che vogliamo cercare una di quelle parole.
 
-Possiamo utilizzare l'unione, intersezione e tutte le operazioni degli insiemi su questi valori nelle ricerche.
+L'indice invertito memorizza **esclusivamente le presenze effettive**, associando a ciascun termine solo l'elenco dei documenti in cui esso compare.
 
-Ogni termine ha pesi diversi, ma per ora in quello booleano non c'è peso, perché diamo gli stessi pesi di 0 e 1 anche se sono presenti più volte rispetto ad altri. Analizzandoli anche in modi isolati, senza porci il dubbio chi è più importante tra i due di contenuto e di quante volte appare. Interessante è analizzare Bruto e Cesare tra loro.
-Al momento stiamo semplificando il processing per comprendere come funziona l'indice.
+Si compone di due elementi:
+1. **Vocabolario / Dictionary**: l'elenco ordinato di tutti i termini unici estratti dalla collezione.
+2. **Posting List**: per ciascun termine, la lista ordinata dei documenti identificati tramite `docID` in cui il termine compare. Ciascun elemento della lista è detto **posting**.
 
-Se volessimo aggiungere Bruto in un altra pagina dovremmo aggiornare l'indice. Ovviamente su Internet ci si basa sui backup, senza andare a rimodificare tutto ma processati e aggiornando l'indice solo su un campo di documenti, senza stravolgere l'intero web.
+Le interrogazioni booleane si risolvono eseguendo operazioni insiemistiche direttamente sulle posting list.
+Quando nuovi documenti vengono aggiunti o modificati, non è necessario riprocessare l'intero corpus: è sufficiente aggiornare le posting list corrispondenti ai documenti coinvolti.
+Per questo nel mondo attuale si lavora solo su parti di indici e non si rielabora tutto in caso di aggiornamenti. Si eseguono i backup e si lavora sulle parte di essi, mantenendo attivi ciò che non è stato salvato nei backup più recenti.
+### Costruzione dell'Indice Invertito (*Inverted Index Construction*)
+La costruzione dell'indice invertito segue una procedura sequenziale in tre fasi:
 
-L'insieme di parole estratte dal documento si chiama **vocabolario**, mentre il numero di volte che appare è detto **posting** indicate dal **docID**. L'insieme del flusso delle volte che appaiono i posting viene detto **posting list**.
-
-Esempio:
+I documenti vengono scansionati uno alla volta e tokenizzati. Per ciascun token viene generata una coppia formata dal termine normalizzato e dal `docID` del documento in cui si trova.
 ![[Pasted image 20261005170111.png]]
-In questo esempio vediamo come funziona l'algoritmo di indicizzazione, anche se viene gestito dall'API di sistema, all'interno funziona così.
-Per ogni documento viene preso un termine e fatto riferimento in che documento appaiono, nell'ordine in cui compaiono, così andando via via per tutti i documenti per ogni token.
 
-Questo elenco verrà successivamente **ordinato per termine**, comprendendo i termini che appaiono in più documenti
+Successivamente, la lista globale di tutte le coppie estratte viene **ordinata alfabeticamente per termine** e, a parità di termine, in ordine crescente di `docID`.
 ![[Pasted image 20261005170446.png]]
 
-Da qui possiamo costruire l'**indice invertito** e la **posting list**
+I termini duplicati vengono raggruppati: per ciascun termine unico del vocabolario viene generata la corrispondente **posting list** con i relativi `docID`, memorizzando anche la **Document Frequency ($df$)**, ovvero la cardinalità della lista (il numero totale di documenti che contengono quel termine). Salvati in **Lemma**, poiché molte parole possono essere singolari-plurali / maschile-femminile.
 ![[Pasted image 20261005170510.png]]
 
-La ricerca viene eseguita solamente questa volta e viene salvato il risultato, così successivamente la ricerca sarà **rapida e immediata**.
-
-Come si nota le parole sono ordinati in modo **lessico grafico**, così nella ricerca non scorro tutto ma in modo più efficente trovo la parola ricercata in modo binario e da la evince la posting list da trovare.
-
-La frequenza è la cardinalità di posting list.
 ![[Pasted image 20261005171346.png]]
+### Vantaggi dell'ordinamento per la ricerca
+- **Ricerca binaria nel vocabolario**: poiché i termini nel dizionario sono ordinati in modo **lessicografico**, la localizzazione di una parola non richiede una scansione lineare, ma può essere effettuata con una ricerca binaria o tramite alberi in tempo logaritmico.
+- **Intersezione efficiente (*Posting Merge*)**: poiché le posting list sono mantenute rigorosamente ordinate per `docID` crescente, l'intersezione tra due liste per una query `AND` (aventi rispettivamente lunghezza $x$ e $y$) viene risolta tramite un algoritmo di scansione a due puntatori (*merge*) in tempo lineare, senza scorrere la collezione.
+
