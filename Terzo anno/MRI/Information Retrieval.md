@@ -201,3 +201,8 @@ Da qui possiamo costruire l'**indice invertito** e la **posting list**
 ![[Pasted image 20261005170510.png]]
 
 La ricerca viene eseguita solamente questa volta e viene salvato il risultato, così successivamente la ricerca sarà **rapida e immediata**.
+
+Come si nota le parole sono ordinati in modo **lessico grafico**, così nella ricerca non scorro tutto ma in modo più efficente trovo la parola ricercata in modo binario e da la evince la posting list da trovare.
+
+La frequenza è la cardinalità di posting list.
+![[Pasted image 20261005171346.png]]
