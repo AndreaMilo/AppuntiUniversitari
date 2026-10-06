@@ -148,4 +148,29 @@ Comprendere le persone nei contesti in cui vivono, lavorano e apprendono è fond
 > Uno strumento di pianificazione collaborativa per una **missione spaziale** avrà esigenze completamente diverse da uno strumento per clienti e agenti di vendita in un **negozio di arredamento**, pur essendo entrambi "strumenti collaborativi".
 
 Ciò che funziona per un gruppo di utenti può essere del tutto inappropriato per un altro: i prodotti interattivi vanno progettati **diversamente per tipi diversi di utenti**.
+![[Pasted image 20261006141356.png]]
+
+L'usabilità in questo caso viene proposta anche agli utenti con **disabilità** che siano sia permanenti che temporanee.
+Ma anche per le fasce d'età, che siano persone grandi o bambini.
+
+**DOMANDA DELLA PROVA SCRITTA**:
+Limitandoci alle definizione di ISO/IEC, riportare la definizione dell'usabilità secondo l'INSEC e definire analogie e differenze con ISO 9126 e 9241:
+- apprendibilità
+- memorabilità
+- efficenza
+- basso livello di errori
+- soddisfazione
+
+9126 dice:
+Capacità di essere appreso, compreso, usato e attrattivo in determinati contesti
+
+9241 dice:
+La misura in cui un prodotto può essere usato da specifici utenti per raggiungere specifici obiettivi con efficacia, efficienza e soddisfazione in uno specifico contesto d'uso"
+
+Le analogie sono che nel 9241 è presente l'efficienza, quindi l'utente deve utilizzare il prodotto in maniera accurata e concreta, qui parliamo di **efficacia**.
+Le definizioni quindi convergono nelle definizione di Nitzen, parlano della stessa cosa, sovrapponenedosi tutte e 3 una sull'altra con piccole sfumature.
+
+Le differenze sono che:
+La dfinizione del Neisen è puramente accademica, mentre gli ISO fanno riferimento ai casi d'uso, ai casi utente e obiettivi specifici 9241, mentre 9126 parla solo di un concetto generico istanziandolo.
+
 
