@@ -224,29 +224,60 @@ I termini duplicati vengono raggruppati: per ciascun termine unico del vocabolar
 - **Ricerca binaria nel vocabolario**: poiché i termini nel dizionario sono ordinati in modo **lessicografico**, la localizzazione di una parola non richiede una scansione lineare, ma può essere effettuata con una ricerca binaria o tramite alberi in tempo logaritmico.
 - **Intersezione efficiente (*Posting Merge*)**: poiché le posting list sono mantenute rigorosamente ordinate per `docID` crescente, l'intersezione tra due liste per una query `AND` (aventi rispettivamente lunghezza $x$ e $y$) viene risolta tramite un algoritmo di scansione a due puntatori (*merge*) in tempo lineare, senza scorrere la collezione.
 
-[DA QUI]
-Per capire come avvengono le operazioni di merge, dovremmo chiederci perché è importante ordinare le poisting list?
+Per capire come avvengono le operazioni di **intersezione (merge)**, dobbiamo chiederci: *perché è così importante mantenere ordinate le posting list?*  
+La risposta è semplice: se le liste sono ordinate in modo crescente per `docID`, possiamo confrontarle scorrendole in parallelo, rendendo la ricerca rapida ed evitando di dover confrontare a vuoto ogni singolo elemento.
 #### Algoritmo di merge delle posting list
 ![[Pasted image 20261006162409.png|354]]
-In questo esempio se i due puntatori puntano allo stesso docID allora incrementiamo il puntatore, in `answer` il match avviene e si continua con le altre parole.
-Nell'`else if` invece notiamo come docID(p1) < docID(p2) allora incremento il puntatore di p1 altrimenti se è maggiore aumento p2.
-Possiamo fare questo esempio con la tabella di Bruto e Cesare precedentemente argomentata. Dove il numero iniziale è 2 e 1 si incrementa p2 perché è minore.
-All'incrementare di tutti i contatori il primo che avrà null come valore, vuol dire che sarà terminata la lista e ci si può fermare.
 
-Si è studiato che in un motore di ricerca, una query lunga, con molti termini dentro, non è efficiente perché con tanti termini peggiora il risultato da ottenere e complica le operazioni qualora devono essere seguiti complicandone la lunghezza e il tempo di risposta.
+L'algoritmo confronta due liste muovendo due puntatori, $p_1$ e $p_2$:
+- **Corrispondenza**: se i due puntatori puntano allo stesso `docID`, abbiamo trovato una corrispondenza. L'ID viene salvato nella lista dei risultati (`answer`) e si fanno avanzare entrambi i puntatori per passare ai documenti successivi.
+- **Differenza**: se i valori non coincidono, si fa avanzare il puntatore che ha il valore minore:
+  - se $\text{docID}(p_1) < \text{docID}(p_2)$, si incrementa $p_1$;
+  - se $\text{docID}(p_1) > \text{docID}(p_2)$, si incrementa $p_2$.
 
-Nel modello di ritrovamento booleano quindi la scaletta è:
-- processo i documenti
-- creo le posting list
-- creo l'indice
-- e lavoro sull'indice
+Possiamo riprendere l'esempio delle liste di *Bruto* e *Cesare*: se per Bruto il valore iniziale è $2$ e per Cesare è $1$, si incrementa il puntatore di Cesare ($p_2$) perché è più piccolo, allineandolo così al valore successivo. 
+Il ciclo continua finché uno dei due puntatori arriva alla fine della propria lista (`null`): a quel punto l'algoritmo si ferma, poiché è impossibile trovare altri documenti in comune.
+### Efficienza delle query
+In un motore di ricerca, le query troppo lunghe o cariche di termini **non sono efficienti**. Una ricerca con troppe parole complica le operazioni di intersezione, allunga i tempi di risposta e spesso **peggiora** la qualità del risultato finale anziché migliorarlo.
 
-Il modello booleano funziona bene facendo delle assunzioni semplificative, senza considerare l'ordine, presenza di termini ed è molto preciso, perché confronta varie condizioni restituendo vero o falso.
-Molti sistemi di ricerca come spotlite usa ancora il sistema booleano poiché vantaggioso nel tempo quando bisogna eseguire operazioni semplici che non richiedono occorenza e ordine.
+Nel modello di reperimento booleano la sequenza operativa è quindi:
+1. **Processare i documenti** (pulizia e normalizzazione iniziale del testo)
+2. **Creare le posting list**
+3. **Costruire l'indice invertito**
+4. **Lavorare ed eseguire le query direttamente sull'indice**
 
-La troppa semplicità porta però anche a problemi, come:
-- Troppa rigidità, si impostano molti vincoli per risultati che possono essere brevi e restrittivi con l'OR e allargando però le regole tramite gli AND andando a prendere vasti campi
-- Query complesse per l'utente medio poiché si richiede che per ogni richiesta sappia usare perfettamente i connettivi logici
-- Difficoltà di controllo dei documenti, poiché senza ranking non posso avere delle classifiche di documenti qual'ora volessi appunto i primi 10, solo che i primi 10 non hanno rilevanza ma tutti hanno lo stesso peso
-- Difficoltà di relevance feedback -> operazione in cui la query fornisce tot documenti di risultato e ad ogni ri-richiesta di questa query comprende l'algorimto quali documenti far rilevare poiché più usati e richiesti le ultime volte
-## Pre-processing
+Il modello booleano si basa su alcune **assunzioni semplificative**: non tiene conto dell'ordine delle parole né di quante volte compaiano (approccio *Bag of Words*), ma verifica puramente se i termini sono presenti o assenti. È comunque un sistema molto preciso, perché valuta le condizioni logiche restituendo un risultato netto: **vero o falso**.
+Proprio per la sua immediatezza ed efficacia nelle ricerche semplici, viene ancora utilizzato in strumenti pratici come **Spotlight** (il motore di ricerca locale di Apple), dove servono risposte istantanee che non richiedono calcoli sull'ordine o sulla frequenza delle parole.
+
+Questa estrema semplicità comporta però diversi **limiti**:
+- L'operatore **`AND`** è fin troppo **restrittivo**: basta che manchi una sola parola chiave per escludere un documento, con il rischio di restituire zero risultati.
+-  L'operatore **`OR`** è fin troppo **permissivo**: allarga eccessivamente la ricerca includendo qualsiasi documento contenga anche solo uno dei termini, sommergendo l'utente di risultati poco utili.
+- **Complessità per l'utente**: per ottenere buoni risultati, chi cerca deve saper formulare la richiesta impostando con cura i connettivi logici e le parentesi.
+- **Assenza di Ranking**: i documenti restituiti non hanno un ordine di pertinenza. Se l'utente vuole consultare i primi 10 risultati, il sistema non può indicare quali siano i migliori, poiché tutti i documenti estratti hanno esattamente lo stesso peso.
+- **Mancanza di Relevance Feedback**: il modello fatica ad adattarsi al comportamento dell'utente. Non essendoci pesi o punteggi ma solo risposte **binarie** (vero/falso), il motore non può correggere o riordinare facilmente i risultati in base a quali documenti sono stati aperti o preferiti nelle ricerche precedenti.
+## Pre-processing steps
+Durante la fase di **pre-processing** non esistono regole universali prefissate: spetta infatti al progettista definire strategie consapevoli in base allo scopo dell'applicazione e alla natura dei dati da trattare, gestendo con attenzione i diversi casi limite.
+
+Una delle prime decisioni riguarda la definizione stessa dell'unità di documento (*document unit*). Nel caso emblematico di un'email con allegati, ad esempio, bisogna scegliere se indicizzare l'intero messaggio come un unico blocco oppure trattare il corpo del testo e i vari allegati come documenti distinti. 
+La questione si complica ulteriormente in presenza di **collezioni multilingua**, dove il messaggio principale potrebbe essere redatto in una lingua e l'allegato in un'altra.
+
+Per rilevare automaticamente l'**idioma** di un testo, una tecnica **euristica** diffusa consiste nell'analizzare la **frequenza degli articoli**.
+Poiché ogni lingua possiede il proprio insieme caratteristico di articoli, il sistema può dedurre la lingua prevalente esaminandone la presenza. Trattandosi tuttavia di una semplice euristica, **non garantisce un'accuratezza assoluta** e può fallire facilmente in presenza di testi brevi, poco strutturati o eterogenei.
+### Token
+Un'analoga discrezionalità si riscontra nella fase di **tokenizzazione**, in cui il flusso di caratteri viene suddiviso in unità elementari. 
+Anche in questo passaggio emergono ambiguità legate ai **separatori**, come apostrofi e trattini: davanti a forme come *l'albero* o *state-of-the-art*, è il progettista a dover stabilire se scartare i simboli come semplice punteggiatura, mantenere i termini uniti in una sola parola oppure spezzarli in token separati.
+
+Infine, non tutti i token individuati entrano a far parte dell'indice, poiché rappresentano solo candidati provvisori.
+Il primo filtro consiste nell'eliminazione delle **stopword**, ovvero le parole puramente grammaticali e di congiunzione che non apportano valore informativo utile alla ricerca. Successivamente, i token selezionati vengono ricondotti al loro **lemma**, ossia la forma base di dizionario. Questa operazione permette di non disperdere le varianti flesse di una parola tra singolari, plurali, maschili e femminili: invece di registrare fino a quattro voci distinte che occuperebbero spazio inutile nell'indice invertito, si conserva un unico token di riferimento.
+In questo modo si risolvono anche i problemi di disallineamento durante l'interrogazione, consentendo al motore di recuperare i documenti rilevanti anche quando l'utente cerca un termine in una forma grammaticale diversa rispetto a quella presente nel testo originale.
+
+Il token quindi è una **sequenza di caratteri** che possono essere analizzati nell'indice invertito che compone una parte significativa nel documento che merita considerazione.
+Molti motori di ricerca permettono di sbagliare alcuni caratteri di un token, poiché grazie alla **distanza di Levenstain** (la distanza possibile tra una parola e un altra in base al cambiamento dei caratteri), cerco le **chiavi di ricerca** più simili a quella parola ,con la stessa distanza di Levenstain calcolata, memorizzate nell'indice e si trova comunque una corrispondenza e quindi viene suggerita la parola corretta.
+### Numeri
+Un'ulteriore criticità nella fase di pre-processing riguarda il trattamento delle stringhe contenenti entità numeriche, in particolare le **date**. 
+Se il sistema tratta i numeri semplicemente come token slegati tra loro, perde del tutto il valore informativo del dato temporale. A ciò si aggiunge l'ambiguità dei formati: memorizzare una data nella forma generica `n1/n2/n3` crea disallineamenti, poiché `n1` può rappresentare il **giorno** nello standard europeo o il **mese** in quello anglosassone. 
+
+I motori di ricerca più moderni e definiti **intelligenti**, superano questo limite interpretando il contesto circostante, riuscendo a riconoscere e normalizzare la data corretta anche quando viene formulata in formati particolari o notazioni storiche (come ad esempio *55 B.C.*).
+
+Una problematica del tutto analoga si riscontra con i **numeri di telefono** e la gestione dei prefissi. Come ad esempio `+39 333...`, `(080) 23343` o `(080)23-323`.
+Se l'algoritmo si limitasse a trattare i separatori come normale punteggiatura da eliminare o se frammentasse i numeri in elementi distinti, diventerebbe impossibile far corrispondere la query al documento corretto. Anche in questo caso è compito del progettista introdurre procedure di normalizzazione specifiche che convertano queste sequenze in un formato standard univoco prima di registrarle nell'indice.
