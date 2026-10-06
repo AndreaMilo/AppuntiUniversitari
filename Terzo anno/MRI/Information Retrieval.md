@@ -224,3 +224,13 @@ I termini duplicati vengono raggruppati: per ciascun termine unico del vocabolar
 - **Ricerca binaria nel vocabolario**: poiché i termini nel dizionario sono ordinati in modo **lessicografico**, la localizzazione di una parola non richiede una scansione lineare, ma può essere effettuata con una ricerca binaria o tramite alberi in tempo logaritmico.
 - **Intersezione efficiente (*Posting Merge*)**: poiché le posting list sono mantenute rigorosamente ordinate per `docID` crescente, l'intersezione tra due liste per una query `AND` (aventi rispettivamente lunghezza $x$ e $y$) viene risolta tramite un algoritmo di scansione a due puntatori (*merge*) in tempo lineare, senza scorrere la collezione.
 
+[DA QUI]
+Per capire come avvengono le operazioni di merge, dovremmo chiederci perché è importante ordinare le poisting list?
+#### Algoritmo di merge delle posting list
+![[Pasted image 20261006162409.png|354]]
+In questo esempio se i due puntatori puntano allo stesso docID allora incrementiamo il puntatore, in `answer` il match avviene e si continua con le altre parole.
+Nell'`else if` invece notiamo come docID(p1) < docID(p2) allora incremento il puntatore di p1 altrimenti se è maggiore aumento p2.
+Possiamo fare questo esempio con la tabella di Bruto e Cesare precedentemente argomentata. Dove il numero iniziale è 2 e 1 si incrementa p2 perché è minore.
+All'incrementare di tutti i contatori il primo che avrà null come valore, vuol dire che sarà terminata la lista e ci si può fermare.
+
+Si è studiato che in un motore di ricerca, una query lunga non è efficiente perché con tanti termini 
