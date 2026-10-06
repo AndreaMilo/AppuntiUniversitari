@@ -134,7 +134,6 @@ Questo standard prevede 3 tipi di qualità:
 - **Qualità interna**: verificabile con ispezioni o strumenti di analisi statica sul codice;
 - **Qualità esterna**: verificabile da tecnici con test dinamici, in ambienti simulati;
 - **Qualità in uso**: verificabile in ambienti reali (o simulati) **con la partecipazione degli utenti finali**, per individuare in modo affidabile e concreto le difficoltà che incontrano interagendo con il sistema.
-
 ### Le tre dimensioni sull'usabilità
 L'usabilità si misura sempre rispetto a 3 parametri:
 - **Utenti specifici**; 
