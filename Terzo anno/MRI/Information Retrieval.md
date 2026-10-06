@@ -233,4 +233,19 @@ Nell'`else if` invece notiamo come docID(p1) < docID(p2) allora incremento il pu
 Possiamo fare questo esempio con la tabella di Bruto e Cesare precedentemente argomentata. Dove il numero iniziale è 2 e 1 si incrementa p2 perché è minore.
 All'incrementare di tutti i contatori il primo che avrà null come valore, vuol dire che sarà terminata la lista e ci si può fermare.
 
-Si è studiato che in un motore di ricerca, una query lunga non è efficiente perché con tanti termini 
+Si è studiato che in un motore di ricerca, una query lunga, con molti termini dentro, non è efficiente perché con tanti termini peggiora il risultato da ottenere e complica le operazioni qualora devono essere seguiti complicandone la lunghezza e il tempo di risposta.
+
+Nel modello di ritrovamento booleano quindi la scaletta è:
+- processo i documenti
+- creo le posting list
+- creo l'indice
+- e lavoro sull'indice
+
+Il modello booleano funziona bene facendo delle assunzioni semplificative, senza considerare l'ordine, presenza di termini ed è molto preciso, perché confronta varie condizioni restituendo vero o falso.
+Molti sistemi di ricerca come spotlite usa ancora il sistema booleano poiché vantaggioso nel tempo quando bisogna eseguire operazioni semplici che non richiedono occorenza e ordine.
+
+La troppa semplicità porta però anche a problemi, come:
+- Troppa rigidità, si impostano molti vincoli per risultati che possono essere brevi e restrittivi con l'OR e allargando però le regole tramite gli AND andando a prendere vasti campi
+- Query complesse per l'utente medio poiché si richiede che per ogni richiesta sappia usare perfettamente i connettivi logici
+- Difficoltà di controllo dei documenti, poiché senza ranking non posso avere delle classifiche di documenti qual'ora volessi appunto i primi 10, solo che i primi 10 non hanno rilevanza ma tutti hanno lo stesso peso
+- Difficoltà di relevance feedback -> operazione in cui la query fornisce tot documenti di risultato e ad ogni ri-richiesta di questa query comprende l'algorimto quali documenti far rilevare poiché più usati e richiesti le ultime volte
