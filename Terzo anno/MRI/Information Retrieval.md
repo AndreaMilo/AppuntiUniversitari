@@ -249,3 +249,4 @@ La troppa semplicità porta però anche a problemi, come:
 - Query complesse per l'utente medio poiché si richiede che per ogni richiesta sappia usare perfettamente i connettivi logici
 - Difficoltà di controllo dei documenti, poiché senza ranking non posso avere delle classifiche di documenti qual'ora volessi appunto i primi 10, solo che i primi 10 non hanno rilevanza ma tutti hanno lo stesso peso
 - Difficoltà di relevance feedback -> operazione in cui la query fornisce tot documenti di risultato e ad ogni ri-richiesta di questa query comprende l'algorimto quali documenti far rilevare poiché più usati e richiesti le ultime volte
+## Pre-processing
