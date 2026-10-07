@@ -280,43 +280,48 @@ I motori di ricerca più moderni e definiti **intelligenti**, superano questo li
 
 Una problematica del tutto analoga si riscontra con i **numeri di telefono** e la gestione dei prefissi. Come ad esempio `+39 333...`, `(080) 23343` o `(080)23-323`.
 Se l'algoritmo si limitasse a trattare i separatori come normale punteggiatura da eliminare o se frammentasse i numeri in elementi distinti, diventerebbe impossibile far corrispondere la query al documento corretto. Anche in questo caso è compito del progettista introdurre procedure di normalizzazione specifiche che convertano queste sequenze in un formato standard univoco prima di registrarle nell'indice.
-
-[DA QUI]
-#### Tokenization: problemi con la lingua
-Un altro problema linguistico è dato dalla lingua in se, per esempio Cinese e Giapponese non hanno spazio tra le loro parole, oppure in Arabo che il processing deve avvenire da destra verso sinistra tranne i numeri, o gli alfabeti multipli, tipici della lingua giapponese.
+### Tokenizzazione: problemi con la lingua
+Un altro problema legato al pre-processing deriva dalle specificità intrinseche delle singole lingue:
+- **Cinese e Giapponese**: non utilizzano lo spazio per separare le parole.
+- **Arabo**: la scrittura e il processamento avvengono da destra verso sinistra (RTL), ad eccezione dei numeri.
+- **Alfabeti multipli**: caratteristica tipica del giapponese, che complica ulteriormente la fase di suddivisione in token.
 ### Stop words
-Come già spiegate in precedenza le stopwords sono le parole che decidiamo di escludere dal dizionario poiché sono parole che non ci danno grande rilevanza nelle quary, come articoli o preposizione.
-Portare queste parole nell'indice ci darebbe tutta la collezione in output, risultando inutile tutto il lavoro a monte.
-Bisonga essere comunque pragmatici nell'eliminazione di queste parole poiché porta anche dei problemi, come:
-- annulamento di intere frasi, come *To be or not to be* che verebbe eliminato
-- o titoli sfalzati di alcuni testi come King of Denmark
-- o nella clausole *relazionali* come *fligths to London*, togliendo il to non si sa più a cosa è legato il volo alla città londra.
-#### Normalization to terms
-L'operazione di normalizzazione ci permette di creare delle classi di equivalenza tra le parole che hanno diversi modi di esser scritti, così da non confondere nemmeno le parole esclude dalle stop words. Un esempio è *USA, U.S.A e US* che saranno posti nell'unica classe $[USA]$.
-Possiamo dire quindi che $[a]={x|x\sim a}$
+Come già accennato in precedenza, le **stop words** sono parole che si decide di escludere dal vocabolario dell'indice poiché prive di reale valore informativo o discriminante per le query (come articoli e preposizioni).
+Mantenere queste parole nell'indice invertito comporterebbe la restituzione della quasi totalità della collezione di documenti come risultato, vanificando il lavoro di ricerca a monte.
 
-La normalizzazione nelle lingue è importante da definirsi poiché parole con accenti diversi hanno signficiati titolamneit diversi, come *résumé* e *resume*, dovremmo quindi creare delle equivalenze anche in questo caso. Molto spesso è buono però come prassi non utilizzare gli accenti, dato che generalmente gli utenti medi non le usano, andando a creare il seguente gruppo di equivalenza d'esempio:
-$$\text{Tuebingen,Tübingen,Tubingen}\in[Tubingen]$$
-Stessa operazione ha valenza anche per le date.
+Bisogna comunque essere pragmatici nella loro eliminazione, poiché un filtraggio indiscriminato può causare diversi problemi:
+- **Annullamento di intere frasi**: query celebri o frasi composte esclusivamente da stop words (come *To be or not to be*) verrebbero completamente eliminate dal sistema.
+- **Titoli falsati**: alterazione del senso nei titoli di alcune opere o testi, come ad esempio *King of Denmark*.
+- **Clausole relazionali**: in ricerche come *flights to London*, l'eliminazione della preposizione *to* fa perdere la relazione concettuale tra il volo e la città di destinazione.
+#### Normalizzazione dei termini (*Normalization to terms*)
+L'operazione di **normalizzazione** permette di creare delle **classi di equivalenza** tra termini che presentano modalità di scrittura differenti, evitando che vengano trattati come parole distinte.
+Ad esempio, varianti come *USA*, *U.S.A.* e *US* vengono raggruppate all'interno di un'unica classe $[USA]$.
+Formalmente:
+$$[a] = \{x \mid x \sim a\}$$
 
-Tokenization and normalization may depend on the language and so is intertwined with language detection.
-Crucial: need to “normalize” indexed text as well as query terms into the same form.
-Per esempio la frase: *Morgen will ich in MIT*, non si comprende a pieno se MIT è un acronimo, un altra lingua o il *mit* tedesco ma solamente scritto in uppercase.
+La normalizzazione è importante anche per la gestione degli accenti, dato che parole con accenti diversi possono avere significati totalmente differenti (come *résumé* e *resume*). Nella prassi, tuttavia, è spesso conveniente rimuovere i segni diacritici, poiché l'utente medio tende a non utilizzarli nelle ricerche veloci, creando classi di equivalenza come:
+$$\text{Tuebingen, Tübingen, Tubingen} \in [Tubingen]$$
+La medesima operazione si applica anche per uniformare i diversi formati delle **date**.
+
+**Tokenizzazione** e **normalizzazione** dipendono strettamente dalla lingua e sono quindi collegate al rilevamento automatico della lingua (**language detection**).
+Un principio cruciale è che occorre **normalizzare nella stessa identica forma sia il testo indicizzato sia i termini della query**.
+Ad esempio, nella frase *Morgen will ich in MIT*, non è subito chiaro se *MIT* sia un acronimo, una parola in un'altra lingua o la preposizione tedesca *mit* scritta semplicemente in maiuscolo.
 #### Case folding
-La normalizzazione deve poter riuscire a mettere assieme tutte le parole scritte in modo diverso, anche se uppercase o meno le parole uguali. Ma con estrema attenzione ad alcune sfere di contesto.
-Ad esempio SAIL e sail significano cose totalmente diverse dal metodo di scrittura.
+Il **case folding** è l'operazione che uniforma le parole scritte in maiuscolo e minuscolo. Richiede però attenzione al contesto d'uso: ad esempio, *SAIL* e *sail* hanno significati del tutto differenti a seconda di come vengono scritti.
 
-Spesso nei motori di ricerca tutto viene comunque processato in lowercase poiché sarebbe la versione più *corretta* nella maggior parte dei casi della scrittura dei termini.
-### Thesauri and soundex
-Con due posting list differenti ma con parole sinonime, bisogna far sottomettere al sistema l'insieme di documenti che se si ricerca *automobile* e *macchina*, andando a restituire i documenti corretti in cui appaiono, utile questa pratica specialmente con gli errori di spelling basati sulla fonetica, come *color* e *colour* che dovrebbero comuqnue riportare alla richiesta della query alla stessa collezione di documenti.
-## Lemmatizazione
-Come accennato precedentemente, per alleggerire la cardinalità del vocabolario e aumentando la propabilità di fare match nelle query, una pratica fondamentale è trasformare le parole nella loro forma base.
-Come *am, are, is* direttamente in *be*
+Nei motori di ricerca la prassi comune prevede comunque la conversione di tutti i termini in **lowercase**, poiché nella maggior parte dei casi pratici rappresenta la soluzione più efficace.
+### Thesauri e Soundex
+In presenza di vocaboli sinonimi, il sistema genererebbe due posting list differenti. Tramite i **thesauri** è possibile collegare termini affini (come *automobile* e *macchina*), consentendo al motore di restituire l'insieme corretto dei documenti indipendentemente dal sinonimo digitato dall'utente.
+
+Allo stesso modo, per gestire gli errori di spelling e le variazioni fonetiche (come ad esempio *color* e *colour*), si utilizzano algoritmi come **Soundex**, che permettono di ricondurre parole dalla pronuncia simile alla stessa query e alla medesima collezione di documenti.
+## Lemmatizzazione
+Come accennato in precedenza, per alleggerire la cardinalità del vocabolario e aumentare la probabilità di corrispondenza nelle query, una pratica fondamentale è la **lemmatizzazione**, ovvero la trasformazione delle parole nella loro forma base di dizionario (**lemma**).
+Ad esempio, le diverse forme flesse *am*, *are*, *is* vengono ricondotte direttamente a *be*.
 ### Stemming
-Ridurre i verbi alla radice, quest'operazione viene eseguita da diversi algoritmi.
-Per esempio *automate(s), automatic e automation, ecc...* vengono ridotti semplicemente in *automat*.
+Lo **stemming** consiste nel ridurre le parole alla loro radice comune (*stem*) mediante appositi algoritmi.
+Ad esempio, varianti come *automate(s)*, *automatic* e *automation* vengono tutte ricondotte alla radice condivisa ***automat***.
 ![[Pasted image 20261007165427.png]]
-Questo esempio ci fa capire come ridurre troppo alla radice è vero che riduce ancora di più l'indice ma potrebbe far alterare la ricerca di alcuni campi, come *police* che può essere la polizia ma anche le polize di sicurezza.
+Ridurre eccessivamente alla radice presenta però dei limiti: se da un lato riduce lo spazio occupato dall'indice, dall'altro può alterare il significato semantico di alcuni termini fondendoli scorrettamente, come ad esempio *police* (che può indicare sia la polizia sia le polizze di sicurezza).
 
-E' importante conoscere come funziona l'algoritmo di stemming poiché l'algoritmo usato nell'indice per fare stemming deve poi essere riusato lo stesso nella richiesta della query.
+Infine, è fondamentale comprendere il funzionamento dell'algoritmo di stemming scelto: **lo stesso algoritmo utilizzato per la costruzione dell'indice invertito deve essere applicato anche sui termini della query**, altrimenti il sistema non troverebbe corrispondenza.
 ![[Pasted image 20261007165617.png]]
