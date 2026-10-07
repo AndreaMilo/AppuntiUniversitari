@@ -5,7 +5,6 @@ Per gestire la **conoscenza** bisogna saper:
 - Renderla **accessibile** a chi necessita di quel tipo di informazione e nel momento e luogo in cui la richiede
 
 Queste prassi vengono eseguite al fine di **risparmiare tempo**, riducendo i tempi di accesso all'informazione e **migliorando** la qualità dei servizi che la distribuiscono.
-
 ## Dati / Informazione / Conoscenza
 La **conoscenza** è un capitale difficile da gestire, poiché è:
 - volatile
@@ -281,5 +280,7 @@ I motori di ricerca più moderni e definiti **intelligenti**, superano questo li
 
 Una problematica del tutto analoga si riscontra con i **numeri di telefono** e la gestione dei prefissi. Come ad esempio `+39 333...`, `(080) 23343` o `(080)23-323`.
 Se l'algoritmo si limitasse a trattare i separatori come normale punteggiatura da eliminare o se frammentasse i numeri in elementi distinti, diventerebbe impossibile far corrispondere la query al documento corretto. Anche in questo caso è compito del progettista introdurre procedure di normalizzazione specifiche che convertano queste sequenze in un formato standard univoco prima di registrarle nell'indice.
+
+[DA QUI]
 
 
