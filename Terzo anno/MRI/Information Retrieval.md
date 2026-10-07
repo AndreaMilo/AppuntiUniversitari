@@ -282,5 +282,41 @@ Una problematica del tutto analoga si riscontra con i **numeri di telefono** e l
 Se l'algoritmo si limitasse a trattare i separatori come normale punteggiatura da eliminare o se frammentasse i numeri in elementi distinti, diventerebbe impossibile far corrispondere la query al documento corretto. Anche in questo caso è compito del progettista introdurre procedure di normalizzazione specifiche che convertano queste sequenze in un formato standard univoco prima di registrarle nell'indice.
 
 [DA QUI]
+#### Tokenization: problemi con la lingua
+Un altro problema linguistico è dato dalla lingua in se, per esempio Cinese e Giapponese non hanno spazio tra le loro parole, oppure in Arabo che il processing deve avvenire da destra verso sinistra tranne i numeri, o gli alfabeti multipli, tipici della lingua giapponese.
+### Stop words
+Come già spiegate in precedenza le stopwords sono le parole che decidiamo di escludere dal dizionario poiché sono parole che non ci danno grande rilevanza nelle quary, come articoli o preposizione.
+Portare queste parole nell'indice ci darebbe tutta la collezione in output, risultando inutile tutto il lavoro a monte.
+Bisonga essere comunque pragmatici nell'eliminazione di queste parole poiché porta anche dei problemi, come:
+- annulamento di intere frasi, come *To be or not to be* che verebbe eliminato
+- o titoli sfalzati di alcuni testi come King of Denmark
+- o nella clausole *relazionali* come *fligths to London*, togliendo il to non si sa più a cosa è legato il volo alla città londra.
+#### Normalization to terms
+L'operazione di normalizzazione ci permette di creare delle classi di equivalenza tra le parole che hanno diversi modi di esser scritti, così da non confondere nemmeno le parole esclude dalle stop words. Un esempio è *USA, U.S.A e US* che saranno posti nell'unica classe $[USA]$.
+Possiamo dire quindi che $[a]={x|x\sim a}$
 
+La normalizzazione nelle lingue è importante da definirsi poiché parole con accenti diversi hanno signficiati titolamneit diversi, come *résumé* e *resume*, dovremmo quindi creare delle equivalenze anche in questo caso. Molto spesso è buono però come prassi non utilizzare gli accenti, dato che generalmente gli utenti medi non le usano, andando a creare il seguente gruppo di equivalenza d'esempio:
+$$\text{Tuebingen,Tübingen,Tubingen}\in[Tubingen]$$
+Stessa operazione ha valenza anche per le date.
 
+Tokenization and normalization may depend on the language and so is intertwined with language detection.
+Crucial: need to “normalize” indexed text as well as query terms into the same form.
+Per esempio la frase: *Morgen will ich in MIT*, non si comprende a pieno se MIT è un acronimo, un altra lingua o il *mit* tedesco ma solamente scritto in uppercase.
+#### Case folding
+La normalizzazione deve poter riuscire a mettere assieme tutte le parole scritte in modo diverso, anche se uppercase o meno le parole uguali. Ma con estrema attenzione ad alcune sfere di contesto.
+Ad esempio SAIL e sail significano cose totalmente diverse dal metodo di scrittura.
+
+Spesso nei motori di ricerca tutto viene comunque processato in lowercase poiché sarebbe la versione più *corretta* nella maggior parte dei casi della scrittura dei termini.
+### Thesauri and soundex
+Con due posting list differenti ma con parole sinonime, bisogna far sottomettere al sistema l'insieme di documenti che se si ricerca *automobile* e *macchina*, andando a restituire i documenti corretti in cui appaiono, utile questa pratica specialmente con gli errori di spelling basati sulla fonetica, come *color* e *colour* che dovrebbero comuqnue riportare alla richiesta della query alla stessa collezione di documenti.
+## Lemmatizazione
+Come accennato precedentemente, per alleggerire la cardinalità del vocabolario e aumentando la propabilità di fare match nelle query, una pratica fondamentale è trasformare le parole nella loro forma base.
+Come *am, are, is* direttamente in *be*
+### Stemming
+Ridurre i verbi alla radice, quest'operazione viene eseguita da diversi algoritmi.
+Per esempio *automate(s), automatic e automation, ecc...* vengono ridotti semplicemente in *automat*.
+![[Pasted image 20261007165427.png]]
+Questo esempio ci fa capire come ridurre troppo alla radice è vero che riduce ancora di più l'indice ma potrebbe far alterare la ricerca di alcuni campi, come *police* che può essere la polizia ma anche le polize di sicurezza.
+
+E' importante conoscere come funziona l'algoritmo di stemming poiché l'algoritmo usato nell'indice per fare stemming deve poi essere riusato lo stesso nella richiesta della query.
+![[Pasted image 20261007165617.png]]
