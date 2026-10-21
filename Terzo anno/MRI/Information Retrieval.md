@@ -455,5 +455,75 @@ L'algoritmo opera accumulando i punteggi un termine della query alla volta (*ter
 2. Per ciascun termine $t$ della query $q$, calcola il peso $w_{t,q}$ ed estrae la relativa **posting list** dall'indice invertito.
 3. Per ogni coppia $(d, tf_{t,d})$ nella posting list, somma a `Scores[d]` il contributo $w_{t,d} \times w_{t,q}$.
 4. Al termine delle iterazioni, normalizza ciascun punteggio dividendolo per la lunghezza del documento `Length[d]` e restituisce i **top $K$** documenti con il punteggio più alto.
+### Le varianti del tf-idf
+Lo schema di pesatura **tf-idf** impiegato nell'algoritmo `CosineScore` non è l'unica formulazione possibile: ne esistono infatti diverse **varianti** che si differenziano per il modo in cui viene calcolata la _term frequency_, la _document frequency_ e la normalizzazione applicata ai vettori. La differenza maggiore tra queste varianti si riscontra nelle **prestazioni** all'interno di un motore di ricerca: ad esempio, l'adozione di vettori non normalizzati richiede in genere una maggiore elaborazione, anche se non è sempre detto e dipende dal caso specifico.
 
-[Mancano lezione 14 e 19]
+![[Pasted image 20261021181526.png]]
+#### Esempio: differenze nel calcolo della similarità
+Per comprendere concretamente come la scelta della misura di similarità influenzi il ranking, si consideri un dizionario composto da tre termini ($t1​, t2​, t_3$), in cui la query $q$ e i due documenti $d1​$ e $d2$​ sono rappresentati (secondo la consueta rappresentazione _Bag of Words_) dai seguenti vettori di occorrenze:
+
+| Termine / Documento | $t_1$ | $t_2$ | $t_3$ |
+| :--- | :---: | :---: | :---: |
+| **q** (Query) | 1 | 2 | 1 |
+| **$d_1$** (Documento 1) | 5 | 1 | 2 |
+| **$d_2$** (Documento 2) | 1 | 2 | 1 |
+
+Si parta dal calcolo della similarità mediante **prodotto interno** ($sim(q,d_{i}​)$), che si ottiene sommando i prodotti delle componenti aventi le stesse coordinate:
+$$sim(q,d_{1}​)=5⋅1+1⋅2+2⋅1=9$$ e $$sim(q,d_{2})=1⋅1+2⋅2+1⋅1=6$$Secondo questo ranking $d_{1}$​ sembrerebbe essere il documento più simile alla query, poiché ottiene il punteggio maggiore. Si studi ora la misura della **similarità del coseno**, che restituisce valori compresi tra 0 e 1: essa si ottiene facendo il rapporto tra il prodotto interno e il prodotto delle lunghezze dei due vettori, dove la lunghezza di un documento (e della query) si calcola sommando i quadrati delle occorrenze:
+
+$$cosim(q,d_{1}​)=\frac{5\times 1+1\times 2+1\times 2}{\sqrt{1^2+2^2+1^2}\sqrt{5^2+1^2+2^2}}​{}≈0,67$$Ripetendo lo stesso calcolo per $d_{2}$​, con questo metodo risulta invece più simile $d_{2}$​:
+
+cosim(q,d2​)=12+22+12​12+22+12​1⋅1+2⋅2+1⋅1​=6​6​6​=1Il risultato è del tutto intuitivo: il vettore di d2​ coincide esattamente con quello della query, quindi (come visto in precedenza) l'angolo tra i due è nullo e il coseno vale 1; il prodotto interno lo penalizzava invece soltanto per via della sua lunghezza minore.
+
+Si consideri ora il caso in cui si adottino dei **vettori normalizzati**, ottenuti facendo il rapporto tra le occorrenze e la lunghezza dei documenti stessi. Andando a ricalcolare la similarità del prodotto interno tra i versori ∥q​∥q​​ e ∥d1​​∥d1​​​, si nota che il risultato ottenuto è identico a quello che in precedenza si era ottenuto con la similarità del coseno:
+
+∥q​∥q​​⋅∥d1​​∥d1​​​=6​30​9​≈0,67Un'ulteriore variante prevede invece di calcolare le lunghezze dei vettori mediante l'uso del **peso massimo**, rapportando ciascuna occorrenza alla frequenza massima presente nel documento (variante _augmented_).
+
+> [!NOTES] Prodotto interno vs similarità del cosenoTutto ciò porta ad una riflessione: la misura della similarità del **prodotto interno**, in base al metodo di pesatura e normalizzazione utilizzato, conduce a risultati differenti poiché i punteggi risultano legati alla **lunghezza del vettore** (e quindi favoriscono i documenti più lunghi). La misura della similarità del **coseno**, dipendendo esclusivamente dall'angolo tra i vettori, risulta invece più **stabile**.
+
+### Schemi di pesatura differenti tra query e documenti
+
+Molti motori di ricerca adottano **schemi di pesatura differenti** tra query e documenti. Per una questione di semplicità le query vengono trattate come dei _documenti più piccoli_; grazie alla normalizzazione, tuttavia, query e documenti vengono ricondotti alla stessa lunghezza, permettendo così di confrontare direttamente documenti di grandi dimensioni con query contenenti poche parole. Alcuni motori di ricerca gestiscono invece le query in modo completamente differente.
+
+Per specificare in modo compatto la tipologia di schema di pesatura utilizzata si impiega la **SMART Notation**, una notazione standard del tipo ddd.qqq in cui:
+
+- le **prime tre lettere** indicano rispettivamente lo schema di _term frequency_, di _document frequency_ e di normalizzazione usato per i **documenti**;
+- le **ultime tre lettere** indicano le medesime componenti, ma relative alla **query**.
+
+Le lettere impiegate per ciascuna posizione sono:
+
+- **Term Frequency**: n (_natural_, la tf grezza), l (_logarithmic_, 1 + \log tf$), $a (_augmented_, occorrenze riscalate rispetto al peso massimo), b (_boolean_), L (_log-ave_);
+- **Document Frequency**: n (_none_, nessun fattore), t (_idf_), p (_prob idf_);
+- **Normalizzazione**: n (_none_, nessuna), c (_cosine_), u (_pivoted unique_), b (_byte size_).
+
+Uno degli schemi classici è lnc.ltc: i documenti pesano i termini con la term frequency logaritmica, senza fattore idf e con normalizzazione del coseno, mentre la query utilizza la medesima term frequency logaritmica, l'idf e la normalizzazione del coseno.
+
+#### L'esempio svolto a lezione: lo schema lnc.ltc
+
+Per fissare le idee si consideri l'esempio classico svolto a lezione, con N=1.000.000, query q= _best car insurance_ e documento d= _car insurance auto insurance_:
+
+- **Lato query (ltc)**: ciascun termine riceve il peso (1+logtft,q​)×idft​, con dfbest​=50.000, dfcar​=10.000 e dfinsurance​=1.000: si ottengono i pesi 1,3 (_best_), 2 (_car_) e 3 (_insurance_). La lunghezza della query vale ∥q​∥=02+1,32+22+32​≈3,83, da cui i pesi normalizzati 0,34, 0,52 e 0,78;
+- **Lato documento (lnc)**: ciascun termine riceve il peso 1+logtft,d​ (senza fattore idf$): si ottengono $1 (_auto_), 1 (_car_) e 1,3 (_insurance_). La lunghezza del documento vale ∥d∥=12+02+12+1,32​≈1,92, da cui i pesi normalizzati 0,52, 0,52 e 0,68.
+
+I termini _car_ e _insurance_ contribuiscono rispettivamente 0,52×0,52=0,27 e 0,78×0,68=0,53, mentre _auto_ (assente nella query) e _best_ (assente nel documento) contribuiscono 0:
+
+Score(q,d)=0+0+0,27+0,53≈0,8![[lez14_lncltc_esempio.png]]
+
+> [!NOTES] Riassunto: il ranking nello Spazio VettorialePer effettuare il ranking in un modello a spazio vettoriale:
+> 
+> 1. si rappresenta la query come un vettore nello spazio ∣V∣-dimensionale, pesato mediante il tf-idf;
+> 2. si rappresentano gli N documenti come vettori nello stesso spazio, pesati mediante il tf-idf;
+> 3. si calcola la similarità del coseno tra il vettore della query e quello di ciascun documento;
+> 4. si ordinano i documenti in base ai punteggi ottenuti;
+> 5. si restituiscono all'utente i primi k documenti (_top-k_).
+
+---
+## WordNet e la disambiguazione semantica
+
+Come emerso nella parte introduttiva di questi appunti, per definirsi _intelligente_ un motore di ricerca deve andare oltre la semplice corrispondenza letterale dei termini. Si pensi infatti alla situazione in cui venga effettuata una query contenente parole **polisemiche**: si rischia di ottenere documenti inerenti ad aree semantiche non rilevanti per l'utente. In modo analogo, la **sinonimia** porterebbe all'esclusione di documenti che potrebbero invece essere utili, poiché esprimono il concetto cercato tramite un termine differente rispetto a quello digitato. Anche il modello a spazio vettoriale, pur bilanciando l'importanza relativa dei termini tramite il tf-idf, resta fondato su una rappresentazione puramente lessicale e non risolve questi problemi: è pertanto necessario ideare appositi **algoritmi di disambiguazione**, in grado di interpretare il significato dei termini nel loro contesto e di migliorare di conseguenza i risultati delle query.
+
+Viene per questo utilizzato **WordNet**, un sistema nato con l'intento di definire un **database lessicale** per effettuare delle ricerche concettuali all'interno di un dizionario, ma largamente impiegato nel campo dell'Information Retrieval per **aggiungere semantica** al processo di ritrovamento.
+
+> [!NOTES] WordNet**WordNet** organizza il lessico in **synset**, ovvero insiemi di termini sinonimi che esprimono uno stesso concetto, collegati tra loro da relazioni semantiche (come ad esempio l'iperonimia: _auto_ → _veicolo_). In questo modo i termini vengono associati non più in base alla loro forma, ma al loro **significato**, costituendo la base di conoscenza su cui si fondano i sistemi di _Word Sense Disambiguation (WSD)_ citati in precedenza.
+
+[Mancano lezione 19]
