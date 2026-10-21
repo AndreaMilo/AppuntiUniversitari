@@ -589,6 +589,12 @@ Supponiamo di voler disambiguare i sostantivi della frase: **cat** (che può ind
 
 Ovviamente WorldNet ora è datato, esistono versioni migliori basati su reposotory di conoscenza molto più vasti come **BubbleNet**, gli LLM hanno aiutato molto queste procedure di linguismo nella storia.
 #### Relazione Parte - Tutto
+Oltre alla gerarchia _iperonimia/iponimia_ (_is-a_), WordNet collega i synset anche attraverso le **relazioni parte-tutto** (_has-part_ / _part-of_), chiamate **Meronimia** (il rapporto dalla parte al tutto) e **Olonimia** (il rapporto inverso, dal tutto alla parte):
 
+Le relazioni **parte-tutto** descrivono la composizione strutturale degli oggetti e risultano fondamentali per comprendere la struttura fisica e funzionale delle entità. In WordNet la meronimia si distingue in tre tipologie principali:
 
-[Mancano lezione 19]
+- **Part-Meronym**: identifica i componenti fisici e strutturali di un oggetto (ad esempio un componente che è parte di _"automobile"_, come il motore o la ruota).
+
+- **Member-Meronym**: identifica i singoli membri che compongono una collezione o un gruppo (ad esempio _"albero"_ è membro di _"foresta"_).
+
+- **Substance-Meronym**: identifica i materiali costitutivi di cui è fatta un'entità (ad esempio _"legno"_ è la sostanza di _"tavolo"_).
