@@ -455,3 +455,6 @@ L'algoritmo opera accumulando i punteggi un termine della query alla volta (*ter
 2. Per ciascun termine $t$ della query $q$, calcola il peso $w_{t,q}$ ed estrae la relativa **posting list** dall'indice invertito.
 3. Per ogni coppia $(d, tf_{t,d})$ nella posting list, somma a `Scores[d]` il contributo $w_{t,d} \times w_{t,q}$.
 4. Al termine delle iterazioni, normalizza ciascun punteggio dividendolo per la lunghezza del documento `Length[d]` e restituisce i **top $K$** documenti con il punteggio più alto.
+
+[ATTENDERE PICE PER LEZIONE DEL 14]
+[PROCEDO CON QUELLA DEL 19]
