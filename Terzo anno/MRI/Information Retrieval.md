@@ -325,3 +325,133 @@ Ridurre eccessivamente alla radice presenta però dei limiti: se da un lato ridu
 
 Infine, è fondamentale comprendere il funzionamento dell'algoritmo di stemming scelto: **lo stesso algoritmo utilizzato per la costruzione dell'indice invertito deve essere applicato anche sui termini della query**, altrimenti il sistema non troverebbe corrispondenza.
 ![[Pasted image 20261007165617.png]]
+
+>[!NOTES] Alternativa alle classi d'equivalenza: Espansione della Query
+>Anziché fondere le varianti di un termine in un'unica classe d'equivalenza in fase di indicizzazione, un'alternativa consiste nel **mantenere nel dizionario posting list separate** per ciascuna variante ed **espandere la query** al momento della ricerca (cercando tutte le varianti contemporaneamente). Questo approccio risulta potenzialmente **più accurato**, ma è **meno efficiente** dal punto di vista computazionale durante l'interrogazione.
+![[image 3.png]]
+
+---
+## Modello a Spazio Vettoriale (*Vector Space Model*)
+Uno dei limiti principali del **Modello Booleano** è la totale perdita dell'ordine dei termini e del **numero di occorrenze** all'interno dei documenti, unita a un matching puramente binario (`true` o `false`). Questo lo rende poco adatto alla maggior parte degli utenti (come nelle ricerche sul Web), i quali preferiscono formulare interrogazioni a testo libero (*free text queries*) anziché espressioni booleane complesse.
+
+Piuttosto che restituire in blocco l'intero insieme non ordinato di documenti che soddisfano una condizione logica (rischiando di restituire zero risultati con `AND` o migliaia di risultati con `OR`), l'obiettivo del **Ranked Retrieval** è ordinare i documenti restituendo quelli che hanno la **maggior probabilità di essere utili** per chi effettua la ricerca. Anche qualora il risultato complessivo comprendesse moltissimi documenti pertinenti, l'ordinamento risolve il problema alla radice poiché permette di **limitare la visualizzazione ai primi $k$ documenti migliori** (*top-$k$*).
+
+Per ottenere questo ordinamento, il sistema assegna a ciascun documento un **punteggio numerico di rilevanza** (*score*), ad esempio nell'intervallo $[0, 1]$, misurando quanto il documento aderisce alla query.
+Considerando il caso più semplice di una **query composta da una sola parola**, un primo criterio immediato consiste nell'assegnare il punteggio in base alla **frequenza** con cui quel termine compare nel documento stesso, attribuendo $0$ ai documenti in cui la parola è assente.
+### Il Coefficiente di Jaccard
+Prima di introdurre modelli basati sulla frequenza, un metodo classico per misurare la sovrapposizione tra due insiemi $A$ e $B$ (utilizzabile quindi anche con una vista insiemistica/booleana di query e documento) è il **Coefficiente di Jaccard**, definito come il rapporto tra la cardinalità dell'intersezione e la cardinalità dell'unione dei due insiemi:
+
+$$\text{Jaccard}(A, B) = \frac{\vert{}A \cap B\vert{}}{\vert{}A \cup B\vert{}}$$
+
+![[image 5.png]]
+![[image 6.png]]
+
+Il coefficiente gode delle seguenti proprietà:
+- $\text{Jaccard}(A, A) = 1$ (massima sovrapposizione);
+- $\text{Jaccard}(A, B) = 0$ se e solo se $A \cap B = \emptyset$ (nessun termine in comune);
+- Gli insiemi $A$ e $B$ non devono necessariamente avere la stessa cardinalità.
+
+Tuttavia, utilizzare il Coefficiente di Jaccard come funzione di scoring presenta **tre gravi problemi**:
+- **Ignora la frequenza dei termini**: non tiene conto di quante volte una parola compare all'interno di un documento.
+- **Ignora la rarità dei termini**: non considera che i termini rari all'interno della collezione possiedono un **contenuto informativo maggiore** (sono molto più discriminanti) rispetto alle parole comuni.
+- **Normalizzazione superficiale della lunghezza**: dividere semplicemente per $\vert{}A \cup B\vert{}$ è un modo troppo grezzo per pesare la lunghezza di un documento (sarebbe più efficace una normalizzazione sublineare come $\sqrt{\vert{}A \cup B\vert{}}$).
+### Dalla Matrice di Incidenza alla Term Frequency ($tf$)
+Riconsiderando la **Matrice di Incidenza Termine-Documento** vista nel modello booleano:
+![[image 7.png]]
+
+Possiamo evolvere questa rappresentazione memorizzando in ogni cella non più la semplice presenza/assenza binaria ($0/1$), bensì il **numero di occorrenze** del termine nel documento (*Matrice delle Frequenze* o *Term-Document Count Matrix*):
+![[image 8.png]]
+
+In questa formulazione, indicato con $\vert{}V\vert{}$ il numero di termini del vocabolario, **ogni documento è rappresentato come un vettore di conteggi** appartenente allo spazio vettoriale $\mathbb{N}^{\vert{}V\vert{}}$ (una componente per ciascun termine del vocabolario).
+
+>[!NOTES] Modello Bag of Words
+>Rappresentare un documento come un vettore di frequenze corrisponde ad adottare il modello **Bag of Words**. In questo schema **non viene considerato l'ordine delle parole** all'interno del testo: due frasi semanticamente diverse ma composte dagli stessi termini con le medesime frequenze (ad esempio *"John is quicker than Mary"* e *"Mary is quicker than John"*) producono esattamente lo stesso vettore.
+
+Si introduce così formalmente la **Term Frequency ($tf_{t,d}$)**, definita come il numero di volte in cui il termine $t$ compare all'interno del documento $d$.
+## Rarità dei termini e pesatura tf-idf
+Nelle ricerche testuali è opportuno attribuire un peso maggiore alle **parole più rare** nella collezione: essendo meno ripetute, esse risultano molto più selettive e permettono ricerche più efficaci rispetto ai termini ad alta frequenza.
+
+Per quantificare quanto un termine sia comune o raro nell'intero corpus, si utilizza la **Document Frequency ($df_t$)**, ovvero il **numero di documenti della collezione che contengono il termine $t$**.
+Sulla base di $df_t$ e del numero totale $N$ di documenti nella collezione, si definisce l'**Inverse Document Frequency ($idf_t$)** del termine $t$:
+
+$$idf_t = \log_{10}\left(\frac{N}{df_t}\right)$$
+
+>[!NOTES] Proprietà fondamentale dell'$idf_t$
+>L'$idf_t$ è un valore che **dipende esclusivamente dal termine $t$** (e dalla collezione nel suo complesso), **non dal singolo documento**:
+>- Per **parole molto rare**, $df_t$ è basso e quindi $idf_t$ assume un valore elevato (fino a $\log_{10}(N)$ quando $df_t = 1$).
+>- Per **parole molto comuni**, $df_t$ è prossimo a $N$ e quindi $idf_t$ tende a $0$.
+>
+>Inoltre, l'$idf$ **non ha alcun effetto sul ranking per query composte da una sola parola**, poiché per un singolo termine $t$ il fattore $idf_t$ è una costante identica per tutti i documenti; diventa invece determinante nelle **query composte da almeno due parole**, in quanto bilancia l'importanza relativa dei diversi termini.
+
+Oltre alla *Document Frequency*, è possibile definire anche la **Collection Frequency ($cf_t$)**, data dalla **somma totale delle occorrenze** del termine $t$ nell'intera collezione di documenti.
+![[lez12_image.png]]
+
+Come mostra la tabella, due termini possono avere una *Collection Frequency* quasi identica (es. *try* e *insurance*), ma una distribuzione molto diversa: *try* compare in moltissimi documenti ($df$ alto, poco discriminante), mentre *insurance* è concentrato in molti meno documenti ($df$ più basso, molto più informativo). Per questo motivo per il calcolo dell'$idf$ si preferisce sempre $df_t$ rispetto a $cf_t$.
+### Lo schema di pesatura tf-idf
+Combinando la frequenza locale nel documento ($tf_{t,d}$) e la rarità globale nella collezione ($idf_t$), si ottiene lo schema di pesatura **tf-idf**, che assegna a ciascun termine $t$ in un documento $d$ il peso:
+
+$$w_{t,d} = \text{tf-idf}_{t,d} = tf_{t,d} \times \log\left(\frac{N}{df_t}\right)$$
+
+![[lez12_image 1.png]]
+
+Questo valore gode di due proprietà chiave:
+- **Incrementa** all'aumentare del numero di occorrenze del termine all'interno del singolo documento ($tf_{t,d}$).
+- **Incrementa** all'aumentare della rarità del termine nell'intera collezione ($idf_t$).
+
+Di conseguenza, il punteggio di **ranking (Score)** di un documento $d$ rispetto a una query $q$ viene calcolato sommando i pesi $\text{tf-idf}$ di tutti i termini della query presenti nel documento:
+
+$$\text{Score}(q, d) = \sum_{t \in q \cap d} \text{tf-idf}_{t,d}$$
+
+![[lez12_image 2.png]]
+
+Per evitare di dover ricalcolare tutti i pesi statici nell'indice ogni volta che la collezione subisce modifiche (variazioni di $N$ o $df_t$), i valori di $idf_t$ non vengono ricalcolati sull'intero indice ad ogni aggiornamento, ma vengono **calcolati dinamicamente a runtime** al momento dell'esecuzione della query.
+## Calcolo della Similarità nello Spazio Vettoriale
+Adottando la pesatura $\text{tf-idf}$, ciascun documento è rappresentato come un **vettore reale in uno spazio vettoriale $\vert{}V\vert{}$-dimensionale** ($\mathbb{R}^{\vert{}V\vert{}}$), il che implica milioni di dimensioni quando il modello viene applicato su scala Web.
+Per gestire ed effettuare ricerche in spazi così grandi, il **Modello a Spazio Vettoriale** si fonda su due principi:
+- Rappresentare anche le **query come vettori** nello stesso spazio $\vert{}V\vert{}$-dimensionale dei documenti.
+- Ordinare (*rankare*) i documenti in base alla loro **prossimità geometrica** rispetto al vettore della query all'interno di tale spazio.
+### Distanza Euclidea vs Angolo tra vettori
+Per valutare la vicinanza tra il vettore della query $\vec{q}$ e il vettore del documento $\vec{d}$, una prima idea intuitiva potrebbe essere quella di calcolare la **distanza euclidea**, ossia la distanza geometrica tra le due estremità dei vettori.
+Sorge però un grave problema: **la distanza euclidea dipende fortemente dalla lunghezza (modulo) dei vettori**.
+![[lez12_image 3.png]]
+
+Consideriamo ad esempio un documento $d$ e costruiamo un nuovo documento $d'$ ottenuto concatenando $d$ a se stesso due volte: sebbene $d$ e $d'$ abbiano **esattamente lo stesso contenuto semantico** e la stessa proporzione di termini, il vettore $\vec{d}'$ avrà lunghezza doppia rispetto a $\vec{d}$ e la distanza euclidea tra i due (o rispetto alla query) risulterà molto grande.
+
+Per ovviare a questo problema, anziché misurare la distanza tra le punte dei vettori, si valuta **l'angolo $\theta$ compreso tra il vettore della query e il vettore del documento** (nell'esempio precedente, $\vec{d}$ e $\vec{d}'$ hanno la stessa direzione e quindi angolo $0^\circ$).
+In questo modo i documenti vengono ordinati:
+- **Al decrescere dell'angolo** $\theta(\vec{q}, \vec{d})$ tra query e documento;
+- Equivalente a ordinarli **all'aumentare del coseno dell'angolo** $\cos(\vec{q}, \vec{d})$, poiché il coseno è massimo (pari a $1$) quando l'angolo è $0^\circ$ e decresce monotonicamente fino a $0$ per vettori ortogonali ($90^\circ$).
+### Normalizzazione della lunghezza e Cosine Similarity
+Per eliminare la distorsione dovuta al fatto che i documenti hanno lunghezze diverse (che porterebbe a preferire documenti più lunghi con frequenze assolute maggiori), si applica la **normalizzazione della lunghezza** (*length normalization*).
+Un vettore $\vec{x}$ viene normalizzato dividendone ciascuna componente per la sua **lunghezza euclidea (norma $L_2$)**:
+
+$$\Vert{}\vec{x}\Vert{}_2 = \sqrt{\sum_{i} x_i^2}$$
+
+![[lez12_image 4.png]]
+
+Dividendo un vettore per la sua norma $\Vert{}\vec{x}\Vert{}_2$, lo si trasforma in un **versore** (*unit vector*), ovvero un vettore di **lunghezza unitaria pari a $1$**, facilitando così il calcolo del coseno dell'angolo e rendendo un documento $d$ e il suo duplicato $d'$ identici dopo la normalizzazione.
+
+Per calcolare la pertinenza (**Cosine Similarity**) di un documento $\vec{d}$ rispetto a una query $\vec{q}$ si effettua quindi il seguente calcolo:
+
+$$\cos(\vec{q}, \vec{d}) = \frac{\vec{q} \cdot \vec{d}}{\Vert{}\vec{q}\Vert{} \Vert{}\vec{d}\Vert{}} = \frac{\vec{q}}{\Vert{}\vec{q}\Vert{}} \cdot \frac{\vec{d}}{\Vert{}\vec{d}\Vert{}} = \frac{\sum_{i=1}^{\vert{}V\vert{}} q_i d_i}{\sqrt{\sum_{i=1}^{\vert{}V\vert{}} q_i^2} \sqrt{\sum_{i=1}^{\vert{}V\vert{}} d_i^2}}$$
+
+![[lez12_image 5.png]]
+
+dove:
+- **$q_i$**: è il peso $\text{tf-idf}$ del termine $i$ all'interno della query $q$;
+- **$d_i$**: è il peso $\text{tf-idf}$ del termine $i$ all'interno del documento $d$.
+
+Se i vettori sono già stati **normalizzati in lunghezza** (versori con $\Vert{}\vec{q}\Vert{} = 1$ e $\Vert{}\vec{d}\Vert{} = 1$), il denominatore si annulla a $1$ e la formula si riduce semplicemente alla **somma dei prodotti interni (prodotto scalare)**:
+
+$$\cos(\vec{q}, \vec{d}) = \vec{q} \cdot \vec{d} = \sum_{i=1}^{\vert{}V\vert{}} q_i d_i$$
+
+![[lez12_image 6.png]]
+### Algoritmo per il calcolo del Cosine Score
+L'algoritmo completo `CosineScore(q)` che calcola efficientemente i punteggi del coseno sfruttando l'indice invertito e restituisce i migliori $K$ documenti della collezione è il seguente:
+![[lez12_image 7.png]]
+
+L'algoritmo opera accumulando i punteggi un termine della query alla volta (*term-at-a-time*):
+1. Inizializza a zero un array `Scores[N]` per i documenti e legge le lunghezze precalcolate nell'array `Length[N]`.
+2. Per ciascun termine $t$ della query $q$, calcola il peso $w_{t,q}$ ed estrae la relativa **posting list** dall'indice invertito.
+3. Per ogni coppia $(d, tf_{t,d})$ nella posting list, somma a `Scores[d]` il contributo $w_{t,d} \times w_{t,q}$.
+4. Al termine delle iterazioni, normalizza ciascun punteggio dividendolo per la lunghezza del documento `Length[d]` e restituisce i **top $K$** documenti con il punteggio più alto.
