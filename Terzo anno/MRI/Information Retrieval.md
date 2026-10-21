@@ -529,63 +529,63 @@ Viene per questo utilizzato **WordNet**, un sistema nato con l'intento di defini
 
 > [!NOTES] WordNet**WordNet** organizza il lessico in **synset** 
 > Ovvero insiemi di termini sinonimi che esprimono uno stesso concetto, collegati tra loro da relazioni semantiche (come ad esempio l'iperonimia: _auto_ → _veicolo_). In questo modo i termini vengono associati non più in base alla loro forma, ma al loro **significato**, costituendo la base di conoscenza su cui si fondano i sistemi di _Word Sense Disambiguation (WSD)_ citati in precedenza.
-
-[DA QUI]
 ### Concetto di Parola
-La **parola** ha due rappresentazioni differenti:
-- la **word form** che è la stringa di testo, ovvero i caratteri che formano la parola
-- la **word meaning** che è il signficiato che esprime esternamente quella parola
+Nel modello lessicale di WordNet, il concetto di **parola** viene distinto in due componenti fondamentali:
+- **Word Form ($F$)**: la rappresentazione fisica e lessicale della parola, ovvero la stringa di caratteri che la compone.
+- **Word Meaning ($M$)**: il concetto o significato semantico che quella parola esprime.
 
-WordNet riesce a mettere in corrispondenza le word form con le word meaning tramite una **matrice lessicale di corrispondenza**.
+WordNet mette in relazione le *word form* con i rispettivi *word meaning* attraverso una **matrice lessicale di corrispondenza** (*Lexical Matrix*).
 ![[Pasted image 20261021185932.png]]
-Per esempio possiamo notare come $F_{1}M_{1}$ e $F_{2}M_{1}$ hanno la stessa word meaning, quindi sono due **sinonimi**, mentre $F_{2}M_{1}$ e $F_{2}M_{2}$ hanno la stessa word form e quindi sono **polisemiche**.
-Su questa stessa base si basa il **dizionario** che abbiamo nelle nostre case, poiché quest'ultimo tramite la **glossa** ci fa vedere i sinonimi e le differenze tra parole scritte ugualmente.
 
-Lo scopo principale di WordNet è la trasmsissione in forma digitale su una macchina e in modo strutturato la conoscenza linguistica della vita reale.
+Osservando la matrice è possibile formalizzare i due fenomeni linguistici principali:
+- **Sinonimia**: si verifica quando due diverse *word form* condividono lo stesso *word meaning* (ad esempio le celle $F_1 M_1$ e $F_2 M_1$ sulla stessa riga).
+- **Polisemia**: si verifica quando una stessa *word form* è associata a più *word meaning* distinti (ad esempio le celle $F_2 M_1$ e $F_2 M_2$ sulla stessa colonna).
 
-Il **synset** è l'**insieme** delle word form che possono essere usate per rappresentare un word meaning. Questo è utile poiché se si conosce solo $F_{1}$ e non $F_{2}$ possiamo comunque sapere il signficiato di $F_{2}$ poiché appartengono allo stesso synset e quindi sono sinonimi.
-Un synset associato ad una word form consente all'utente di inferire la semantica della word form in esame purché conosca la semantica di almeno una word form elencata nel synset.
-### Rappresentazione dei documenti
-Grazie alla matrice precedente nella rappresentazione dei documenti possiamo essere ancora più precisi, senza dover più pensare al problema della beg of words, se prima dovevamo preoccuparci dei sinonimi e delle parole polisemiche e dei bigrammi.
+Questo principio ricalca la struttura del **dizionario tradizionale**, il quale utilizza una **glossa** (una breve definizione testuale accompagnata da esempi d'uso) per descrivere il significato di un termine, elencarne i sinonimi e distinguere le varie accezioni delle parole polisemiche. Lo scopo principale di WordNet è proprio quello di tradurre e strutturare in formato digitale questa conoscenza linguistica, rendendola elaborabile da una macchina.
 
-Per esempio coi sinonimi possiamo esprimere un unico concetto, mentre con un bigramma come *Artificial Intelligence* possiamo non più splittare la parola in due ma avere una corrispondenza propria sul dizionario di WordNet.
+> [!NOTES] Definizione di Synset
+> Il **synset** (*synonym set*) è l'**insieme delle *word form* sinonime** che possono essere utilizzate per rappresentare uno specifico *word meaning*. 
+> Un synset associato a una *word form* consente di inferire la semantica del termine in esame purché si conosca il significato di almeno una delle *word form* elencate al suo interno: se ad esempio si conosce il significato di $F_1$ ma non quello di $F_2$, il fatto che appartengano allo stesso synset permette di dedurre che $F_2$ esprime il medesimo concetto di $F_1$.
+### Rappresentazione dei documenti: dalla Bag of Words alla Bag of Synsets
+Sfruttando la matrice lessicale di WordNet è possibile rappresentare il contenuto dei documenti in modo molto più preciso, superando i limiti storici della rappresentazione **Bag of Words** legati a sinonimia, polisemia e termini composti (*n-grammi*):
+- **Gestione dei sinonimi**: termini diversi ma equivalenti vengono ricondotti a un unico concetto.
+- **Gestione dei bigrammi e delle locuzioni**: espressioni composte come *Artificial Intelligence* non vengono più spezzate in due token separati e indipendenti (*artificial* e *intelligence*), ma trovano una corrispondenza diretta in un'unica voce concettuale all'interno del dizionario di WordNet.
 
-Si passa quindi da una rappresentazione di bag of word ad una di tipo bag of SYNSET.
-In questo modo se facciamo una query con sinonimi e riusciamo ad associarli allo stesso concetto possiamo riuscire a fare match, così *car* e *automobile* faranno match poiché facenti parte dello stesso synset. Parallelamente questo vale anche con parole con stessa word form ma che sono state associati a differenti word meaning.
+Si passa così da una rappresentazione *Bag of Words* a una rappresentazione **Bag of Synsets**, in cui i documenti e le query sono indicizzati tramite identificatori di concetti (*synset*) anziché semplici stringhe di caratteri:
+- Se una query e un documento utilizzano sinonimi diversi (ad esempio *car* e *automobile*), il motore di ricerca effettua comunque il **match**, poiché entrambi i termini vengono mappati sullo stesso synset.
+- Parallelamente, parole con la stessa *word form* ma usate con accezioni diverse vengono associate a *word meaning* (e quindi synset) differenti, evitando falsi positivi nel recupero dei documenti.
 
-Lo **svantaggio** del WordNet è il dover associare i signficati a tutte le parole "ambigue", che sia fatto a mano e che sia fatto automaticamente.
+Lo **svantaggio principale** dell'uso di WordNet risiede proprio nella necessità di eseguire la **disambiguazione** (*Word Sense Disambiguation*), ovvero associare il significato corretto a tutte le parole ambigue presenti nei documenti e nelle query: un'operazione onerosa sia se svolta manualmente tramite annotazione umana, sia se affidata ad algoritmi automatici.
 ### Similarità semantica dei synset
-Per riuscire a capire quale parola prendere nell'algoritmo di disambiguazione usato su wordnet per scegliere quale parola associare o meno è basarsi su wordnet per basarsi sulla similirità semantica di sinset  per trovare i concetti e poi eseguire la disambiguazione.
+Per stabilire automaticamente quale synset associare a una parola ambigua, gli algoritmi di disambiguazione sfruttano la struttura di WordNet per calcolare la **similarità semantica tra synset** in base al contesto della frase.
 
-Come si fa?
-Abbiamo detto prima che WordNet è come un dizionario classico, in realtà qualcosa di nuovo c'è. Ed è la relazione tra i concetti, quindi nomi, verbi ecc...
-La relazione è di tipo gerarchico, e si divide in **generale** e sempre più specifici
+A differenza di un dizionario tradizionale, WordNet collega i concetti (sostantivi, verbi, ecc.) tramite **relazioni semantiche**. Per i sostantivi, la relazione principale è di tipo **gerarchico** (**iperonimia/iponimia**, ovvero la relazione *is-a*), che organizza i synset in un albero tassonomico partendo dai concetti più **generali** (*iperonimi*) fino a quelli progressivamente più **specifici** (*iponimi*).
 ![[Pasted image 20261021192409.png]]
-I concetti più vicini nella gerarchia (come gatto e felino) hanno una buona similarità.
-Questa struttura per calcolare la similarità ci si basa sul sistema ad albero, chiamato Leacock-Chodorow.
-In questo esempio il concetto più generale è *mammifero con la placenta* che è il nostro sussuntore più specifico, ovvero il concetto più generale ma allo stesso tempo più specifico che lega due parole diverse. **Iperonimia Iponimia** è il nome di questo concetto di relazionale due rami diversi sulla base di più generale o meno.
 
-La foto in figura mostra una vecchia versione di WordNet in cui $16$ è il concetto più specifico esistente di gerarchia, nonché quindi la lunghezza massima. Per capire quanto è sinonimo di una parola un concetto si contano i percorsi, numerandoli.
-Arrivati al concetto più specifico, si risale l'albero per andare dall'altra parte e quindi sull'altro ramo.
-Si usa poi la formula logaritmica mostrata in figura ed il risultato più vicino rappresenterà la parola sinonimata più plausibile.
+All'interno di questa gerarchia, concetti semanticamente affini (come *cat* e *feline*, o *cat* e *mouse* intesi come animali) si trovano **vicini nell'albero** e presentano un'elevata similarità.
+Per quantificare matematicamente questa vicinanza si utilizza la misura di similarità di **Leacock-Chodorow**, che si basa sulla distanza tra i nodi dell'albero:
+1. Dati due concetti, si individua il loro **sussuntore comune più specifico** (*Least Common Subsumer - LCS*), ovvero l'antenato comune più basso nella gerarchia che generalizza entrambi (nell'esempio in figura è *placental mammal*, il concetto comune più specifico che lega il ramo dei felini e quello dei roditori).
+2. Si calcola la lunghezza del percorso minimo ($\text{len}$) contando i passaggi necessari per risalire dal primo concetto fino al sussuntore comune e ridiscendere lungo l'altro ramo fino al secondo concetto.
+3. Si applica la formula logaritmica di **Leacock-Chodorow**, che rapporta la lunghezza del percorso al doppio della **profondità massima $D$** della tassonomia di WordNet (nella versione di WordNet mostrata in figura, la profondità massima dell'albero è pari a $D = 16$):
 
-Ragionamento univoco con similarità più bassa si avrà se vogliamo vedere l'albero tra mouse (topo) e mouse (strumento del PC).
-#### Esempio
-"The white cat is hunting the mouse"
+$$\text{Sim}_{\text{LCH}}(c_1, c_2) = -\log\left(\frac{\text{len}(c_1, c_2)}{2D}\right)$$
 
-Immaginiamo che vogliamo disambiguare *cat*, perché può essere o animale o la CAT come esame clinico.
+Più il percorso tra i due nodi è breve, più il valore restituito dalla formula sarà alto, indicando quale accezione del termine è semanticamente più plausibile nel contesto. Al contrario, confrontando *cat* (animale) con il significato di *mouse* inteso come periferica del PC, il percorso nell'albero per trovare un antenato comune sarà lunghissimo e la similarità risulterà molto bassa.
+#### Esempio di disambiguazione con Leacock-Chodorow
+Si consideri la frase:
+> *"The white cat is hunting the mouse"*
 
-Il primo step è eliminare le stop words, avendo quindi:
-"white cat hunt mouse"
+Supponiamo di voler disambiguare i sostantivi della frase: **cat** (che può indicare il *felino* oppure la *CAT*, ovvero la TAC come esame clinico) e **mouse** (che può indicare il *roditore* oppure il *dispositivo informatico*).
 
-Per disambiguare con questo algoritmo dobbiamo basarci sull'altro sostantivo della frase per comprenderne il concetto.
-Quindi prendiamo cat e mouse.
-Vediamo su WordNet quante differenti chiavi univoche di differenti significati abbiamo per queste parole:
+1. **Pre-processing**: si eliminano le *stop words* (*the*, *is*) e si riconducono i termini alla forma base, ottenendo i token significativi:
+   `white cat hunt mouse`
+2. **Estrazione dei synset candidati**: poiché l'algoritmo confronta i sostantivi sulla gerarchia tassonomica, si prendono in esame **cat** e **mouse** e si estraggono da WordNet gli identificatori univoci dei rispettivi significati (synset):
 ![[Pasted image 20261021193449.png]]
 
-Ora calcoliamo le similarità tra tutte e 4 le chiavi usando Leacock-Chodorow:
+3. **Calcolo della similarità**: si calcola la similarità di **Leacock-Chodorow** per tutte le $4$ combinazioni possibili tra i synset di *cat* e i synset di *mouse*:
 ![[Pasted image 20261021193527.png]]
 
-Notiamo che la similirtà più alta è quella di felino per cat e di roditore per mouse, quindi aggiungo al synset questo concetto di sinonimo.
+4. **Scelta del significato (Disambiguazione)**: si osserva che il punteggio di similarità più alto si ottiene in corrispondenza della coppia **felino** per *cat* e **roditore** per *mouse*. Il sistema seleziona quindi questi due synset come significati corretti per indicizzare i concetti della frase.
 
+Ovviamente 
 [Mancano lezione 19]
