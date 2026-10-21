@@ -588,5 +588,7 @@ Supponiamo di voler disambiguare i sostantivi della frase: **cat** (che può ind
 4. **Scelta del significato (Disambiguazione)**: si osserva che il punteggio di similarità più alto si ottiene in corrispondenza della coppia **felino** per *cat* e **roditore** per *mouse*. Il sistema seleziona quindi questi due synset come significati corretti per indicizzare i concetti della frase.
 
 Ovviamente WorldNet ora è datato, esistono versioni migliori basati su reposotory di conoscenza molto più vasti come **BubbleNet**, gli LLM hanno aiutato molto queste procedure di linguismo nella storia.
+#### Relazione Parte - Tutto
+
 
 [Mancano lezione 19]
