@@ -61,3 +61,4 @@ E anche alcuni problemi:
 - le esigenze informative (information needs) dell'utente possono cambiare durante l'interazione
 
 Vedere esercizio.[AL momento uniba è in down non posso vederlo]
+Per vedere se effettivamente il 
