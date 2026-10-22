@@ -106,3 +106,25 @@ Se volessimo calcolarlo su tante query e non più su una sola avremo mille valor
 Per cofrontare la performance del motore di ricerca su tutte le query l'utile sarebbe avere tanti grafici diversi e gestirlo tramite riferimenti che vanno coi valori standard di recall che vanno da 0 a 11.
 E' come avere il grafico di una funzione dove si conoscono alcuni valori della funzione ma non tutta la funzione e si vuole approssimare la funzione così da approfondirla negli altri punti, quindi si esegue l'**interpolazione**.
 
+Cerchaimo di capire quindi come calcolare su ogni posizione di documento rilevante come calcolare position e recall:
+![[Pasted image 20261022164856.png]]
+
+Come si vede in figura nelle prime due posizioni ci azzecchiamo, non calcoliamo tutte le posizioni e ci spostiamo in posizione 4, dopo di che mi sposto in 6 e poi in 13, dove c'è stato un po' di errore perché ne abbiamo altato uno di importante che è l'ultimo documento, però riusciamo ad avere un ottima media di informazione, perché vengono posizionati meglio.
+Questi dati possiamo inserirli in un grafico e studiarli.
+
+Da un punto di vista numerico ora attuiamo su questo esempio la procedura di interpolazione, così dai dati noti possiamo capire con valori fissi, quelli di imprecisione.
+Da 0.0 a 1.0 abbiamo 11 valori fissi, detto $r_{j}$
+
+>[!NOTE] Regola
+>The interpolated precision at the j-th standard recall
+level is the maximum known precision among all
+recall levels above rj:
+![[Pasted image 20261022165537.png]]
+
+Una volta catturata la formula su quei valori, avremo come risultato:
+![[Pasted image 20261022165600.png]]
+
+Così visivamente vediamo la precisione confrontata ai valori fissi
+
+[ATTUALMENTE IL PROCEDIMENTO NON E' NOTO LO DIAMO PER BUONO PERCHE' SARA' MOSTRATO IN SEGUITO]
+
