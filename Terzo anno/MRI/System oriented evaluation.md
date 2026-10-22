@@ -109,6 +109,7 @@ E' come avere il grafico di una funzione dove si conoscono alcuni valori della f
 Cerchaimo di capire quindi come calcolare su ogni posizione di documento rilevante come calcolare position e recall:
 ![[Pasted image 20261022164856.png]]
 
+![[Pasted image 20261022171118.png]]
 Come si vede in figura nelle prime due posizioni ci azzecchiamo, non calcoliamo tutte le posizioni e ci spostiamo in posizione 4, dopo di che mi sposto in 6 e poi in 13, dove c'è stato un po' di errore perché ne abbiamo altato uno di importante che è l'ultimo documento, però riusciamo ad avere un ottima media di informazione, perché vengono posizionati meglio.
 Questi dati possiamo inserirli in un grafico e studiarli.
 
@@ -127,4 +128,23 @@ Una volta catturata la formula su quei valori, avremo come risultato:
 Così visivamente vediamo la precisione confrontata ai valori fissi
 
 [ATTUALMENTE IL PROCEDIMENTO NON E' NOTO LO DIAMO PER BUONO PERCHE' SARA' MOSTRATO IN SEGUITO]
+
+![[Pasted image 20261022171005.png]]
+così come mostrato in figura è cpome vengono paragonate e confrontate due query
+### Unranked vs Ranked Misurazione
+Vogliamo capire qual è meglio tra ISR1 E ISR2, ovvero le due tabelle di prima, per comprenderlo si usa questa formula:
+![[Pasted image 20261022171234.png]]
+
+Più alta sarà la curva più alto sarà il ranking quindi sarà meglio.
+Il valore calcolato alla fine è quello di Avarage Precisione deve essere compreso tra 0 e 1, perforza.
+
+La misurazione con differente ranking postion $p$ si calcola impostando p ai documenti
+![[Pasted image 20261022171423.png]]
+Se la Precision IRS1>IRS2 allora anche p del recall di IRS1>IRS2
+e tramite questa formula:
+![[Pasted image 20261022171518.png]]
+
+Calcoliamo l'avarge precision
+[Argomentare spiegazioni formule]
+
 
