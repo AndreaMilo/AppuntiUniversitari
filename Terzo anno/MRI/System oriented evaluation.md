@@ -79,3 +79,23 @@ Idealmente i documenti si comportano così:
 
 ![image.png](lez21_image%202.png)
 
+[DA QUI]
+Di questa metrica abbiamo due misure, o eccellere nella precision o eccellere nella recall.
+Un vincolo da superare è quello che le metriche non possono essere solo totalmente positive o totalmente negative, ma avere più scale di grigi
+
+Per mettere un unico valore al sistema che divide tra precision e recall, facciamo la media matematica
+Usare la media aritimetica però è errato e non utilizzabile perché avere 50 di recall e 50 di precision ci da una media del 50 pari ad una media in cui il recall è 10 e 90 la percision. Così statistiamente entrambi saranno messi al pari quando armonicamente non è così
+
+Usiamo quindi la media armonica, la media armonica è alta solo se entrambi gli elementi sono alti, e si esprime come segue:
+![[Pasted image 20261022162648.png]]
+
+Questa metrica è chiamata $F_{1}$ ed è una generalizzazione della $F_{BETA}$ dove BETA è un parametro che da +- precisione al richiamo e alla precisione, e la formula segue come tale:
+![[Pasted image 20261022162924.png]]
+ma ormai si usa F1 poiché più basilare.
+- Se beta è = 1 c'è un equità tra i due campi
+- Se beta è >1 abbiamo più recall
+- Se beta <1 abbiamo più precisione
+- Se beta = 0 F_beta = P
+E misura = 1-F_beta
+### Evaluating ranked results
+
