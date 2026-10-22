@@ -98,4 +98,11 @@ ma ormai si usa F1 poiché più basilare.
 - Se beta = 0 F_beta = P
 E misura = 1-F_beta
 ### Evaluating ranked results
+Possiamo insirire i dati dei documenti rilevanti su un grafico per una query eseguita tante volte e dal grafico poi possiamo evincerne la curva dell'andarmento tra l'incremento del recall.
+![[Pasted image 20261022163941.png]]
+![[Pasted image 20261022163946.png]]
+
+Se volessimo calcolarlo su tante query e non più su una sola avremo mille valori di F1 e per decidere la performance di quel sistema, basta fare la media artimetica.
+Per cofrontare la performance del motore di ricerca su tutte le query l'utile sarebbe avere tanti grafici diversi e gestirlo tramite riferimenti che vanno coi valori standard di recall che vanno da 0 a 11.
+E' come avere il grafico di una funzione dove si conoscono alcuni valori della funzione ma non tutta la funzione e si vuole approssimare la funzione così da approfondirla negli altri punti, quindi si esegue l'**interpolazione**.
 
