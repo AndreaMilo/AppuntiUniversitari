@@ -79,72 +79,135 @@ Idealmente i documenti si comportano così:
 
 ![image.png](lez21_image%202.png)
 
-[DA QUI]
-Di questa metrica abbiamo due misure, o eccellere nella precision o eccellere nella recall.
-Un vincolo da superare è quello che le metriche non possono essere solo totalmente positive o totalmente negative, ma avere più scale di grigi
+Precision e recall sono due misure in tensione tra loro: un sistema può eccellere nella precision (restituisce pochi documenti, quasi tutti rilevanti, ma ne lascia fuori molti) oppure nel recall (restituisce quasi tutti i documenti rilevanti, ma insieme a molto rumore). Il caso ideale è quello in cui entrambe sono alte, ma nella pratica un sistema si colloca in una via di mezzo: le prestazioni non sono mai "totalmente buone" o "totalmente pessime", ma hanno diverse sfumature tra i due estremi.
 
-Per mettere un unico valore al sistema che divide tra precision e recall, facciamo la media matematica
-Usare la media aritimetica però è errato e non utilizzabile perché avere 50 di recall e 50 di precision ci da una media del 50 pari ad una media in cui il recall è 10 e 90 la percision. Così statistiamente entrambi saranno messi al pari quando armonicamente non è così
+Per assegnare al sistema un **unico valore** che tenga conto sia della precision che del recall serve una media. La media aritmetica però non è adatta: un sistema con recall al 50% e precision al 50% avrebbe media 50%, esattamente come un sistema con recall al 10% e precision al 90%. Con la media aritmetica i due sistemi risulterebbero equivalenti, mentre in realtà non lo sono affatto.
 
-Usiamo quindi la media armonica, la media armonica è alta solo se entrambi gli elementi sono alti, e si esprime come segue:
-![[Pasted image 20261022162648.png]]
+Si usa quindi la **media armonica**, che è alta solo se entrambi i valori sono alti. Nell'esempio precedente, con recall al 10% e precision al 90%, la media armonica vale $\frac{2 \cdot 0.1 \cdot 0.9}{0.1 + 0.9} = 0.18$, contro lo 0.5 del primo sistema. Si esprime come segue:
 
-Questa metrica è chiamata $F_{1}$ ed è una generalizzazione della $F_{BETA}$ dove BETA è un parametro che da +- precisione al richiamo e alla precisione, e la formula segue come tale:
-![[Pasted image 20261022162924.png]]
-ma ormai si usa F1 poiché più basilare.
-- Se beta è = 1 c'è un equità tra i due campi
-- Se beta è >1 abbiamo più recall
-- Se beta <1 abbiamo più precisione
-- Se beta = 0 F_beta = P
-E misura = 1-F_beta
+$F_1 = \frac{2PR}{P+R} = \frac{2}{\frac{1}{R}+\frac{1}{P}}$
+
+Questa metrica è chiamata $F_1$ ed è un caso particolare della misura $F_\beta$, dove $\beta$ è un parametro che permette di dare più peso al recall oppure alla precision:
+
+$F_\beta = \frac{(1+\beta^2)PR}{\beta^2 P + R} = \frac{(1+\beta^2)}{\frac{\beta^2}{R}+\frac{1}{P}}$
+
+Il valore di $\beta$ controlla il compromesso tra le due misure:
+
+- se $\beta = 1$ c'è equità tra precision e recall ($F_\beta = F_1$);
+- se $\beta > 1$ si dà più peso al recall;
+- se $\beta < 1$ si dà più peso alla precision;
+- se $\beta = 0$ si ha $F_\beta = P$.
+
+Esiste anche la **misura E**, definita come $E = 1 - F_\beta$, che misura l'errore anziché la bontà del sistema (quindi più è bassa, meglio è).
+
+Nella pratica si usa quasi sempre $F_1$, poiché è la versione più semplice e basilare.
 ### Evaluating ranked results
-Possiamo insirire i dati dei documenti rilevanti su un grafico per una query eseguita tante volte e dal grafico poi possiamo evincerne la curva dell'andarmento tra l'incremento del recall.
+Finora precision e recall sono state calcolate su un insieme di documenti restituiti, senza considerare l'ordine con cui compaiono. In un sistema con ranking, invece, l'utente può scorrere la lista dei risultati fermandosi dove vuole: il sistema può quindi restituire un numero qualsiasi di documenti. Prendendo i primi $k$ documenti per valori diversi di $k$ (ovvero diversi livelli di recall), si ottiene una coppia (recall, precision) per ciascun $k$. Riportando queste coppie su un grafico si ottiene la **curva precision-recall**.
+
 ![[Pasted image 20261022163941.png]]
 ![[Pasted image 20261022163946.png]]
 
-Se volessimo calcolarlo su tante query e non più su una sola avremo mille valori di F1 e per decidere la performance di quel sistema, basta fare la media artimetica.
-Per cofrontare la performance del motore di ricerca su tutte le query l'utile sarebbe avere tanti grafici diversi e gestirlo tramite riferimenti che vanno coi valori standard di recall che vanno da 0 a 11.
-E' come avere il grafico di una funzione dove si conoscono alcuni valori della funzione ma non tutta la funzione e si vuole approssimare la funzione così da approfondirla negli altri punti, quindi si esegue l'**interpolazione**.
+Dalla curva si nota un andamento a "dente di sega": quando il documento successivo è non rilevante, la precision cala mentre il recall rimane invariato (la curva scende in verticale); quando invece è rilevante, aumentano sia il recall sia (di norma) la precision, e la curva risale. Nell'esempio della figura il denominatore del recall (1000) è il numero totale di documenti rilevanti per la query.
 
-Cerchaimo di capire quindi come calcolare su ogni posizione di documento rilevante come calcolare position e recall:
+Il grafico di una singola query non è molto significativo: bisogna **mediare** le prestazioni su un insieme di query. Per l'$F_1$ è semplice: si calcola un valore per ogni query e il valore finale del sistema è la media aritmetica di tutti quei valori. Per le curve precision-recall c'è invece un problema tecnico: ogni query produce punti a livelli di recall diversi (che dipendono dal numero di documenti rilevanti di quella query), quindi le curve non si possono mediare direttamente.
+
+La soluzione è confrontare le query attraverso dei **livelli di recall standard**, che sono 11 valori fissi compresi tra 0.0 e 1.0 con passo 0.1, indicati con $r_j$:
+
+$r_j \in \{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0\}$
+
+È come avere il grafico di una funzione di cui si conoscono solo alcuni valori e si vuole approssimare la funzione nei punti intermedi: si esegue quindi l'**interpolazione**.
+
+Vediamo prima come calcolare precision e recall in corrispondenza di ogni documento rilevante restituito. Non si calcolano i valori in tutte le posizioni, ma solo dove compare un nuovo documento rilevante (cioè dove il recall aumenta).
+
 ![[Pasted image 20261022164856.png]]
 
 ![[Pasted image 20261022171118.png]]
-Come si vede in figura nelle prime due posizioni ci azzecchiamo, non calcoliamo tutte le posizioni e ci spostiamo in posizione 4, dopo di che mi sposto in 6 e poi in 13, dove c'è stato un po' di errore perché ne abbiamo altato uno di importante che è l'ultimo documento, però riusciamo ad avere un ottima media di informazione, perché vengono posizionati meglio.
-Questi dati possiamo inserirli in un grafico e studiarli.
 
-Da un punto di vista numerico ora attuiamo su questo esempio la procedura di interpolazione, così dai dati noti possiamo capire con valori fissi, quelli di imprecisione.
-Da 0.0 a 1.0 abbiamo 11 valori fissi, detto $r_{j}$
+Nell'esempio, il numero totale di documenti rilevanti è 6, e i documenti rilevanti compaiono nelle posizioni 1, 2, 4, 6 e 13. Come si vede in figura, nelle prime due posizioni ci azzecchiamo subito, poi ci spostiamo in posizione 4, poi in 6 e infine in 13:
+
+- posizione 1: $R = 1/6 = 0.167$; $P = 1/1 = 1$
+- posizione 2: $R = 2/6 = 0.333$; $P = 2/2 = 1$
+- posizione 4: $R = 3/6 = 0.5$; $P = 3/4 = 0.75$
+- posizione 6: $R = 4/6 = 0.667$; $P = 4/6 = 0.667$
+- posizione 13: $R = 5/6 = 0.833$; $P = 5/13 = 0.38$
+
+In posizione 13 c'è stato un po' di errore: per trovare il quinto documento rilevante abbiamo dovuto scorrere molti documenti non rilevanti, quindi la precision è crollata. Il sesto documento rilevante, inoltre, non viene mai restituito: il recall non raggiunge mai il 100%. Tuttavia, i primi documenti rilevanti sono posizionati molto in alto, quindi la precision resta alta ai primi livelli di recall e otteniamo comunque una buona media di informazione.
+
+Questi dati possiamo inserirli in un grafico e studiarli. Da un punto di vista numerico, applichiamo ora a questo esempio la procedura di interpolazione, così da ricavare, a partire dai valori noti, la precision ai livelli di recall standard.
 
 >[!NOTE] Regola
->The interpolated precision at the j-th standard recall
-level is the maximum known precision among all
-recall levels above rj:
-![[Pasted image 20261022165537.png]]
+>La precision interpolata al $j$-esimo livello di recall standard è la **massima precision nota** tra tutti i livelli di recall maggiori o uguali a $r_j$:
+>
+>$P(r_j) = \max_{r \ge r_j} P(r)$
 
-Una volta catturata la formula su quei valori, avremo come risultato:
+In pratica, per ogni $r_j$ si guardano tutti i punti misurati con recall almeno pari a $r_j$ e si prende la precision più alta. Se non esiste nessun punto con recall maggiore o uguale a $r_j$, la precision interpolata vale 0. Questa regola elimina il "dente di sega" e produce una curva non crescente.
+
+Applicandola all'esempio appena visto (esempio 1), e a un secondo esempio in cui sono recuperati tutti e 6 i documenti rilevanti (nelle posizioni 1, 3, 5, 8, 9 e 14, per cui il recall arriva a 1.0 con $P = 6/14 = 0.429$), si ottiene:
+
+| $r_j$ | Esempio 1 | Esempio 2 |
+| ----- | --------- | --------- |
+| 0.0   | 1         | 1         |
+| 0.1   | 1         | 1         |
+| 0.2   | 1         | 0.667     |
+| 0.3   | 1         | 0.667     |
+| 0.4   | 0.75      | 0.6       |
+| 0.5   | 0.75      | 0.6       |
+| 0.6   | 0.667     | 0.556     |
+| 0.7   | 0.38      | 0.556     |
+| 0.8   | 0.38      | 0.556     |
+| 0.9   | 0         | 0.429     |
+| 1.0   | 0         | 0.429     |
+
 ![[Pasted image 20261022165600.png]]
 
-Così visivamente vediamo la precisione confrontata ai valori fissi
-
-[ATTUALMENTE IL PROCEDIMENTO NON E' NOTO LO DIAMO PER BUONO PERCHE' SARA' MOSTRATO IN SEGUITO]
+Così vediamo visivamente la precision confrontata con i livelli di recall standard. Il procedimento verrà approfondito in seguito.
 
 ![[Pasted image 20261022171005.png]]
-così come mostrato in figura è cpome vengono paragonate e confrontate due query
+
+Come mostrato in figura, è in questo modo che vengono paragonate e confrontate due query (o due sistemi): si sovrappongono le curve interpolate, e **la curva più vicina all'angolo in alto a destra indica le prestazioni migliori**. Nell'esempio della slide, la curva del sistema con stemming sta sopra quella del sistema senza stemming, quindi lo stemming migliora le prestazioni.
+### Precision@k
+
+I grafici sono utili, ma spesso si preferisce avere una misura riassuntiva. La **Precision@k** è la precision calcolata a un livello di retrieval fisso: è la precision dei primi $k$ risultati (valori comunemente usati sono $k = 10$ e $k = 20$).
+
+**Pregi**:
+
+- è adatta alla maggior parte delle ricerche web, dove all'utente interessano buoni risultati nella prima o nelle prime due pagine;
+- è utile per stimare un valore di soglia (*cutoff*) $k$.
+
+**Difetti**:
+
+- si media male e dipende da un parametro $k$ arbitrario;
+- è una misura *set-based*: non distingue tra diversi ordinamenti dello stesso numero di documenti rilevanti nei primi $k$;
+- la scelta di $k$ può essere fuorviante: se $k = 10$ e la query ha solo 5 documenti rilevanti, P@10 non potrà mai raggiungere 1, nemmeno per un sistema perfetto.
 ### Unranked vs Ranked Misurazione
-Vogliamo capire qual è meglio tra ISR1 E ISR2, ovvero le due tabelle di prima, per comprenderlo si usa questa formula:
+Vogliamo capire quale sia il migliore tra IRS1 e IRS2. Consideriamo due sistemi che restituiscono 10 documenti, di cui 5 sono i documenti rilevanti totali presenti nella collezione, e supponiamo che entrambi ne recuperino 3 nei primi 10 risultati, ma in posizioni diverse. Le misure senza ranking danno lo stesso valore a entrambi:
+
+$recall = \frac{\text{documenti recuperati e rilevanti}}{\text{totale documenti rilevanti}}$, quindi $recall(IRS_1) = \frac{3}{5} = recall(IRS_2)$
+
+$precision = \frac{\text{documenti recuperati e rilevanti}}{\text{totale documenti recuperati}}$, quindi $precision(IRS_1) = \frac{3}{10} = precision(IRS_2)$
+
 ![[Pasted image 20261022171234.png]]
 
-Più alta sarà la curva più alto sarà il ranking quindi sarà meglio.
-Il valore calcolato alla fine è quello di Avarage Precisione deve essere compreso tra 0 e 1, perforza.
+Queste misure non dipendono dalla posizione dei documenti, quindi non possono distinguere i due sistemi. Servono misure che tengano conto del ranking: la **precision a una data posizione $p$**, che si calcola impostando $p$ al numero di documenti considerati, cioè i primi $p$ della lista.
 
-La misurazione con differente ranking postion $p$ si calcola impostando p ai documenti
 ![[Pasted image 20261022171423.png]]
-Se la Precision IRS1>IRS2 allora anche p del recall di IRS1>IRS2
-e tramite questa formula:
+
+Nell'esempio entrambi i sistemi hanno 5 documenti rilevanti nei primi 10 risultati, ma IRS1 li mette più in alto (posizioni 1, 3, 4, 6 e 8, contro 2, 3, 4, 7 e 10 di IRS2): per esempio in posizione 1 IRS1 ha $P = 1$ e $R = 0.2$, mentre IRS2 ha $P = 0$ e $R = 0$. In generale, se a una posizione $p$ la precision di IRS1 è maggiore di quella di IRS2, allora anche il recall di IRS1 è maggiore di quello di IRS2. Il motivo è che, alla stessa posizione $p$, i due sistemi hanno restituito lo stesso numero di documenti, e il numero totale di rilevanti è lo stesso: precision e recall sono entrambi proporzionali al numero di documenti rilevanti restituiti, quindi se aumenta uno aumenta anche l'altro.
+
 ![[Pasted image 20261022171518.png]]
 
-Calcoliamo l'avarge precision
-[Argomentare spiegazioni formule]
+Riportando i punti nel grafico recall-precision, la curva di IRS1 sta sopra quella di IRS2: più alta è la curva, migliore è il ranking, quindi IRS1 è il sistema migliore.
 
+Per riassumere il confronto in un solo numero si usa l'**Average Precision (AP)**, ovvero la media dei valori di precision calcolati nelle posizioni in cui viene restituito un documento rilevante:
 
+$AP = \frac{1}{m}\sum_{k=1}^{m} Precision(p_k)$
+
+dove $m$ è il numero di documenti rilevanti per la query e $p_k$ è la posizione in cui compare il $k$-esimo documento rilevante. Il valore ottenuto è compreso tra 0 e 1, ed è tanto più alto quanto più i documenti rilevanti sono posizionati in alto. Un documento rilevante che non viene mai restituito contribuisce con precision pari a 0.
+
+Calcoliamo l'Average Precision dei due sistemi dell'esempio, usando le precision nelle posizioni dei documenti rilevanti:
+
+- $AP(IRS_1) = \frac{1 + 0.67 + 0.75 + 0.67 + 0.63}{5} = 0.74$
+- $AP(IRS_2) = \frac{0.5 + 0.67 + 0.75 + 0.57 + 0.5}{5} = 0.6$
+
+L'AP di IRS1 è maggiore, a conferma che il suo ranking è migliore.
+[Continuare da slide 40 fino alla 48]
