@@ -86,6 +86,42 @@ Mediamente questo algoritmo funziona ma non è ottimale per alcune query poiché
 Se per sfortuna i primi $k$ risultati non sono rilevanti o parlano tutti di una singola accezione di un termine ambiguo (es. cerco _"Giaguaro"_ inteso come animale, ma i primi 8 risultati parlano dell'automobile _Jaguar_), l'algoritmo estrarrà termini come _"motore", "auto", "prezzo"_. Se facciamo più iterazioni, a ogni ciclo il vettore della query si sposterà sempre più verso le automobili, allontanandosi definitivamente dall'intento originale dell'utente
 Questo fenomeno prende il nome di **Query Drift**.
 ### Feedback Implicito
-Il feedback implicito si basa sul dare rilevanza ai link cliccati maggiormente e più volte dagli utenti, così ad ogni query simile o uguale saranno ripresentati questi documenti, poiché si presume che siano i risultati desiderati e più importanti a livello di peso.
+Il **feedback implicito** si basa sul dare rilevanza ai link cliccati maggiormente e più volte dagli utenti, così ad ogni query simile o uguale saranno ripresentati questi documenti, poiché si presume che siano i risultati desiderati e più importanti a livello di peso.
 
-Questo tipo di feedback è usato nei moderni motori di ricerca e si basa sui click degli utenti
+Questo tipo di feedback è usato nei moderni motori di ricerca e si basa sui **click** degli utenti così da posizionare i link più cliccati generalmente dagli utenti più in alto rispetto a quelli che vengono dettati inizialmente dalla query.
+Questa tecnica, chiamata **clickstream mining**, raccoglie dati a livello globale da milioni di utenti e oggi alimenta direttamente i modelli di Machine Learning che decidono l'ordine dei risultati.
+### Query espanza
+Nel relevance feedback, gli utenti danno un input aggiuntivo (rilevante/non rilevante) sui **documenti**, che viene usato per ripesare i termini nella query per i documenti.
+Nella **query expansion**, gli utenti danno un input aggiuntivo (termine di ricerca buono/cattivo) su **parole o frasi**.
+
+In sintesi quindi nella Query Expansion si agisce sulle parole e frasi di rilievo, aggiungendo sinonimi alla query di partenza mentre nella Relevance Feedback l'input della query riguarda solo i documenti su cui poi viene eseguito il Rocchio.
+#### Esempio sulla ricerca delle immagini
+Un modo visivo per capire come avviene il Relevance Feedback è usando le immagini di Google.
+![[Pasted image 20261022153313.png]]
+
+- Sotto le fotografie delle bici c'è il tasto *Find similar images*, questo è l'equivalente di mettere mi piace e dare un feedback al motore di ricerca. 
+- In alto invece c'è la dicitura *Related searches*, quella mostra proprio le parole aggiuntive per migliorare i termini della query, quindi in questo caso c'è anche un uso della Query Expansion.
+### Query Assist
+Il Query Assist non si basa su dizionari fissi ma sul **Query Log Mining**, ovvero si basa sulle ricerche eseguite precedentemente dagli utenti.
+Raccomanda query recenti e frequenti che contengono la stringa parziale digitata dall'utente.
+A livello di **Raking** presenta un problema grande, poiché ogni vecchia query salvata nei log precedenti viene trattata come se fosse un *"documento"* ed ad ogni lettera inserita in una nuova ricerca, inizierà a cercare le parole consigliate sulla base delle query analizzate precedentemente, ordinandoli per popolarità e freschezza (ovvero quanto è nuova quella notizia / documento).
+#### Esempio di Query Assist
+La foto in figura riportata mostra come avviene **l'autocompilazione** delle query nelle barre di ricerca.
+![[Pasted image 20261022153650.png]]
+
+È un esempio pratico di come i motori di ricerca aiutano l'utente a espandere e completare la query in tempo reale mentre sta ancora scrivendo (_autocompletamento_), guidandolo verso formulazioni più precise.
+## Come espandere la query utente
+Per espandere una query utente abbiamo tra possibili scelte:
+- **Tesauro Manuale**, esso è un dizionario di sinonimi scritto umanamente da esperti.
+  
+- **Analisi Globale (Statica)**, questo metodo si basa sui log delle ricerche eseguite dagli utenti sul web. Generalmente se due parole compaiono molto spesso una accanto all'altra nella stessa query (*co-occorenza*), il sistema impara che sono correlate e crea un tesauro automatico.
+  
+- **Analisi Locale (Dinamica)**, invece di analizzare tutti i documenti nel DB, si analizzano solo i documenti restituiti dalla query appena fatta dall'utente così da estrarre i termini più frequenti in quest'ultima, si basa molto sul concetto dello Pseudo-Relevance Feedback.
+### Espansione della query basata su Tesauro
+Per ogni termine $t$ in una query, espandi la query con i sinonimi e le parole correlate di $t$ presenti nel tesauro (come *feline $->$ feline cat*).
+
+I **vantaggi** del Tesauro è l'aumento del **Recall** (trovare molti più documenti rilevanti che usano i sinonimi) ma si fissa un peso inferiore ad ogni sinonimo più astratto trovato così da non far valere di più i sinonimi dalla parola usata dall'utente.
+Tuttavia presenta anche degli **svantaggi**:
+- **Crollo della Precision**: Il Tesauro non funziona bene con le parole polisemiche, poiché se dobbiamo analizzare una parola come *interest rate*, il tesauro divide in due parole diverse *interest* e *rate*, collegandole a parole differenti l'uno e restituendo suggerimenti fuori tema.
+  
+- **Costi**: Come spiegato precedentemente creare un tesauro è dispendioso poiché richiede la mano di persone esperte che lavorino in team ed inoltre le parole sono in costante evoluzione quindi il tesauro dovrebbe essere costantemente aggiornato. 
