@@ -2,21 +2,21 @@ Una parte importante nello studio della rilevanza è il **relevance feedback**, 
 
 Il processo di modifica della query è detto:
 
-- relevance feedback quando l’utente dà informazioni sulla rilevanza dei documenti
-- query expansion quando delle informazioni legate alla query ne espandono il risultato.
+- **relevance feedback** quando l’utente dà informazioni sulla rilevanza dei documenti
+- **query expansion** quando delle informazioni legate alla query ne espandono il risultato.
 
-Entrambe verranno dette metodi di feedback.
+Entrambe verranno dette **metodi di feedback**.
 
 I metodi di feedback possono essere:
 
-- impliciti → le informazioni sono derivate dal sistema
-- espliciti → l’utente fornisce direttamente informazioni
+- **impliciti** → le informazioni sono derivate dal sistema
+- **espliciti** → l’utente fornisce direttamente informazioni
 
 Dato un insieme di documenti, il **centroide** è il documento medio (centro di massa). Essendo i documenti rappresentati come punti (o vettori) all'interno di uno spazio vettoriale multidimensionale, il centroide si otterrà:
 
 ![lez19_image.png](lez19_image.png)
 
-Ovvero la somma delle dimensioni diviso il numero di documenti, in pratica la media.
+Ovvero la somma delle dimensioni diviso il numero di documenti, in pratica la **media**.
 ### Algoritmo di Rocchio
 Si presenta un algoritmo che permette di discriminare i documenti non rilevanti da quelli rilevanti.
 
@@ -60,6 +60,4 @@ E anche alcuni problemi:
 - dopo aver applicato il relevance feedback, è spesso più difficile capire perché un particolare documento sia stato recuperato
 - le esigenze informative (information needs) dell'utente possono cambiare durante l'interazione
 
-Vedere esercizio.
-
-Slide [15-19]
+Vedere esercizio.[AL momento uniba è in down non posso vederlo]
