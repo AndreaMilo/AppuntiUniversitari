@@ -1,5 +1,3 @@
-# Lezione 19/10
-
 Una parte importante nello studio della rilevanza è il **relevance feedback**, ovvero la possibilità che l’utente segnali come rilevante o meno un set di risultati cosicchè il sistema possa rielaborare una query includendone il feedback.
 
 Il processo di modifica della query è detto:
