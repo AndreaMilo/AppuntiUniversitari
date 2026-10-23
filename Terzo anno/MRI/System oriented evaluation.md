@@ -1,33 +1,32 @@
-Un modo per ovviare al problema dell’utente che non sempre da feedback diretti, oltre i feedback impliciti, un altro modo per captare più informazioni è lo **pseudo-relevance** feedback, che assume che i primi k risultati di una query siano rilevanti e i restanti no. 
+Un modo per ovviare al problema dell’utente che non sempre da feedback diretti, oltre i feedback impliciti, un altro modo per captare più informazioni è lo **pseudo-relevance** feedback, che assume che i primi $k$ risultati di una query siano rilevanti e i restanti no. 
 
 Nel processo di relevance feedback c’è un altro processo, ovvero quello di **query expansion**. Nella relevance feedback, le informazioni in più erano dati ai risultati ottenuti da una query esplorativa, nella query expansion, le informazioni aggiuntive vengono inserite nelle query, ad esempio con l’uso di parole più specifiche. Un esempio sono i query assistance dei browser, che generalmente sono ottenuti da query passate proprie o di altri utenti, a cui viene applicato un ulteriore sistema di ranking (proprio come per i documenti) per mostrarle all’utente.
 
  Le sorgenti di query expansion sono:
 
-- dizionari
-- analisi globale di tutti i documenti all’interno della collezione (effettuando una moltiplicazione tra la matrice dei termini T e quella dei documenti D, ottenendo una matrice M; effettuando la trasposta di M, e moltiplicandola per M iniziale si otterrebbe la matrice termini termini, che, detto in breve, mette in corrispondenza parole simili).
-- analisi dei documenti ottenuti come risultato
+- Dizionari
+- Analisi globale di tutti i documenti all’interno della collezione (effettuando una moltiplicazione tra la matrice dei termini $T$ e quella dei documenti $D$, ottenendo una matrice $M$; effettuando la trasposta di $M$, e moltiplicandola per $M$ iniziale si otterrebbe la matrice termini termini, che, detto in breve, mette in corrispondenza parole simili).
+- Analisi dei documenti ottenuti come risultato
 
 Un altro esempio di query expansion è quello Thesaurus-based, che aggiunge parole relative a quelle inserite nella query iniziale. Usata in ambiti scientifiche, potrebbe tuttavia aumentare l’imprecisione in caso di parole ambigue, oltre che avere alti costi di produzione e modifica.
 
 ## Valutazione dei Sistemi di Ritrovamento
-
 C’è la necessità di capire quali sono i sistemi di ritrovamento migliori in base alle necessità che si hanno (quali operazioni di preprocessing fare, sistemi di ranking più adatti, schema di pesatura migliore, ecc..).
 
 L’efficacia di un sistema è legato alla rilevanza, il quale è però un parametro sfumato, difficile da valutare in modo empirico.
 
-Storicamente, la valutazione dei sistemi per il ritrovamento delle informazioni nasce grazie agli studi di Cyril Cleverdon, un bibliotecario presso il Cranfield College of Aeronautics. Nel 1952, Cleverdon usando Uniterm, un sistema di indicizzazione, e con l’aiuto di Bob Thorne, condusse un esperimento sulla valutazione dei sistemi di indicizzazione, che gli permisero grazie ad una sovvenzione del Nation Science Foundation, di poi condurre altri test per compararne diversi, che culminarono con la moderna misurazione della **Precisione**, la percentuale di documenti rilevanti tra quelli restituiti, e il **Richiamo**, ovvero la percentuale dei documenti restituiti tra quelli rilevanti. 
+Storicamente, la valutazione dei sistemi per il ritrovamento delle informazioni nasce grazie agli studi di Cyril Cleverdon, un bibliotecario presso il Cranfield College of Aeronautics. Nel 1952, Cleverdon usando **Uniterm**, un sistema di indicizzazione, e con l’aiuto di Bob Thorne, condusse un esperimento sulla valutazione dei sistemi di indicizzazione, che gli permisero grazie ad una sovvenzione del Nation Science Foundation, di poi condurre altri test per compararne diversi, che culminarono con la moderna misurazione della **Precisione**, la percentuale di documenti rilevanti tra quelli restituiti, e il **Richiamo**, ovvero la percentuale dei documenti restituiti tra quelli rilevanti. 
 
-OSSERVAZIONE: si noti che:
+>[!WARNING] OSSERVAZIONE: 
+>si noti che:
+>- nella maggior parte delle ricerche un alto richiamo non è fondamentale;
+> - la maggior parte degli utenti necessita di un set limitato di risultati, tra cui sceglierà quelli con un ranking maggiore.
 
-- nella maggior parte delle ricerche un alto richiamo non è fondamentale;
-- la maggior parte degli utenti necessita di un set limitato di risultati, tra cui sceglierà quelli con un ranking maggiore.
-
-Il primo modo di valutare l’efficienza è il Cranfield Paradigm, che valuta la rilevanza intesa come rilevanza dal punto di vista dell’argomento, ovvero considera i documenti che contengono informazioni sullo stesso argomento della query. Quando viene implementato un motore di ricerca, si associano a delle query un set di documenti che sappiamo essere pertinenti, cosicchè per query future il sistema sappia quale documenti associare. Gli step adottati per calcolare l’efficienza di questo sistema è:
+Il primo modo di valutare l’efficienza è il **Cranfield Paradigm**, che valuta la rilevanza intesa come rilevanza dal punto di vista dell’argomento, ovvero considera i documenti che contengono informazioni sullo stesso argomento della query. Quando viene implementato un motore di ricerca, si associano a delle query un set di documenti che sappiamo essere pertinenti, cosicchè per query future il sistema sappia quale documenti associare. Gli step adottati per calcolare l’efficienza di questo sistema è:
 
 ![lez21_image.png](lez21_image.png)
 
-Un altro metodo è quello del Test Collection: partendo da un corpus di documenti, si selezionano delle informazioni da ottenere, le quali saranno ottenute da un umano che manualmente dovrà assegnare delle etichette ai documenti rilevanti ciascuna informazioni necessaria (richiede troppo effort).
+Un altro metodo è quello del **Test Collection**: partendo da un corpus di documenti, si selezionano delle informazioni da ottenere, le quali saranno ottenute da un umano che manualmente dovrà assegnare delle etichette ai documenti rilevanti ciascuna informazioni necessaria (richiede troppo effort).
 
 **Principali Collezioni di Test**
 • **TREC:** Iniziativa del NIST attiva dal 1992 che fornisce un vasto ambiente di test con circa 1 milione di documenti tramite workshop annuali.   
