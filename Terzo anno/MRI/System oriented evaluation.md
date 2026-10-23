@@ -57,11 +57,11 @@ In base al numero di questi documenti si possono calcolare:
 
 $precision = \frac{numero\ documenti\ rilevanti\ restituiti}{numero\ totale\ di\ documenti\ restituiti}$
 
-ovvero l’abilità del restituire i documenti più rilevanti rilevanti. Equivale alla probabilità condizionata $P(rilevanti | restituiti). E$:
+ovvero l’abilità del restituire i documenti più rilevanti restituiti. Equivale alla probabilità condizionata $P(rilevanti | restituiti)$. 
 
 $recall = \frac{numero\ documenti\ rilevanti\ restituiti}{numero\ totale \ di \ documenti \ rilevanti}$
 
-l’abilità del trovare tra tutti i documenti, tutti quelli rilevanti, che corrisponde alla probabilità condizionata P(restituiti | rilevanti).
+l’abilità del trovare tra tutti i documenti, tutti quelli rilevanti, che corrisponde alla probabilità condizionata $P(restituiti | rilevanti)$.
 
 Queste due metriche non sono sensibili al ranking.
 
