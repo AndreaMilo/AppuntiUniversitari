@@ -210,4 +210,4 @@ Calcoliamo l'Average Precision dei due sistemi dell'esempio, usando le precision
 - $AP(IRS_2) = \frac{0.5 + 0.67 + 0.75 + 0.57 + 0.5}{5} = 0.6$
 
 L'AP di IRS1 è maggiore, a conferma che il suo ranking è migliore.
-[Continuare da slide 40 fino alla 48]
+[Continuare da slide 40 fino alla 50]
