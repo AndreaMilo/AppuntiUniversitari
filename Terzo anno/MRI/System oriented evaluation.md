@@ -32,7 +32,7 @@ Un altro metodo è quello del **Test Collection**: partendo da un corpus di docu
 • **TREC:** Iniziativa del NIST attiva dal 1992 che fornisce un vasto ambiente di test con circa 1 milione di documenti tramite workshop annuali.   
 • **Origini:** L'idea di una collezione "ideale" fu proposta da Karen Sparck Jones negli anni '70 e implementata nel progetto TREC seguendo il paradigma di Cranfield.   
 • **ClueWeb09:** Dataset massiccio per il Web track contenente oltre 1 miliardo di pagine web in 10 lingue.   
-• **Archivi Storici:** Includono benchmark precedenti come ISILT, UKCIS e MEDLARS. 
+• **Archivi Storici:** Includono benchmark precedenti come ISILT, UKCIS e MEDLARS. (I pokemon dei laghi per ricordare i nomi)
 
 **Metodologia e Giudizio Umano**
 • **Task Specifici:** Benchmark come la collezione Reuters definiscono precisi "compiti di recupero", spesso sotto forma di query predefinite.   
@@ -40,7 +40,6 @@ Un altro metodo è quello del **Test Collection**: partendo da un corpus di docu
 • **Tecnica del Pooling:** Per gestire enormi moli di dati, l'etichettatura viene effettuata solo su un sottoinsieme di documenti (pool) effettivamente recuperati dai vari sistemi analizzati.   
 
 ### Precision and Recall
-
 Si consideri una collezione di documenti. Si suddividano poi le collezione test di documenti rilevanti e la collezione dei documenti ritrovati da una query (sottoinsiemi della collezione di partenza).
 
 ![image.png](lez21_image%201.png)
