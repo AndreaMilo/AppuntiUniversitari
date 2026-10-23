@@ -48,16 +48,16 @@ Se fossero disgiunti, il motore di ricerca avrebbe fallito. Al contrario se foss
 
 Uno scenario del genere ci mette a quattro situazioni possibili:
 
-- documenti irrilevanti e non restituiti (True Negative - TN)
-- documenti irrilevanti e restituiti (False Positive - FP) (rumore, errore)
-- documenti rilevanti e non restituiti (False Negative - FN) (effetto silenzio, anch’esso considerabile come errore)
-- documenti rilevanti e restituiti (True Positive - TP)
+- Documenti irrilevanti e non restituiti (**True Negative** - TN)
+- Documenti irrilevanti e restituiti (**False Positive** - FP) (rumore, errore)
+- Documenti rilevanti e non restituiti (**False Negative** - FN) (effetto silenzio, anch’esso considerabile come errore)
+- Documenti rilevanti e restituiti (**True Positive** - TP)
 
 In base al numero di questi documenti si possono calcolare:
 
 $precision = \frac{numero\ documenti\ rilevanti\ restituiti}{numero\ totale\ di\ documenti\ restituiti}$
 
-ovvero l’abilità del restituire i documenti più rilevanti rilevanti. Equivale alla probabilità condizionata P(rilevanti | restituiti). E:
+ovvero l’abilità del restituire i documenti più rilevanti rilevanti. Equivale alla probabilità condizionata $P(rilevanti | restituiti). E$:
 
 $recall = \frac{numero\ documenti\ rilevanti\ restituiti}{numero\ totale \ di \ documenti \ rilevanti}$
 
