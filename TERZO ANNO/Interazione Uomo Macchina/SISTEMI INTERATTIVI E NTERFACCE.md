@@ -17,7 +17,7 @@ Definire tutti i compiti che l'utente deve portare a termine con l'utilizzo del 
 
 L'interazione fra un utente e un sistema interattivo, intesa come sequenza di azioni compiute dall'utente (input) e risposte del sistema (output) allo scopo di raggiungere un obiettivo.
 
-![[Pasted image 20261001140756.png]]
+![[IUM_Pasted image 20261001140756.png]]
 
 Complessità intera o strutturale: 
 Il sistema è composto da molti componenti che interagiscono fra loro in modo complicato. 
