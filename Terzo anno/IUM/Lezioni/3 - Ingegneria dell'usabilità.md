@@ -28,59 +28,111 @@ La qualità della progettazione di un prodotto attraversa 4 livelli di maturità
 Un prodotto è invisibile quando permette all'utente di concentrarsi esclusivamente sul **compito** che sta svolgendo e non sullo strumento che sta usando. Lo strumento torna a essere "visibile" (cioè ci accorgiamo della sua presenza e ci pensiamo) solo quando qualcosa non va o si rompe.
 
 ## Ingegneria del Software vs Ingegneria dell'Usabilità
-- **Ingegneria del software:** è la disciplina che si occupa dei problemi tecnici e gestionali per sviluppare software di qualità e senza sprechi, studiando i modelli di sviluppo.
-- **Ingegneria dell'usabilità:** studia tecniche, metodi e processi per progettare e sviluppare sistemi **usabili**.
+Per ottenere sistemi realmente usabili è necessario seguire tre direttrici fondamentali (formalizzate dallo standard **ISO 9241-210**, *Human-centred design process for interactive systems*):
+- **Progetto centrato sull'utente:** comprendere gli utenti, i loro compiti e il contesto d'uso.
+- **Sviluppo iterativo:** articolato in 4 step di sviluppo ciclici per ottenere e raffinare un prototipo.
+- **Valutazione dei prototipi:** possibilmente condotta con gli utenti finali (o, in alternativa, tramite ispettori ed esperti di usabilità).
 
-Secondo **Jakob Nielsen** (1994), l'ingegneria non consiste nel creare un sistema perfetto con risorse infinite, ma nel costruire in modo economico un sistema funzionante che soddisfi una necessità. Per farlo, l'ingegneria dell'usabilità impone di **specificare quantitativamente e in anticipo** quali caratteristiche di usabilità dovrà avere il prodotto finale e in quale misura. Se non possiamo misurare l'usabilità con criteri precisi, non possiamo sapere se il prodotto soddisfa le esigenze.
+![[IUM_Pasted image 20261013162008.png]]
+
+- **Ingegneria del software:** è la disciplina che si occupa dei problemi tecnici e di gestione per sviluppare sistemi software di qualità e senza sprechi, studiando i vari modelli dei processi di progettazione e sviluppo.
+- **Ingegneria dell'usabilità:** studia tecniche, metodi e processi per progettare e sviluppare sistemi **usabili** in modo pratico ed economico, iniziando fin dalla primissima raccolta e analisi dei requisiti. Questo approccio dimostra che l'usabilità non è un semplice ritocco estetico finale, ma un processo olistico che guida e struttura l'intero ciclo di vita del prodotto.
+
+Secondo **Jakob Nielsen** (1994), l'ingegneria non consiste nel creare un sistema perfetto con risorse infinite, ma nel costruire in modo economico un sistema funzionante che soddisfi una necessità. Per farlo, l'approccio cardine dell'ingegneria dell'usabilità è la **misurabilità**: prima ancora di costruire il prodotto, impone di **specificare quantitativamente e in anticipo** quali caratteristiche e requisiti di usabilità dovrà avere il prodotto finale e in quale misura. Questa definizione preventiva permette di verificare e dimostrare oggettivamente che esso soddisfi le necessità per cui è stato progettato: senza metriche specifiche e misurabili non è possibile fare vera ingegneria dell'usabilità.
+
 ### I 3 principi cardine dell'Ingegneria dell'Usabilità
-1. **Focalizzazione sull'utente:** dall'inizio e per tutto il processo.
-2. **Modello iterativo:** progettazione e sviluppo basati su prototipi successivi.
-3. **Prove con l'utente:** test continui lungo tutto il processo, raccogliendo sia **analisi qualitative** (opinioni, comportamenti) sia **misure quantitative** (tempi di esecuzione, numero di errori).
+1. **Centralità dell'utente (Focalizzazione sull'utente):** mantenere una costante focalizzazione sull'utente, dall'inizio e per tutta la durata della progettazione, è fondamentale per evitare l'errore comune di sviluppare soluzioni tecniche eccellenti ma inutilizzabili o distaccate dalle reali necessità del pubblico di riferimento.
+2. **Sviluppo iterativo:** adottare un modello di progettazione e sviluppo iterativo basato su prototipi successivi garantisce grande flessibilità, poiché permette di testare idee, individuare difetti precocemente a basso costo e affinare progressivamente l'interfaccia fino a raggiungere la soluzione ottimale.
+3. **Testing continuo e basato sui dati (Prove con l'utente):** condurre test continui lungo tutto il processo, combinando **analisi qualitative** (opinioni, comportamenti) e **misure quantitative** (tempi di esecuzione, numero di errori), permette di validare le scelte di design basandosi su feedback reali e dati oggettivi, eliminando le supposizioni.
 
 ## I modelli di sviluppo: dal modello "a Cascata" a quello "Iterativo"
 
 ### Il Modello Tradizionale "a Cascata" (Waterfall)
-Prevede fasi rigide e sequenziali: _Requisiti $\rightarrow$ Analisi e progettazione $\rightarrow$ Realizzazione $\rightarrow$ Test $\rightarrow$ Rilascio_.
-- **Pro:** Fasi logiche ben definite; ogni fase dà l'input alla successiva; facile inserire punti di controllo (_check-point_); processo apparentemente facile da controllare.
-- **Contro:** Dopo aver preso una decisione è **molto costoso tornare indietro**. Inoltre, il prodotto si vede solo alla fine (quando potrebbe non andare bene). Per i sistemi interattivi è un modello **concettualmente sbagliato e non funziona**.
+![[IUM_Pasted image 20261013163746.png]]
+
+Il **modello tradizionale** di sviluppo (noto come *modello a cascata*) si basa su un approccio rigidamente lineare e sequenziale: *Requisiti $\rightarrow$ Analisi e progettazione $\rightarrow$ Realizzazione $\rightarrow$ Test $\rightarrow$ Rilascio*.
+- **Pro:** Si distingue per avere fasi logiche ben definite, in cui ogni step si conclude fornendo direttamente gli input necessari alla fase successiva. Questa struttura a blocchi consente di inserire chiari punti di controllo (*check-point*) di verifica tra un passaggio e l'altro, rendendo l'intero processo *apparentemente* molto ben controllabile da un punto di vista gestionale.
+- **Contro:** La natura sequenziale impone una grave inflessibilità: una volta presa una decisione (ad esempio sui requisiti o sul design), è **estremamente costoso tornare indietro** in termini di tempo e budget per correggere o modificare il lavoro fatto in fasi avanzate. Procedendo senza iterazioni, il committente e l'utente vedono il sistema solo alla fine del lunghissimo ciclo di sviluppo, con l'altissimo rischio di trovarsi di fronte a un risultato finale insoddisfacente o che non risponde più ai bisogni iniziali. Per la progettazione di sistemi interattivi è un modello **concettualmente sbagliato e di fatto non funziona**.
+
+> [!question] Domanda d'esame: Differenza tra modello iterativo e modello a cascata
 
 ### Perché il modello a cascata fallisce? Il "Ciclo Compito-Artefatto"
-Il motivo per cui non si può fissare tutto all'inizio è spiegato dal **ciclo compito-artefatto**:
-1. I **bisogni dell'utente** fanno nascere un nuovo **strumento** (artefatto).
-2. L'introduzione dello **strumento** modifica il modo in cui l'utente lavora e vive, facendo nascere **nuovi bisogni** e cambiando i compiti stessi. Di conseguenza, **anche i requisiti evolvono durante il processo!**
+![[IUM_Pasted image 20261013164844.png]]
+
+Il motivo per cui non si può fissare tutto all'inizio è spiegato dal **ciclo compito-artefatto**, che illustra la dinamica di continua evoluzione tra le necessità umane e le soluzioni tecnologiche:
+1. I **bisogni dell'utente** fanno nascere un nuovo **strumento** (o artefatto), concepito appositamente per risolvere un problema o facilitare un determinato compito.
+2. Tuttavia, il processo non si esaurisce con la creazione della soluzione: l'introduzione e l'utilizzo dello **strumento** modifica inevitabilmente l'ambiente, le abitudini e il modo in cui l'utente lavora e vive, trasformando nel tempo i bisogni stessi dell'utente, facendo nascere **nuovi bisogni** e cambiando i compiti.
+
+Questa continua interazione evidenzia come la progettazione non sia mai un processo statico con un traguardo definitivo: risolvere un problema odierno introducendo una nuova tecnologia altera lo scenario di partenza, generando nuove sfide, aspettative e necessità che danno inizio a un nuovo ciclo di sviluppo. Di conseguenza, **anche i requisiti evolvono durante il processo!**
 
 ### Il Modello Corretto: Sviluppo Iterativo
-Si sviluppa per prototipi successivi: dopo aver raccolto i _Requisiti iniziali_, si entra in un ciclo continuo composto da **Progettazione $\rightarrow$ Prototipazione $\rightarrow$ Test & Rilascio**, tornando indietro per correggere e affinare.
+![[IUM_Pasted image 20261013164853.png]]
 
-- **Pro del modello iterativo:** Il prodotto si vede fin da subito (anche se parziale) e si perfeziona; le scelte si sperimentano in anticipo scartando subito quelle sbagliate; è il modello giusto per sistemi complessi.    
+Il **modello iterativo** rappresenta l'approccio corretto ed efficace per la progettazione di sistemi interattivi, basandosi su uno **sviluppo per prototipi successivi**. Dopo aver raccolto i *Requisiti iniziali* (che segnano l'inizio del processo), si entra in un ciclo continuo e dinamico composto da quattro fasi: **Requisiti $\rightarrow$ Progettazione $\rightarrow$ Prototipazione $\rightarrow$ Test & Rilascio**, tornando indietro per correggere e affinare.
+
+- **Pro del modello iterativo:** Estrema flessibilità e capacità di adattamento. Il prodotto si vede fin da subito (anche se parziale) e si perfeziona; le scelte si sperimentano in anticipo scartando subito quelle sbagliate. Man mano che si sviluppano e si testano i prototipi con gli utenti, emergono nuove informazioni e si comprendono meglio i bisogni reali: l'approccio iterativo permette di accogliere questi cambiamenti in corso d'opera, ridefinendo continuamente le specifiche iniziali a ogni nuovo ciclo per garantire che il sistema finale sia davvero utile, utilizzabile e soddisfacente. È il modello giusto per sistemi complessi.
 - **Contro del modello iterativo:** È difficile stimare i costi in anticipo (a preventivo); si rischia di non finire mai (divergenza del processo) per troppe richieste di modifica; i requisiti fluidi rendono più difficile la comunicazione tra team e cliente (committente).
 
 ### Altre varianti di modelli di sviluppo
-- **Unified Software Development Process (Jacobson, Booch, Rumbaugh):** Mostra come nelle varie iterazioni nel tempo tutte le attività (requisiti, progettazione, prototipazione, test) siano presenti contemporaneamente, ma con "pesi" (risorse impiegate) diversi: all'inizio pesano di più i requisiti, verso la fine pesano di più i test e il rilascio.
-- **Ciclo a cascata integrato con l'usabilità:** Inserisce attività centrate sull'utente (analisi degli utenti, interviste, visite sul posto, scenari, prototipi) come input per le fasi classiche del modello a cascata.
-- **Ciclo di vita "a Stella" (Hix & Hartson, 1993):** Non esiste alcun ordine prestabilito tra le fasi (implementazione, prototipazione, analisi dei compiti, requisiti, progettazione concettuale). Al centro della stella c'è la **Valutazione**: ogni singola attività deve passare dalla valutazione prima di passare a un'altra attività qualsiasi.
 
-## Lo Standard ISO 9241-210: Human-Centred Design (HCD) (possibile domanda?)
-Lo standard internazionale **ISO 9241-210** (che ha sostituito il vecchio ISO 13407) definisce l'**HCD** (spesso chiamato anche **UCD - User-Centred Design**) come un approccio multidisciplinare che usa l'ergonomia e i fattori umani per creare sistemi usabili.
+#### 1. Unified Software Development Process (Jacobson, Booch, Rumbaugh)
+![[IUM_Pasted image 20261013165338.png]]
+
+Nel contesto di un processo di sviluppo iterativo, come quello delineato nello *Unified Software Development Process*, è fondamentale comprendere che **le diverse attività hanno pesi diversi** a seconda della fase temporale in cui ci si trova.
+Il grafico mostra che le attività (*Requisiti, Progettazione, Prototipazione, Test e Rilascio*) non sono fasi isolate che si chiudono per far iniziare la successiva, ma scorrono in parallelo lungo le diverse iterazioni assorbendo una quantità di **risorse** variabile nel **tempo**:
+- Nelle prime iterazioni, la curva dei **Requisiti** raggiunge il suo picco massimo assorbendo gran parte dello sforzo, per poi assottigliarsi man mano che il progetto avanza.
+- Le attività di **Progettazione**, **Prototipazione** e **Test** si gonfiano progressivamente nelle iterazioni centrali.
+- Il **Rilascio** domina la parte finale del ciclo di vita.
+
+In qualsiasi momento (o iterazione) il team sta lavorando un po' su tutto: mantenere le curve "aperte" lungo tutto il grafico significa che, anche a progetto avanzato, è sempre possibile dedicare una frazione di risorse per rivedere un requisito o sistemare un aspetto del design, correggendo il tiro senza i costi enormi del modello a cascata.
+
+#### 2. Ciclo a cascata integrato con l'usabilità
+![[IUM_Pasted image 20261013170233.png]]
+
+Questo diagramma illustra un tentativo pratico di integrare l'usabilità all'interno di un tradizionale ciclo di sviluppo software "a cascata". Per ovviare alla rigidità dell'approccio sequenziale, vengono "innestate" specifiche attività centrate sull'utente come input vitali per le fasi classiche del processo:
+- L'analisi diretta degli utenti (attraverso interviste e visite sul posto) alimenta le specifiche dei requisiti e il progetto dell'architettura.
+- La definizione degli scenari e delle specifiche dell'interfaccia guida la progettazione, sfociando nell'aggiunta di una fase intermedia interamente dedicata alla realizzazione di prototipi e test (fase 4) prima di passare alla codifica e all'integrazione del codice.
+
+Pur rappresentando un passo avanti rispetto al modello tradizionale "cieco", si configura come un **compromesso strutturale**: cerca di forzare pratiche esplorative all'interno di uno schema fondamentalmente monodirezionale. Se i test sui prototipi dovessero evidenziare la necessità di stravolgere le idee di partenza, la natura "a cascata" renderebbe comunque faticoso e costoso tornare indietro a riscrivere le specifiche iniziali.
+
+#### 3. Ciclo di vita "a Stella" (Hix & Hartson, 1993)
+![[IUM_Pasted image 20261013170324.png]]
+
+Il **ciclo di vita a stella** rappresenta un approccio radicalmente diverso e altamente flessibile: la sua caratteristica rivoluzionaria è che **non esiste alcun ordine prestabilito** tra le fasi di lavoro, né un percorso rigidamente sequenziale dall'inizio alla fine.
+- Il cuore nevralgico dell'intero processo è la **Valutazione**, posizionata fisicamente e concettualmente al centro del sistema.
+- Tutte le altre attività operative (*analisi dei compiti / funzionale, specifica dei requisiti, progettazione concettuale / specifica formale, prototipazione e implementazione*) sono disposte a raggiera e collegate direttamente a questo nucleo centrale in modo bidirezionale.
+
+Il team può passare liberamente da un'attività all'altra in base alle necessità del momento, ma **deve sempre transitare per il centro**: ogni volta che si completa un piccolo passo (che sia la stesura di un requisito o la creazione di un prototipo), questo deve essere immediatamente sottoposto a valutazione prima di decidere quale sarà la mossa successiva. Questa validazione continua garantisce che l'usabilità non sia un test finale, ma un filtro costante che permette di scovare errori sul nascere e adattare il progetto in tempo reale.
+
+## Lo Standard ISO 9241-210: Human-Centred Design (HCD)
+> [!question] Domanda d'esame: Human-Centered Design (ISO 9241-210)
+
+![[IUM_Pasted image 20261013170829.png]]
+
+Lo standard internazionale **ISO 9241-210** (che ha sostituito il vecchio ISO 13407) definisce formalmente il processo di **HCD** (*Human-Centred Design*, spesso chiamato anche **UCD - User-Centred Design**) per lo sviluppo di sistemi interattivi, istituzionalizzando a livello internazionale un approccio iterativo e multidisciplinare che usa l'ergonomia e i fattori umani per creare sistemi usabili.
 - **I vantaggi:** Aumenta l'efficacia e l'efficienza, migliora le condizioni di lavoro, protegge la salute e la sicurezza dell'utente, aumenta la produttività e riduce i costi di assistenza e addestramento.
 
 ### Le 4 fasi cicliche dello standard ISO 9241-210
 
-Dopo aver pianificato il processo, si entra in un ciclo composto da 4 fasi (da ripetere finché i requisiti non sono soddisfatti):
+Il modello si apre con una fase preliminare in cui si **pianifica il processo di progettazione centrata sull'uomo**, per poi immettersi in un ciclo continuo composto da **4 fasi** (da ripetere finché i requisiti non sono soddisfatti):
+
 1. **Comprendere e specificare il contesto d'uso:**
-    - Definire chi sono gli utenti.
-    - Identificare i compiti che dovranno svolgere.
-    - Specificare l'ambiente fisico, sociale e tecnologico in cui useranno il sistema.
-2. **Specificare i requisiti utente e organizzativi:**
-    - Definire le prestazioni richieste rispetto agli obiettivi economici e operativi.
-    - Rispettare le norme di legge, salute e sicurezza.
-    - Stabilire la cooperazione tra utenti, la divisione dei compiti tra uomo e macchina, le procedure di lavoro, la gestione del cambiamento (es. addestramento), la manutenzione e il design dell'interfaccia.
+   Un software non esiste mai in uno spazio vuoto: la sua reale utilità dipende intimamente dal mondo fisico, sociale e cognitivo che lo circonda. Questa indagine si articola in tre direzioni fondamentali:
+   - Definire accuratamente le caratteristiche degli utenti (chi userà il sistema).
+   - Identificare i compiti che essi dovranno svolgere (cosa faranno).
+   - Specificare l'ambiente fisico, sociale, organizzativo e tecnologico nel quale il sistema verrà utilizzato (dove opereranno).
+2. **Specificare i requisiti utente e organizzativi (di business):**
+   L'usabilità non riguarda solo la grafica di uno schermo, ma impatta sull'intera organizzazione aziendale e sul benessere delle persone. I requisiti da mappare includono:
+   - *Obiettivi e conformità:* definire le prestazioni richieste per soddisfare gli obiettivi operativi ed economici, insieme al rigoroso rispetto dei requisiti normativi e legislativi, compresi quelli per la salute e la sicurezza.
+   - *Dinamiche umane e di sistema:* gestire la comunicazione e la cooperazione tra tutti gli attori coinvolti, le attività specifiche degli utenti e la delicata ripartizione dei compiti tra esseri umani e sistemi tecnologici, tutelando il benessere e la motivazione del personale.
+   - *Operatività organizzativa:* definire le prestazioni dei vari compiti, la progettazione concreta delle procedure di lavoro e dell'organizzazione, la gestione del cambiamento (che include l'addestramento di chi vi partecipa), la fattibilità della manutenzione, il design dei posti di lavoro e la realizzazione dell'interfaccia uomo-computer.
 3. **Produrre soluzioni di progetto (Design):**
-    - Creare proposte con un team multidisciplinare.
-    - Rendere concrete le idee tramite **simulazioni, modelli e prototipi**.
-    - Far provare i prototipi agli utenti (anche simulando i compiti) e modificare il progetto in base alle loro reazioni.
+   - Creare proposte progettuali con un team multidisciplinare.
+   - Rendere concrete le idee tramite **simulazioni, modelli e prototipi**.
+   - Far provare i prototipi agli utenti (anche simulando i compiti) e modificare il progetto in base alle loro reazioni.
 4. **Valutare il progetto rispetto ai requisiti:**
-    - Creare un piano di valutazione, raccogliere feedback, verificare se gli obiettivi sono raggiunti, fare validazione sul campo, monitorare nel lungo termine e documentare i risultati. Se non soddisfa i requisiti, si torna alle fasi precedenti!
+   - Creare un piano di valutazione, raccogliere feedback, verificare se gli obiettivi sono raggiunti, fare validazione sul campo, monitorare nel lungo termine e documentare i risultati.
+   - **Gestione del feedback:** se la valutazione evidenzia criticità (esito *"NON SODDISFA"*), il modello prevede percorsi di feedback mirati: il team non deve ricominciare tutto da zero, ma può tornare agilmente indietro per produrre nuove soluzioni (fase 3), ridefinire i requisiti (fase 2) o rianalizzare il contesto d'uso (fase 1). Il ciclo si ripete finché il progetto non ottiene un esito positivo (*"SODDISFA"*), dimostrando che l'errore, la revisione e il perfezionamento ciclico sono strumenti strutturali e necessari per ingegnerizzare un sistema realmente usabile.
 
 ## L'HCD nella pratica: UCD Sprint e Design Thinking
 Il modello HCD dell'ISO 9241-210 è un modello teorico ("astratto"). Nella pratica lavorativa viene applicato attraverso metodologie concrete (istanze), tra cui le più famose sono lo **UCD Sprint** e il **Design Thinking**.
