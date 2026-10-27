@@ -1,6 +1,6 @@
 # Appunti: La Raccolta dei Dati nell'Interaction Design
 
-## Cosa sono i dati e perché si raccolgono
+## 1. Cosa sono i dati e perché si raccolgono
 
 I dati possono assumere qualsiasi forma utile per comprendere un progetto, i bisogni o il comportamento degli utenti: numeri, parole, misurazioni, descrizioni, commenti, foto, schizzi o video. Si dividono in due grandi categorie:
 - **Dati quantitativi:** esprimono quantità numeriche. _Esempio:_ il tempo impiegato per trovare un'informazione su una pagina web o il numero di clic effettuati per arrivarci.
@@ -15,14 +15,14 @@ Le tre tecniche principali di raccolta sono (utilizzabili sia per dati qualitati
 - **Questionari:** serie di domande su carta o online a cui l'utente risponde in modo asincrono, cioè senza la presenza del ricercatore.
 - **Osservazione:** può essere **diretta** (passare del tempo con le persone guardando cosa fanno mentre lo fanno) o **indiretta** (registrare l'attività dell'utente per studiarla in seguito).
 
-## I cinque aspetti fondamentali della Raccolta Dati
+## 2. I cinque aspetti fondamentali della Raccolta Dati
 Per avere successo in qualsiasi sessione di raccolta dati, bisogna curare cinque aspetti chiave:
 
 ### 1. Definizione degli obiettivi
 Prima di iniziare, bisogna fissare obiettivi chiari, concisi e specifici (nell'Interaction Design di solito si esprimono in modo informale). Gli obiettivi determinano quale tecnica usare e come analizzare i dati.
 - _Esempi di obiettivi:_ capire come la tecnologia entra nella vita di una famiglia; stabilire quale tra due icone per il comando "invia messaggio" sia più facile da usare; capire se il redesign di un contatore portatile va nella direzione giusta.
 ### 2. Identificazione dei partecipanti (Campionamento)
-Gli obiettivi indicano il profilo delle persone da coinvolgere, che formano la **popolazione dello studio**. Quando è possibile raggiungere tutti i membri della popolazione target si parla di **campionamento di saturazione**, ma è un caso rarissimo. Quasi sempre bisogna scegliere un sottoinsieme di persone (**campionamento**) attraverso due approcci
+Gli obiettivi indicano il profilo delle persone da coinvolgere, che formano la **popolazione dello studio**. Quando è possibile raggiungere tutti i membri della popolazione target si parla di **campionamento di saturazione**, ma è un caso rarissimo. Quasi sempre bisogna scegliere un sottoinsieme di persone (**campionamento**) attraverso due approcci:
 - **Campionamento probabilistico:** permette di applicare test statistici (se il numero di partecipanti è abbastanza alto) e di generalizzare i risultati all'intera popolazione. Include:  
     - _Casuale:_ si scelgono le persone con un generatore di numeri casuali o selezionando una persona ogni $n$ da un elenco.
     - _Stratificato:_ si divide prima la popolazione in gruppi (es. le diverse classi di una scuola superiore) e poi si applica la scelta casuale dentro ogni gruppo.
