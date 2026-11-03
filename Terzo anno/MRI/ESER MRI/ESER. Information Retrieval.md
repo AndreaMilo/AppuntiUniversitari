@@ -32,7 +32,7 @@ L'esercizio richiede due operazioni:
 
 **Precision:** (Precisione complessiva) È il rapporto tra il numero di documenti rilevanti recuperati e il numero totale di documenti restituiti dal sistema per quella query.
 
-## b) - Calcoli*
+## b) - Calcoli
 - Documenti rilevanti totali attesi nella collezione ($m$ o $R$): 4.
 - Documenti totali restituiti dalla query: 6 (stringa di 6 lettere).
 

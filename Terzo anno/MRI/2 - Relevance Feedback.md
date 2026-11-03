@@ -14,7 +14,7 @@ I metodi di feedback possono essere:
 
 Dato un insieme di documenti, il **centroide** è il documento medio (centro di massa). Essendo i documenti rappresentati come punti (o vettori) all'interno di uno spazio vettoriale multidimensionale, il centroide si otterrà:
 
-![lez19_image.png](lez19_image.png)
+![[lez19_image.png]]
 
 Ovvero la somma delle dimensioni diviso il numero di documenti, in pratica la **media**.
 ### Algoritmo di Rocchio
@@ -22,7 +22,7 @@ Si presenta un algoritmo che permette di discriminare i documenti non rilevanti 
 
 Tale algoritmo permette, tramite l’uso del modello a spazio vettoriale, la formulazione di una query che divide i documenti non rilevanti da quelli rilevanti, tramite la formula:
 
-![image.png](lez19_image%201.png)
+![[lez19_image 1.png]]
 
 ove:
 
@@ -38,11 +38,11 @@ In pratica calcola la differenza tra il centroide dei documenti rilevanti e il c
 
 Il problema è che realisticamente, all’interno di un sistema di Information Retrieval (o motore di ricerca), non sappiamo a priori qual è il set di documenti rilevanti dell'intera collezione ($C_r$). Per ovviare a questo problema si potrebbe formulare una query iniziale e pian piano incrementare il vettore query.
 
-![image.png](lez19_image%202.png)
+![[lez19_image 2.png]]
 
 Si giunge quindi a questa formula, ovvero l’algoritmo del 1971 di Rocchio (sistema SMART), la quale aggiungerà dei pesi ai documenti ritenuti rilevanti o meno, non più alla collezione totale, ma alla collezione dei documenti ottenuti tramite una query esplorativa iniziale ($q_0$) per ottenere il vettore della query modificata ($q_m$):
 
-![image.png](lez19_image%203.png)
+![[lez19_image 3.png]]
 
 L’uso dei pesi porta alcune accortezze:
 
@@ -60,7 +60,7 @@ E anche alcuni problemi:
 - dopo aver applicato il relevance feedback, è spesso più difficile capire perché un particolare documento sia stato recuperato
 - le esigenze informative (information needs) dell'utente possono cambiare durante l'interazione
 
-Vedere esercizio. [Al momento Uniba è in down, non posso vederlo]
+Vedere l'esercizio svolto in `ESER MRI/Esercizio rilevance.pdf`.
 
 Per verificare se effettivamente il Relevance Feedback abbia avuto successo, non basta riprovare il processo di ricerca sull'intera collezione. Il risultato atteso sarebbe migliore ma fittizio poiché, usando la query modificata $q_{m}$ per calcolare il grafico di precision e recall, è normale che il sistema restituisca ai primi posti i risultati appena scelti dall'utente. Per verificare l'effettiva riuscita dobbiamo valutare la capacità di trovare *nuovi* documenti rilevanti che l'utente non abbia mai visto.
 
@@ -104,7 +104,7 @@ L'immagine riportata di seguito mostra come avviene **l'autocompletamento** dell
 ### Come espandere la query utente
 Per espandere una query utente abbiamo tre possibili scelte:
 - **Tesauro Manuale:** è un dizionario di sinonimi e termini correlati scritto manualmente da esperti.
-- **Analisi Globale (Statica):** si basa sull'analisi di tutti i documenti della collezione o sui log delle ricerche eseguite dagli utenti sul web. Generalmente, se due parole compaiono molto spesso insieme negli stessi documenti o nelle stesse query (*co-occorrenza*), il sistema impara che sono correlate e crea un tesauro automatico.
+- **Analisi Globale (Statica):** si basa sull'analisi di tutti i documenti della collezione o sui log delle ricerche eseguite dagli utenti sul web. Generalmente, se due parole compaiono molto spesso insieme negli stessi documenti o nelle stesse query (*co-occorrenza*), il sistema impara che sono correlate e crea un tesauro automatico (algebricamente, data la matrice termini-documenti $M$ di dimensione $|T| \times |D|$, moltiplicando $M$ per la sua trasposta $M^T$ si ottiene la matrice di correlazione termini-termini $C = M \cdot M^T$ di dimensione $|T| \times |T|$, che mette in corrispondenza parole simili).
 - **Analisi Locale (Dinamica):** invece di analizzare tutti i documenti nel DB a priori, si analizzano al volo solo i documenti restituiti dalla query appena fatta dall'utente così da estrarre i termini più frequenti in quest'ultima; si basa molto sul concetto dello Pseudo-Relevance Feedback.
 ### Espansione della query basata su Tesauro
 Per ogni termine $t$ in una query, si espande la query con i sinonimi e le parole correlate di $t$ presenti nel tesauro (come *feline $\rightarrow$ feline cat*).

@@ -117,7 +117,7 @@ L'idea intuitiva alla base di questo modello consiste nel considerare i collegam
 
 Partendo dal principio che una pagina è tanto più importante quanto maggiore è il numero di link che possiede, occorre innanzitutto chiedersi se vadano conteggiati i **link in ingresso** (_In-coming links_) oppure i **link in uscita** (_Out-going links_):
 La scelta ricade sui **link in ingresso (_in-links_)**, i quali vengono interpretati come voti di fiducia ricevuti dalle altre pagine del Web (mentre i link in uscita sarebbero troppo facili da manipolare, poiché chiunque potrebbe creare una pagina inserendovi migliaia di link verso l'esterno).
-- **Esempio:** il portale ufficiale dell'Università di Stanford (`www.stanford.edu`) riceve ben $23.400$ _in-links_, mentre un sito amatoriale sconosciuto (`[www.joe-schmoe.com](https://www.joe-schmoe.com)`) riceve appena $1$ _in-link_.
+- **Esempio:** il portale ufficiale dell'Università di Stanford (`www.stanford.edu`) riceve ben $23.400$ _in-links_, mentre un sito amatoriale sconosciuto (`www.joe-schmoe.com`) riceve appena $1$ _in-link_.
 
 
 Tuttavia, contare semplicemente il numero di link in ingresso non basta e porta a una domanda cruciale: **tutti gli _in-links_ hanno lo stesso valore?**
@@ -154,7 +154,7 @@ $$
 # Il Modello a Flusso (The "Flow" Model)
 Generalizzando la regola appena vista all'intero grafo del Web, otteniamo il **Modello a Flusso** (_Flow Model_), basato sul principio secondo cui un "voto" proveniente da una pagina importante vale di più e, di conseguenza, una pagina è importante se viene puntata da altre pagine importanti.
 
-> [!NOTES] Definizione Formale del Rank $r_j$ (Equazione di Flusso) Indicando con $d_i$ il **grado uscente** (_out-degree_, ovvero il numero di link in uscita) del nodo $i$, il punteggio di importanza (**rank**) $r_j$ della pagina $j$ è definito come la somma dei punteggi $r_i$ di tutte le pagine $i$ che puntano a $j$ ($i \rightarrow j$), ciascuno diviso per il rispettivo grado uscente $d_i$:
+> [!NOTE] Definizione Formale del Rank $r_j$ (Equazione di Flusso) Indicando con $d_i$ il **grado uscente** (_out-degree_, ovvero il numero di link in uscita) del nodo $i$, il punteggio di importanza (**rank**) $r_j$ della pagina $j$ è definito come la somma dei punteggi $r_i$ di tutte le pagine $i$ che puntano a $j$ ($i \rightarrow j$), ciascuno diviso per il rispettivo grado uscente $d_i$:
 > 
 >   
 > 
@@ -275,7 +275,7 @@ $$1 \cdot r = M \cdot r$$
 
 Confrontando $1 \cdot r = M \cdot r$ con la definizione generale $\lambda r = M r$ (dove $\lambda = 1$), è possibile affermare che **il vettore $r$ (il vettore dei rank) è l'autovettore della matrice stocastica $M$ — che è la matrice di adiacenza che codifica il grafo — con autovalore $\lambda = 1$**.
 
-> [!NOTES] Eleganza della formulazione algebrica e Autovettore Principale Facendo questo passaggio algebrico otteniamo una formulazione del PageRank molto più elegante: **il PageRank non è altro che l'autovettore della matrice stocastica $M$ che codifica il grafo, associato all'autovalore $1$**.
+> [!NOTE] Eleganza della formulazione algebrica e Autovettore Principale Facendo questo passaggio algebrico otteniamo una formulazione del PageRank molto più elegante: **il PageRank non è altro che l'autovettore della matrice stocastica $M$ che codifica il grafo, associato all'autovalore $1$**.
 > 
 >   
 > 
@@ -314,7 +314,7 @@ $$r_j^{(t+1)} = \sum_{i \rightarrow j} \frac{r_i^{(t)}}{d_i}$$
     \left\vert{}r^{(t+1)} - r^{(t)}\right\vert{}_1 < \epsilon
     $$
     
-> [!NOTES] Norma $L_1$ per il calcolo della distanza tra due iterazioni Nella condizione di arresto si utilizza la **norma $L_1$** (_$L_1$ norm_), definita come la somma dei valori assoluti delle componenti del vettore:
+> [!NOTE] Norma $L_1$ per il calcolo della distanza tra due iterazioni Nella condizione di arresto si utilizza la **norma $L_1$** (_$L_1$ norm_), definita come la somma dei valori assoluti delle componenti del vettore:
 > 
 >   
 > 
@@ -394,7 +394,7 @@ $$r = \begin{pmatrix} 6/15 \\ 6/15 \\ 3/15 \end{pmatrix} = \begin{pmatrix} \math
 
 Questi sono **esattamente gli stessi valori** ($r_y = \frac{2}{5}, r_a = \frac{2}{5}, r_m = \frac{1}{5}$) che avevamo trovato in precedenza risolvendo a mano il sistema delle equazioni di flusso.
 
-> [!NOTES] Equivalenza dei metodi e Stabilizzazione del vettore
+> [!NOTE] Equivalenza dei metodi e Stabilizzazione del vettore
 > 
 >   
 > 
@@ -443,7 +443,7 @@ Per descrivere matematicamente la posizione del navigatore durante il suo percor
 - **$p(t)$** è un vettore la cui $i$-esima coordinata rappresenta la **probabilità che il navigatore casuale si trovi esattamente sulla pagina $i$ all'istante di tempo $t$**.
 - Di conseguenza, il vettore $p(t)$ costituisce a tutti gli effetti una **distribuzione di probabilità sulle pagine** del Web (_probability distribution over pages_, in cui tutti i valori sono compresi tra $0$ e $1$ e la loro somma totale fa $1$).
 
-> [!NOTES] Significato pratico del Random Walk: il legame tra visite, connettività e PageRank Immaginiamo concretamente questo navigatore casuale che, partendo da una pagina web qualsiasi e seguendo il meccanismo dei link, continua a muoversi nella rete:
+> [!NOTE] Significato pratico del Random Walk: il legame tra visite, connettività e PageRank Immaginiamo concretamente questo navigatore casuale che, partendo da una pagina web qualsiasi e seguendo il meccanismo dei link, continua a muoversi nella rete:
 > 
 >   
 > 
@@ -486,7 +486,7 @@ Confrontando questa equazione con la formulazione matriciale del PageRank, notia
 ### Esistenza e Unicità della soluzione (_Existence and Uniqueness_)
 
 Dal punto di vista matematico, un risultato centrale della teoria delle passeggiate casuali note in calcolo delle probabilità anche come **processi di Markov** o **catene di Markov**. garantisce una proprietà fondamentale per il funzionamento dell'algoritmo:
-> [!NOTES] Teorema di Esistenza e Unicità (Processi di Markov) Per i grafi che soddisfano determinate condizioni strutturali, **la distribuzione stazionaria $r$ è unica** e **verrà inevitabilmente raggiunta** (tramite le iterazioni di $p(t+1) = M \cdot p(t)$) **indipendentemente da quale sia la distribuzione di probabilità iniziale scelta al tempo $t = 0$**.
+> [!NOTE] Teorema di Esistenza e Unicità (Processi di Markov) Per i grafi che soddisfano determinate condizioni strutturali, **la distribuzione stazionaria $r$ è unica** e **verrà inevitabilmente raggiunta** (tramite le iterazioni di $p(t+1) = M \cdot p(t)$) **indipendentemente da quale sia la distribuzione di probabilità iniziale scelta al tempo $t = 0$**.
 > 
 >   
 
@@ -665,7 +665,7 @@ Una catena di Markov è definita da:
 * Una **matrice di transizione $P$** in cui l'elemento $P_{ij} = P(X_t = i \mid X_{t-1} = j)$ indica la probabilità di trovarsi nello stato $i$ al passo $t$ sapendo che al passo precedente $t-1$ ci si trovava nello stato $j$ (esattamente come la nostra matrice $M$).
 * Un vettore **$\pi$** che specifica la **probabilità stazionaria** (*stationary probability*) di trovarsi in ciascuno stato $x \in X$, tale da soddisfare l'equazione di punto fisso $\pi = P \pi$ (esattamente come $r = M r$).
 
-> [!NOTES] Teorema fondamentale delle Catene di Markov (Slide 43)
+> [!NOTE] Teorema fondamentale delle Catene di Markov (Slide 43)
 > La teoria delle catene di Markov dimostra un fatto cruciale: **per qualunque vettore di partenza**, il metodo delle potenze (*power method*) applicato a una matrice di transizione di Markov $P$ **convergerà sempre a un unico vettore stazionario strettamente positivo**, a patto che la matrice $P$ goda di **tre proprietà fondamentali**:
 > 
 > 
@@ -686,7 +686,7 @@ Vediamo nel dettaglio cosa significano queste tre proprietà e come i collegamen
 ### 1. Rendere $M$ Stocastica
 * **Definizione:** una matrice si dice **stocastica** se **ogni sua colonna somma esattamente a $1$** (*Every column sums to 1*), il che garantisce che nessuna frazione di probabilità o importanza vada persa durante il passaggio da uno stato all'altro.
 * **Problema:** i nodi *dead-end* (che hanno grado uscente $0$) producono colonne di soli zeri che sommano a $0$.
-* **Soluzione:** si aggiungono i link verdi di teletrasporto dai *dead-end* verso tutti gli $n$ nodi del grafo con peso $\frac{1}{n}$. Formalmente, definendo un vettore indicatore $a$ tale che $a_i = 1$ se il nodo $i$ ha grado uscente $0$ (è un *dead-end*) e $a_i = 0$ altrimenti, e indicando con $e$ il vettore colonna formato da tutti $1$, la matrice stocastica corretta si ottiene sommando a $M$ le colonne $\frac{1}{n}$ in corrispondenza dei *dead-end* (nella notazione della slide $A = M + a^T \left(\frac{1}{n} e\right)$). Nell'esempio a 3 nodi dove $m$ era un *dead-end*, la colonna di $m$ diventa $\left[\frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right]^T$ e le nuove equazioni diventano $r_y = \frac{r_y}{2} + \frac{r_a}{2} + \frac{r_m}{3}$, $r_a = \frac{r_y}{2} + \frac{r_m}{3}$, $r_m = \frac{r_a}{2} + \frac{r_m}{3}$.
+* **Soluzione:** si aggiungono i link verdi di teletrasporto dai *dead-end* verso tutti gli $n$ nodi del grafo con peso $\frac{1}{n}$. Formalmente, definendo un vettore indicatore $a$ tale che $a_i = 1$ se il nodo $i$ ha grado uscente $0$ (è un *dead-end*) e $a_i = 0$ altrimenti, e indicando con $e$ il vettore colonna formato da tutti $1$, la matrice stocastica corretta si ottiene sommando a $M$ le colonne $\frac{1}{n}$ in corrispondenza dei *dead-end* (ovvero tramite il prodotto esterno $\hat{M} = M + \frac{1}{n} e \cdot a^T$). Nell'esempio a 3 nodi dove $m$ era un *dead-end*, la colonna di $m$ diventa $\left[\frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right]^T$ e le nuove equazioni diventano $r_y = \frac{r_y}{2} + \frac{r_a}{2} + \frac{r_m}{3}$, $r_a = \frac{r_y}{2} + \frac{r_m}{3}$, $r_m = \frac{r_a}{2} + \frac{r_m}{3}$.
 
 ### 2. Rendere $M$ Aperiodica 
 
@@ -717,7 +717,7 @@ Combinando il normale flusso dei link con il teletrasporto casuale (*Random Jump
 
 
 
-> [!NOTES] Equazione del PageRank [Brin-Page, 1998] (Slide 47)
+> [!NOTE] Equazione del PageRank [Brin-Page, 1998] (Slide 47)
 > Il punteggio di PageRank $r_j$ di una pagina $j$ nella formulazione ufficiale di Sergey Brin e Larry Page (1998) è dato da:
 > 
 > 

@@ -39,20 +39,28 @@ Il vettore DCG impostato è:
 $$DCG = \left( 1, \quad 1, \quad \frac{1}{\log_2 3} + 1, \quad \frac{1}{\log_2 3} + 1, \quad \frac{1}{\log_2 5} + \frac{1}{\log_2 3} + 1 \right)$$
 
 **Definizione del Ranking Ideale ($IG$) e calcolo dell'IDCG**
-Per normalizzare la metrica, dobbiamo calcolare quale sarebbe stato il punteggio se l'algoritmo fosse stato perfetto. Poiché la traccia specifica che esistono esattamente 4 documenti rilevanti nell'intera collezione, il ranking ideale li posizionerebbe tutti nei primi 4 slot:
-$$IG = (1, 1, 1, 1, 0)$$
-Applicando la stessa formula ricorsiva del DCG al vettore ideale $IG$, otteniamo l'IDCG (riportando l'impostazione scritta dal professore):
-- Pos 1: $1$
-- Pos 2 (score 1): $\frac{1}{\log_2 2} + 1 = 2$
-- Pos 3 (score 1): $\frac{1}{\log_2 3} + 2$
-- Pos 4 (score 1) e Pos 5 (score 0): Si cumula progressivamente il valore.
+Per normalizzare la metrica, dobbiamo calcolare quale sarebbe stato il punteggio se l'algoritmo fosse stato perfetto.
+Si noti che ci sono due possibili convenzioni per definire $IG$ su i primi 5 slot:
 
-$$IDCG = \left( 1, \quad 2, \quad \frac{1}{\log_2 3} + 2, \quad \frac{1}{\log_2 3} + 2, \dots \right)$$
+1. **Impostazione svolta a lezione (riordinando i 3 documenti rilevanti recuperati nel ranking `1 0 1 0 1`):**
+   $$IG = (1, 1, 1, 0, 0)$$
+   Applicando la formula ricorsiva del DCG a questo vettore ideale $IG$, otteniamo l'IDCG scritto negli appunti alla lavagna:
+   - Pos 1: $1$
+   - Pos 2 (score 1): $\frac{1}{\log_2 2} + 1 = 2$
+   - Pos 3 (score 1): $\frac{1}{\log_2 3} + 2$
+   - Pos 4 (score 0) e Pos 5 (score 0): il valore cumulato resta $\frac{1}{\log_2 3} + 2$.
 
-**Fase 4: Normalizzazione finale (nDCG)** L'ultimo passaggio richiede di dividere ogni posizione del vettore reale ($DCG$) per la corrispondente posizione del vettore ideale ($IDCG$):
+   $$IDCG = \left( 1, \quad 2, \quad \frac{1}{\log_2 3} + 2, \quad \frac{1}{\log_2 3} + 2, \quad \frac{1}{\log_2 3} + 2 \right)$$
+
+2. **Impostazione su tutta la collezione (includendo tutti e 4 i documenti rilevanti presenti nella collezione):**
+   $$IG = (1, 1, 1, 1, 0)$$
+   In questo caso in posizione 4 si aggiunge anche $\frac{1}{\log_2 4} = \frac{1}{2} = 0.5$, ottenendo per le posizioni 4 e 5 il valore $\frac{1}{\log_2 3} + 2.5$.
+
+**Fase 4: Normalizzazione finale (nDCG)**
+L'ultimo passaggio richiede di dividere ogni posizione del vettore reale ($DCG$) per la corrispondente posizione del vettore ideale ($IDCG$):
 $$nDCG[i] = \frac{DCG[i]}{IDCG[i]}$$
 
-  Dimostriamo di aver capito il calcolo impostando il vettore finale come divisione dei termini cumulati analizzati nei passaggi precedenti:
+Seguendo l'impostazione 1 vista a lezione, otteniamo il vettore finale:
 
 $$nDCG = \left( \frac{1}{1}, \quad \frac{1}{2}, \quad \frac{\frac{1}{\log_2 3} + 1}{\frac{1}{\log_2 3} + 2}, \quad \frac{\frac{1}{\log_2 3} + 1}{\frac{1}{\log_2 3} + 2}, \quad \frac{\frac{1}{\log_2 5} + \frac{1}{\log_2 3} + 1}{\frac{1}{\log_2 3} + 2} \right)$$
 

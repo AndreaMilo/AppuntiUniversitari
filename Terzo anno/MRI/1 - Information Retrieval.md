@@ -48,7 +48,7 @@ Dall'incrocio di questi due assi, nascono quattro paradigmi:
 ### Processo di KDD
 Il **Data Mining** in realtà è un sottoprocesso del grande processo di ricerca dai Databases, chiamato KDD (**Knowledge Discovery from Databases**).
 
->[!NOTES] Definizione di Fayyad et al., 1996
+>[!NOTE] Definizione di Fayyad et al., 1996
 > Il KDD è il processo non banale di identificare pattern validi, nuovi, potenzialmente utili e comprensibili all'interno dei dati.
 
 Le fasi del ciclo del processo KDD sono 5:
@@ -66,7 +66,7 @@ Come si evince da questo esempio non c'è mai una garanzia del 100% ma da piccol
 Il **Text Mining** utilizza i principi del KDD sul testo a **linguaggio naturale**.
 L'obiettivo è quello di scavare tra mille testi diversi fino alla ricerca di pattern, trend e associazioni nascoste, così da costruire nuova conoscenza.
 
->[!NOTES] Definizione Feldman e Dagan 1995
+>[!NOTE] Definizione Feldman e Dagan 1995
 >Il *Text Data Mining* è l'estrazione non banale di informazioni implicite, precedentemente sconosciute e potenzialmente utili a partire da grandi quantità di dati testuali.
 
 Espressa tramite la formula concettuale: $$\text{Text Mining}=\text{Data Mining (applicato al testo)}+\text{Linguistica di base}$$
@@ -167,7 +167,7 @@ L'obiettivo del pre-processing è ripulire il testo non strutturato e ridurlo a 
 3. **Stopword Removal**: eliminazione dei termini grammaticali ad altissima frequenza privi di significato discriminante (articoli, preposizioni, congiunzioni).
 4. **Stemming e Lemmatizzazione**: riconduzione dei termini alla loro radice comune (*stem*) o alla forma base di dizionario (*lemma*, come la forma all'infinito per i verbi o il singolare per i nomi). In questo modo forme flesse diverse dello stesso termine vengono ricondotte alla stessa unità concettuale.
 
->[!NOTES] Il principio dell'elaborazione Offline
+>[!NOTE] Il principio dell'elaborazione Offline
 >L'intero pre-processing viene eseguito **una sola volta** su tutti gli $N$ documenti della collezione durante la fase di indicizzazione. In questo modo si evita il costo computazionale insostenibile di dover riprocessare i documenti a ogni singola query dell'utente.
 ### Funzionamento del Modello Booleano
 Nel modello booleano classico:
@@ -271,7 +271,7 @@ Il primo filtro consiste nell'eliminazione delle **stopword**, ovvero le parole 
 In questo modo si risolvono anche i problemi di disallineamento durante l'interrogazione, consentendo al motore di recuperare i documenti rilevanti anche quando l'utente cerca un termine in una forma grammaticale diversa rispetto a quella presente nel testo originale.
 
 Il token quindi è una **sequenza di caratteri** che possono essere analizzati nell'indice invertito che compone una parte significativa nel documento che merita considerazione.
-Molti motori di ricerca permettono di sbagliare alcuni caratteri di un token, poiché grazie alla **distanza di Levenstain** (la distanza possibile tra una parola e un altra in base al cambiamento dei caratteri), cerco le **chiavi di ricerca** più simili a quella parola ,con la stessa distanza di Levenstain calcolata, memorizzate nell'indice e si trova comunque una corrispondenza e quindi viene suggerita la parola corretta.
+Molti motori di ricerca permettono di sbagliare alcuni caratteri di un token, poiché grazie alla **distanza di Levenshtein** (la distanza possibile tra una parola e un'altra in base al cambiamento dei caratteri), cerco le **chiavi di ricerca** più simili a quella parola, con la stessa distanza di Levenshtein calcolata, memorizzate nell'indice e si trova comunque una corrispondenza e quindi viene suggerita la parola corretta.
 ### Numeri
 Un'ulteriore criticità nella fase di pre-processing riguarda il trattamento delle stringhe contenenti entità numeriche, in particolare le **date**. 
 Se il sistema tratta i numeri semplicemente come token slegati tra loro, perde del tutto il valore informativo del dato temporale. A ciò si aggiunge l'ambiguità dei formati: memorizzare una data nella forma generica `n1/n2/n3` crea disallineamenti, poiché `n1` può rappresentare il **giorno** nello standard europeo o il **mese** in quello anglosassone. 
@@ -326,7 +326,7 @@ Ridurre eccessivamente alla radice presenta però dei limiti: se da un lato ridu
 Infine, è fondamentale comprendere il funzionamento dell'algoritmo di stemming scelto: **lo stesso algoritmo utilizzato per la costruzione dell'indice invertito deve essere applicato anche sui termini della query**, altrimenti il sistema non troverebbe corrispondenza.
 ![[Pasted image 20261007165617.png]]
 
->[!NOTES] Alternativa alle classi d'equivalenza: Espansione della Query
+>[!NOTE] Alternativa alle classi d'equivalenza: Espansione della Query
 >Anziché fondere le varianti di un termine in un'unica classe d'equivalenza in fase di indicizzazione, un'alternativa consiste nel **mantenere nel dizionario posting list separate** per ciascuna variante ed **espandere la query** al momento della ricerca (cercando tutte le varianti contemporaneamente). Questo approccio risulta potenzialmente **più accurato**, ma è **meno efficiente** dal punto di vista computazionale durante l'interrogazione.
 ![[image 3.png]]
 
@@ -364,7 +364,7 @@ Possiamo evolvere questa rappresentazione memorizzando in ogni cella non più la
 
 In questa formulazione, indicato con $\vert{}V\vert{}$ il numero di termini del vocabolario, **ogni documento è rappresentato come un vettore di conteggi** appartenente allo spazio vettoriale $\mathbb{N}^{\vert{}V\vert{}}$ (una componente per ciascun termine del vocabolario).
 
->[!NOTES] Modello Bag of Words
+>[!NOTE] Modello Bag of Words
 >Rappresentare un documento come un vettore di frequenze corrisponde ad adottare il modello **Bag of Words**. In questo schema **non viene considerato l'ordine delle parole** all'interno del testo: due frasi semanticamente diverse ma composte dagli stessi termini con le medesime frequenze (ad esempio *"John is quicker than Mary"* e *"Mary is quicker than John"*) producono esattamente lo stesso vettore.
 
 Si introduce così formalmente la **Term Frequency ($tf_{t,d}$)**, definita come il numero di volte in cui il termine $t$ compare all'interno del documento $d$.
@@ -376,7 +376,7 @@ Sulla base di $df_t$ e del numero totale $N$ di documenti nella collezione, si d
 
 $$idf_t = \log_{10}\left(\frac{N}{df_t}\right)$$
 
->[!NOTES] Proprietà fondamentale dell'$idf_t$
+>[!NOTE] Proprietà fondamentale dell'$idf_t$
 >L'$idf_t$ è un valore che **dipende esclusivamente dal termine $t$** (e dalla collezione nel suo complesso), **non dal singolo documento**:
 >- Per **parole molto rare**, $df_t$ è basso e quindi $idf_t$ assume un valore elevato (fino a $\log_{10}(N)$ quando $df_t = 1$).
 >- Per **parole molto comuni**, $df_t$ è prossimo a $N$ e quindi $idf_t$ tende a $0$.
@@ -460,7 +460,7 @@ Lo schema di pesatura **tf-idf** impiegato nell'algoritmo `CosineScore` non è l
 
 ![[Pasted image 20261021181526.png]]
 #### Esempio: differenze nel calcolo della similarità
-Per comprendere concretamente come la scelta della misura di similarità influenzi il ranking, si consideri un dizionario composto da tre termini ($t1​, t2​, t_3$), in cui la query $q$ e i due documenti $d1​$ e $d2$​ sono rappresentati (secondo la consueta rappresentazione _Bag of Words_) dai seguenti vettori di occorrenze:
+Per comprendere concretamente come la scelta della misura di similarità influenzi il ranking, si consideri un dizionario composto da tre termini ($t_1, t_2, t_3$), in cui la query $q$ e i due documenti $d_1$ e $d_2$ sono rappresentati (secondo la consueta rappresentazione _Bag of Words_) dai seguenti vettori di occorrenze:
 
 | Termine / Documento | $t_1$ | $t_2$ | $t_3$ |
 | :--- | :---: | :---: | :---: |
@@ -468,18 +468,21 @@ Per comprendere concretamente come la scelta della misura di similarità influen
 | **$d_1$** (Documento 1) | 5 | 1 | 2 |
 | **$d_2$** (Documento 2) | 1 | 2 | 1 |
 
-Si parta dal calcolo della similarità mediante **prodotto interno** ($sim(q,d_{i}​)$), che si ottiene sommando i prodotti delle componenti aventi le stesse coordinate:
-$$sim(q,d_{1}​)=5⋅1+1⋅2+2⋅1=9$$ e $$sim(q,d_{2})=1⋅1+2⋅2+1⋅1=6$$Secondo questo ranking $d_{1}$​ sembrerebbe essere il documento più simile alla query, poiché ottiene il punteggio maggiore. Si studi ora la misura della **similarità del coseno**, che restituisce valori compresi tra 0 e 1: essa si ottiene facendo il rapporto tra il prodotto interno e il prodotto delle lunghezze dei due vettori, dove la lunghezza di un documento (e della query) si calcola sommando i quadrati delle occorrenze:
+Si parta dal calcolo della similarità mediante **prodotto interno** ($sim(q,d_{i})$), che si ottiene sommando i prodotti delle componenti aventi le stesse coordinate:
+$$sim(q,d_{1}) = 5 \cdot 1 + 1 \cdot 2 + 2 \cdot 1 = 9$$ e $$sim(q,d_{2}) = 1 \cdot 1 + 2 \cdot 2 + 1 \cdot 1 = 6$$
+Secondo questo ranking $d_{1}$ sembrerebbe essere il documento più simile alla query, poiché ottiene il punteggio maggiore. Si studi ora la misura della **similarità del coseno**, che restituisce valori compresi tra 0 e 1: essa si ottiene facendo il rapporto tra il prodotto interno e il prodotto delle lunghezze dei due vettori, dove la lunghezza di un documento (e della query) si calcola sommando i quadrati delle occorrenze:
 
-$$cosim(q,d_{1}​)=\frac{5\times 1+1\times 2+1\times 2}{\sqrt{1^2+2^2+1^2}\sqrt{5^2+1^2+2^2}}​{}≈0,67$$Ripetendo lo stesso calcolo per $d_{2}$​, con questo metodo risulta invece più simile $d_{2}$​:
+$$cosim(q,d_{1})=\frac{5\times 1+1\times 2+2\times 1}{\sqrt{1^2+2^2+1^2}\sqrt{5^2+1^2+2^2}}\approx 0,67$$
+Ripetendo lo stesso calcolo per $d_{2}$, con questo metodo risulta invece più simile $d_{2}$:
 
-$$cosim(q,d_{2}​)=\frac{1\times 1+2\times 2+1\times 1}{\sqrt{1^2+2^2+1^2}\sqrt{1^2+2^2+1^2}} = \frac{6}{\sqrt{6}\sqrt{6}}​=1$$
-Il risultato è del tutto intuitivo: il vettore di $d_{2}$​ coincide esattamente con quello della query, quindi (come visto in precedenza) l'angolo tra i due è nullo e il coseno vale 1; il prodotto interno lo penalizzava invece soltanto per via della sua lunghezza minore.
+$$cosim(q,d_{2})=\frac{1\times 1+2\times 2+1\times 1}{\sqrt{1^2+2^2+1^2}\sqrt{1^2+2^2+1^2}} = \frac{6}{\sqrt{6}\sqrt{6}} = 1$$
+Il risultato è del tutto intuitivo: il vettore di $d_{2}$ coincide esattamente con quello della query, quindi (come visto in precedenza) l'angolo tra i due è nullo e il coseno vale 1; il prodotto interno lo penalizzava invece soltanto per via della sua lunghezza minore.
 
-Si consideri ora il caso in cui si adottino dei **vettori normalizzati**, ottenuti facendo il rapporto tra le occorrenze e la lunghezza dei documenti stessi. Andando a ricalcolare la similarità del prodotto interno tra i versori $\frac{q}{||q||}$ e $\frac{d_{1}}{||d_{1}||}$​​​, si nota che il risultato ottenuto è identico a quello che in precedenza si era ottenuto con la similarità del coseno:
-$$\frac{q}{||q||}\times ​​​\frac{d_{1}}{||d_{1}||}=\frac{9}{\sqrt{6}\sqrt{30}}​≈0,67$$Un'ulteriore variante prevede invece di calcolare le lunghezze dei vettori mediante l'uso del **peso massimo**, rapportando ciascuna occorrenza alla frequenza massima presente nel documento (variante _augmented_).
+Si consideri ora il caso in cui si adottino dei **vettori normalizzati**, ottenuti facendo il rapporto tra le occorrenze e la lunghezza dei documenti stessi. Andando a ricalcolare la similarità del prodotto interno tra i versori $\frac{q}{\Vert q\Vert}$ e $\frac{d_{1}}{\Vert d_{1}\Vert}$, si nota che il risultato ottenuto è identico a quello che in precedenza si era ottenuto con la similarità del coseno:
+$$\frac{q}{\Vert q\Vert}\times \frac{d_{1}}{\Vert d_{1}\Vert}=\frac{9}{\sqrt{6}\sqrt{30}}\approx 0,67$$
+Un'ulteriore variante prevede invece di calcolare le lunghezze dei vettori mediante l'uso del **peso massimo**, rapportando ciascuna occorrenza alla frequenza massima presente nel documento (variante _augmented_).
 
-> [!NOTES] Prodotto interno vs similarità del coseno
+> [!NOTE] Prodotto interno vs similarità del coseno
 > Tutto ciò porta ad una riflessione: la misura della similarità del **prodotto interno**, in base al metodo di pesatura e normalizzazione utilizzato, conduce a risultati differenti poiché i punteggi risultano legati alla **lunghezza del vettore** (e quindi favoriscono i documenti più lunghi). La misura della similarità del **coseno**, dipendendo esclusivamente dall'angolo tra i vettori, risulta invece più **stabile**.
 ### Schemi di pesatura differenti tra query e documenti
 Molti motori di ricerca adottano **schemi di pesatura differenti** tra query e documenti. Per una questione di semplicità le query vengono trattate come dei _documenti più piccoli_; grazie alla normalizzazione, tuttavia, query e documenti vengono ricondotti alla stessa lunghezza, permettendo così di confrontare direttamente documenti di grandi dimensioni con query contenenti poche parole. Alcuni motori di ricerca gestiscono invece le query in modo completamente differente.
@@ -497,25 +500,25 @@ Le lettere impiegate per ciascuna posizione sono:
 
 Uno degli schemi classici è ***lnc.ltc***: i documenti pesano i termini con la term frequency logaritmica, senza fattore *idf* e con normalizzazione del coseno, mentre la query utilizza la medesima term frequency logaritmica, l'*idf* e la normalizzazione del coseno.
 #### L'esempio svolto a lezione: lo schema lnc.ltc
-Per fissare le idee si consideri l'esempio classico svolto a lezione, con $N=1.000.000$, query $q$= _best car insurance_ e documento $d$= _car insurance auto insurance_:
+Per fissare le idee si consideri l'esempio classico svolto a lezione, con $N=1.000.000$, query $q=$ _best car insurance_ e documento $d=$ _car insurance auto insurance_:
 
-- **Lato query (ltc)**: ciascun termine riceve il peso $(1+log\ tf_{t,q}​)×idf_{t}$​, con $df_{best​}$=$50.000$, $df_{car}​=10.000$ e $df_{insurance}​=1.000$: si ottengono i pesi $1,3$ (_best_), $2$ (_car_) e $3$ (_insurance_). La lunghezza della query vale $∥q​∥=\sqrt{ 0^2+1,3^2+2^2+3^2 }​≈3,83$, da cui i pesi normalizzati:
+- **Lato query (ltc)**: ciascun termine riceve il peso $(1+\log tf_{t,q})\times idf_{t}$, con $df_{best}=50.000$, $df_{car}=10.000$ e $df_{insurance}=1.000$: si ottengono i pesi $1,3$ (_best_), $2$ (_car_) e $3$ (_insurance_). La lunghezza della query vale $\Vert q\Vert=\sqrt{0^2+1,3^2+2^2+3^2}\approx 3,83$, da cui i pesi normalizzati:
 	- $0,34$ 
 	- $0,52$
 	- $0,78$
-- **Lato documento (lnc)**: ciascun termine riceve il peso $1+log\ tf_{t,d}​$ (senza fattore idf): si ottengono $1$ (_auto_), $1$ (_car_) e $1,3$ (_insurance_). La lunghezza del documento vale $∥d∥=\sqrt{ 1^2+0^2+1^2+1,3^2 }​≈1,92$, da cui i pesi normalizzati 
+- **Lato documento (lnc)**: ciascun termine riceve il peso $1+\log tf_{t,d}$ (senza fattore idf): si ottengono $1$ (_auto_), $1$ (_car_) e $1,3$ (_insurance_). La lunghezza del documento vale $\Vert d\Vert=\sqrt{1^2+0^2+1^2+1,3^2}\approx 1,92$, da cui i pesi normalizzati 
 	- $0,52$
 	- $0,52$
 	- $0,68$
 
-I termini _car_ e _insurance_ contribuiscono rispettivamente $0,52×0,52=0,27$ e $0,78×0,68=0,53$, mentre _auto_ (assente nella query) e _best_ (assente nel documento) contribuiscono $0$:
-$$Score(q,d)=0+0+0,27+0,53≈0,8$$
+I termini _car_ e _insurance_ contribuiscono rispettivamente $0,52\times 0,52=0,27$ e $0,78\times 0,68=0,53$, mentre _auto_ (assente nella query) e _best_ (assente nel documento) contribuiscono $0$:
+$$Score(q,d)=0+0+0,27+0,53\approx 0,8$$
 ![[Pasted image 20261021184423.png]]
 
-> [!NOTES] Il ranking nello Spazio Vettoriale 
+> [!NOTE] Il ranking nello Spazio Vettoriale 
 > Per effettuare il ranking in un modello a spazio vettoriale:
 > 
-> 1. si rappresenta la query come un vettore nello spazio $∣V∣-dimensionale$, pesato mediante il tf-idf;
+> 1. si rappresenta la query come un vettore nello spazio $\vert V\vert$-dimensionale, pesato mediante il tf-idf;
 > 2. si rappresentano gli $N$ documenti come vettori nello stesso spazio, pesati mediante il tf-idf;
 > 3. si calcola la similarità del coseno tra il vettore della query e quello di ciascun documento;
 > 4. si ordinano i documenti in base ai punteggi ottenuti;
@@ -527,8 +530,8 @@ Come emerso nella parte introduttiva, per definirsi _intelligente_ un motore di 
 
 Viene per questo utilizzato **WordNet**, un sistema nato con l'intento di definire un **database lessicale** per effettuare delle ricerche concettuali all'interno di un dizionario, ma largamente impiegato nel campo dell'Information Retrieval per **aggiungere semantica** al processo di ritrovamento.
 
-> [!NOTES] WordNet**WordNet** organizza il lessico in **synset** 
-> Ovvero insiemi di termini sinonimi che esprimono uno stesso concetto, collegati tra loro da relazioni semantiche (come ad esempio l'iperonimia: _auto_ → _veicolo_). In questo modo i termini vengono associati non più in base alla loro forma, ma al loro **significato**, costituendo la base di conoscenza su cui si fondano i sistemi di _Word Sense Disambiguation (WSD)_ citati in precedenza.
+> [!NOTE] WordNet
+> **WordNet** organizza il lessico in **synset**, ovvero insiemi di termini sinonimi che esprimono uno stesso concetto, collegati tra loro da relazioni semantiche (come ad esempio l'iperonimia: _auto_ → _veicolo_). In questo modo i termini vengono associati non più in base alla loro forma, ma al loro **significato**, costituendo la base di conoscenza su cui si fondano i sistemi di _Word Sense Disambiguation (WSD)_ citati in precedenza.
 ### Concetto di Parola
 Nel modello lessicale di WordNet, il concetto di **parola** viene distinto in due componenti fondamentali:
 - **Word Form ($F$)**: la rappresentazione fisica e lessicale della parola, ovvero la stringa di caratteri che la compone.
@@ -543,7 +546,7 @@ Osservando la matrice è possibile formalizzare i due fenomeni linguistici princ
 
 Questo principio ricalca la struttura del **dizionario tradizionale**, il quale utilizza una **glossa** (una breve definizione testuale accompagnata da esempi d'uso) per descrivere il significato di un termine, elencarne i sinonimi e distinguere le varie accezioni delle parole polisemiche. Lo scopo principale di WordNet è proprio quello di tradurre e strutturare in formato digitale questa conoscenza linguistica, rendendola elaborabile da una macchina.
 
-> [!NOTES] Definizione di Synset
+> [!NOTE] Definizione di Synset
 > Il **synset** (*synonym set*) è l'**insieme delle *word form* sinonime** che possono essere utilizzate per rappresentare uno specifico *word meaning*. 
 > Un synset associato a una *word form* consente di inferire la semantica del termine in esame purché si conosca il significato di almeno una delle *word form* elencate al suo interno: se ad esempio si conosce il significato di $F_1$ ma non quello di $F_2$, il fatto che appartengano allo stesso synset permette di dedurre che $F_2$ esprime il medesimo concetto di $F_1$.
 ### Rappresentazione dei documenti: dalla Bag of Words alla Bag of Synsets
@@ -587,7 +590,7 @@ Supponiamo di voler disambiguare i sostantivi della frase: **cat** (che può ind
 
 4. **Scelta del significato (Disambiguazione)**: si osserva che il punteggio di similarità più alto si ottiene in corrispondenza della coppia **felino** per *cat* e **roditore** per *mouse*. Il sistema seleziona quindi questi due synset come significati corretti per indicizzare i concetti della frase.
 
-Ovviamente WorldNet ora è datato, esistono versioni migliori basati su reposotory di conoscenza molto più vasti come **BubbleNet**, gli LLM hanno aiutato molto queste procedure di linguismo nella storia.
+Ovviamente WordNet ora è datato: esistono versioni migliori basate su repository di conoscenza molto più vasti come **BabelNet**, e gli LLM hanno aiutato molto queste procedure di analisi linguistica nella storia.
 #### Relazione Parte - Tutto
 Oltre alla gerarchia _iperonimia/iponimia_ (_is-a_), WordNet collega i synset anche attraverso le **relazioni parte-tutto** (_has-part_ / _part-of_), chiamate **Meronimia** (il rapporto dalla parte al tutto) e **Olonimia** (il rapporto inverso, dal tutto alla parte):
 
