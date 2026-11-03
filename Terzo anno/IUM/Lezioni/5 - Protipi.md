@@ -1,57 +1,97 @@
-Per creare un progetto bisogna partire con un idea integra e ben consolidata, così da produrre le soluzioni per implementare il progetto.
-Bisogna farsi un elenco quindi delle cose che servono per implementare l'idea:
-- Capire gli utenti e i loro compiti, sulla base di casi d'uso e sui sistemi correnti
-- Usare conoscenze esistenti: ovvero usare gli standard e le linee guida, come l'ISO 9241
-- Produrre i **prototipi**
-- **Valutare** il prototipo
+Per avviare un progetto è necessario partire da un'idea chiara e ben consolidata, così da individuare le soluzioni progettuali migliori per la sua implementazione.
+Le fasi principali per trasformare l'idea in un sistema concreto sono:
+- **Comprendere il contesto d'uso**, gli utenti e i loro compiti, analizzando i casi d'uso e i sistemi già esistenti
+- **Sfruttare la conoscenza esistente**, applicando standard e linee guida di progettazione (come la norma **ISO 9241**)
+- **Realizzare i prototipi** per progettare le soluzioni
+- **Valutare i prototipi** insieme agli utenti
 
 Ma cos'è un prototipo?
-Il prototipo secondo l'ISO 9241-210 è una rappresentazione di un prodotto o di una parte del sistema che anche se in qualche modo limitato, può esser utilizzato a scopo di valutazione.
+Secondo lo standard **ISO 9241-210**, il prototipo è la rappresentazione di tutto o di una parte di un sistema o prodotto che, sebbene limitata in qualche modo, può essere utilizzata a scopo di analisi, progettazione e valutazione.
 
-Sarebbe la base iniziale per avere una valutazione positiva dell'idea e per continuare la progettazione.
+Rappresenta quindi la base concreta su cui validare l'idea progettuale prima di procedere con lo sviluppo vero e proprio.
 ![[Pasted image 20261103143806.png]]
 
 ### Perché usiamo i prototipi
-Secondo L'iso 9241-210, l'uso dei prototipi è ottimo poiché fa emergere feedback nelle fasi iniziali, decisioni di progetto più esplicite, si definiscono meglio le qualità e la completezza delle specifiche e si esplora meglio l'idea del desing.
+Secondo lo standard ISO 9241-210, l'uso dei prototipi è fondamentale perché permette di raccogliere feedback già nelle fasi iniziali del progetto, rende più esplicite le decisioni progettuali, migliora la qualità e la completezza delle specifiche e consente di esplorare diverse alternative di design.
+
 ### Classificazione dei prototipi
+I prototipi possono essere classificati in base a cinque dimensioni:
 - Scopo
-- Modo d'uso
+- Modalità d'uso
 - Fedeltà
+- Completezza funzionale
 - Durata
-- Completezza funzionale 
+
 #### Scopo
-Si divide in:
-- Ruolo, valuta il ruolo del prodotto nella vita dell'utente
-- Interfaccia, valuta le modalità di interazione tra utente e prodotto
-- Implementazione, valute la realizzazione del prodotto
+In base a ciò che si vuole indagare (modello di Houde & Hill), lo scopo si divide in:
+- **Ruolo**: valuta la funzione e l'utilità del prodotto nel contesto di vita dell'utente
+- **Interfaccia (Look & Feel)**: esplora l'aspetto visivo e le modalità di interazione sensoriale tra utente e prodotto
+- **Implementazione**: verifica la fattibilità tecnica e il funzionamento reale del sistema
 ![[Pasted image 20261103144146.png]]
+
 #### Modalità d'uso
-La modalità d'uso può essere:
-- Statica, come gli skatch, le storyboard (come quelle del cinema) o i diagrammi
-- Dinamica, come le animazioni o i video
-- Interattiva, l'uso del prototipo da parte dell'utente stesso
+La modalità di fruizione del prototipo può essere:
+- **Statica**: rappresentazioni fisse consultabili in sequenza, come sketch, storyboard (simili a quelli cinematografici) o diagrammi
+- **Dinamica**: rappresentazioni che mostrano l'evoluzione nel tempo senza intervento diretto dell'utente, come animazioni o video dimostrativi
+- **Interattiva**: sistemi che permettono all'utente di interagire direttamente con il prototipo simulando l'uso reale
+
 #### Fedeltà
-La fedeltà si divide in **bassa e alta**:
-- La fedeltà bassa è quando il prototipo è lontano dalla grafica che si pensa nella realizzazione finale, generalmente si esegue con schizzi rapidi ed economici su carta
-- La fedeltà alta ci permette invece di avere una visione moolto più vicina al prodotto finale
+La fedeltà indica quanto il prototipo assomigli al prodotto finale e si divide in **bassa e alta**:
+- **Bassa fedeltà (Low-Fi)**: il prototipo è distante dall'aspetto grafico definitivo; viene realizzato in modo rapido ed economico (spesso su carta) per testare i concetti di base
+- **Alta fedeltà (High-Fi)**: il prototipo offre una rappresentazione visiva e interattiva molto vicina al prodotto finale
+
 #### Completezza funzionale
+Indica quante funzionalità sono effettivamente implementate rispetto al sistema finale:
+- **Prototipo orizzontale**: riproduce l'intera superficie dell'interfaccia (es. tutti i menu e le schermate principali), ma senza implementare in profondità le singole funzioni
+- **Prototipo verticale**: implementa in modo approfondito e completo solo un numero ristretto di funzionalità specifiche
+- **Scenario**: simula un percorso d'uso specifico e predefinito, seguendo un'unica sequenza di azioni per uno specifico task
 ![[Pasted image 20261103144512.png]]
+
 #### Durata
-Gli schizi su carta e wireframe in Figma si basano su prototipi di durata **usa e getta**, ovvero momentanei e terra terra.
+In base al ciclo di vita nel processo di sviluppo, i prototipi si dividono in:
+- **Usa e getta (Throwaway)**: come gli schizzi su carta o i primi wireframe su Figma; servono solo a chiarire i requisiti o testare un'idea iniziale e vengono poi scartati prima della scrittura del codice finale.
 ![[Pasted image 20261103144704.png]]
 
-mentre l'app pilota e i framework finali eseguono una durata di tipo **evolutiva** dove il prototipo viene conservato e viene fatto evolvere integrandolo piano piano con il risultato finale.
+- **Evolutivi**: come le app pilota o i prototipi sviluppati su framework software definitivi; il prototipo non viene buttato, ma viene conservato, raffinato e integrato progressivamente fino a diventare il prodotto finale.
 ![[Pasted image 20261103144715.png]]
-### Prototipazione
-E' il suddividersi delle regole da eseguire nella fase di creazione di un prototipo.
-Si hanno i prototipi iniziali (quelli su carta o su wire-frame), poi si hanno i prototipi intermedi(primi aspetti grafici) e quelli finali (sistema quasi completo).
+
+### Il processo di prototipazione
+La prototipazione accompagna le diverse fasi del ciclo di progettazione attraverso livelli crescenti di dettaglio:
+- **Prototipi iniziali**: schizzi su carta o wireframe per esplorare idee e struttura generale
+- **Prototipi intermedi**: introduzione dei primi aspetti grafici, del layout e dei flussi di navigazione principali
+- **Prototipi finali**: sistema ad alta fedeltà, quasi completo nei dettagli visivi e funzionali
+
 ## Paper prototyping
-Domanda: Non sarebbe bello sapere cosa gli utenti vogliono prima di iniziare il processo di programmazione/codifica? • Effettuare prototipi su carta permette proprio questo, sebbene non sia intuitivo testare un'interfaccia utente senza l'uso di un computer • Con i prototipi su carta si massimizza il feedback minimizzandone lo sforzo • Bastano alcuni test di usabilità con prototipi su carta per avere abbastanza informazioni da sapere se quello che si implementerà è la cosa giusta.
+*Domanda: Non sarebbe utile capire cosa vogliono gli utenti prima ancora di iniziare a scrivere codice?*
+- Realizzare prototipi su carta permette proprio questo, anche se può sembrare controintuitivo testare un'interfaccia utente senza usare un computer
+- Con i prototipi su carta si **massimizza il feedback minimizzando lo sforzo** e i costi di realizzazione
+- Bastano pochi test di usabilità su carta per raccogliere informazioni sufficienti a capire se la direzione progettuale intrapresa è quella corretta
+
 ### In cosa consiste?
-Paper prototyping è un metodo per il test di usabilità di applicazioni software 2 Si decide quali task si devono effettuare 3 Si creano le schermate e/o gli schizzi su carta delle finestre, menu, caselle di dialogo, ecc. Tutto quello che è necessario per effettuare i task 4 Si simula l'interazione: uno sviluppatore fa il ruolo del computer, manipolando i pezzi di carta per simulare il comportamento dell'interfaccia 5 Agli utenti si fanno compiere compiti realistici direttamente sul prototipo cartaceo (si utilizzano spesso pezzi di carta/nastri trasparenti).
-Un mediatore (tipicamente un esperto di usabilità) conduce la sessione mentre altri membri del team di sviluppo guardano e prendono appunti • Chi fa "il computer" non spiega nulla relativamente all'interfaccia, si limita a simulare il comportamento dell'interfaccia • In caso di problemi, un prototipo su carta è facilmente modificabile per aggiustare "al volo" i problemi più semplici.
+Il **Paper prototyping** è un metodo di test di usabilità applicato alle interfacce software che si articola in diverse fasi:
+1. Si definiscono i task (compiti) che l'utente dovrà svolgere durante il test
+2. Si disegnano su carta le schermate e tutti gli elementi dell'interfaccia necessari per completare i task (finestre, menu, finestre di dialogo, pulsanti, ecc.)
+3. Si simula l'interazione: un membro del team svolge il ruolo del "computer", spostando e sostituendo i fogli di carta in risposta alle azioni dell'utente per simulare il comportamento del sistema
+4. Si chiede agli utenti di svolgere compiti realistici interagendo direttamente con i modelli cartacei (usando il dito come cursore e scrivendo su post-it o nastri rimovibili)
+
+Durante la sessione:
+- Un **facilitatore** (tipicamente un esperto di usabilità) conduce il test, mentre gli altri membri del team osservano in silenzio e prendono appunti
+- Chi interpreta "il computer" non deve parlare né dare spiegazioni sull'interfaccia, ma limitarsi a reagire meccanicamente agli input dell'utente cambiando le schermate cartacee
+- In caso di problemi evidenti di comprensione, il prototipo su carta può essere modificato rapidamente "al volo" tra una sessione e l'altra per correggere subito i difetti più semplici
+
 ### Accuratezza
-L'accuratezza dietro il prototipo su carta deve ribadire se le etichette siano chiare, concentrarsi sul contenuto e non quanto sia bella da vedere. serve per vedere quanto una cosa funzioni, poi si pensa a come mostrarla in modo carino.
+Un buon prototipo su carta deve puntare sulla **chiarezza dei contenuti e delle etichette**, non sull'estetica. L'obiettivo è verificare se la logica dell'interfaccia e il flusso di navigazione funzionano; i dettagli puramente visivi verranno curati nelle fasi successive.
 ![[Pasted image 20261103145204.png]]
 
-Prima realizzo il paper prototiping prima posso realizzare le cose che mancano, basta segnarle le cose, anche se alcuni loghi non sono ancora esistenti basta fare uno schizzo per far capire come apparirà, non importa la bellezza, ma il funzionamento di base.
+Più velocemente si realizza il prototipo cartaceo, prima emergono eventuali lacune progettuali. Non serve che le icone, le immagini o i loghi siano definitivi: basta abbozzarne l'ingombro con uno schizzo e un'etichetta descrittiva per far capire cosa ci sarà in quel punto, concentrandosi esclusivamente sul funzionamento di base.
+## Paper prototyping: analisi
+I **pro** del paper prototyping sono:
+- Verificare se i concetti sono chiari all'utente
+- Verificare se i passi presentati sono quelli che si aspettano gli utenti e se manca qualche informazione che l'utente ci aveva richiesto
+- Verificare se le informazioni sono poche o ci sono informazioni inutili
+
+I **contro** del paper prototyping sono:
+- Si possono creare prototipi che non possono essere implementati: per evitarlo deve esserci almeno una persona in grado di capire i vincoli tecnici presenti in una soluzione
+- Attendere i tempi di risposta dell'utente
+- L'uso dello scrolling, in particolare per le pagine web, è da evitare, così anche per i prototipi su carta e così l'utente non potrà capire se quella sezione di pagina sarà visibile o meno dallo scrolling
+- Con i prototipi su carta è difficile comprendere come l'interfaccia finale sarà mostrata su schermo. È una buona idea coinvolgere un designer nel prototipo cartaceo, perché potrebbe fare osservazioni che influenzano il progetto
