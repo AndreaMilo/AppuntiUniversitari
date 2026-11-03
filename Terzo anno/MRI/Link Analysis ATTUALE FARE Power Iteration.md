@@ -252,7 +252,7 @@ Si dimostra così che l'intero sistema delle equazioni di flusso $r_j = \sum_{i 
 $$r = M \cdot r$$
 
 ---
-Da spostare
+
 ## Interpretazione grafica del prodotto $M \cdot r = r$
 ![[Pasted image 20261031182327.png]]
 Qui viene illustrato visivamente cosa accade a una singola pagina $i$ e a una pagina $j$ quando si esegue il prodotto matriciale $M \cdot r = r$ (che corrisponde all'equazione di flusso $r_j = \sum_{i \rightarrow j} \frac{r_i}{d_i}$):
@@ -323,8 +323,6 @@ $$r_j^{(t+1)} = \sum_{i \rightarrow j} \frac{r_i^{(t)}}{d_i}$$
 > In pratica, per verificare se l'algoritmo è arrivato a convergenza, si calcola per ogni pagina la differenza in valore assoluto $\left\vert{}r_i^{(t+1)} - r_i^{(t)}\right\vert{}$ tra il punteggio nuovo e quello vecchio, si sommano tutti gli scarti e si controlla che la somma sia inferiore a $\epsilon$. Al posto della norma $L_1$ è comunque possibile utilizzare qualsiasi altra norma vettoriale, come ad esempio la **distanza Euclidea** (norma $L_2$).
 > 
 >   
-
-Vuoi che procediamo dalla slide 25 in poi con lo svolgimento numerico passo-passo delle iterazioni sull'esempio ($y, a, m$) e l'interpretazione probabilistica del _Random Walk_?
 
 ### Esempio: 
 
@@ -429,31 +427,6 @@ Guardando la topologia del grafoe i risultati finali ($r_y = \frac{2}{5}$, $r_a 
 - Il nodo **$m$** possiede **un solo link in entrata** (quello che proviene da $a$, il quale per giunta divide il suo flusso a metà tra $y$ ed $m$), mentre sia $y$ che $a$ ricevono due link in entrata ciascuno.
 - Di conseguenza, essendo un nodo meno connesso in ingresso, **$m$ ottiene un PageRank pari a $\frac{1}{5}$, ovvero esattamente la metà rispetto agli altri due nodi** ($\frac{2}{5}$ ciascuno).
 - Seguendo il meccanismo probabilistico dei link durante la visita del grafo, **è molto più probabile arrivare (e trovarsi) sul nodo $y$ o sul nodo $a$ rispetto che sul nodo $m$**.
-
-Vuoi che proseguiamo ora dalla **Slide 30** in poi per formalizzare proprio questo concetto di visita casuale del grafo (_Random Walk Interpretation_ e _Stationary Distribution_) e vedere poi la formulazione di Google con i problemi di _Spider Traps_ e _Dead Ends_?
-
-## Formulazione Matriciale
-Per poter calcolare il PageRank su grafi con miliardi di pagine senza usare l'eliminazione di Gauss, si riscrive il modello a flusso ricorrendo all'algebra lineare e introducendo la **matrice di adiacenza stocastica $M$** (_Stochastic adjacency matrix $M$_).
-
-Dato un grafo in cui la pagina $i$ possiede $d_i$ link in uscita (_out-links_), la matrice $M$ (di dimensione $N \times N$, dove $N$ è il numero di pagine) viene costruita secondo la seguente regola:
-
-$$
-M_{ji} = \begin{cases} \frac{1}{d_i} & \text{se } i \rightarrow j \text{ (esiste un link da } i \text{ verso } j\text{)} \\ 0 & \text{altrimenti} \end{cases}
-$$
-
-**Attenzione agli indici della matrice ($M_{ji}$):**
-- Le **colonne ($i$)** rappresentano i nodi di **partenza** (le pagine che emettono i link).
-- Le **righe ($j$)** rappresentano i nodi di **arrivo** (le pagine che ricevono i link).
-- Poiché ogni pagina $i$ divide la propria importanza in $d_i$ parti uguali pari a $\frac{1}{d_i}$ lungo la propria colonna $i$, **la matrice $M$ è una matrice stocastica per colonne** (_column stochastic matrix_), il che significa che la somma degli elementi di ciascuna colonna è sempre uguale a $1$.
-
-![[Pasted image 20261031175106.png]]
-Riprendendo l'esempio a tre nodi ($y, a, m$), la matrice stocastica $M$ associata alle equazioni di flusso si costruisce colonna per colonna:
-- **Colonna $y$ ($d_y = 2$):** $y$ punta a $y$ e ad $a$, quindi vale $\frac{1}{2}$ sulle righe $y$ e $a$, e $0$ sulla riga $m$.
-- **Colonna $a$ ($d_a = 2$):** $a$ punta a $y$ e a $m$, quindi vale $\frac{1}{2}$ sulle righe $y$ e $m$, e $0$ sulla riga $a$.
-- **Colonna $m$ ($d_m = 1$):** $m$ punta solo ad $a$, quindi vale $1$ sulla riga $a$, e $0$ sulle righe $y$ e $m$.
-  
-Se definiamo ora il **vettore di rank $r$** (_Rank vector $r$_) come un vettore colonna che contiene una componente per ciascuna pagina, dove $r_i$ è il punteggio di importanza della pagina $i$ e la somma di tutte le componenti vale $$\sum_i r_i = 1$$, l'intero sistema delle equazioni di flusso $$r_j = \sum_{i \rightarrow j} \frac{r_i}{d_i}$$ si riassume nella compatta **equazione matriciale**:
-$$r = M \cdot r$$
 
 ## Random Walk
 Oltre alla vista algebrica basata sulle equazioni di flusso e sugli autovettori, il funzionamento del PageRank può essere compreso in modo estremamente intuitivo attraverso un'interpretazione probabilistica chiamata **Random Walk**.
@@ -847,7 +820,3 @@ Confrontando il risultato finale $\left[\frac{7}{33}, \frac{5}{33}, \frac{21}{33
 
 
 * Tuttavia, grazie a quel 20% ($1 - \beta = 0.2$) di probabilità di teletrasporto che fa "uscire" il navigatore dalla trappola $m$ ridistribuendolo su tutto il grafo, **i nodi $y$ e $a$ non si azzerano più**, ma conservano un PageRank significativo pari rispettivamente a **$r_y = \frac{7}{33}$** ($\approx 0.212$) e **$r_a = \frac{5}{33}$** ($\approx 0.151$), con la somma totale che resta perfettamente uguale a $\frac{7 + 5 + 21}{33} = \frac{33}{33} = 1$.
-
-
-
-Con questa slide si conclude l'intero file PDF su *Link Analysis e PageRank*. Vuoi che ti prepari uno schema riassuntivo delle formule principali o un esercizio di riepilogo su questo argomento?

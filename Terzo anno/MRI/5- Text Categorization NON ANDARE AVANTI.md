@@ -79,15 +79,11 @@ L'obiettivo reale dell'apprendimento non è semplicemente imparare a memoria il 
 ## Text categorization (Definizione e Applicazioni)
 Il termine **Text Categorization** (o classificazione del testo) si riferisce al processo automatico che assegna una o più etichette di categoria a testi scritti in linguaggio naturale.
 
-Le p rincipali **applicazioni** di questa tecnologia includono:
+Le principali **applicazioni** di questa tecnologia includono:
 - **Pagine Web:** Sistemi di raccomandazione (Recommending) e organizzazione delle pagine in directory (come il vecchio sistema di classificazione di Yahoo).
 - **Messaggi Newsgroup:** Filtraggio dello spam (spam filtering) e suggerimento di gruppi di interesse (recommending).
 - **Articoli di Notizie:** Creazione di giornali personalizzati in base agli interessi dell'utente (Personalized newspaper).
 - **Email:** Suddivisione automatica delle email in cartelle (Folderizing) e blocco della posta indesiderata (spam filtering).
-
-Ecco gli appunti strutturati per le slide dalla 9 alla 13, formattati in continuità con il resto del tuo documento:
-
-  
 
 ## Definizione Formale del Problema
 
