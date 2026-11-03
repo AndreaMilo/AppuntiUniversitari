@@ -95,3 +95,4 @@ I **contro** del paper prototyping sono:
 - Attendere i tempi di risposta dell'utente
 - L'uso dello scrolling, in particolare per le pagine web, è da evitare, così anche per i prototipi su carta e così l'utente non potrà capire se quella sezione di pagina sarà visibile o meno dallo scrolling
 - Con i prototipi su carta è difficile comprendere come l'interfaccia finale sarà mostrata su schermo. È una buona idea coinvolgere un designer nel prototipo cartaceo, perché potrebbe fare osservazioni che influenzano il progetto
+
