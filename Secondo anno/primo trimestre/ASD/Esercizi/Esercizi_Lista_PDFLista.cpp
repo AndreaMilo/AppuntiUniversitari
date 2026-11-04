@@ -56,3 +56,11 @@ void Lista::creaLista() {
     // (quella all'indice DIMENSIONE - 1) sia -1, per indicare che la memoria è finita
     elementi[DIMENSIONE-1].posizione_succ=-1;
 }
+
+bool Lista::listaVuota() const{
+    // Non devi mai fare affidamento all'ordine fisico dell'array. Quindi non possiamo guardare la posizione 0
+    bool check=true;
+    if(lista_inizio==-1) check true;
+    else check=false;
+    return check;
+}
