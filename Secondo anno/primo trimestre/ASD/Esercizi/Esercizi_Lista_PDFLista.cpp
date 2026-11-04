@@ -26,5 +26,11 @@ class Lista{
         void cancLista(posizione);
 
     private:
-        struct cella{tipoelem elemento, int posizione};
-}
+        const int DIMENSIONE=30;
+        struct cella{tipoelem elemento;
+            int posizione_succ;
+        };
+        cella elementi[DIMENSIONE];
+        posizione lista_inizio; // elemento della lista momentaneo
+        posizione lista_vuota; // elemento della lista vuoto
+};
