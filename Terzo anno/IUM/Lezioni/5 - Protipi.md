@@ -101,14 +101,17 @@ Uno studio di **Virzi et al. (CHI '96)** ha confrontato sperimentalmente prototi
 ### Wireframe
 I **wireframe** (termine derivato dalla grafica computerizzata) sono prototipi a **bassa fedeltà** e di tipo **usa e getta** che rappresentano lo scheletro strutturale dell'interfaccia (es. prototipi di navigazione per testare i link e confrontare il layout responsive tra desktop e mobile).
 ### Prototipi ipertestuali
+![[Pasted image 20261103171210.png]]
 Sono costituiti da una sequenza di schermate statiche (**snapshot**), dove ogni schermata corrisponde a una slide o a un frame (es. in Figma) su cui vengono definite **aree cliccabili** (pulsanti, campi) collegate ad altri frame per simulare la navigazione:
 - **Limiti e soglia di gestibilità**: consentono solo interazioni semplici di tipo *point & click*. Per sistemi complessi, al fine di non superare la soglia di gestibilità, si realizzano **prototipi separati**, ciascuno dedicato a uno specifico aspetto del sistema (es. un prototipo per le chiamate, uno per la rubrica, uno per la chat e uno per le notifiche).
 - **Combinazione Carta + Digitale**: il flusso ottimale prevede di costruire e testare prima un prototipo su carta a bassa fedeltà; una volta consolidata la soluzione, la si trasforma in un prototipo digitale navigabile ad alta fedeltà (es. in Figma, aiutandosi con **design stencil e librerie preconfezionate** come i kit ufficiali iOS/macOS o Material Design) per condurre nuovi test con gli utenti.
 ### Mago di Oz (Wizard of Oz)
+![[Pasted image 20261103171455.png]]
 È una tecnica di prototipazione interattiva in cui **l'utente crede di interagire con un sistema informatico autonomo, ma in realtà interagisce con un essere umano** nascosto (il "Mago") che simula le risposte del software in tempo reale. È particolarmente utile per testare sistemi complessi prima di svilupparli, come un assistente conversazionale basato su IA in cui un ricercatore digita manualmente le risposte in tempo reale.
 ## Prototipi intermedi e finali
 ### Prototipi intermedi
 Permettono di testare **aspetti specifici** del prodotto, ma non ancora le sue funzioni complessive (che saranno verificabili solo alla fine). Una volta definito il *design concept*, vengono sviluppati utilizzando direttamente le **tecnologie finali**: in questo modo il sistema cresce in modo evolutivo per **ampliamenti successivi** e modesti rifacimenti a partire da una **base di codice iniziale**.
+![[Pasted image 20261103171721.png]]
 ### Prototipi finali
 Rappresentano il **sistema sostanzialmente completo**. Se il processo di progettazione è stato condotto correttamente nelle fasi precedenti, i test sui prototipi finali non dovrebbero riservare sorprese, ma restano fondamentali perché solo a questo stadio è possibile effettuare **prove complete su compiti reali (e non simulati)**.
 - **Esempio (sito di e-commerce)**: il prototipo finale corrisponde al sito completo con contenuti definitivi, funzionalità collaudate e una **base di dati reale** (o significativa), su cui eseguire test sofisticati in scenari d'uso completi e ad alta complessità.
