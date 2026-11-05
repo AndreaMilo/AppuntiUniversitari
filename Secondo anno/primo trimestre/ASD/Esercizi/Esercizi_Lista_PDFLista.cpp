@@ -60,7 +60,7 @@ void Lista::creaLista() {
 bool Lista::listaVuota() const{
     // Non devi mai fare affidamento all'ordine fisico dell'array. Quindi non possiamo guardare la posizione 0
     bool check=true;
-    if(lista_inizio==-1) check true;
+    if(lista_inizio==-1) check=true;
     else check=false;
     return check;
 }
