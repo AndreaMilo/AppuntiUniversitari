@@ -11,27 +11,15 @@
  **Es. 3.** Si vuole progettare una struttura dati per la memorizzazione dello storico dei  pagamenti dei dipendenti di una azienda. In particolare, per ogni dipendente si memorizza lo storico degli ultimi 24 stipendi mensili ricevuti, ciascuno dei quali rappresentati da un float. Completare la specifica della struttura dati **storico**, fornendo la specifica semantica per mezzo di PRE e POST condizioni, rispetto alla seguente specifica sintattica:                              
  **domini:** storico, dipendente, intero, float (aggiungerne altri se necessario)
  
- >[!NOTES] OPERATORI
- > // crea la struttura per memorizzare lo storico dei pagamenti (1p)
-
-creaStorico () → storico
-// aggiunge un dipendente allo storico (1p)
-
-aggiungiDipendente (storico, dipendente) → storico
-// aggiungi un pagamento ricevuto da un dipendente, mantenendo uno storico di massimo 24 pagamenti (2p)
-
-aggiungiPagamento (storico, dipendente, float) -> storico
-
-// restituisce la somma degli ultimi k (terzo argomento) pagamenti ricevuti dal dipendente (2p)
-
-totaleUltimiKPagamenti (storico, dipendente, intero) -> float
-
-// restituisce il dipendente (o i dipendenti, in caso di parimerito) che ha ricevuto la somma maggiore complessiva negli ultimi 12 pagamenti (3p)
-
-piùPagati(storico) -> insieme<dipendente>
+ >[!NOTES] OPERATORI 
+|**Operatore (Firma Sintattica)**|**Descrizione**|
+|---|---|
+|`creaStorico () → storico`|Crea la struttura per memorizzare lo storico dei pagamenti.|
+|`aggiungiDipendente (storico, dipendente) → storico`|Aggiunge un dipendente allo storico.|
+|`aggiungiPagamento (storico, dipendente, float) -> storico`|Aggiunge un pagamento ricevuto da un dipendente, mantenendo uno storico di massimo 24 pagamenti.|
+|`totaleUltimiKPagamenti (storico, dipendente, intero) -> float`|Restituisce la somma degli ultimi $k$ (terzo argomento) pagamenti ricevuti dal dipendente.|
+|`piùPagati(storico) -> insieme<dipendente>`|Restituisce il dipendente (o i dipendenti, in caso di parimerito) che ha ricevuto la somma maggiore complessiva negli ultimi 12 pagamenti.|
  
-
-
 Fase del **DOMINIO**:
 Definisco i parametri di ingresso e il valore restituito, assegnando a loro valori brevi:
 - `totaleUltimiKpagamenti (storico, dipendente, intero)->float`
