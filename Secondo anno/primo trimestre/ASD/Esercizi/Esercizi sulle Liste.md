@@ -5,8 +5,32 @@
 *****
 
 
-***APPELLO II 2025-02-07 Esercizio Guidato per capire come farlo**:
-**Richiesta:** L'operatore restituisce la somma degli ultimi $k$ (terzo argomento) pagamenti ricevuti dal dipendente.
+#### ***APPELLO II 2025-02-07 Esercizio Guidato per capire come farlo**:
+> [!WARNING] Traccia
+> **Richiesta:** L'operatore restituisce la somma degli ultimi $k$ (terzo argomento) pagamenti ricevuti dal dipendente.
+ **Es. 3.** Si vuole progettare una struttura dati per la memorizzazione dello storico dei  pagamenti dei dipendenti di una azienda. In particolare, per ogni dipendente si memorizza lo storico degli ultimi 24 stipendi mensili ricevuti, ciascuno dei quali rappresentati da un float. Completare la specifica della struttura dati **storico**, fornendo la specifica semantica per mezzo di PRE e POST condizioni, rispetto alla seguente specifica sintattica:                              
+ **domini:** storico, dipendente, intero, float (aggiungerne altri se necessario)
+ 
+ >[!NOTES] OPERATORI
+ > // crea la struttura per memorizzare lo storico dei pagamenti (1p)
+
+creaStorico () → storico
+// aggiunge un dipendente allo storico (1p)
+
+aggiungiDipendente (storico, dipendente) → storico
+// aggiungi un pagamento ricevuto da un dipendente, mantenendo uno storico di massimo 24 pagamenti (2p)
+
+aggiungiPagamento (storico, dipendente, float) -> storico
+
+// restituisce la somma degli ultimi k (terzo argomento) pagamenti ricevuti dal dipendente (2p)
+
+totaleUltimiKPagamenti (storico, dipendente, intero) -> float
+
+// restituisce il dipendente (o i dipendenti, in caso di parimerito) che ha ricevuto la somma maggiore complessiva negli ultimi 12 pagamenti (3p)
+
+piùPagati(storico) -> insieme<dipendente>
+ 
+
 
 Fase del **DOMINIO**:
 Definisco i parametri di ingresso e il valore restituito, assegnando a loro valori brevi:
