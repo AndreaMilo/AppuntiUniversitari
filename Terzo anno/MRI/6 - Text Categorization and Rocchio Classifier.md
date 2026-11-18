@@ -194,3 +194,4 @@ Dove i singoli termini rappresentano:
 - **$P(E)$ — Probabilità dell'evidenza** → la probabilità complessiva di osservare l'evento $E$ (funge da fattore di normalizzazione affinché il risultato sia una probabilità valida).
 
 In pratica, il teorema permette di **invertire il condizionamento** e aggiornare la stima di un'ipotesi $H$ alla luce di una nuova evidenza $E$: invece di stimare direttamente $P(H \mid E)$ (spesso difficile), la si ricava combinando la probabilità di base $P(H)$ con quanto l'evidenza $E$ sia compatibile con quell'ipotesi ($P(E \mid H)$), valori molto più semplici da stimare a partire dal *training set*.
+(***Vedere come fare l'esercizio presente sulla parte di laboratorio sulla probabilità***)
