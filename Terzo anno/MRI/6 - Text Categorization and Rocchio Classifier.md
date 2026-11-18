@@ -159,18 +159,20 @@ Per risolvere questo problema si cercano i $k$ esempi più simili:
 Tipicamente $k$ è dispari per evitare parità ($3$ e $5$ sono i valori più comuni).
 
 Per calcolare la misura di similarità (o distanza) tra questi documenti si possono usare diverse metriche: tipicamente si rappresentano i documenti tramite **vettori TF-IDF** e si calcola su di essi la **similarità del coseno**.
-#### K-Nearest Neighbor for Text
-**Training:**
-- For each training example $x \in Tr$:
-  - Compute the corresponding TF-IDF vector, $d_x$, for document $x$
-    
-**Test instance $y$:**
-- Compute TF-IDF vector $d$ for document $y$
-- For each $x \in Tr$:
-  - Let $s_x = \text{cosSim}(d, d_x)$
-- Sort examples, $x$, in $Tr$ by decreasing value of $s_x$
-- Let $N$ be the first $k$ examples in $Tr$ (get most similar neighbors)
-- Return the majority class of examples in $N$
+#### K-Nearest Neighbor per il testo
+
+**Addestramento (*Training*):**
+- Per ogni esempio di training $x \in Tr$:
+  - Calcola il corrispondente vettore TF-IDF, $d_x$, per il documento $x$
+
+**Istanza di test $y$:**
+- Calcola il vettore TF-IDF $d$ per il documento $y$
+- Per ogni $x \in Tr$:
+  - Poni $s_x = \text{cosSim}(d, d_x)$
+- Ordina gli esempi $x \in Tr$ per valore decrescente di $s_x$
+- Sia $N$ l'insieme dei primi $k$ esempi in $Tr$ (ovvero i vicini più simili)
+- Restituisci la classe di maggioranza tra gli esempi in $N$
+
 ## Assiomi di probabilità
 ![[Pasted image 20261118165506.png]]
 ### Probabilità condizionata
@@ -178,5 +180,17 @@ Per calcolare la misura di similarità (o distanza) tra questi documenti si poss
 ### Indipendenza
 ![[Pasted image 20261118165554.png]]
 ## Teorema di Bayes
-Se devo calcolare una probabilità su un evento $P(H|E)$ è dato dall'evento su quella ipotesi per l'ipotesi stessa, diviso la probabilità dell'evento.
-$$P(H|E)=\frac{P(E|H)P(H)}{P(E)}$$
+La probabilità di un'ipotesi $H$ dato un evento (evidenza) $E$, indicata con $P(H \mid E)$, è data dalla probabilità dell'evento data quella ipotesi moltiplicata per la probabilità dell'ipotesi stessa, diviso la probabilità dell'evento:
+
+$$P(H \mid E)=\frac{P(E \mid H)P(H)}{P(E)}$$
+
+Dove i singoli termini rappresentano:
+
+- **$H$ (Ipotesi / *Hypothesis*)** → l'evento o la classe di cui vogliamo stimare la probabilità (ad esempio, l'appartenenza di un documento a una determinata categoria).
+- **$E$ (Evidenza / *Evidence*)** → i dati o l'evento già osservato (ad esempio, i termini presenti nel documento).
+- **$P(H \mid E)$ — Probabilità a posteriori (*Posterior*)** → la probabilità che l'ipotesi $H$ sia vera *dopo* aver osservato l'evidenza $E$ (è ciò che vogliamo calcolare).
+- **$P(E \mid H)$ — Verosimiglianza (*Likelihood*)** → la probabilità di osservare l'evidenza $E$ assumendo che l'ipotesi $H$ sia vera.
+- **$P(H)$ — Probabilità a priori (*Prior*)** → la probabilità iniziale dell'ipotesi $H$ prima di osservare qualsiasi evidenza (quanto è probabile l'ipotesi in generale).
+- **$P(E)$ — Probabilità dell'evidenza** → la probabilità complessiva di osservare l'evento $E$ (funge da fattore di normalizzazione affinché il risultato sia una probabilità valida).
+
+In pratica, il teorema permette di **invertire il condizionamento** e aggiornare la stima di un'ipotesi $H$ alla luce di una nuova evidenza $E$: invece di stimare direttamente $P(H \mid E)$ (spesso difficile), la si ricava combinando la probabilità di base $P(H)$ con quanto l'evidenza $E$ sia compatibile con quell'ipotesi ($P(E \mid H)$), valori molto più semplici da stimare a partire dal *training set*.
