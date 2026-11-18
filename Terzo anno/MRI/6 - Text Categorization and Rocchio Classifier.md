@@ -1,4 +1,4 @@
-# Lezione 16/11
+# Text Categorization: Dimensionality Reduction e Classificatore di Rocchio
 
 ### Text Categorization
 
@@ -52,11 +52,11 @@ Ai fini di poter operare sul test set è necessario, ricordando che gli elaborat
 
 Anche qui si usa il *tfidf* per il calcolo dei pesi:
 
-![image.png](image.png)
+![[imLez16.png]]
 
 Come detto però, abbiamo bisogno che i valori ricadano nel range [0,1] e quindi usiamo la normalizzazione del coseno:
 
-![image.png](image%201.png)
+![[imLez16_1.png]]
 
 - T → insieme dei termini che compaiono almeno una volta nel Tr
 
@@ -81,7 +81,7 @@ dell’insieme dei termini che massimizzi la effectiveness al momento della indi
 
 Alcune funzioni usate per la selezione sono:
 
-![image.png](image%202.png)
+![[imLez16_2.png]]
 
 ### Metodi di Costruzione
 
@@ -91,14 +91,14 @@ Un esempio di categorizzatore che fa uso del relevance feedback è il classifica
 
 Ogni documento viene interpretato come un vettore di pesi:
 
-![image.png](image%203.png)
+![[imLez16_3.png]]
 
 - $w_{i,j}$ → peso della parola $k_i$ nel documento $d_j$
 - $t$ → dimensione del vocabolario
 
 Per ogni classe viene quindi poi calcolato un centroide ottenuto così:
 
-![image.png](image%204.png)
+![[imLez16_4.png]]
 
 dove:
 
