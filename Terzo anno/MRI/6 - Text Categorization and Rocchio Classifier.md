@@ -123,3 +123,33 @@ E’ possibile calcolare il vettore prototipo anche solo usando documenti del tr
 - la classificazione si basa sulla similarità tra i documenti e il vettore prototipo
 - non necessita di normalizzazioni perché la similarità del coseno non è influenzata dalla lunghezza
 [DA QUI]
+Altre tecniche di classificazipne, basate su classificatori differenti sono ad esempio gli **alberi di decisione** dove l'albero è il classificatore stesso.
+### ALberi di decisione
+I nodi sono i termini usati per l'indicizzazione mentre le **foglie** sono le classi.
+Le diramazioni degli alberi sono i test sul peso dei termini nel documento di test.
+Filtrando per determinate richieste del trainign set possiamo capire che ramo prendere ai bivi.
+
+Si va a valutare la features più discriminante, ad esempio se devo classificare uomini e donne, una features non classificiante è se hanno gli arti o meno.
+![[Pasted image 20261118162417.png]]
+Bisogna quindi trovare parole che classifichino bene quelle due classi, anche se è molto complesso trovare parole presenti in classi diverse, però i test sui pesi aiuta molto.
+Questo concetto si chiama **entropia**.
+
+Su determinati algoritmi quindi si fanno delle fasi di pre features, così da selezionare le features, facendo delle scale preliminari per ridurre le informazioni da implementare nell'apprendimento della decisione.
+
+Gli alberi di decisione molto spesso vengono trasformati in **regole di decisione**, ovvero creare vari percorsi che definiscono una regola.
+![[Pasted image 20261118162941.png]]
+I classificatori basati su regole di decisione sono simili a quelli basati su alberi di decisione ma sono in genere più compatti. I letterali denotano la presenza (o l’assenza) di termini nel documento sotto esame, mentre la testa della clausola stabilisce di classificare sotto una data categoria.
+### Algoritmo di Nearest-Neighbor Learning
+La fase di costruzione del classificatore non esiste, il classificatore è l'apprendimento stesso, memorizzando gli esempi presenti in *Tr*.
+Non è un vettore (rocchio), non è un albero ma è il training set stesso.
+E' anche chiamato metodo di apprendimento pigro (Lazy Learning), proprio perché non effettua esplicitamente una generalizzazione o determina prototipi di categoria.
+Si chiama Nearest Neighbor perché la classificazione si basa proprio sull'esempio più simile e vicino possibile.
+Ovviamente questo può generare errori come un esempio atipico o errori nell'etichettamento degli esempi di tranining.
+Dopo averli trovati gli ordino, quindi nelle posizioni più alte staranno i primi $k$ elementi più simili.
+trovare i $k$ esempi più simili e restituire la classe della maggioranza di questi.
+Tipicamente $k$ è dispari per evitare parità (3 e 5 sono i valori più comuni).
+Per calcolare la misura di similarità tra questi documenti posso usare vari tipi di similarità (la distanza). Posso usare la similarità del coseno o i vettori TF-IDF.
+#### K nearest Neighbor for Text
+Training: For each training example  Tr Compute the corresponding TF-IDF vector, dx , for document x Test instance y: Compute TF-IDF vector d for document y For each  Tr Let sx = cosSim(d, dx ) Sort examples, x, in Tr by decreasing value of sx Let N be the first k examples in Tr (get most similar neighbors) Return the majority class of examples in N 
+(Latex mancante da mettere, ho scritto così per capire cosa dicesse a voce prima)
+
