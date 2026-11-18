@@ -122,3 +122,4 @@ E’ possibile calcolare il vettore prototipo anche solo usando documenti del tr
 - il vettore prototipo è una semplice generalizzazione di una classe
 - la classificazione si basa sulla similarità tra i documenti e il vettore prototipo
 - non necessita di normalizzazioni perché la similarità del coseno non è influenzata dalla lunghezza
+[DA QUI]
