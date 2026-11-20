@@ -53,3 +53,31 @@ Importante è anche gestire i messaggi e la loro **posizione**, poiché collocar
 >[!NOTES] Secondo la definizione:
 >Un dialogo è adeguato all'apprendimento se supporta e guida l'utente nell'apprendimento del sistema
 
+![[Pasted image 20261120163847.png]]
+Guardando l'esempio di *Wordle* notiamo come le regole essenziali sono mostrati subito a schermo. Anche la fotocamera segue questo tipo di meccanismo, mostrando in Pro le effettive funzionalità che l'utente di base non guarderebbe, per questo in primo piano mostra *Video* e *Fotocamera*.
+
+![[Pasted image 20261120164106.png]]
+I **feedback intermedi** e la **familiarizzazione alle novità** aiutano molto a capire subito come funziona il prodotto che sta usando l'utente, guidandolo ad un apprendimento facilitato.
+Di fatto, l'esempio mostrato fa vedere come si sta susseguendo lo stato di ciò che l'utente deve eseguire, mostrandogli **piccoli traguardi** (questa stessa logica funziona anche con le app di tracciamento di una spedizione, mostrando i vari step dell'ordine in arrivo).
+### Controllabilità
+>[!NOTE] Secondo la definzione:
+>Un dialogo è controllabile se l’utente è in grado di iniziare e tenere sotto controllo la
+direzione e i tempi dell’interazione fino al raggiungimento dell’obbiettivo
+
+Un esempio di quando usare questo principio è nello streaming multimediale, chiamato **Punto di ripartenza controllato**, nello streaming si riprende da dove ci si era fermati ma si può ricominciare da qualsiasi punto.
+### Tolleranza verso gli errori
+Permette di raggiungere il risultato desiderato nonostante errori di input, con poche o nulle azioni correttive, attraverso controllo dei danni, correzione o gestione degli errori (con raccomandazioni quali prevenzione di azioni non lecite, spiegazione, recupero, correzioni automatiche, convalida dati, minimo sforzo e richieste di conferma).
+### Adeguatezza alla individualizzazione
+>[!NOTE] Secondo la definzione:
+>Un dialogo è adeguato alla individualizzazione se l’utente può modificare l’interazione e la presentazione dell’informazione per adattarle alle proprie necessità e capacità individuali
+
+Susseguono vari esempi per comprenderli al meglio:
+- **_Rappresentazioni alternative_:** passaggio tra vista a elenco e a griglia o tra tema chiaro e tema scuro senza alterare il contenuto.
+    
+- **_Vocabolario personalizzabile_**: sostituzione del testo/abbreviazioni sulla tastiera o nomi personalizzati per dispositivi smart home riconosciuti dall'assistente vocale.
+    
+- **_Metodo d'interazione_**: inserimento di una data tramite digitazione, calendario o dettatura vocale.
+    
+- **_Scorciatoie, accessibilità e centro di controllo_**: personalizzazione delle scorciatoie da tastiera con controllo conflitti e ripristino; impostazioni di sistema per l'accessibilità (dimensione e grassetto del testo, riduzione movimento, pulsante mouse per mancini, contrasto); configurazione dei comandi rapidi nel centro di controllo dello smartphone con possibilità di tornare ai valori predefiniti.
+  ![[Pasted image 20261120165241.png]]
+
