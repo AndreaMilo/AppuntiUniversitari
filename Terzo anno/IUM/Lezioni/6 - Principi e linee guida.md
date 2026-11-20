@@ -80,4 +80,30 @@ Susseguono vari esempi per comprenderli al meglio:
     
 - **_Scorciatoie, accessibilità e centro di controllo_**: personalizzazione delle scorciatoie da tastiera con controllo conflitti e ripristino; impostazioni di sistema per l'accessibilità (dimensione e grassetto del testo, riduzione movimento, pulsante mouse per mancini, contrasto); configurazione dei comandi rapidi nel centro di controllo dello smartphone con possibilità di tornare ai valori predefiniti.
   ![[Pasted image 20261120165241.png]]
+## Le 10 euristiche di Nielsen
+Ogni principio di Nielsen viene accostato ai sette principi del dialogo della ISO 9241, così da notare come approcci diversi converggano sugli stessi pilastri dell'usabilità:
+1. **Visibilità dello stato del sistema**: informare l'utente di ciò che sta accadendo tramite feedback.
+2. **Allineamento tra il mondo del sistema e quello dell'utente**: usare parole familiari all'utente.
+3. **Design estetico e minimalista**: le informazioni mostrate devono seguire un ordine naturale e logico.
+4. **Coerenza e standard**: parole e azioni devono mantenere lo stesso significato.
+5. **Riconoscimento rispetto alla memorizzazione**: le istruzione d'uso devono sempre esser facilmente recuperabili quando servono.
+6. **Controllo da parte dell'utente e sua libertà**: shalom loro controllano tutto
+7. **Flessibilità e efficienza d'uso**: l'esperienza dev'essere velocizzabile per gli utenti esperti e non basarsi sui tasti lenti di quelli medi.
+8. **Aiutare l'utente nel riconoscere, diagnosticare e rimediare dagli errori**: i messaggi di errori vanno espressi in linguaggio semplice, indicando semplicemente il problema
+9. **Prevenzione degli errori**: una progettazione accurata deve impedire che gli errori si verifichino in primo luogo.
+10. **Aiuto e documentazione**: le informazioni di supporto devono essere facili da reperire.
 
+Il confronto tra i due è che la **ISO 9241-110** raggruppa le qualità del dialogo in sette macro-principi normativi articolati in raccomandazioni dettagliate, e le **euristiche di Nielsen** offrono una lista sintetica e molto operativa (particolarmente usata anche per le ispezioni euristiche) che incrocia gli stessi aspetti sotto angolazioni leggermente diverse.
+
+![[Pasted image 20261120170001.png]]
+#### Altri principi
+Altri **principi di usabilità** possono essere:
+- Le 8 regole d'oro di Shneiderman
+- Principi di design di Norman
+- Principi sull'usabilità funzionale nei requisiti Euristo et al. 2007
+
+Altre **linee guida e design system** possono essere:
+- Material Design 3 di Google
+- Human Interface Guidelines di Apple
+- Fluent 2 di Microsoft
+- Designers Italia per i servizi di Pubblica Amministrazione
