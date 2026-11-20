@@ -30,3 +30,26 @@ Queste raccomandazioni racchiudono le guide all'utente, interazione e descrizion
 Un testo grigio piatto non comunica in modo chiaro quanto una forma con riempimento e contrasto evidente.
 
 Da questo si evince che bisogna **evitare** le scritte che rendono le funzioni poco chiare che non funzionano sui dispositivi touch. 
+### Conformità alle aspettative dell'utente
+Il dialogo rispetta le aspettative quando è coerente con il contesto, il linguaggio familiare e le convenzioni culturali e d'uso consolidatesi nel tempo.
+
+Nelle interfacce in lingue right-to-left (arabo o ebraico), il layout deve rispecchiare correttamente le convenzioni culturali.
+Gli elementi devono essere posizionati in punti ben precisi e strategici, prendiamo ad esempio un sito di e-commerce:
+- logo in alto a sinistra per tornare alla home
+- ricerca in alto
+- account e carrello in alto a destra
+- informazioni legali e contatti nel footer
+
+Il menù deve essere chiaro sin da subito, se le pagine si trasformano durante la navigazione o non sono alle posizioni aspettate / precedentemente cliccate le pagine potrebbero **disorientare l'utente**.
+Una buona pratica con i **design system** è condividere intestazione, menu, pulsanti, card, moduli e footer tra siti della Pubblica Amministrazione (Comuni, scuole, enti) così da permettere di riutilizzare ciò che si è già appreso.
+
+E' importante a livello grafico gestire **l'attesa dei caricamenti** così da far notare all'utente che il sito/app sta caricando per lui e non che sia ferma.
+![[Pasted image 20261120162816.png]]
+Sul piano temporale, risposte $\le 0{,}1\text{ s}$ appaiono immediate, tra $0{,}1\text{ s}$ e $1\text{ s}$ non spezzano la continuità del compito, fino a $10\text{ s}$ mantengono l'attenzione focalizzata, mentre oltre $10\text{ s}$ richiedono un feedback di avanzamento.
+
+Importante è anche gestire i messaggi e la loro **posizione**, poiché collocare feedback e campi attivi vicino al punto di attenzione dell'utente evita che possano passare inosservati.
+### Adeguatezza all'apprendimento
+
+>[!NOTES] Secondo la definizione:
+>Un dialogo è adeguato all'apprendimento se supporta e guida l'utente nell'apprendimento del sistema
+
