@@ -24,3 +24,9 @@ Per esempio una buona pratica sarebbe mostrare subito in un'unica vista gli orar
 Infatti **troppi elementi a schermo che si sovrappongono** non aiutano l'utente ad avere una vista libera del contenuto principale, portandolo a confusione o chiudere l'app.
 ![[Pasted image 20261120154207.png]]
 ### Autodescrizione
+**Un dialogo è autodescrittivo** quando l'utente riesce sempre a capire nell'applicazione dove si trova, cosa può eseguire e come muoversi. In questo modo si riduce il **golfo dell'esecuzione** e il **golfo della valutazione**.
+Queste raccomandazioni racchiudono le guide all'utente, interazione e descrizioni di input e formati.
+![[Pasted image 20261120155334.png]]
+Un testo grigio piatto non comunica in modo chiaro quanto una forma con riempimento e contrasto evidente.
+
+Da questo si evince che bisogna **evitare** le scritte che rendono le funzioni poco chiare che non funzionano sui dispositivi touch. 
