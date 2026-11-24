@@ -13,4 +13,15 @@ Nel negozio online l'utente vuole trovare un prodotto, capirne il formato e il p
 
 La grafica non è un semplice "abbellimento" applicato alla fine del lavoro: è parte integrante della prestazione dell'utente. Se le informazioni visive sono confuse, poco contrastate o mal disposte, la ricerca visiva richiede più tempo, più fatica cognitiva e genera più errori.
 
-I principi generali dell'ISO 9241-112 nell'ambito della prestazione nel campo visivo, uditivo e tattile
+I principi generali dell'ISO 9241-112 nell'ambito della prestazione nel campo visivo, uditivo e tattile:
+- **Rilevabilità e distinguibilità** -> ogni elemento dev'essere distinguibile dall'altro
+- **Compattezza** -> mostrare solo ciò che serve al compito evitando ridondanze
+- **Assenza di distrazioni** -> non inserire elementi che deviano dal compito principale
+- **Coerenza** -> uniformità di layout, colori, tipografia nell'uso dell'interfaccia.
+## La grafica per l'usabilità
+Se la ISO precedente spiegava i principi generali, la ISO 9241-125 scende nel dettaglio spiegando la **Visual UI**. Vengono richiamate quattro aree fondamentali:
+- **Organizzazione spaziale**: definizione delle regole per la spaziatura.
+- **Uso dei colori e del contrasto**: linee guida per la leggibilità, senza affidare mai l'informazione solamente al colore. Perché(?)
+- **Tipografia e Struttura**: scelta di font leggibili e dimensioni di carattere e di tabelle.
+- **Gestione delle finestre e del layout**: come si deve strutturare la barra di navigazione e la minimizzazione del carico cognitivo.
+## Leggi della Gestalt
