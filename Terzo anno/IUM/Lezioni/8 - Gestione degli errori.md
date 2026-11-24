@@ -43,4 +43,12 @@ Un ottima soluzione sarebbe modificare il cursore con la figura della forma da s
 >Le funzioni obbliganti sono situazioni in cui le azioni sono vincolate in modo tale che la mancata esecuzione di un passaggio impedisca il successivo
 
 Un esempio per comprendere le funzioni obbliganti è il seguente:
-P
+Selezionare l'oggetto desiderato disabilita tutte le voci del menù che corrispondo ad azioni che non hanno senso sull'oggetto selezionato.
+### Input vincolati
+Permettere all'utente di effettuare solo **azioni lecite** nel contesto corrente. Generalizza la nozione di funzione obbligante.
+![[Pasted image 20261124142652.png]]
+Vedendo l'esempio mostrato in figura, si comprende benissimo che l'opzione migliore è la n.3 poiché mostra una divisione visiva netta e spiega in modo ottimale il formato atteso (gg,mm,aaaa).
+### Richiedere conferme
+Chiedere sempre conferma prima di effettuare azioni **irreversibili** o pericolose. Spiegando con chiarezza quali sono le alternative possibili, e le loro conseguenze.
+![[Pasted image 20261124142910.png]]
+Si comprende alla perfezione che i due pop up in basso sono molto confusionari e non fanno intendere all'istante cosa si vuole. Ottimo invece è la figura in alto che ci fa capire benissimo cause e conseguenze di ciò che sta per accadere.
