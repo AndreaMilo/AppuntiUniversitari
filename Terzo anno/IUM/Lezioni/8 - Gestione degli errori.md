@@ -54,3 +54,12 @@ Chiedere sempre conferma prima di effettuare azioni **irreversibili** o pericolo
 Si comprende alla perfezione che i due pop up in basso sono molto confusionari e non fanno intendere all'istante cosa si vuole. Ottimo invece è la figura in alto che ci fa capire benissimo cause e conseguenze di ciò che sta per accadere.
 ### Usare default inoffensivi
 Il sistema non dovrebbe mai intraprendere per default l'azione più pericolosa tra quelle possibili. Tutto ciò che si progetta dev'essere a prova di studio, bisogna immaginare che l'utente più ignorante non sappia usare il prodotto, per questo bisogna dare poche cose per default.
+## Un buon messaggio di errore
+Un buon messaggio di errore si divide in tre elementi:
+- Allertare l'utente che qualcosa non va
+- Identificare l'errore, spiegando cosa non va
+- Dirigere l'utente a spiegare cosa dovrebbe fare per risolverlo
+
+Le linee guida di un errore seguono dogmi ben precisi e strutturati. Il messaggio deve spiegare esplicitamente cosa c'è che non va, usando un **linguaggio umano e vicino a quello dell'utente** con educazione, precisione e in maniera **esaustiva**. In questo messaggio il contenuto deve essere mirato all'indicazione sulla risoluzione del problema.
+### Linee guida per il web
+I messaggi di errore devono essere chiaramente visibili e espressi in un linguaggio chiaro, comprensibile a tutti. Preservare, per quanto possibile, il lavoro già fatto dall'utente e ridurre al massimo il lavoro necessario per correggere l'errore, in modo tale che il sistema deve agire automaticamente nel momento in cui rileva l'errore e non stressare troppo l'utente.
