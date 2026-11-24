@@ -12,3 +12,5 @@ Nel negozio online l'utente vuole trovare un prodotto, capirne il formato e il p
 >La presentazione dell'informazione visiva dovrebbe abilitare l'utente ad eseguire i compiti percettivi (per esempio, la ricerca di informazioni sullo schermo) in modo efficace, efficiente e con soddisfazione
 
 La grafica non è un semplice "abbellimento" applicato alla fine del lavoro: è parte integrante della prestazione dell'utente. Se le informazioni visive sono confuse, poco contrastate o mal disposte, la ricerca visiva richiede più tempo, più fatica cognitiva e genera più errori.
+
+I principi generali dell'ISO 9241-112 nell'ambito della prestazione nel campo visivo, uditivo e tattile
