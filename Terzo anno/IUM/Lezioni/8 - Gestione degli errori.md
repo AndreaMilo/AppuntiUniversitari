@@ -52,3 +52,5 @@ Vedendo l'esempio mostrato in figura, si comprende benissimo che l'opzione migli
 Chiedere sempre conferma prima di effettuare azioni **irreversibili** o pericolose. Spiegando con chiarezza quali sono le alternative possibili, e le loro conseguenze.
 ![[Pasted image 20261124142910.png]]
 Si comprende alla perfezione che i due pop up in basso sono molto confusionari e non fanno intendere all'istante cosa si vuole. Ottimo invece è la figura in alto che ci fa capire benissimo cause e conseguenze di ciò che sta per accadere.
+### Usare default inoffensivi
+Il sistema non dovrebbe mai intraprendere per default l'azione più pericolosa tra quelle possibili. Tutto ciò che si progetta dev'essere a prova di studio, bisogna immaginare che l'utente più ignorante non sappia usare il prodotto, per questo bisogna dare poche cose per default.
