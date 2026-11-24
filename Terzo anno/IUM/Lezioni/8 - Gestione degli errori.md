@@ -73,11 +73,32 @@ Quando l'errore si verifica comunque, il sistema deve rilevarlo e spiegarlo all'
 La stesura dei messaggi di errore segue linee guida ben precise: il testo deve spiegare esplicitamente qual è il problema usando un **linguaggio umano e vicino a quello dell'utente** (evitando codici tecnici incomprensibili), con un tono educato, preciso e in maniera **esaustiva**. Non bisogna mai rimproverare o colpevolizzare chi usa il sistema — molte applicazioni moderne arrivano persino a scusarsi in modo cordiale o autoironico — e tutto il contenuto deve essere orientato alla risoluzione concreta del problema.
 ### Linee guida per il web
 Sul web, soprattutto nella compilazione dei moduli (*form*), i messaggi di errore devono essere chiaramente visibili ed espressi in un linguaggio comprensibile a tutti. Quando ci sono più campi errati, ogni avviso va mostrato direttamente vicino o sopra al campo a cui si riferisce, evitando finestre che coprano la form o lunghe liste da tenere a mente. Bisogna inoltre preservare per quanto possibile il lavoro già fatto dall'utente (non azzerando i campi compilati correttamente) e ridurre al massimo lo sforzo necessario per correggere: il sistema dovrebbe agire in automatico dove può — per esempio posizionando già il cursore sul campo da sistemare — così da non stressare troppo l'utente.
-## Correggere l'errore (Recovery)
-Una volta diagnosticato l'errore, bisogna permettere di risolverlo. Come si vede nello schema iniziale, la correzione (*recovery*) segue due strategie diverse:
+## Correggere l'errore (Recovery) e tolleranza verso gli errori
+Nella revisione della norma **ISO 9241-110** eseguita nel 2020, il principio della tolleranza verso gli errori è stato ampliato e ribattezzato **use error robustness** (*robustezza rispetto agli errori d'uso*), che comprende tre aspetti:
+- evitare gli errori
+- tollerare gli errori
+- permettere di recuperare da essi
 
-Con la **backward recovery** (ripristino all'indietro) si annullano le conseguenze dell'errore per tornare allo stato iniziale e riprovare, ad esempio cancellando il campo errato oppure usando le funzioni di **Undo** e **Redo** a più livelli (indispensabili nei programmi di grafica, anche se più complesse da gestire quando i dati sono già stati salvati).
+Un dialogo è quindi tollerante e robusto verso l'errore quando, a dispetto di errori di input, i risultati desiderati possono essere ottenuti senza azioni correttive o con uno sforzo minimo. Come mostra lo schema del ripristino (*error recovery*), una volta entrati in uno stato di errore esistono due strade per uscirne:
 
-Con la **forward recovery** (ripristino in avanti), invece, non si torna indietro ma si cerca di raggiungere lo stato finale direttamente dallo stato di errore. Può avvenire in automatico da parte del sistema — come Google che corregge un errore di battitura mostrando *"Forse cercavi..."* — oppure per mano dell'utente, ad esempio modificando un rettangolo disegnato per sbaglio fino a trasformarlo in un quadrato invece di cancellarlo. È proprio questo approccio a rendere un sistema *error-tolerant*, anche se in alcuni casi porta a un risultato solo approssimato (*ripristino imperfetto*).
+![[Pasted image 20261124151903.png]]
 
-In entrambi i casi, secondo lo standard ISO 9241-110, conviene ridurre al minimo i passi richiesti per la correzione, permettere all'utente di rimandarla se non ha subito tutte le informazioni (*correzione differibile*) e, quando il sistema corregge qualcosa in automatico (come un correttore ortografico), avvisarlo sempre lasciandogli la possibilità di modificare la correzione.
+Il **forward recovery** (ripristino in avanti) è la strategia con cui, invece di tornare allo stato iniziale, si cerca di raggiungere lo stato finale desiderato direttamente dallo stato di errore. Può essere eseguito in automatico dal sistema — come Google quando corregge un errore di battitura mostrando *"Forse cercavi..."* — oppure manualmente dall'utente (ad esempio adattando un rettangolo disegnato per sbaglio fino a farlo diventare un quadrato invece di cancellarlo), ed è proprio questo approccio a rendere un sistema *error-tolerant*.
+![[Pasted image 20261124152319.png]]
+
+Il **backward recovery** (ripristino all'indietro), al contrario, consiste nell'annullare le conseguenze dell'errore per riportare il sistema allo stato iniziale e permettere all'utente di riprovare correttamente. Si realizza per esempio svuotando un campo errato oppure tramite le funzioni di **Undo** e **Redo** a più livelli (indispensabili nei programmi di grafica, anche se più complesse da gestire quando ci sono dati già salvati).
+![[Pasted image 20261124152334.png]]
+
+### Recovery imperfetta
+Non sempre è possibile tornare esattamente allo stato iniziale con la backward recovery né raggiungere lo stato finale ideale con la forward recovery. In questi casi ci si deve accontentare di arrivare a uno **stato finale approssimato**, aggiustando l'errore al meglio possibile (come incollare un piatto rotto o ritoccare a mano una figura imprecisa) e dando comunque all'utente il modo di riprendere l'interazione e portare a termine il proprio obiettivo.
+![[Pasted image 20261124152606.png]]
+
+Per gestire al meglio il ripristino, conviene seguire tre raccomandazioni pratiche:
+- **Minimo sforzo di correzione**: il sistema deve richiedere all'utente il minor numero possibile di passaggi per correggere l'errore, automatizzando tutto ciò che non richiede intervento umano.
+- **Correzione differibile**: offrire la possibilità di rimandare la correzione a un momento successivo (salvo che non sia indispensabile per proseguire), salvando i dati inseriti fino a quel punto in modo che, alla successiva interazione, l'utente possa riprendere esattamente da dove era rimasto.
+- **Correzione automatica modificabile**: quando il sistema corregge da solo un errore (come un correttore ortografico), deve sempre avvisare l'utente e lasciargli la possibilità di modificare o annullare la correzione, perché l'ultima parola spetta sempre a lui.
+
+>[!NOTE] Conclusione di Donald Norman
+>"Il progettista non deve concepire una semplice dicotomia fra errori e comportamento corretto: al contrario, tutta l'interazione uomo-macchina deve essere trattata come una procedura cooperativa fra i due, dove gli equivoci possono nascere da ambo le parti."
+
+Questa riflessione significa che l'errore fa parte del comportamento umano e non va visto come una colpa dell'utente né come un problema secondario: un sistema ben progettato non pretende una perfezione rigida, ma accetta le possibili deviazioni e guida l'utente in modo flessibile e collaborativo verso il suo obiettivo, rendendo prevenzione e gestione degli errori una parte centrale della progettazione.
