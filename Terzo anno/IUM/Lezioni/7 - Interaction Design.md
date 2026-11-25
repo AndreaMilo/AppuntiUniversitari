@@ -25,4 +25,18 @@ Se la ISO precedente spiegava i principi generali, la ISO 9241-125 scende nel de
 - **Tipografia e Struttura**: scelta di font leggibili e dimensioni di carattere e di tabelle.
 - **Gestione delle finestre e del layout**: come si deve strutturare la barra di navigazione e la minimizzazione del carico cognitivo.
 ## Leggi della Gestalt
-Le leggi della Gestaltpsychologie spiegano la figura o la forma, intesa come unità percettiva globale. 
+Le leggi della Gestaltpsychologie spiegano la figura o la forma, intesa come unità percettiva globale.
+Il concetto nel nostro campo si riversa sul fatto che l'occhio dell'utente non si limita a sommare singoli pixel o tratti isolati ma organizza il campo visivo in gruppi.
+Studiare come l'occhio raggruppa spontaneamente gli elementi è utile al progettista per rendere l'interfaccia leggibile a colpo d'occhio.
+![[Pasted image 20261125104556.png]]
+### Leggi della gastalt o dell'organizzazione figurale
+**Wertheimer** nel 1923 stipula una lista di leggi sulla base della gastalt per descrivere la tendenza spontanea con cui la percezione umana raggruppa o separa gli elementi visivi:
+- Legge della vicinanza
+- Legge della somiglianza
+- Legge della chiusura
+- Legge della continuità di direzione
+- Legge della buona forma
+- Legge dell'esperienza passata
+#### Legge della vicinanza
+La legge della vicinanza spiega che gli elementi del campo visivo che sono 
+![[Pasted image 20261125105039.png]]
