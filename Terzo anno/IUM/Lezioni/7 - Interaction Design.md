@@ -43,3 +43,14 @@ La legge della vicinanza spiega che gli elementi del campo visivo che sono fra l
 #### Legge della somiglianza
 La legge della somiglianza spiega che gli elementi del campo visivo tra loro simili tendono ad essere raccolti in unità
 ![[Pasted image 20261125145144.png]]
+Anche il colore è ottimo per la legge della somiglianza, infatti elementi con lo stesso coloroe possono essere attribuiti a elementi simili tra loro, tuttavia questa tecnica è utile solo se non si usano troppi colori diversi nella stessa schermata, troppi colori o troppe tinte tendono a confondere.
+#### Legge della chiusura
+La legge della chiusura spiega che Le linee delimitanti una superficie chiusa si percepiscono come unità più facilmente di quelle che non si chiudono.
+![[Pasted image 20261125150319.png]]
+Quando la vicinanza spaziale tra elementi e la chiusura di una forma spingono in direzioni diverse, la percezione può risultare **ambigua** o dominata da una delle due forze. Per il progettista è un avvertimento importante: un layout ambiguo può far sembrare uniti elementi che non lo sono o separare elementi che dovrebbero stare insieme, aumentando la fatica di lettura.
+#### Legge della continuità di direzione
+Quelle parti di una figura che formano una "curva buona" o che vanno nella stessa direzione si costituiscono in unità più facilmente delle altre.
+![[Pasted image 20261125150542.png]]
+#### Legge della buona forma
+Il campo percettivo si segmenta in modo che risultino entità per quanto possibile equilibrate, armoniche, costituite secondo un medesimo principio in tutte le loro parti.
+![[Pasted image 20261125150613.png]]
