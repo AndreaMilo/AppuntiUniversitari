@@ -25,3 +25,4 @@ Se la ISO precedente spiegava i principi generali, la ISO 9241-125 scende nel de
 - **Tipografia e Struttura**: scelta di font leggibili e dimensioni di carattere e di tabelle.
 - **Gestione delle finestre e del layout**: come si deve strutturare la barra di navigazione e la minimizzazione del carico cognitivo.
 ## Leggi della Gestalt
+Le leggi della Gestaltpsychologie spiegano la figura o la forma, intesa come unità percettiva globale. 
