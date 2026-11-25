@@ -54,3 +54,17 @@ Quelle parti di una figura che formano una "curva buona" o che vanno nella stess
 #### Legge della buona forma
 Il campo percettivo si segmenta in modo che risultino entità per quanto possibile equilibrate, armoniche, costituite secondo un medesimo principio in tutte le loro parti.
 ![[Pasted image 20261125150613.png]]
+In un'interfaccia, rispettare la "buona forma" significa evitare spigoli casuali, allineamenti approssimativi e composizioni sbilanciate che costringono l'utente a riordinare visivamente la pagina.
+#### Legge dell'esperienza passata
+La legge dell'esperienza passata spiega che le nostre conoscenze e abitudini pregresse influenzano il modo in cui interpetriamo e completiamo ciò che vediamo. Se un disegno o un controllo ricorda qualcosa che abbiamo già visto e imparato, lo riconosciamo più rapidamente; se invece è troppo insolito o privo di riferimenti noti, richiede più sforzo.
+![[Pasted image 20261125151228.png]]
+### Elementi irregolari nella forma e nella distribuzione spaziale
+In una schermata, una distribuzione irregolare di campi, testi o pulsanti fa sembrare l'interfaccia disorganizzata e rallenta l'individuazione dei comandi. Nella foto seguente si nota chiaramente cosa accade quando è presente un assenza di armonia geometrica.
+![[Pasted image 20261125151511.png]]
+
+Nell'esempio sottostante si raffigura una schermata priva di regole della Gestalt e un esempio con la Gestalt rispettata
+![[Pasted image 20261125151803.png]]
+Con Gestalt:
+![[Pasted image 20261125151816.png]]
+
+In molto 
