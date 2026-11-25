@@ -40,3 +40,6 @@ Studiare come l'occhio raggruppa spontaneamente gli elementi è utile al progett
 #### Legge della vicinanza
 La legge della vicinanza spiega che gli elementi del campo visivo che sono fra loro più vicini tendono ad essere raccolti in unità
 ![[Pasted image 20261125105039.png]]
+#### Legge della somiglianza
+La legge della somiglianza spiega che gli elementi del campo visivo tra loro simili tendono ad essere raccolti in unità
+![[Pasted image 20261125145144.png]]
