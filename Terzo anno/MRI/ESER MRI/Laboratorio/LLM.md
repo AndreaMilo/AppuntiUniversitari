@@ -21,3 +21,5 @@ Il **Trasformer** non esegue queste operazioni una singola volta, ma più volte 
 Ogni calcolo in parallelo viene chiamata **testa**. Le teste stanno nello stesso strato e i loro risultati si uniscono in un selo vettore per token.
 Di solito sono 8 nel paper.
 
+### Rete feed forward
+La rete feed forward lavora sul vettore di un token per volta dopo aver calcolato l'attention.
