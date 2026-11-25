@@ -67,4 +67,13 @@ Nell'esempio sottostante si raffigura una schermata priva di regole della Gestal
 Con Gestalt:
 ![[Pasted image 20261125151816.png]]
 
-In molto 
+In molte applicazioni e sitiweb alcune schermate sono diventati dogmi di somiglianza da rispettare per lasciare all'utente una visione immediata di contesti che può eseguire in alcune unità, come il menù di uscita ad esempio
+![[Pasted image 20261125152329.png]]
+### Eye vs Logic
+L'ordine alfabetico non è utile perché l'utente non cerca le opzioni di stampa in ordine alfabetico, e l'occhio fatica a trovare una relazione logica tra le righe allineate in basso. Quando l'organizzazione visiva non rispecchia la logica del compito, l'interfaccia risulta poco intuitiva.
+### Colore
+![[Pasted image 20261125152728.png]]
+La foto mostrata in figura è il modello di **Finviz** in cui le variabili visive lavorano tra di loro.
+**L'area** del riquadro rappresenta la **capitalizzazione**, mentre il **colore** indica la variazione percentuale giornaliera (con valori positivi e negativi). È un buon esempio di codifica visiva compatta, che permette di cogliere tendenze generali a colpo d'occhio prima di leggere i singoli numeri.
+### More on contrast
+Il contrasto nasca dalla differenza rispetto al contesto: un riquadro più scuro spicca tra quelli più chiari, una parola in colore diverso risalta in un testo, e anche la dimensione del testo crea contrasto (un testo più grande spicca di più rispetto a uno piccolo). Il contrasto funziona proprio perché c'è una differenza netta rispetto agli elementi circostanti.
