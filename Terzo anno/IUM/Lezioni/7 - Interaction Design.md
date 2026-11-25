@@ -77,3 +77,14 @@ La foto mostrata in figura è il modello di **Finviz** in cui le variabili visiv
 **L'area** del riquadro rappresenta la **capitalizzazione**, mentre il **colore** indica la variazione percentuale giornaliera (con valori positivi e negativi). È un buon esempio di codifica visiva compatta, che permette di cogliere tendenze generali a colpo d'occhio prima di leggere i singoli numeri.
 ### More on contrast
 Il contrasto nasca dalla differenza rispetto al contesto: un riquadro più scuro spicca tra quelli più chiari, una parola in colore diverso risalta in un testo, e anche la dimensione del testo crea contrasto (un testo più grande spicca di più rispetto a uno piccolo). Il contrasto funziona proprio perché c'è una differenza netta rispetto agli elementi circostanti.
+Una **regola d'oro** sui contrasti e sul design visivo sancisce che i contrasti e l'enfasi vanno usato con **molta moderazione**.
+Perché un elemento risalti serve uno sfondo relativamente **calmo**; se si evidenzia tutto con colori accesi o troppi effetti, l'enfasi si annulla e per evidenziare davvero qualcosa servirebbe un effetto ancora più estremo. La **moderazione** è ciò che mantiene leggibile la gerarchia.
+
+Un altro elemento per richiamare l'attenzione opposto al contrasto è l'**illuminazione**, un elemento illuminante marca molto di più un elemento, solo che potrebbero disturbare la lettura o **impedire di concentrarsi** se continuinano ad essere lampeggianti mentre l'operatore deve leggere o decidere un azione.
+Per questo molto spesso quando si passa sopra l'elemento lampeggiante, quest'ultimo smette di lampeggiare.
+![[Pasted image 20261125154049.png|197]]
+## L'esperimento di Yarbus
+L'esperimento sulla visibilità eseguito da Yarbus nel 1967 viene eseguito sul dipinto di **Repin**. L'esperimento stava nel descrivere il quadro al stimare l'età delle persone, ricordare i vestiti o la posizioni degli oggetti, analizzando così le consegne e i **movimenti oculari**.
+### Heat-map
+La foto presenta tre _heat-map_ (mappe di calore dell'attenzione visiva) tratte dagli studi di Jakob Nielsen sulle pagine web. Le aree più calde (rosse e gialle) mostrano dove si concentrano maggiormente gli sguardi degli utenti — tipicamente nella parte superiore e lungo le prime parole/righe dei contenuti — mentre le zone più fredde o esterne ricevono meno attenzione. Progettare tenendo conto di questi schemi di lettura aiuta a collocare le informazioni chiave dove vengono davvero notate.
+![[Pasted image 20261125154612.png]]
