@@ -26,4 +26,5 @@ Questo sistema di filtraggio delle informazioni è anche alla base degli **algor
 Anche la **raccomendations**, ovvero la raccomandazione degli oggetti da comprare, film da comprare o video da vedere nei consigliati.
 
 Tutti questi esempi usano algoritmi basati sul Information Filtering,
-
+![[Pasted image 20261127170723.png]]
+La maggior parte dei video, prodotti e film guardati o comprati sono dati dai consigliati e non dai ricercati.
