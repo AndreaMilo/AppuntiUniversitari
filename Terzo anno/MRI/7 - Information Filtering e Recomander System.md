@@ -31,4 +31,7 @@ La maggior parte dei video, prodotti e film guardati o comprati sono dati dai co
 
 >[!NOTE] Definizione di Recomander System di Burke 2002
 >I Recomander System guidano l'utente in modo **personalizzato** in uno spazio dove ci sono **tante possibili opzioni**.
-
+## Problemi
+![[Pasted image 20261127173104.png]]
+[Spiegare queste slide e queste foto]
+![[Pasted image 20261127173128.png]]![[Pasted image 20261127173134.png]]
