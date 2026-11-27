@@ -35,3 +35,22 @@ La maggior parte dei video, prodotti e film guardati o comprati sono dati dai co
 ![[Pasted image 20261127173104.png]]
 [Spiegare queste slide e queste foto]
 ![[Pasted image 20261127173128.png]]![[Pasted image 20261127173134.png]]
+### Quanto questo è buono al business
+![[Pasted image 20261127175048.png]]
+[Spiegare slide]
+### Come funzionano questo tipo di piattaforme
+Ci sono tre attori importanti per il funzionamento di queste piattaforme:
+- L'**utente** dove è importante segnare le informazioni di quest'ultimo, come cosa compra, il profilo, quanto tempo rimane attivo sulla piattaforma, che tipo di contenuto guarda, ecc...
+- Informazioni sugli **oggetti**, ovvero se il film o prodotto o canzone è di tendenza, quanto viene visualizzato, acquistato, streammato e che impatto ha nell'ultimo periodo
+
+Mettendo insieme le preferenze utente e le informazioni degli oggetti, in modo diverso per ogni algoritmo, avviene l'operazione di Recomander System, dove viene appreso l'analisi delle preferenze utente, il raking degli oggetti e selezionare i top-N reccomandetions, analyzes item charaterictis.
+
+Con i top-N recommanded items possiamo stilare poi una lista dei prodotti personalizzati da mostrare all'utente.
+## Tassonomia dei Recommender Systems
+![[Pasted image 20261127175710.png]]
+Le strategie non pesonalizzate vengono utilizzate per mostrare qualcosa di sicuro e che funzionerebbe di certo perché sono di tendenza.
+Personalizzati invece sono degli adv basati sul video cliccato o generalmente su ciò che guardiamo sui social.
+![[Pasted image 20261127180047.png]]
+- Content-Based: ...
+- Collaborative Filtering: ...
+- Hybrid & Knowledge-Aware: ...
