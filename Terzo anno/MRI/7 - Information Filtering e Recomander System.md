@@ -28,3 +28,7 @@ Anche la **raccomendations**, ovvero la raccomandazione degli oggetti da comprar
 Tutti questi esempi usano algoritmi basati sul Information Filtering,
 ![[Pasted image 20261127170723.png]]
 La maggior parte dei video, prodotti e film guardati o comprati sono dati dai consigliati e non dai ricercati.
+
+>[!NOTE] Definizione di Recomander System di Burke 2002
+>I Recomander System guidano l'utente in modo **personalizzato** in uno spazio dove ci sono **tante possibili opzioni**.
+
